@@ -1,0 +1,12 @@
+[
+ {
+  "level": "L0",
+  "delay": null,
+  "mean_gap": 44.0
+ },
+ {
+  "level": "L1",
+  "delay": 12,
+  "mean_gap": 42.36842105263158
+ }
+]

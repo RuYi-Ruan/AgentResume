@@ -1,0 +1,86 @@
+[
+ {
+  "cond": "after_unaware",
+  "rep": 0,
+  "steps": 260,
+  "deliveries": 3,
+  "score": 60,
+  "gap": 63.0,
+  "acc_window": 0.5517241379310345,
+  "calls": [
+   59,
+   29
+  ],
+  "wall_s": 202
+ },
+ {
+  "cond": "after_unaware",
+  "rep": 1,
+  "steps": 260,
+  "deliveries": 4,
+  "score": 80,
+  "gap": 37.0,
+  "acc_window": 0.5625,
+  "calls": [
+   65,
+   32
+  ],
+  "wall_s": 206
+ },
+ {
+  "cond": "after_unaware",
+  "rep": 2,
+  "steps": 260,
+  "deliveries": 3,
+  "score": 60,
+  "gap": 53.0,
+  "acc_window": 0.5714285714285714,
+  "calls": [
+   59,
+   28
+  ],
+  "wall_s": 142
+ },
+ {
+  "cond": "after_aware",
+  "rep": 0,
+  "steps": 260,
+  "deliveries": 0,
+  "score": 0,
+  "gap": null,
+  "acc_window": 0.8,
+  "calls": [
+   22,
+   10
+  ],
+  "wall_s": 114
+ },
+ {
+  "cond": "after_aware",
+  "rep": 1,
+  "steps": 260,
+  "deliveries": 2,
+  "score": 40,
+  "gap": 76.0,
+  "acc_window": 0.7222222222222222,
+  "calls": [
+   43,
+   18
+  ],
+  "wall_s": 175
+ },
+ {
+  "cond": "after_aware",
+  "rep": 2,
+  "steps": 260,
+  "deliveries": 2,
+  "score": 40,
+  "gap": 89.0,
+  "acc_window": 0.47058823529411764,
+  "calls": [
+   43,
+   17
+  ],
+  "wall_s": 155
+ }
+]

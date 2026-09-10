@@ -1,0 +1,20 @@
+[
+ {
+  "id": "E1",
+  "situation": "存在一口空锅或未满的锅(empty/items1/items2)，且你空手、伙伴没有正拿着洋葱去补",
+  "decide": "选 FETCH 去取洋葱补锅，而不是 HOLD 空等",
+  "why": "空等不产出；利用等待时间补料才能更快出汤",
+  "evidence": {
+   "wasted_ticks": 12
+  }
+ },
+ {
+  "id": "E3",
+  "situation": "有锅已 ready 而你（或伙伴）正拿盘",
+  "decide": "尽快 PICKUP 取汤并 DELIVER，不要拖延",
+  "why": "ready 的锅占着灶位，早取早开下一锅",
+  "evidence": {
+   "ready_idle_ticks": 2456
+  }
+ }
+]

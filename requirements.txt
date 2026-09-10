@@ -1,0 +1,7 @@
+# M0-pinned environment (Windows / Python 3.11.3 / venv .venv)
+# Reasons:
+#   overcooked-ai 1.1.0 uses `np.Inf`, removed in NumPy >= 2.0 -> pin < 2.
+#   scipy is a required but undeclared dependency of its env/planners.
+overcooked-ai==1.1.0
+numpy==1.26.4
+scipy>=1.11

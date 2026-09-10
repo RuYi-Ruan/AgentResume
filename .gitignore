@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+apikey.txt
+data/**/*.npz
+data/**/collect_log.txt
+data/v2_out.txt
+data/v2_prompts.txt

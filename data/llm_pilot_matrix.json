@@ -1,0 +1,128 @@
+[
+ {
+  "flavor": "stale",
+  "rep": 0,
+  "deliveries": 4,
+  "gap": 39.333333333333336,
+  "calls": [
+   66,
+   32
+  ],
+  "epochs": 32,
+  "acc_exact": 0.53125,
+  "acc_window": 0.6875,
+  "acc_early": 0.5384615384615384,
+  "acc_late": 0.7894736842105263,
+  "parfill_ticks": 9,
+  "div_guess_n": 4,
+  "div_guess_fetch": 0,
+  "obs_samples": null,
+  "obs_rate": null,
+  "wall_s": 133
+ },
+ {
+  "flavor": "stale",
+  "rep": 1,
+  "deliveries": 4,
+  "gap": 41.0,
+  "calls": [
+   65,
+   41
+  ],
+  "epochs": 41,
+  "acc_exact": 0.43902439024390244,
+  "acc_window": 0.5609756097560976,
+  "acc_early": 0.47058823529411764,
+  "acc_late": 0.625,
+  "parfill_ticks": 4,
+  "div_guess_n": 3,
+  "div_guess_fetch": 0,
+  "obs_samples": null,
+  "obs_rate": null,
+  "wall_s": 131
+ },
+ {
+  "flavor": "updated",
+  "rep": 0,
+  "deliveries": 3,
+  "gap": 45.0,
+  "calls": [
+   49,
+   20
+  ],
+  "epochs": 18,
+  "acc_exact": 0.6111111111111112,
+  "acc_window": 0.6666666666666666,
+  "acc_early": 0.6923076923076923,
+  "acc_late": 0.6,
+  "parfill_ticks": 7,
+  "div_guess_n": 3,
+  "div_guess_fetch": 0,
+  "obs_samples": 1,
+  "obs_rate": 0.0,
+  "wall_s": 84
+ },
+ {
+  "flavor": "updated",
+  "rep": 1,
+  "deliveries": 4,
+  "gap": 42.666666666666664,
+  "calls": [
+   57,
+   31
+  ],
+  "epochs": 28,
+  "acc_exact": 0.5357142857142857,
+  "acc_window": 0.6428571428571429,
+  "acc_early": 0.5882352941176471,
+  "acc_late": 0.7272727272727273,
+  "parfill_ticks": 3,
+  "div_guess_n": 2,
+  "div_guess_fetch": 0,
+  "obs_samples": 1,
+  "obs_rate": 0.0,
+  "wall_s": 103
+ },
+ {
+  "flavor": "current",
+  "rep": 0,
+  "deliveries": 4,
+  "gap": 39.333333333333336,
+  "calls": [
+   66,
+   32
+  ],
+  "epochs": 32,
+  "acc_exact": 0.65625,
+  "acc_window": 0.8125,
+  "acc_early": 0.8461538461538461,
+  "acc_late": 0.7894736842105263,
+  "parfill_ticks": 9,
+  "div_guess_n": 3,
+  "div_guess_fetch": 0,
+  "obs_samples": null,
+  "obs_rate": null,
+  "wall_s": 147
+ },
+ {
+  "flavor": "current",
+  "rep": 1,
+  "deliveries": 4,
+  "gap": 40.0,
+  "calls": [
+   64,
+   28
+  ],
+  "epochs": 28,
+  "acc_exact": 0.5714285714285714,
+  "acc_window": 0.7857142857142857,
+  "acc_early": 0.7647058823529411,
+  "acc_late": 0.8181818181818182,
+  "parfill_ticks": 4,
+  "div_guess_n": 3,
+  "div_guess_fetch": 3,
+  "obs_samples": null,
+  "obs_rate": null,
+  "wall_s": 136
+ }
+]

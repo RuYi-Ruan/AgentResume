@@ -1,0 +1,128 @@
+[
+ {
+  "cond": "before",
+  "rep": 0,
+  "deliveries": 4,
+  "score": 80,
+  "acc": 0.5634328358208955,
+  "cause_ticks": 0,
+  "cause_acc": null,
+  "calls": [
+   59,
+   82
+  ],
+  "wall_s": 553
+ },
+ {
+  "cond": "before",
+  "rep": 1,
+  "deliveries": 1,
+  "score": 20,
+  "acc": 0.7166666666666667,
+  "cause_ticks": 0,
+  "cause_acc": null,
+  "calls": [
+   35,
+   48
+  ],
+  "wall_s": 225
+ },
+ {
+  "cond": "before",
+  "rep": 2,
+  "deliveries": 1,
+  "score": 20,
+  "acc": 0.8066666666666666,
+  "cause_ticks": 0,
+  "cause_acc": null,
+  "calls": [
+   38,
+   54
+  ],
+  "wall_s": 213
+ },
+ {
+  "cond": "after_unaware",
+  "rep": 0,
+  "deliveries": 1,
+  "score": 20,
+  "acc": 0.7137809187279152,
+  "cause_ticks": 247,
+  "cause_acc": 0.7206477732793523,
+  "calls": [
+   37,
+   53
+  ],
+  "wall_s": 287
+ },
+ {
+  "cond": "after_unaware",
+  "rep": 1,
+  "deliveries": 1,
+  "score": 20,
+  "acc": 0.7482758620689656,
+  "cause_ticks": 236,
+  "cause_acc": 0.8347457627118644,
+  "calls": [
+   37,
+   55
+  ],
+  "wall_s": 212
+ },
+ {
+  "cond": "after_unaware",
+  "rep": 2,
+  "deliveries": 0,
+  "score": 0,
+  "acc": 0.9161073825503355,
+  "cause_ticks": 19,
+  "cause_acc": 0.15789473684210525,
+  "calls": [
+   57,
+   61
+  ],
+  "wall_s": 645
+ },
+ {
+  "cond": "after_aware",
+  "rep": 0,
+  "deliveries": 1,
+  "score": 20,
+  "acc": 0.8666666666666667,
+  "cause_ticks": 191,
+  "cause_acc": 0.8272251308900523,
+  "calls": [
+   35,
+   51
+  ],
+  "wall_s": 187
+ },
+ {
+  "cond": "after_aware",
+  "rep": 1,
+  "deliveries": 1,
+  "score": 20,
+  "acc": 0.8933333333333333,
+  "cause_ticks": 249,
+  "cause_acc": 0.9196787148594378,
+  "calls": [
+   35,
+   49
+  ],
+  "wall_s": 240
+ },
+ {
+  "cond": "after_aware",
+  "rep": 2,
+  "deliveries": 1,
+  "score": 20,
+  "acc": 0.8466666666666667,
+  "cause_ticks": 197,
+  "cause_acc": 0.8324873096446701,
+  "calls": [
+   35,
+   48
+  ],
+  "wall_s": 166
+ }
+]

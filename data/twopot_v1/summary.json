@@ -1,0 +1,26 @@
+{
+ "L0": {
+  "delay": null,
+  "deliveries_mean": 20.0,
+  "gap_mean": 44.0,
+  "audit_mean": 0.9967479674796748
+ },
+ "L1": {
+  "delay": 12,
+  "deliveries_mean": 20.666666666666668,
+  "gap_mean": 42.36842105263158,
+  "audit_mean": 0.9901960784313726
+ },
+ "L2": {
+  "delay": 6,
+  "deliveries_mean": 20.333333333333332,
+  "gap_mean": 42.41228070175439,
+  "audit_mean": 0.9921436588103255
+ },
+ "Lk": {
+  "delay": 0,
+  "deliveries_mean": 28.0,
+  "gap_mean": 31.0,
+  "audit_mean": 0.9984709480122325
+ }
+}
