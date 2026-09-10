@@ -4,6 +4,7 @@
 
 - `v2_E.json`：从无经验轨迹挖掘的经验库；
 - `v2_results_formal.json`：2026-09-10 决策事件修复前的探索结果，存在跨 tick 重复计数风险，不可作为最终统计；
+- `mlp_impression_results.json`：结构化 L0/Lk impression 条件 MLP 的按 seed 留一可行性实验；
 - `v2_naive/*.json`：无经验采集批次的局级元数据；
 - `twopot_v1/**/*.json`：历史确定性状态机实验结果；
 - `llm_pilot_matrix.json`、`v2_results*.json`：历史或调试阶段汇总。

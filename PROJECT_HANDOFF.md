@@ -2,6 +2,8 @@
 
 > 2026-09-10 口径修复：`LLMPlayer` 现为每次真实决策生成唯一 `decision_id`，并在下一 tick 发布；Bob 的 `guess_event` 按该 ID 与 Alice 决策精确配对。旧的 `data/v2_results_formal.json` 来自修复前的逐 tick 重复计数口径，仅作探索记录，正式结论必须重跑。
 
+> 2026-09-10 新方向：参考 RECOLLAB 后，将“印象”明确为 Bob 对 Alice 能力/策略类型的 belief，而不是交给 MLP 解释自然语言。`scripts/m10_mlp_impression.py` 已完成结构化 impression 的离线可行性验证；设计见 `experiment_design_mlp.md`。历史轨迹高度确定，下一阶段必须用真正训练得到的 pre/post Alice checkpoint 重做。
+
 > 目标一句话：在 Overcooked 里验证一个"Agent Resume / 印象滞后"的动机命题——
 > **伙伴 Alice 的能力因为积累了经验而提升后，如果另一个智能体 Bob 对 Alice 的印象还停留在过去，Bob 会系统性地误读 Alice 行为背后的意图；当 Bob 持有/更新了同一份经验，就能读得准。**
 

@@ -1,0 +1,139 @@
+{
+  "experiment": "conditional_mlp_impression_feasibility",
+  "source_policy": "historical scripted CookAgent (not learned)",
+  "split": "leave-one-seed-out",
+  "event_definition": "intent or target transition",
+  "features": "Alice position + held object + two pot states + impression one-hot",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "rows": [
+    {
+      "test_seed": 1,
+      "n_l0_events": 104,
+      "n_lk_events": 189,
+      "n_reinterpretation_events": 12,
+      "l0_correct_impression_acc": 0.9903846153846154,
+      "lk_stale_impression_acc": 0.8201058201058201,
+      "lk_updated_impression_acc": 1.0,
+      "lk_state_only_acc": 0.9365079365079365,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.0
+    },
+    {
+      "test_seed": 2,
+      "n_l0_events": 104,
+      "n_lk_events": 190,
+      "n_reinterpretation_events": 12,
+      "l0_correct_impression_acc": 0.9903846153846154,
+      "lk_stale_impression_acc": 0.8210526315789474,
+      "lk_updated_impression_acc": 1.0,
+      "lk_state_only_acc": 0.9368421052631579,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.0
+    },
+    {
+      "test_seed": 3,
+      "n_l0_events": 104,
+      "n_lk_events": 190,
+      "n_reinterpretation_events": 12,
+      "l0_correct_impression_acc": 0.9903846153846154,
+      "lk_stale_impression_acc": 0.8210526315789474,
+      "lk_updated_impression_acc": 1.0,
+      "lk_state_only_acc": 0.9368421052631579,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.0
+    },
+    {
+      "test_seed": 4,
+      "n_l0_events": 105,
+      "n_lk_events": 190,
+      "n_reinterpretation_events": 12,
+      "l0_correct_impression_acc": 0.9904761904761905,
+      "lk_stale_impression_acc": 0.8210526315789474,
+      "lk_updated_impression_acc": 1.0,
+      "lk_state_only_acc": 0.9368421052631579,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.0
+    },
+    {
+      "test_seed": 5,
+      "n_l0_events": 104,
+      "n_lk_events": 189,
+      "n_reinterpretation_events": 12,
+      "l0_correct_impression_acc": 0.9903846153846154,
+      "lk_stale_impression_acc": 0.8201058201058201,
+      "lk_updated_impression_acc": 1.0,
+      "lk_state_only_acc": 0.9365079365079365,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.0
+    },
+    {
+      "test_seed": 6,
+      "n_l0_events": 104,
+      "n_lk_events": 190,
+      "n_reinterpretation_events": 12,
+      "l0_correct_impression_acc": 0.9903846153846154,
+      "lk_stale_impression_acc": 0.8210526315789474,
+      "lk_updated_impression_acc": 1.0,
+      "lk_state_only_acc": 0.9368421052631579,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.0
+    },
+    {
+      "test_seed": 7,
+      "n_l0_events": 105,
+      "n_lk_events": 190,
+      "n_reinterpretation_events": 12,
+      "l0_correct_impression_acc": 0.9904761904761905,
+      "lk_stale_impression_acc": 0.8210526315789474,
+      "lk_updated_impression_acc": 1.0,
+      "lk_state_only_acc": 0.9368421052631579,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.0
+    },
+    {
+      "test_seed": 8,
+      "n_l0_events": 104,
+      "n_lk_events": 190,
+      "n_reinterpretation_events": 12,
+      "l0_correct_impression_acc": 0.9903846153846154,
+      "lk_stale_impression_acc": 0.8210526315789474,
+      "lk_updated_impression_acc": 1.0,
+      "lk_state_only_acc": 0.9368421052631579,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.0
+    }
+  ],
+  "mean": {
+    "l0_correct_impression_acc": 0.9904075091575092,
+    "lk_stale_impression_acc": 0.8208159287106656,
+    "lk_updated_impression_acc": 1.0,
+    "lk_state_only_acc": 0.9367585630743526,
+    "reinterpretation_stale_acc": 0.0,
+    "reinterpretation_updated_acc": 1.0,
+    "reinterpretation_state_only_acc": 0.0
+  },
+  "updated_minus_stale": 0.17918407128933445,
+  "reinterpretation_updated_minus_stale": 1.0,
+  "limitations": [
+    "Alice capability labels come from scripted policies, not PPO checkpoints.",
+    "Trajectories are highly deterministic and contain few unique reinterpretation contexts.",
+    "This pilot validates the impression representation and counterfactual control only."
+  ]
+}

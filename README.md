@@ -124,12 +124,27 @@ LLM 经验注入的优势是经验和印象可直接用自然语言表达，但�
 
 这种设计把“真实能力”“Bob 的印象”和“意图预测”拆成可控变量，也能继续保留当前 LLM 方案作为语言型对照。
 
+### RECOLLAB 对齐与首个 MLP 可行性实验
+
+参考 Wallace 等人的 *ReCollab: Retrieval-Augmented LLMs for Cooperative Ad-hoc Teammate Modeling*，本项目进一步采用“伙伴类型 belief 与控制策略分离”的思路。RECOLLAB 本身并不让策略 MLP 读取自然语言印象：它先从 probe 轨迹预测离散伙伴类型，再路由到对应的预训练 best-response policy。
+
+仓库已加入纯 NumPy 条件 MLP 原型 `scripts/m10_mlp_impression.py`。它在按 seed 留一的条件下，用“当前可观察局面 + L0/Lk impression one-hot”预测 Alice 宏观意图，并在同一 Lk 测试事件上反事实切换印象。当前历史数据上的均值为：
+
+| 条件 | Lk 意图准确率 | reinterpretation 子集 |
+|---|---:|---:|
+| stale L0 impression | 0.821 | 0.000 |
+| updated Lk impression | 1.000 | 1.000 |
+| state-only，无 impression | 0.937 | 0.000 |
+
+该结果只证明结构化 impression 能被 MLP 使用。其来源轨迹仍由历史状态机生成，而且不同 seed 高度同构，不能用来声称“训练产生了能力提升”。完整方案和有效性约束见 `experiment_design_mlp.md`；下一阶段需要通过行为克隆初始化和 PPO/IPPO 训练得到真正的 pre/post Alice checkpoint。
+
 ## 文档
 
 - `PROJECT_HANDOFF.md`：当前实现与已知问题；
 - `experiment_design_v2.md`：LLM 原生实验设计；
 - `plan_motivation_validation.md`：整体实验规划与历史记录；
 - `motivation_evidence.md`：已有探索性实验记录。
+- `experiment_design_mlp.md`：结合 RECOLLAB 后的可训练策略与结构化印象设计。
 
 ## License
 
