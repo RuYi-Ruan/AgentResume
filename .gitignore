@@ -3,7 +3,19 @@ __pycache__/
 *.py[cod]
 .env
 apikey.txt
-data/**/*.npz
-data/**/collect_log.txt
-data/v2_out.txt
-data/v2_prompts.txt
+Motivation/data/**/*.npz
+Motivation/data/**/collect_log.txt
+Motivation/data/v2_out.txt
+Motivation/data/v2_prompts.txt
+# M18 contains about 800 MB of reproducible API prompts, responses, and
+# recovery logs. Keep the full run locally; commit only selected summaries
+# explicitly with `git add -f`.
+Motivation/data/m18/
+Motivation/artifacts/checkpoints/*
+!Motivation/artifacts/checkpoints/m11_bc_l0.pt
+!Motivation/artifacts/checkpoints/m13_ppo_post.pt
+!Motivation/artifacts/checkpoints/m15_partner_inference.pt
+!Motivation/artifacts/checkpoints/m16_alice_pre.pt
+!Motivation/artifacts/checkpoints/m16_alice_post.pt
+!Motivation/artifacts/checkpoints/m16_v2_alice_pre.pt
+!Motivation/artifacts/checkpoints/m16_v2_alice_post.pt

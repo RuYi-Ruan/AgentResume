@@ -1,0 +1,156 @@
+{
+  "milestone": "M16-V2 active-wait conservative Alice behavior cloning",
+  "device": "cuda",
+  "seed": 20260913,
+  "horizon": 700,
+  "split": {
+    "train_seeds": [
+      9101,
+      9102,
+      9103,
+      9104,
+      9105,
+      9106,
+      9107,
+      9108,
+      9109,
+      9110,
+      9111,
+      9112,
+      9113,
+      9114,
+      9115,
+      9116,
+      9117,
+      9118,
+      9119,
+      9120,
+      9121,
+      9122,
+      9123,
+      9124
+    ],
+    "test_seeds": [
+      9201,
+      9202,
+      9203,
+      9204,
+      9205,
+      9206,
+      9207,
+      9208,
+      9209,
+      9210,
+      9211,
+      9212,
+      9213,
+      9214,
+      9215,
+      9216
+    ]
+  },
+  "observation": {
+    "version": "m16-v2",
+    "dim": 182
+  },
+  "expert": {
+    "train_mean_deliveries": 13.041666666666666,
+    "test_mean_deliveries": 12.625
+  },
+  "final_loss": 6.552908727077439e-05,
+  "offline_train": {
+    "events": 4189,
+    "accuracy": 1.0
+  },
+  "offline_test": {
+    "events": 2986,
+    "accuracy": 1.0
+  },
+  "closed_loop_test": {
+    "mean_deliveries": 12.625,
+    "min_deliveries": 12,
+    "max_deliveries": 14,
+    "per_seed": [
+      {
+        "seed": 9201,
+        "deliveries": 14,
+        "reward": 280
+      },
+      {
+        "seed": 9202,
+        "deliveries": 12,
+        "reward": 240
+      },
+      {
+        "seed": 9203,
+        "deliveries": 14,
+        "reward": 280
+      },
+      {
+        "seed": 9204,
+        "deliveries": 14,
+        "reward": 280
+      },
+      {
+        "seed": 9205,
+        "deliveries": 12,
+        "reward": 240
+      },
+      {
+        "seed": 9206,
+        "deliveries": 12,
+        "reward": 240
+      },
+      {
+        "seed": 9207,
+        "deliveries": 12,
+        "reward": 240
+      },
+      {
+        "seed": 9208,
+        "deliveries": 12,
+        "reward": 240
+      },
+      {
+        "seed": 9209,
+        "deliveries": 12,
+        "reward": 240
+      },
+      {
+        "seed": 9210,
+        "deliveries": 14,
+        "reward": 280
+      },
+      {
+        "seed": 9211,
+        "deliveries": 12,
+        "reward": 240
+      },
+      {
+        "seed": 9212,
+        "deliveries": 14,
+        "reward": 280
+      },
+      {
+        "seed": 9213,
+        "deliveries": 12,
+        "reward": 240
+      },
+      {
+        "seed": 9214,
+        "deliveries": 12,
+        "reward": 240
+      },
+      {
+        "seed": 9215,
+        "deliveries": 12,
+        "reward": 240
+      },
+      {
+        "seed": 9216,
+        "deliveries": 12,
+        "reward": 240
+      }
+    ]
+  }
+}

@@ -1,0 +1,468 @@
+{
+  "milestone": "M16 map and visibility gate",
+  "layout": "ambiguous_kitchen_v1",
+  "grid_rows": [
+    "XOPXDXPXOXX",
+    "X         X",
+    "X  XX XX  X",
+    "S  1   2  S",
+    "X  XX XX  X",
+    "X         X",
+    "XXSDXPDXSXX"
+  ],
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "horizon": 700,
+  "visibility": "3x3; at most one query at the first actually observed action in each intent segment",
+  "features": {
+    "passable": 37,
+    "pots": 3,
+    "onions": 2,
+    "dishes": 3,
+    "serves": 4
+  },
+  "geometric_ambiguity": {
+    "action_groups": 97,
+    "ambiguous_action_groups": 76,
+    "rate": 0.7835051546391752
+  },
+  "conditions": {
+    "conservative_reference": {
+      "summary": {
+        "mean_deliveries": 13.0,
+        "min_deliveries": 13,
+        "max_deliveries": 13,
+        "mean_intent_segments": 112.0,
+        "mean_observed_segments": 25.0625,
+        "mean_coverage": 0.22377232142857142,
+        "observed_intent_mix": {
+          "HOLD": 199,
+          "FETCH": 202
+        }
+      },
+      "per_seed": [
+        {
+          "seed": 1,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 26,
+          "coverage": 0.23214285714285715,
+          "observed_intents": {
+            "HOLD": 13,
+            "FETCH": 13
+          }
+        },
+        {
+          "seed": 2,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 27,
+          "coverage": 0.24107142857142858,
+          "observed_intents": {
+            "FETCH": 14,
+            "HOLD": 13
+          }
+        },
+        {
+          "seed": 3,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 26,
+          "coverage": 0.23214285714285715,
+          "observed_intents": {
+            "HOLD": 13,
+            "FETCH": 13
+          }
+        },
+        {
+          "seed": 4,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 27,
+          "coverage": 0.24107142857142858,
+          "observed_intents": {
+            "FETCH": 14,
+            "HOLD": 13
+          }
+        },
+        {
+          "seed": 5,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 24,
+          "coverage": 0.21428571428571427,
+          "observed_intents": {
+            "HOLD": 12,
+            "FETCH": 12
+          }
+        },
+        {
+          "seed": 6,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 24,
+          "coverage": 0.21428571428571427,
+          "observed_intents": {
+            "HOLD": 12,
+            "FETCH": 12
+          }
+        },
+        {
+          "seed": 7,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 24,
+          "coverage": 0.21428571428571427,
+          "observed_intents": {
+            "HOLD": 12,
+            "FETCH": 12
+          }
+        },
+        {
+          "seed": 8,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 26,
+          "coverage": 0.23214285714285715,
+          "observed_intents": {
+            "HOLD": 13,
+            "FETCH": 13
+          }
+        },
+        {
+          "seed": 9,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 24,
+          "coverage": 0.21428571428571427,
+          "observed_intents": {
+            "HOLD": 12,
+            "FETCH": 12
+          }
+        },
+        {
+          "seed": 10,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 24,
+          "coverage": 0.21428571428571427,
+          "observed_intents": {
+            "HOLD": 12,
+            "FETCH": 12
+          }
+        },
+        {
+          "seed": 11,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 24,
+          "coverage": 0.21428571428571427,
+          "observed_intents": {
+            "HOLD": 12,
+            "FETCH": 12
+          }
+        },
+        {
+          "seed": 12,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 24,
+          "coverage": 0.21428571428571427,
+          "observed_intents": {
+            "HOLD": 12,
+            "FETCH": 12
+          }
+        },
+        {
+          "seed": 13,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 24,
+          "coverage": 0.21428571428571427,
+          "observed_intents": {
+            "HOLD": 12,
+            "FETCH": 12
+          }
+        },
+        {
+          "seed": 14,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 26,
+          "coverage": 0.23214285714285715,
+          "observed_intents": {
+            "HOLD": 13,
+            "FETCH": 13
+          }
+        },
+        {
+          "seed": 15,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 26,
+          "coverage": 0.23214285714285715,
+          "observed_intents": {
+            "HOLD": 13,
+            "FETCH": 13
+          }
+        },
+        {
+          "seed": 16,
+          "deliveries": 13,
+          "reward": 260,
+          "intent_segments": 112,
+          "observed_segments": 25,
+          "coverage": 0.22321428571428573,
+          "observed_intents": {
+            "FETCH": 13,
+            "HOLD": 12
+          }
+        }
+      ]
+    },
+    "parallel_reference": {
+      "summary": {
+        "mean_deliveries": 22.0,
+        "min_deliveries": 22,
+        "max_deliveries": 22,
+        "mean_intent_segments": 161.4375,
+        "mean_observed_segments": 21.625,
+        "mean_coverage": 0.13395207288228067,
+        "observed_intent_mix": {
+          "FETCH": 179,
+          "PLACE": 167
+        }
+      },
+      "per_seed": [
+        {
+          "seed": 1,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 162,
+          "observed_segments": 22,
+          "coverage": 0.13580246913580246,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 11
+          }
+        },
+        {
+          "seed": 2,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 162,
+          "observed_segments": 23,
+          "coverage": 0.1419753086419753,
+          "observed_intents": {
+            "FETCH": 12,
+            "PLACE": 11
+          }
+        },
+        {
+          "seed": 3,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 161,
+          "observed_segments": 22,
+          "coverage": 0.13664596273291926,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 11
+          }
+        },
+        {
+          "seed": 4,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 161,
+          "observed_segments": 23,
+          "coverage": 0.14285714285714285,
+          "observed_intents": {
+            "FETCH": 12,
+            "PLACE": 11
+          }
+        },
+        {
+          "seed": 5,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 161,
+          "observed_segments": 21,
+          "coverage": 0.13043478260869565,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 10
+          }
+        },
+        {
+          "seed": 6,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 161,
+          "observed_segments": 21,
+          "coverage": 0.13043478260869565,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 10
+          }
+        },
+        {
+          "seed": 7,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 160,
+          "observed_segments": 21,
+          "coverage": 0.13125,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 10
+          }
+        },
+        {
+          "seed": 8,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 162,
+          "observed_segments": 22,
+          "coverage": 0.13580246913580246,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 11
+          }
+        },
+        {
+          "seed": 9,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 162,
+          "observed_segments": 21,
+          "coverage": 0.12962962962962962,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 10
+          }
+        },
+        {
+          "seed": 10,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 161,
+          "observed_segments": 21,
+          "coverage": 0.13043478260869565,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 10
+          }
+        },
+        {
+          "seed": 11,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 162,
+          "observed_segments": 21,
+          "coverage": 0.12962962962962962,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 10
+          }
+        },
+        {
+          "seed": 12,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 162,
+          "observed_segments": 21,
+          "coverage": 0.12962962962962962,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 10
+          }
+        },
+        {
+          "seed": 13,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 161,
+          "observed_segments": 21,
+          "coverage": 0.13043478260869565,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 10
+          }
+        },
+        {
+          "seed": 14,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 163,
+          "observed_segments": 22,
+          "coverage": 0.13496932515337423,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 11
+          }
+        },
+        {
+          "seed": 15,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 162,
+          "observed_segments": 22,
+          "coverage": 0.13580246913580246,
+          "observed_intents": {
+            "FETCH": 11,
+            "PLACE": 11
+          }
+        },
+        {
+          "seed": 16,
+          "deliveries": 22,
+          "reward": 440,
+          "intent_segments": 160,
+          "observed_segments": 22,
+          "coverage": 0.1375,
+          "observed_intents": {
+            "FETCH": 12,
+            "PLACE": 10
+          }
+        }
+      ]
+    }
+  },
+  "interpretation": [
+    "This is a scripted reference gate, not the formal trained Alice result.",
+    "Visibility and empirical ambiguity must be measured again on frozen pre/post checkpoints.",
+    "Unobserved intent segments never trigger a Bob query and are excluded from prediction accuracy."
+  ]
+}

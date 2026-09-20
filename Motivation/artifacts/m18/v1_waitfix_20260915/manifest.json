@@ -1,0 +1,152 @@
+{
+  "config": {
+    "version": "m18-approved-v1",
+    "approval": "User accepted all five review items on 2026-09-15, including API budget.",
+    "training_seeds": [
+      1801,
+      1802,
+      1803
+    ],
+    "maps": {
+      "A": [
+        "XOPXDXPXDXX",
+        "X         X",
+        "X X     X X",
+        "S  1   2  S",
+        "X X     X X",
+        "X         X",
+        "XXSOXPDXSXX"
+      ],
+      "B": [
+        "XDPOXXPXDXX",
+        "X         X",
+        "X XX  X   X",
+        "S  1 X 2  S",
+        "X   X  XX X",
+        "X         X",
+        "XXSOXPDXSXX"
+      ],
+      "C": [
+        "XODXPXPXDXX",
+        "X    X    X",
+        "X    X    X",
+        "S 1     2 S",
+        "X    X    X",
+        "X         X",
+        "XXSDXPOXSXX"
+      ]
+    },
+    "horizon": 700,
+    "hidden_dim": 128,
+    "max_goal_ticks": 50,
+    "bc": {
+      "epochs": 100,
+      "batch_size": 256,
+      "lr": 0.003,
+      "weight_decay": 0.0001
+    },
+    "ppo": {
+      "updates": 50,
+      "episodes_per_update": 8,
+      "eval_every": 5,
+      "lr": 0.0003,
+      "temperature": 5.0,
+      "entropy_coef": 0.08,
+      "gamma": 0.995,
+      "gae_lambda": 0.95,
+      "clip_ratio": 0.2,
+      "value_coef": 0.5,
+      "update_epochs": 4,
+      "batch_size": 256
+    },
+    "seed_offsets": {
+      "development": [
+        1,
+        16
+      ],
+      "bc": [
+        100,
+        123
+      ],
+      "validation": [
+        200,
+        215
+      ],
+      "capability_test": [
+        300,
+        331
+      ],
+      "ppo": [
+        1000,
+        1399
+      ],
+      "history": [
+        2000,
+        2039
+      ],
+      "development_sources": [
+        3000,
+        3019
+      ],
+      "A_sources": [
+        4000,
+        4099
+      ],
+      "D_sources": [
+        5000,
+        5039
+      ],
+      "B": [
+        6000,
+        6015
+      ]
+    },
+    "growth_gate": {
+      "minimum_mean_gain_soups": 1.0,
+      "minimum_improved_starts": 17
+    },
+    "evaluation": {
+      "A_events_per_group": 50,
+      "D_events_per_group": 50,
+      "continuation_ticks": 200,
+      "B_primary_ticks": 300,
+      "B_total_ticks": 700,
+      "B_trigger_cooldown": 8,
+      "B_max_queries": 12,
+      "prediction_ttl": 12
+    },
+    "llm": {
+      "model": "Qwen/Qwen3.5-9B",
+      "conditions": [
+        "stale",
+        "updated",
+        "none"
+      ],
+      "repeats": 3,
+      "temperature": 0,
+      "max_tokens": 256,
+      "max_input_tokens": 4096,
+      "request_limit": 28000,
+      "transport_retries": 2
+    }
+  },
+  "config_hash": "010591109b343697abfd4d36e6ecd47dcdb2ab98cf4a036ea84d8e196be0b584",
+  "environment": {
+    "python": "C:\\Users\\86134\\.conda\\envs\\agentresume\\python.exe",
+    "version": "3.11.16",
+    "torch": "2.1.0+cu118",
+    "numpy": "1.26.4",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce MX450"
+  },
+  "source_hashes": {
+    "configs/m18_v1.json": "8315810b5293aac2c2c0d604ca1aefc8c5d3d2d03e0596bba7e93e2e55cab90d",
+    "scripts/m18_train.py": "3343c724073418869f689bbab7b8867d25f7735859ba403a7d6e2447a0cfafc9",
+    "src/ocres/m18_training.py": "9c9df099efce31ac6b7ec93d1220d9f9e07e58ba52edfebd6d7128640d8331f2",
+    "src/ocres/trainable.py": "2cd8272048360ec53b9fc7e73ca56590b14968ea080fe304aef5d390e074b91b",
+    "src/ocres/generic_agents.py": "ce9c056e738ee5143e976750e8c93f575d7e26c80e267f840c51dab13c5a8260",
+    "src/ocres/ppo.py": "90a1977aa1021d0547f29fdca6d53187b897e357685e6790f20b1bb7368fe199",
+    "src/ocres/grid.py": "1e1ac02855afb3ed14f2aea853983be66be098d741a59c966f301745a2a07d1c",
+    "src/ocres/executor.py": "1ea24aa4fa2efc310b75cb87d935f9eb072de1bd8568fa3c9c19ca73800947bd"
+  }
+}

@@ -1,0 +1,590 @@
+{
+  "milestone": "M17 frozen fixed-event paired analysis",
+  "source": "data\\m17_qwen_formal_test.json",
+  "events": 80,
+  "valid_responses": 240,
+  "post_alice": {
+    "stale_impression_accuracy": 0.175,
+    "updated_impression_accuracy": 0.7,
+    "no_impression_accuracy": 0.6125,
+    "updated_minus_stale": 0.525,
+    "paired_bootstrap_95_percent_interval": [
+      0.4125,
+      0.6375
+    ],
+    "paired_table": {
+      "both_correct": 14,
+      "stale_only_correct": 0,
+      "updated_only_correct": 42,
+      "neither_correct": 24
+    },
+    "exact_mcnemar_two_sided_p": 4.547473508864641e-13
+  },
+  "full_factorial": {
+    "correct_impression_accuracy": 0.7625,
+    "mismatched_impression_accuracy": 0.2375
+  },
+  "interpretation_boundary": "This establishes an offline action-to-intent effect. Team-score consequences still require the separately planned online controller experiment.",
+  "pairs": [
+    {
+      "event_id": "13fcbf8985301424f23c",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "1432f1b386d1929e5119",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "1b078671d2e2a1dca397",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "1cdb7c0a0a0b08258c63",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    },
+    {
+      "event_id": "20225ccbc3d54e84c0ac",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "26e8f91fdbf15f4e2fd2",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "27e62e2a8d0ce5a722d1",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "2a8b2c891ce7ecf25040",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "2b618083c6add4e4befd",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    },
+    {
+      "event_id": "2e1fc7353b2c0d575858",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    },
+    {
+      "event_id": "3353bc2f175dbcb7f8f5",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "33d063905415f6bb09d8",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    },
+    {
+      "event_id": "369f67fb44eb43009559",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "38aead6259d97dbbec76",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "3be2ebd9027c9262cb08",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "3c3b6efaf992c8de6071",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    },
+    {
+      "event_id": "3e261c92bf743a0574bf",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "3f9967d0214cb1b40836",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "41bebe563802c64f5cf9",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "42f22cf4e71de951e852",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "45d0216cfd33ab400fce",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "479a204f863165657af2",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "4a4f342c283e50bae079",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "50994eafa8c5a6b4c6be",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "541dbb613a3b3e934a3f",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "572e9ff05af7c9260c37",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "5b7d140ed9ef6e6ea5e6",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "5b91f80050e7ef1e7b57",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "5e78fbaebf8d85c3630f",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "6062a42d05853d7791e5",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "6311d45afa3de0778af9",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "6686c080f1af5e74c7db",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "69bb338677c74bfcf0c9",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "728f9c30384170c9ac4d",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "74604fa322f9a76343f0",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "76cdb8ee5da70cea2b58",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "777a329a685b1d94932b",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    },
+    {
+      "event_id": "7af6853097a28e64e30d",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "7dc4ce8c4908ec9b1fef",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "7f23861d4f9381be7f95",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "7ff0d7bc89d51dbb0564",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "84add7ff276a25d6ee11",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "8695d33f4a46c499e436",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "89cebbacd73a1fbcb7a5",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "8a34892f2b6ced040a9c",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    },
+    {
+      "event_id": "8ba8d056563b2611ad24",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "971113adb4b2b020652d",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "9768d39c968de24f4a31",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "9891a057c61b1fd90ac8",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "99d21ac60c0cb521af7f",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "9d307d848f8817adda5e",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "a5e3755aff1eb6954a8f",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "a83dfd95c44a791d4626",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "ab723cc8495e3087c8d6",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "af181883f96499c37c3d",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "af9a68797665af75e78e",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "b0f2e6da885c5f67407c",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "b893fb6b1e1ac596498e",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "be16e6e4a7c507b55fc9",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "c1cd3a4016d8a7b9c309",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "c20f5cae49a7939adff3",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "c30de1b37cba67a5a259",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "c3dea26d8f6350acde1f",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "c752b8ee5e8a10a420b4",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "ca4281809a751939d5c2",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "cb641155bf7b4997d5be",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    },
+    {
+      "event_id": "cb8421b62b1996edc24a",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    },
+    {
+      "event_id": "cb9fd24a60c330a4dda2",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "cdba64766d876be1decf",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "cf01e7de2e56e3b798c7",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "d2d285bdb38f8941b337",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "d4a84386fb8c9204ff9a",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "d6f345927b49b26a1dc1",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "db10c9936002fc3cc5dc",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "dca1a4aa1f2bc3c63a34",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "dcaeaa8474a5fa3d5094",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    },
+    {
+      "event_id": "debcb72f3e8cb38d6324",
+      "stale_correct": false,
+      "updated_correct": false,
+      "none_correct": false,
+      "difference": 0
+    },
+    {
+      "event_id": "df2fd1adf88947f10d7d",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 1
+    },
+    {
+      "event_id": "e7dc4e3a7afc92aff698",
+      "stale_correct": true,
+      "updated_correct": true,
+      "none_correct": true,
+      "difference": 0
+    },
+    {
+      "event_id": "f6fc7083fe666e194db7",
+      "stale_correct": false,
+      "updated_correct": true,
+      "none_correct": false,
+      "difference": 1
+    }
+  ]
+}

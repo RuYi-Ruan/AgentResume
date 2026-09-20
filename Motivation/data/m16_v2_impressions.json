@@ -1,0 +1,5407 @@
+{
+  "milestone": "M16-V2 observable episode impression generation",
+  "source_constraint": "Only behavior witnessed inside Bob's 3x3 view is summarized; gaps remain unknown.",
+  "forbidden_sources": [
+    "Alice intent labels",
+    "Alice targets",
+    "checkpoint names in text",
+    "out-of-view behavior"
+  ],
+  "seeds": [
+    9701,
+    9702,
+    9703,
+    9704,
+    9705,
+    9706,
+    9707,
+    9708,
+    9709,
+    9710,
+    9711,
+    9712,
+    9713,
+    9714,
+    9715,
+    9716
+  ],
+  "pre": {
+    "history": {
+      "totals": {
+        "visible_ticks": 1306,
+        "empty_ticks": 1016,
+        "empty_move": 358,
+        "holding_onion": 290,
+        "empty_stay": 658,
+        "known_choice_ticks": 212,
+        "known_choice_stay": 212,
+        "memory_episodes_started": 212,
+        "episode_first_stay": 212,
+        "episode_outcome_later_seen_holding_onion": 130,
+        "episode_outcome_no_later_visible_clue": 72,
+        "empty_at_pot": 1
+      },
+      "episodes": [
+        {
+          "seed": 9701,
+          "start_t": 54,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 103,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 152,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 201,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 250,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 299,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 348,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 397,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 446,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 495,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 544,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 593,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 642,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 55,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 110,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 165,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 220,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 275,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 330,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 385,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 440,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 495,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 550,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 605,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9702,
+          "start_t": 660,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9703,
+          "start_t": 49,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 98,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 147,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 196,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 245,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 294,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 343,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 392,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 441,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 490,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 539,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 588,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 637,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 58,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 113,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 168,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 223,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 278,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 333,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 388,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 443,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 498,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 553,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 608,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9704,
+          "start_t": 663,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9705,
+          "start_t": 49,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 98,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 147,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 196,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 245,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 294,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 343,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 392,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 441,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 490,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 539,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 588,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 637,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 53,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 108,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 163,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 218,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 273,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 328,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 383,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 438,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 493,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 548,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 603,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9706,
+          "start_t": 658,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9707,
+          "start_t": 51,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 100,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 149,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 198,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 247,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 296,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 345,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 394,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 443,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 492,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 541,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 590,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 639,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 54,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 103,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 152,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 201,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 250,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 299,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 348,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 397,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 446,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 495,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 544,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 593,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 642,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 49,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 98,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 147,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 196,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 245,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 294,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 343,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 392,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 441,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 490,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 539,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 588,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 637,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 50,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 105,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 160,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 215,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 270,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 325,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 380,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 435,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 490,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 545,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 600,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9710,
+          "start_t": 655,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9711,
+          "start_t": 51,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 100,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 149,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 198,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 247,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 296,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 345,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 394,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 443,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 492,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 541,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 590,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 639,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 62,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 111,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 160,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 209,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 258,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 307,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 356,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 405,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 454,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 503,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 552,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 601,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 650,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 54,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 103,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 152,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 201,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 250,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 299,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 348,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 397,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 446,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 495,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 544,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 593,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 642,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 52,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 101,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 150,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 199,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 248,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 297,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 346,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 395,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 444,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 493,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 542,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 591,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 640,
+          "first_action": "stay",
+          "elapsed": 16,
+          "outcome": "later_seen_holding_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 53,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 108,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 163,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 218,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 273,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 328,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 383,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 438,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 493,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 548,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 603,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9715,
+          "start_t": 658,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 54,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 109,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 164,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 219,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 274,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 329,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 384,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 439,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 494,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 549,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 604,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        },
+        {
+          "seed": 9716,
+          "start_t": 659,
+          "first_action": "stay",
+          "elapsed": 20,
+          "outcome": "no_later_visible_clue"
+        }
+      ],
+      "per_seed": [
+        {
+          "seed": 9701,
+          "deliveries": 14,
+          "episodes": [
+            {
+              "seed": 9701,
+              "start_t": 54,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 103,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 152,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 201,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 250,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 299,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 348,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 397,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 446,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 495,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 544,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 593,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 642,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            }
+          ],
+          "visible_ticks": 72,
+          "empty_ticks": 43,
+          "empty_move": 15,
+          "holding_onion": 29,
+          "empty_stay": 28,
+          "known_choice_ticks": 14,
+          "known_choice_stay": 14,
+          "memory_episodes_started": 14,
+          "episode_first_stay": 14,
+          "episode_outcome_later_seen_holding_onion": 13
+        },
+        {
+          "seed": 9702,
+          "deliveries": 12,
+          "episodes": [
+            {
+              "seed": 9702,
+              "start_t": 55,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 110,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 165,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 220,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 275,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 330,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 385,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 440,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 495,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 550,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 605,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9702,
+              "start_t": 660,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            }
+          ],
+          "visible_ticks": 99,
+          "empty_ticks": 99,
+          "empty_stay": 63,
+          "known_choice_ticks": 12,
+          "known_choice_stay": 12,
+          "memory_episodes_started": 12,
+          "episode_first_stay": 12,
+          "empty_move": 36,
+          "episode_outcome_no_later_visible_clue": 12
+        },
+        {
+          "seed": 9703,
+          "deliveries": 14,
+          "episodes": [
+            {
+              "seed": 9703,
+              "start_t": 49,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 98,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 147,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 196,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 245,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 294,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 343,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 392,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 441,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 490,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 539,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 588,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 637,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            }
+          ],
+          "visible_ticks": 71,
+          "holding_onion": 29,
+          "empty_ticks": 42,
+          "empty_stay": 28,
+          "known_choice_ticks": 14,
+          "known_choice_stay": 14,
+          "memory_episodes_started": 14,
+          "episode_first_stay": 14,
+          "empty_move": 14,
+          "episode_outcome_later_seen_holding_onion": 13
+        },
+        {
+          "seed": 9704,
+          "deliveries": 12,
+          "episodes": [
+            {
+              "seed": 9704,
+              "start_t": 58,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 113,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 168,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 223,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 278,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 333,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 388,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 443,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 498,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 553,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 608,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9704,
+              "start_t": 663,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            }
+          ],
+          "visible_ticks": 100,
+          "empty_ticks": 100,
+          "empty_move": 37,
+          "empty_at_pot": 1,
+          "empty_stay": 63,
+          "known_choice_ticks": 12,
+          "known_choice_stay": 12,
+          "memory_episodes_started": 12,
+          "episode_first_stay": 12,
+          "episode_outcome_no_later_visible_clue": 12
+        },
+        {
+          "seed": 9705,
+          "deliveries": 14,
+          "episodes": [
+            {
+              "seed": 9705,
+              "start_t": 49,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 98,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 147,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 196,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 245,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 294,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 343,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 392,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 441,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 490,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 539,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 588,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 637,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            }
+          ],
+          "visible_ticks": 71,
+          "holding_onion": 29,
+          "empty_ticks": 42,
+          "empty_stay": 28,
+          "known_choice_ticks": 14,
+          "known_choice_stay": 14,
+          "memory_episodes_started": 14,
+          "episode_first_stay": 14,
+          "empty_move": 14,
+          "episode_outcome_later_seen_holding_onion": 13
+        },
+        {
+          "seed": 9706,
+          "deliveries": 12,
+          "episodes": [
+            {
+              "seed": 9706,
+              "start_t": 53,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 108,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 163,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 218,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 273,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 328,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 383,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 438,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 493,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 548,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 603,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9706,
+              "start_t": 658,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            }
+          ],
+          "visible_ticks": 100,
+          "empty_ticks": 100,
+          "empty_move": 37,
+          "empty_stay": 63,
+          "known_choice_ticks": 12,
+          "known_choice_stay": 12,
+          "memory_episodes_started": 12,
+          "episode_first_stay": 12,
+          "episode_outcome_no_later_visible_clue": 12
+        },
+        {
+          "seed": 9707,
+          "deliveries": 14,
+          "episodes": [
+            {
+              "seed": 9707,
+              "start_t": 51,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 100,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 149,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 198,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 247,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 296,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 345,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 394,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 443,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 492,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 541,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 590,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 639,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            }
+          ],
+          "visible_ticks": 71,
+          "holding_onion": 29,
+          "empty_ticks": 42,
+          "empty_stay": 28,
+          "known_choice_ticks": 14,
+          "known_choice_stay": 14,
+          "memory_episodes_started": 14,
+          "episode_first_stay": 14,
+          "empty_move": 14,
+          "episode_outcome_later_seen_holding_onion": 13
+        },
+        {
+          "seed": 9708,
+          "deliveries": 14,
+          "episodes": [
+            {
+              "seed": 9708,
+              "start_t": 54,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 103,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 152,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 201,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 250,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 299,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 348,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 397,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 446,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 495,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 544,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 593,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 642,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            }
+          ],
+          "visible_ticks": 71,
+          "holding_onion": 29,
+          "empty_ticks": 42,
+          "empty_stay": 28,
+          "known_choice_ticks": 14,
+          "known_choice_stay": 14,
+          "memory_episodes_started": 14,
+          "episode_first_stay": 14,
+          "empty_move": 14,
+          "episode_outcome_later_seen_holding_onion": 13
+        },
+        {
+          "seed": 9709,
+          "deliveries": 14,
+          "episodes": [
+            {
+              "seed": 9709,
+              "start_t": 49,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 98,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 147,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 196,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 245,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 294,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 343,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 392,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 441,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 490,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 539,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 588,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 637,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            }
+          ],
+          "visible_ticks": 71,
+          "holding_onion": 29,
+          "empty_ticks": 42,
+          "empty_stay": 28,
+          "known_choice_ticks": 14,
+          "known_choice_stay": 14,
+          "memory_episodes_started": 14,
+          "episode_first_stay": 14,
+          "empty_move": 14,
+          "episode_outcome_later_seen_holding_onion": 13
+        },
+        {
+          "seed": 9710,
+          "deliveries": 12,
+          "episodes": [
+            {
+              "seed": 9710,
+              "start_t": 50,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 105,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 160,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 215,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 270,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 325,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 380,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 435,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 490,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 545,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 600,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9710,
+              "start_t": 655,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            }
+          ],
+          "visible_ticks": 99,
+          "empty_ticks": 99,
+          "empty_stay": 63,
+          "known_choice_ticks": 12,
+          "known_choice_stay": 12,
+          "memory_episodes_started": 12,
+          "episode_first_stay": 12,
+          "empty_move": 36,
+          "episode_outcome_no_later_visible_clue": 12
+        },
+        {
+          "seed": 9711,
+          "deliveries": 14,
+          "episodes": [
+            {
+              "seed": 9711,
+              "start_t": 51,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 100,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 149,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 198,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 247,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 296,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 345,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 394,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 443,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 492,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 541,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 590,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 639,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            }
+          ],
+          "visible_ticks": 71,
+          "holding_onion": 29,
+          "empty_ticks": 42,
+          "empty_stay": 28,
+          "known_choice_ticks": 14,
+          "known_choice_stay": 14,
+          "memory_episodes_started": 14,
+          "episode_first_stay": 14,
+          "empty_move": 14,
+          "episode_outcome_later_seen_holding_onion": 13
+        },
+        {
+          "seed": 9712,
+          "deliveries": 13,
+          "episodes": [
+            {
+              "seed": 9712,
+              "start_t": 62,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 111,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 160,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 209,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 258,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 307,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 356,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 405,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 454,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 503,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 552,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 601,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 650,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            }
+          ],
+          "visible_ticks": 70,
+          "holding_onion": 29,
+          "empty_ticks": 41,
+          "empty_stay": 28,
+          "known_choice_ticks": 14,
+          "known_choice_stay": 14,
+          "memory_episodes_started": 14,
+          "episode_first_stay": 14,
+          "empty_move": 13,
+          "episode_outcome_later_seen_holding_onion": 13
+        },
+        {
+          "seed": 9713,
+          "deliveries": 14,
+          "episodes": [
+            {
+              "seed": 9713,
+              "start_t": 54,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 103,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 152,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 201,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 250,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 299,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 348,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 397,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 446,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 495,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 544,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 593,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 642,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            }
+          ],
+          "visible_ticks": 71,
+          "holding_onion": 29,
+          "empty_ticks": 42,
+          "empty_stay": 28,
+          "known_choice_ticks": 14,
+          "known_choice_stay": 14,
+          "memory_episodes_started": 14,
+          "episode_first_stay": 14,
+          "empty_move": 14,
+          "episode_outcome_later_seen_holding_onion": 13
+        },
+        {
+          "seed": 9714,
+          "deliveries": 14,
+          "episodes": [
+            {
+              "seed": 9714,
+              "start_t": 52,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 101,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 150,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 199,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 248,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 297,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 346,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 395,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 444,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 493,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 542,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 591,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 640,
+              "first_action": "stay",
+              "elapsed": 16,
+              "outcome": "later_seen_holding_onion"
+            }
+          ],
+          "visible_ticks": 71,
+          "holding_onion": 29,
+          "empty_ticks": 42,
+          "empty_stay": 28,
+          "known_choice_ticks": 14,
+          "known_choice_stay": 14,
+          "memory_episodes_started": 14,
+          "episode_first_stay": 14,
+          "empty_move": 14,
+          "episode_outcome_later_seen_holding_onion": 13
+        },
+        {
+          "seed": 9715,
+          "deliveries": 12,
+          "episodes": [
+            {
+              "seed": 9715,
+              "start_t": 53,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 108,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 163,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 218,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 273,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 328,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 383,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 438,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 493,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 548,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 603,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9715,
+              "start_t": 658,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            }
+          ],
+          "visible_ticks": 99,
+          "empty_ticks": 99,
+          "empty_stay": 63,
+          "known_choice_ticks": 12,
+          "known_choice_stay": 12,
+          "memory_episodes_started": 12,
+          "episode_first_stay": 12,
+          "empty_move": 36,
+          "episode_outcome_no_later_visible_clue": 12
+        },
+        {
+          "seed": 9716,
+          "deliveries": 12,
+          "episodes": [
+            {
+              "seed": 9716,
+              "start_t": 54,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 109,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 164,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 219,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 274,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 329,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 384,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 439,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 494,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 549,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 604,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            },
+            {
+              "seed": 9716,
+              "start_t": 659,
+              "first_action": "stay",
+              "elapsed": 20,
+              "outcome": "no_later_visible_clue"
+            }
+          ],
+          "visible_ticks": 99,
+          "empty_ticks": 99,
+          "empty_stay": 63,
+          "known_choice_ticks": 12,
+          "known_choice_stay": 12,
+          "memory_episodes_started": 12,
+          "episode_first_stay": 12,
+          "empty_move": 36,
+          "episode_outcome_no_later_visible_clue": 12
+        }
+      ]
+    },
+    "text": "以下是我在相似局面前后亲眼看到的伙伴记忆；中间看不见的过程没有补写，也不假定属于同一任务：\n- 我记得 202 个相似片段：当时我知道一口锅正在烹饪、另有锅还能补料，并看见 Alice 空手。\n- 这些片段开始时，我看见她移动 0 次、停留 202 次。\n- 在之后再次可见的画面中，我看到她拿着洋葱或到达洋葱台 130 次；看到她继续空手停留或停在锅边 0 次；另外 72 次在 20 步内没有再看到足够线索。\n这些只是有限视野下真实发生过的外在行为，不代表我知道她当时的内心目标。"
+  },
+  "post": {
+    "history": {
+      "totals": {
+        "visible_ticks": 1623,
+        "empty_ticks": 689,
+        "empty_move": 485,
+        "holding_onion": 934,
+        "known_choice_ticks": 140,
+        "known_choice_move": 140,
+        "memory_episodes_started": 140,
+        "episode_first_move": 140,
+        "empty_stay": 64,
+        "empty_interact": 140,
+        "empty_at_onion": 140,
+        "episode_outcome_later_seen_at_onion": 140,
+        "empty_at_pot": 1
+      },
+      "episodes": [
+        {
+          "seed": 9701,
+          "start_t": 142,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 244,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 290,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 392,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 438,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 540,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 586,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9701,
+          "start_t": 688,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 50,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 96,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 142,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 244,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 290,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 392,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 438,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 540,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 586,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9702,
+          "start_t": 688,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 137,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 239,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 285,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 387,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 433,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 535,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 581,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9703,
+          "start_t": 683,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 53,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 99,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 145,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 247,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 293,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 395,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 441,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 543,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 589,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9704,
+          "start_t": 691,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 137,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 239,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 285,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 387,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 433,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 535,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 581,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9705,
+          "start_t": 683,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 48,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 94,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 140,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 242,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 288,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 390,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 436,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 538,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 584,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9706,
+          "start_t": 686,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 139,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 241,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 287,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 389,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 435,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 537,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 583,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9707,
+          "start_t": 685,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 142,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 244,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 290,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 392,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 438,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 540,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 586,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9708,
+          "start_t": 688,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 137,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 239,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 285,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 387,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 433,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 535,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 581,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9709,
+          "start_t": 683,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 45,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 91,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 137,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 239,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 285,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 387,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 433,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 535,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 581,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9710,
+          "start_t": 683,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 139,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 241,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 287,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 389,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 435,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 537,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 583,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9711,
+          "start_t": 685,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 150,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 252,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 298,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 400,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 446,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 548,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 594,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9712,
+          "start_t": 696,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 142,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 244,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 290,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 392,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 438,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 540,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 586,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9713,
+          "start_t": 688,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 140,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 242,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 288,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 390,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 436,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 538,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 584,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9714,
+          "start_t": 686,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 48,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 94,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 140,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 242,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 288,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 390,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 436,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 538,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 584,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9715,
+          "start_t": 686,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9716,
+          "start_t": 49,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9716,
+          "start_t": 95,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9716,
+          "start_t": 141,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9716,
+          "start_t": 243,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9716,
+          "start_t": 289,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9716,
+          "start_t": 391,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9716,
+          "start_t": 437,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9716,
+          "start_t": 539,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9716,
+          "start_t": 585,
+          "first_action": "move",
+          "elapsed": 5,
+          "outcome": "later_seen_at_onion"
+        },
+        {
+          "seed": 9716,
+          "start_t": 687,
+          "first_action": "move",
+          "elapsed": 3,
+          "outcome": "later_seen_at_onion"
+        }
+      ],
+      "per_seed": [
+        {
+          "seed": 9701,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9701,
+              "start_t": 142,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 244,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 290,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 392,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 438,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 540,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 586,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9701,
+              "start_t": 688,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 102,
+          "empty_ticks": 42,
+          "empty_move": 30,
+          "holding_onion": 60,
+          "known_choice_ticks": 8,
+          "known_choice_move": 8,
+          "memory_episodes_started": 8,
+          "episode_first_move": 8,
+          "empty_stay": 4,
+          "empty_interact": 8,
+          "empty_at_onion": 8,
+          "episode_outcome_later_seen_at_onion": 8
+        },
+        {
+          "seed": 9702,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9702,
+              "start_t": 50,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9702,
+              "start_t": 96,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9702,
+              "start_t": 142,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9702,
+              "start_t": 244,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9702,
+              "start_t": 290,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9702,
+              "start_t": 392,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9702,
+              "start_t": 438,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9702,
+              "start_t": 540,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9702,
+              "start_t": 586,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9702,
+              "start_t": 688,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 102,
+          "empty_ticks": 46,
+          "empty_move": 32,
+          "known_choice_ticks": 10,
+          "known_choice_move": 10,
+          "memory_episodes_started": 10,
+          "episode_first_move": 10,
+          "empty_interact": 10,
+          "empty_at_onion": 10,
+          "episode_outcome_later_seen_at_onion": 10,
+          "holding_onion": 56,
+          "empty_stay": 4
+        },
+        {
+          "seed": 9703,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9703,
+              "start_t": 137,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 239,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 285,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 387,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 433,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 535,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 581,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9703,
+              "start_t": 683,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 101,
+          "holding_onion": 60,
+          "empty_ticks": 41,
+          "empty_move": 29,
+          "known_choice_ticks": 8,
+          "known_choice_move": 8,
+          "memory_episodes_started": 8,
+          "episode_first_move": 8,
+          "empty_stay": 4,
+          "empty_interact": 8,
+          "empty_at_onion": 8,
+          "episode_outcome_later_seen_at_onion": 8
+        },
+        {
+          "seed": 9704,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9704,
+              "start_t": 53,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9704,
+              "start_t": 99,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9704,
+              "start_t": 145,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9704,
+              "start_t": 247,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9704,
+              "start_t": 293,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9704,
+              "start_t": 395,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9704,
+              "start_t": 441,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9704,
+              "start_t": 543,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9704,
+              "start_t": 589,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9704,
+              "start_t": 691,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 103,
+          "empty_ticks": 47,
+          "empty_move": 33,
+          "empty_at_pot": 1,
+          "known_choice_ticks": 10,
+          "known_choice_move": 10,
+          "memory_episodes_started": 10,
+          "episode_first_move": 10,
+          "empty_interact": 10,
+          "empty_at_onion": 10,
+          "episode_outcome_later_seen_at_onion": 10,
+          "holding_onion": 56,
+          "empty_stay": 4
+        },
+        {
+          "seed": 9705,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9705,
+              "start_t": 137,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 239,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 285,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 387,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 433,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 535,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 581,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9705,
+              "start_t": 683,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 101,
+          "holding_onion": 60,
+          "empty_ticks": 41,
+          "empty_move": 29,
+          "known_choice_ticks": 8,
+          "known_choice_move": 8,
+          "memory_episodes_started": 8,
+          "episode_first_move": 8,
+          "empty_stay": 4,
+          "empty_interact": 8,
+          "empty_at_onion": 8,
+          "episode_outcome_later_seen_at_onion": 8
+        },
+        {
+          "seed": 9706,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9706,
+              "start_t": 48,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9706,
+              "start_t": 94,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9706,
+              "start_t": 140,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9706,
+              "start_t": 242,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9706,
+              "start_t": 288,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9706,
+              "start_t": 390,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9706,
+              "start_t": 436,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9706,
+              "start_t": 538,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9706,
+              "start_t": 584,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9706,
+              "start_t": 686,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 103,
+          "empty_ticks": 47,
+          "empty_move": 33,
+          "known_choice_ticks": 10,
+          "known_choice_move": 10,
+          "memory_episodes_started": 10,
+          "episode_first_move": 10,
+          "empty_interact": 10,
+          "empty_at_onion": 10,
+          "episode_outcome_later_seen_at_onion": 10,
+          "holding_onion": 56,
+          "empty_stay": 4
+        },
+        {
+          "seed": 9707,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9707,
+              "start_t": 139,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 241,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 287,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 389,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 435,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 537,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 583,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9707,
+              "start_t": 685,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 101,
+          "holding_onion": 60,
+          "empty_ticks": 41,
+          "empty_move": 29,
+          "known_choice_ticks": 8,
+          "known_choice_move": 8,
+          "memory_episodes_started": 8,
+          "episode_first_move": 8,
+          "empty_stay": 4,
+          "empty_interact": 8,
+          "empty_at_onion": 8,
+          "episode_outcome_later_seen_at_onion": 8
+        },
+        {
+          "seed": 9708,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9708,
+              "start_t": 142,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 244,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 290,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 392,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 438,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 540,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 586,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9708,
+              "start_t": 688,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 101,
+          "holding_onion": 60,
+          "empty_ticks": 41,
+          "empty_move": 29,
+          "known_choice_ticks": 8,
+          "known_choice_move": 8,
+          "memory_episodes_started": 8,
+          "episode_first_move": 8,
+          "empty_stay": 4,
+          "empty_interact": 8,
+          "empty_at_onion": 8,
+          "episode_outcome_later_seen_at_onion": 8
+        },
+        {
+          "seed": 9709,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9709,
+              "start_t": 137,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 239,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 285,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 387,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 433,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 535,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 581,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9709,
+              "start_t": 683,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 101,
+          "holding_onion": 60,
+          "empty_ticks": 41,
+          "empty_move": 29,
+          "known_choice_ticks": 8,
+          "known_choice_move": 8,
+          "memory_episodes_started": 8,
+          "episode_first_move": 8,
+          "empty_stay": 4,
+          "empty_interact": 8,
+          "empty_at_onion": 8,
+          "episode_outcome_later_seen_at_onion": 8
+        },
+        {
+          "seed": 9710,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9710,
+              "start_t": 45,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9710,
+              "start_t": 91,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9710,
+              "start_t": 137,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9710,
+              "start_t": 239,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9710,
+              "start_t": 285,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9710,
+              "start_t": 387,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9710,
+              "start_t": 433,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9710,
+              "start_t": 535,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9710,
+              "start_t": 581,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9710,
+              "start_t": 683,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 102,
+          "empty_ticks": 46,
+          "empty_move": 32,
+          "known_choice_ticks": 10,
+          "known_choice_move": 10,
+          "memory_episodes_started": 10,
+          "episode_first_move": 10,
+          "empty_interact": 10,
+          "empty_at_onion": 10,
+          "episode_outcome_later_seen_at_onion": 10,
+          "holding_onion": 56,
+          "empty_stay": 4
+        },
+        {
+          "seed": 9711,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9711,
+              "start_t": 139,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 241,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 287,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 389,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 435,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 537,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 583,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9711,
+              "start_t": 685,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 101,
+          "holding_onion": 60,
+          "empty_ticks": 41,
+          "empty_move": 29,
+          "known_choice_ticks": 8,
+          "known_choice_move": 8,
+          "memory_episodes_started": 8,
+          "episode_first_move": 8,
+          "empty_stay": 4,
+          "empty_interact": 8,
+          "empty_at_onion": 8,
+          "episode_outcome_later_seen_at_onion": 8
+        },
+        {
+          "seed": 9712,
+          "deliveries": 17,
+          "episodes": [
+            {
+              "seed": 9712,
+              "start_t": 150,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 252,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 298,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 400,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 446,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 548,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 594,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9712,
+              "start_t": 696,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 99,
+          "holding_onion": 58,
+          "empty_ticks": 41,
+          "empty_move": 29,
+          "known_choice_ticks": 8,
+          "known_choice_move": 8,
+          "memory_episodes_started": 8,
+          "episode_first_move": 8,
+          "empty_stay": 4,
+          "empty_interact": 8,
+          "empty_at_onion": 8,
+          "episode_outcome_later_seen_at_onion": 8
+        },
+        {
+          "seed": 9713,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9713,
+              "start_t": 142,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 244,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 290,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 392,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 438,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 540,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 586,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9713,
+              "start_t": 688,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 101,
+          "holding_onion": 60,
+          "empty_ticks": 41,
+          "empty_move": 29,
+          "known_choice_ticks": 8,
+          "known_choice_move": 8,
+          "memory_episodes_started": 8,
+          "episode_first_move": 8,
+          "empty_stay": 4,
+          "empty_interact": 8,
+          "empty_at_onion": 8,
+          "episode_outcome_later_seen_at_onion": 8
+        },
+        {
+          "seed": 9714,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9714,
+              "start_t": 140,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 242,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 288,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 390,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 436,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 538,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 584,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9714,
+              "start_t": 686,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 101,
+          "holding_onion": 60,
+          "empty_ticks": 41,
+          "empty_move": 29,
+          "known_choice_ticks": 8,
+          "known_choice_move": 8,
+          "memory_episodes_started": 8,
+          "episode_first_move": 8,
+          "empty_stay": 4,
+          "empty_interact": 8,
+          "empty_at_onion": 8,
+          "episode_outcome_later_seen_at_onion": 8
+        },
+        {
+          "seed": 9715,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9715,
+              "start_t": 48,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9715,
+              "start_t": 94,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9715,
+              "start_t": 140,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9715,
+              "start_t": 242,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9715,
+              "start_t": 288,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9715,
+              "start_t": 390,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9715,
+              "start_t": 436,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9715,
+              "start_t": 538,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9715,
+              "start_t": 584,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9715,
+              "start_t": 686,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 102,
+          "empty_ticks": 46,
+          "empty_move": 32,
+          "known_choice_ticks": 10,
+          "known_choice_move": 10,
+          "memory_episodes_started": 10,
+          "episode_first_move": 10,
+          "empty_interact": 10,
+          "empty_at_onion": 10,
+          "episode_outcome_later_seen_at_onion": 10,
+          "holding_onion": 56,
+          "empty_stay": 4
+        },
+        {
+          "seed": 9716,
+          "deliveries": 18,
+          "episodes": [
+            {
+              "seed": 9716,
+              "start_t": 49,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9716,
+              "start_t": 95,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9716,
+              "start_t": 141,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9716,
+              "start_t": 243,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9716,
+              "start_t": 289,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9716,
+              "start_t": 391,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9716,
+              "start_t": 437,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9716,
+              "start_t": 539,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9716,
+              "start_t": 585,
+              "first_action": "move",
+              "elapsed": 5,
+              "outcome": "later_seen_at_onion"
+            },
+            {
+              "seed": 9716,
+              "start_t": 687,
+              "first_action": "move",
+              "elapsed": 3,
+              "outcome": "later_seen_at_onion"
+            }
+          ],
+          "visible_ticks": 102,
+          "empty_ticks": 46,
+          "empty_move": 32,
+          "known_choice_ticks": 10,
+          "known_choice_move": 10,
+          "memory_episodes_started": 10,
+          "episode_first_move": 10,
+          "empty_interact": 10,
+          "empty_at_onion": 10,
+          "episode_outcome_later_seen_at_onion": 10,
+          "holding_onion": 56,
+          "empty_stay": 4
+        }
+      ]
+    },
+    "text": "以下是我在相似局面前后亲眼看到的伙伴记忆；中间看不见的过程没有补写，也不假定属于同一任务：\n- 我记得 140 个相似片段：当时我知道一口锅正在烹饪、另有锅还能补料，并看见 Alice 空手。\n- 这些片段开始时，我看见她移动 140 次、停留 0 次。\n- 在之后再次可见的画面中，我看到她拿着洋葱或到达洋葱台 140 次；看到她继续空手停留或停在锅边 0 次；另外 0 次在 20 步内没有再看到足够线索。\n这些只是有限视野下真实发生过的外在行为，不代表我知道她当时的内心目标。"
+  },
+  "none": {
+    "text": "Alice 是我的合作伙伴；我没有她个人行为习惯的历史记录。"
+  },
+  "qwen_calls": 0
+}

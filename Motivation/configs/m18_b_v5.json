@@ -1,0 +1,15 @@
+{
+  "version": "m18-B-controller-v5-frozen-20260916",
+  "approval": "User approved continued controller revision on 2026-09-16; v5 was frozen after the full nine-group development check.",
+  "controller": "m18-public-bob-v5-pipeline-complement",
+  "development_groups": 9,
+  "development_starts_per_group": 16,
+  "primary_ticks": 300,
+  "oracle_gate": {
+    "minimum_overall_mean_gain_soups": 0.0,
+    "minimum_nonnegative_groups": 8,
+    "minimum_groups_with_public_trigger_gate": 9
+  },
+  "prediction_use": "Intent-level pipeline complement only; target facility is not used for route avoidance.",
+  "frozen_after_development": true
+}

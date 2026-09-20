@@ -1,0 +1,828 @@
+{
+  "milestone": "M17 fixed-event online score rollout",
+  "split": "development",
+  "window_after_observed_action": 200,
+  "events": 20,
+  "conditions": {
+    "oracle": {
+      "trials": 20,
+      "mean_deliveries": 5.35,
+      "mean_reward": 107.0,
+      "intent_accuracy": 1.0,
+      "target_accuracy": 1.0,
+      "route_yields": 15,
+      "delivery_distribution": {
+        "5": 13,
+        "6": 7
+      },
+      "per_event": [
+        {
+          "event_id": "60d6968f508995039289",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "751372f4098d7fd5a97a",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "9aef8ecfaf29dc5a8762",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "03437cfae1518d694541",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "029acc1063120eb3338f",
+          "condition": "oracle",
+          "deliveries": 6,
+          "reward": 120.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "02af6b54b6bba411efe7",
+          "condition": "oracle",
+          "deliveries": 6,
+          "reward": 120.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 2
+        },
+        {
+          "event_id": "155865034485756c6fda",
+          "condition": "oracle",
+          "deliveries": 6,
+          "reward": 120.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "069a0496a9e43e5df74f",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "017d890bcac988f6d014",
+          "condition": "oracle",
+          "deliveries": 6,
+          "reward": 120.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 2
+        },
+        {
+          "event_id": "17d9c35e4053a606dd87",
+          "condition": "oracle",
+          "deliveries": 6,
+          "reward": 120.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 3
+        },
+        {
+          "event_id": "4d29bbe13efa0fd2801b",
+          "condition": "oracle",
+          "deliveries": 6,
+          "reward": 120.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "03b57824c183ccfe2d65",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "026acb3e4a8607f73cae",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "09617e8514cfe272cf35",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "0af1aa04fcb3fc3a9a9b",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "25f220fc87aa437dd284",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "05e6ffb41360c364947c",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 2
+        },
+        {
+          "event_id": "2994ca70896f101bd9b3",
+          "condition": "oracle",
+          "deliveries": 6,
+          "reward": 120.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 2
+        },
+        {
+          "event_id": "59e16b14136356f092a9",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "18c882f2066d76c49bc7",
+          "condition": "oracle",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          },
+          "prediction_source": "oracle",
+          "intent_correct": true,
+          "target_correct": true,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 1
+          },
+          "route_yields": 0
+        }
+      ]
+    },
+    "inverted": {
+      "trials": 20,
+      "mean_deliveries": 4.2,
+      "mean_reward": 84.0,
+      "intent_accuracy": 0.0,
+      "target_accuracy": 0.0,
+      "route_yields": 28,
+      "delivery_distribution": {
+        "0": 3,
+        "2": 1,
+        "4": 1,
+        "5": 12,
+        "6": 3
+      },
+      "per_event": [
+        {
+          "event_id": "60d6968f508995039289",
+          "condition": "inverted",
+          "deliveries": 0,
+          "reward": 0.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "751372f4098d7fd5a97a",
+          "condition": "inverted",
+          "deliveries": 0,
+          "reward": 0.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "9aef8ecfaf29dc5a8762",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "03437cfae1518d694541",
+          "condition": "inverted",
+          "deliveries": 0,
+          "reward": 0.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "029acc1063120eb3338f",
+          "condition": "inverted",
+          "deliveries": 6,
+          "reward": 120.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "02af6b54b6bba411efe7",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "155865034485756c6fda",
+          "condition": "inverted",
+          "deliveries": 4,
+          "reward": 80.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 4
+        },
+        {
+          "event_id": "069a0496a9e43e5df74f",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 2
+        },
+        {
+          "event_id": "017d890bcac988f6d014",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "17d9c35e4053a606dd87",
+          "condition": "inverted",
+          "deliveries": 6,
+          "reward": 120.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 2
+        },
+        {
+          "event_id": "4d29bbe13efa0fd2801b",
+          "condition": "inverted",
+          "deliveries": 2,
+          "reward": 40.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 4
+        },
+        {
+          "event_id": "03b57824c183ccfe2d65",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 3
+        },
+        {
+          "event_id": "026acb3e4a8607f73cae",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "09617e8514cfe272cf35",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "0af1aa04fcb3fc3a9a9b",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 4
+        },
+        {
+          "event_id": "25f220fc87aa437dd284",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 1
+        },
+        {
+          "event_id": "05e6ffb41360c364947c",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 2
+        },
+        {
+          "event_id": "2994ca70896f101bd9b3",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "59e16b14136356f092a9",
+          "condition": "inverted",
+          "deliveries": 6,
+          "reward": 120.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0
+        },
+        {
+          "event_id": "18c882f2066d76c49bc7",
+          "condition": "inverted",
+          "deliveries": 5,
+          "reward": 100.0,
+          "prediction": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "prediction_source": "inverted",
+          "intent_correct": false,
+          "target_correct": false,
+          "prediction_accepted": true,
+          "completed_commitments": {
+            "supply_one_onion": 1,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0
+        }
+      ]
+    }
+  },
+  "controller_gate": {
+    "paired_mean_oracle_minus_inverted": 1.15,
+    "oracle_better": 8,
+    "equal": 11,
+    "inverted_better": 1,
+    "differences": [
+      5,
+      5,
+      0,
+      5,
+      0,
+      1,
+      2,
+      0,
+      1,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      -1,
+      0
+    ],
+    "passed": true
+  }
+}

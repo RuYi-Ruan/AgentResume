@@ -1,0 +1,355 @@
+{
+  "milestone": "M17 online cooperation",
+  "horizon": 700,
+  "seeds": [
+    10001,
+    10002,
+    10003,
+    10004,
+    10005,
+    10006,
+    10007,
+    10008
+  ],
+  "conditions": {
+    "oracle": {
+      "episodes": 8,
+      "mean_deliveries": 18.0,
+      "mean_reward": 360.0,
+      "total_events": 0,
+      "valid_predictions": 0,
+      "intent_accuracy": null,
+      "target_accuracy": null,
+      "accepted_updates": 0,
+      "ignored_updates": 0,
+      "route_yields": 0,
+      "deliveries_distribution": {
+        "18": 8
+      },
+      "per_seed": [
+        {
+          "condition": "oracle",
+          "seed": 10001,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "oracle",
+          "seed": 10002,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "oracle",
+          "seed": 10003,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "oracle",
+          "seed": 10004,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "oracle",
+          "seed": 10005,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "oracle",
+          "seed": 10006,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "oracle",
+          "seed": 10007,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "oracle",
+          "seed": 10008,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        }
+      ]
+    },
+    "inverted": {
+      "episodes": 8,
+      "mean_deliveries": 18.0,
+      "mean_reward": 360.0,
+      "total_events": 0,
+      "valid_predictions": 0,
+      "intent_accuracy": null,
+      "target_accuracy": null,
+      "accepted_updates": 0,
+      "ignored_updates": 0,
+      "route_yields": 0,
+      "deliveries_distribution": {
+        "18": 8
+      },
+      "per_seed": [
+        {
+          "condition": "inverted",
+          "seed": 10001,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "inverted",
+          "seed": 10002,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "inverted",
+          "seed": 10003,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "inverted",
+          "seed": 10004,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "inverted",
+          "seed": 10005,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "inverted",
+          "seed": 10006,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "inverted",
+          "seed": 10007,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        },
+        {
+          "condition": "inverted",
+          "seed": 10008,
+          "deliveries": 18,
+          "reward": 360.0,
+          "eligible_events": 0,
+          "valid_predictions": 0,
+          "correct_intents": 0,
+          "correct_targets": 0,
+          "accepted_prediction_updates": 0,
+          "ignored_prediction_updates": 0,
+          "completed_commitments": {
+            "supply_one_onion": 0,
+            "serve_one_soup": 0
+          },
+          "route_yields": 0,
+          "events": []
+        }
+      ]
+    }
+  },
+  "controller_gate": {
+    "paired_mean_oracle_minus_inverted": 0.0,
+    "oracle_better": 0,
+    "equal": 8,
+    "inverted_better": 0,
+    "differences": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "passed": false
+  }
+}

@@ -1,0 +1,8367 @@
+{
+  "milestone": "M17 frozen paired-event split gate",
+  "passed": true,
+  "qwen_calls": 0,
+  "available_candidates": 165,
+  "old_pilot_signatures_permanently_excluded": 4,
+  "old_pilot_events_valid_for_development_only": 1,
+  "old_pilot_events_not_matched": 3,
+  "action_observation_rule": "Alice is visible immediately before acting; the realized displacement is observed even if that displacement takes her outside the following 3x3 snapshot.",
+  "public_after_state_matched": true,
+  "realized_action_matched": true,
+  "labels_are_outside_public_event": true,
+  "history_selection_rule": "public geometry only: Alice remains in Bob's 3x3 snapshot after the first move",
+  "checkpoint_meta": {
+    "pre": {
+      "group": 1,
+      "map": "A",
+      "rows": [
+        "XOPXDXPXDXX",
+        "X         X",
+        "X X     X X",
+        "S  1   2  S",
+        "X X     X X",
+        "X         X",
+        "XXSOXPDXSXX"
+      ],
+      "training_seed": 1802,
+      "episode_base": 200000
+    },
+    "post": {
+      "group": 1,
+      "map": "A",
+      "rows": [
+        "XOPXDXPXDXX",
+        "X         X",
+        "X X     X X",
+        "S  1   2  S",
+        "X X     X X",
+        "X         X",
+        "XXSOXPDXSXX"
+      ],
+      "training_seed": 1802,
+      "episode_base": 200000,
+      "selected_update": 35
+    }
+  },
+  "development": {
+    "summary": {
+      "events": 20,
+      "pot_counts": {
+        "0": 10,
+        "1": 7,
+        "2": 3
+      },
+      "action_counts": {
+        "(0, 1)": 6,
+        "(-1, 0)": 5,
+        "(0, -1)": 5,
+        "(1, 0)": 4
+      }
+    },
+    "events": [
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "75165a3a8a97f8e50808",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              2,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "洋葱台|锅[煮中]|墙/台面",
+              "伙伴(空手)|空地|空地",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              1,
+              1
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              2,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "洋葱台|锅[煮中]|墙/台面",
+              "空地|空地|空地",
+              "伙伴(空手)|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              1,
+              2
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "08e8d6460afd30a296f0",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              9,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|出餐口",
+              "墙/台面|空地|墙/台面",
+              "伙伴(空手)|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              8,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              9,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|出餐口",
+              "墙/台面|空地|墙/台面",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "195357c095d99ced195c",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              7,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              3
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "89b9bd59eb205db3e9e4",
+        "group": {
+          "cooking_pot_index": 2,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "0e5c4bcad806099bd5b1",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              9,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|出餐口",
+              "墙/台面|空地|墙/台面",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              8,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              9,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|出餐口",
+              "墙/台面|空地|墙/台面",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "27b60a6631bf12891c76",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              9,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|墙/台面",
+              "墙/台面|空地|墙/台面",
+              "空地|空地|出餐口"
+            ],
+            "alice_visible_position": [
+              8,
+              1
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              9,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "墙/台面|空地|墙/台面",
+              "空地|空地|出餐口"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "0331ddeccb7057c9c89f",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              8,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "伙伴(空手)|空地|空地",
+              "墙/台面|出餐口|墙/台面"
+            ],
+            "alice_visible_position": [
+              7,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              8,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|墙/台面|空地",
+              "空地|空地|空地",
+              "墙/台面|出餐口|墙/台面"
+            ],
+            "alice_visible_position": [
+              7,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "113943666f7d106bfff1",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              1,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|伙伴(空手)|墙/台面",
+              "墙/台面|空地|空地",
+              "墙/台面|墙/台面|出餐口"
+            ],
+            "alice_visible_position": [
+              1,
+              4
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              1,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|空地|墙/台面",
+              "墙/台面|空地|空地",
+              "墙/台面|墙/台面|出餐口"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "070a7312493813913cf0",
+        "group": {
+          "cooking_pot_index": 2,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "0ab750fb4c6955adabce",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              8,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|伙伴(空手)",
+              "空地|空地|空地",
+              "墙/台面|出餐口|墙/台面"
+            ],
+            "alice_visible_position": [
+              9,
+              4
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              8,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "墙/台面|出餐口|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "2e87a0a750b7e1b0f231",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              2,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|墙/台面|空地",
+              "空地|空地|空地",
+              "墙/台面|出餐口|洋葱台"
+            ],
+            "alice_visible_position": [
+              1,
+              4
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              2,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "墙/台面|出餐口|洋葱台"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "008e037961b0b258689d",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              8,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|盘台|墙/台面",
+              "空地|空地|空地",
+              "空地|墙/台面|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              9,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              8,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|盘台|墙/台面",
+              "空地|空地|空地",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "00d0689ed75e495a9dc7",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              8,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "空地|墙/台面|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              9,
+              4
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              8,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "1c3ee5395d174987581f",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              8,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|盘台|墙/台面",
+              "空地|空地|伙伴(空手)",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              9,
+              1
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              8,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|盘台|墙/台面",
+              "空地|空地|空地",
+              "空地|墙/台面|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              9,
+              2
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "02494dae4e3977637e1b",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              3,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "空地|空地|空地",
+              "墙/台面|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              2
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              3,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "空地|空地|空地",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "6e52f0a5e20e7e10d7d8",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              3,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[煮中]|墙/台面|盘台",
+              "空地|空地|伙伴(空手)",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              1
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              3,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[煮中]|墙/台面|盘台",
+              "空地|空地|空地",
+              "墙/台面|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              4,
+              2
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "2419211159a18408464f",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              1,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|空地|墙/台面",
+              "墙/台面|空地|伙伴(空手)",
+              "墙/台面|墙/台面|出餐口"
+            ],
+            "alice_visible_position": [
+              2,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              1,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|空地|墙/台面",
+              "墙/台面|空地|空地",
+              "墙/台面|墙/台面|出餐口"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "15ea8b530c823769ed65",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "空地|空地|伙伴(空手)",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              8,
+              1
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "空地|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "efe5201baaaac64b2e71",
+        "group": {
+          "cooking_pot_index": 2,
+          "action_delta": [
+            1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[煮中]|墙/台面|盘台",
+              "空地|空地|伙伴(空手)",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              8,
+              1
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[煮中]|墙/台面|盘台",
+              "空地|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "24b17d0f1f9fe45a0ca1",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              1,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "出餐口|空地|空地",
+              "墙/台面|空地|墙/台面",
+              "墙/台面|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              1,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              1,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "出餐口|空地|空地",
+              "墙/台面|空地|墙/台面",
+              "墙/台面|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              2,
+              5
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      }
+    ]
+  },
+  "history_probe": {
+    "summary": {
+      "events": 40,
+      "pot_counts": {
+        "0": 13,
+        "1": 23,
+        "2": 4
+      },
+      "action_counts": {
+        "(-1, 0)": 14,
+        "(0, -1)": 13,
+        "(0, 1)": 13
+      }
+    },
+    "events": [
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "191347dc559ebfd3c522",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              1
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              1
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "307e3e0ff85a29a36634",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              9,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|出餐口",
+              "墙/台面|空地|墙/台面",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              9,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              9,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|出餐口",
+              "墙/台面|空地|墙/台面",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              8,
+              3
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "2dcd0bb4339ab90dbc5f",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              9,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|墙/台面",
+              "墙/台面|空地|墙/台面",
+              "空地|空地|出餐口"
+            ],
+            "alice_visible_position": [
+              9,
+              1
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              9,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|墙/台面",
+              "墙/台面|空地|墙/台面",
+              "空地|空地|出餐口"
+            ],
+            "alice_visible_position": [
+              8,
+              1
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "4391888960205e53e126",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "洋葱台|墙/台面|锅[煮中]"
+            ],
+            "alice_visible_position": [
+              5,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "洋葱台|墙/台面|锅[煮中]"
+            ],
+            "alice_visible_position": [
+              4,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "3556ad5c1e00566f756c",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              1
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              1
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "4899dfc41505fed20637",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              3
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "3de8a5fa418a4696887d",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              7,
+              1
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              1
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "6d90de970d9b6ce7792c",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "锅[煮中]|盘台|墙/台面"
+            ],
+            "alice_visible_position": [
+              7,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "锅[煮中]|盘台|墙/台面"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "545f991df9948b1093a3",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              8,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              7,
+              3
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "789ae45ad2c4304c3018",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "墙/台面|锅[煮中]|盘台"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "墙/台面|锅[煮中]|盘台"
+            ],
+            "alice_visible_position": [
+              5,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "77cbedfbc20c7db30a48",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              1
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              1
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "8ac1032b34caefa5f0e5",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|墙/台面",
+              "空地|空地|空地",
+              "盘台|墙/台面|出餐口"
+            ],
+            "alice_visible_position": [
+              7,
+              4
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|墙/台面",
+              "空地|空地|空地",
+              "盘台|墙/台面|出餐口"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "7a9e01dc0ac830b151d4",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              5
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "8d0e6b40ef68c79fddc4",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              7,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              5
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "1bb44b87e4cce5d15b5e",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              2,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|伙伴(空手)",
+              "墙/台面|出餐口|洋葱台"
+            ],
+            "alice_visible_position": [
+              3,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              2,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|伙伴(空手)",
+              "空地|空地|空地",
+              "墙/台面|出餐口|洋葱台"
+            ],
+            "alice_visible_position": [
+              3,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "3eaa064f8ed9569327cc",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)",
+              "锅[煮中]|盘台|墙/台面"
+            ],
+            "alice_visible_position": [
+              7,
+              5
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "锅[煮中]|盘台|墙/台面"
+            ],
+            "alice_visible_position": [
+              7,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "0c96693f984a49fb6372",
+        "group": {
+          "cooking_pot_index": 2,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)",
+              "墙/台面|锅[空]|盘台"
+            ],
+            "alice_visible_position": [
+              6,
+              5
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "墙/台面|锅[空]|盘台"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "1bf01b0b7bb9975524ea",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)",
+              "洋葱台|墙/台面|锅[空]"
+            ],
+            "alice_visible_position": [
+              5,
+              5
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "洋葱台|墙/台面|锅[空]"
+            ],
+            "alice_visible_position": [
+              5,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "558e4ac36ea8fb71b5ee",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)",
+              "墙/台面|锅[煮中]|盘台"
+            ],
+            "alice_visible_position": [
+              6,
+              5
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "墙/台面|锅[煮中]|盘台"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "2652887ad612454a9278",
+        "group": {
+          "cooking_pot_index": 2,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[煮中]|墙/台面|盘台",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              6,
+              2
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[煮中]|墙/台面|盘台",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              6,
+              1
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "2468f9119ac109c17d89",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              1
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "930497dbabd77673f713",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              2,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "伙伴(空手)|空地|空地",
+              "墙/台面|出餐口|洋葱台"
+            ],
+            "alice_visible_position": [
+              1,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              2,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|墙/台面|空地",
+              "空地|空地|空地",
+              "墙/台面|出餐口|洋葱台"
+            ],
+            "alice_visible_position": [
+              1,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "45ca058dd6daddb9f360",
+        "group": {
+          "cooking_pot_index": 2,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|锅[煮中]|墙/台面",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              2
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|锅[煮中]|墙/台面",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              1
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "253e9041f3f2bf0e0c6c",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "95dafc55bee583b7a6f9",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)",
+              "洋葱台|墙/台面|锅[煮中]"
+            ],
+            "alice_visible_position": [
+              5,
+              5
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "洋葱台|墙/台面|锅[煮中]"
+            ],
+            "alice_visible_position": [
+              5,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "8df7f0d0c639e3710309",
+        "group": {
+          "cooking_pot_index": 2,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              4
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              3
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "35a191da29e9ce909d74",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|墙/台面",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "伙伴(空手)|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "8cf9058fe4b17f568d6c",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|盘台|墙/台面",
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              1
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|盘台|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              5,
+              2
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "0ad6f8e2674605e43d4a",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              6,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "3609db8662712a0b3886",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "伙伴(空手)|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "383a74bdb0e36bffd56e",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              3,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "空地|空地|伙伴(空手)",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              1
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              3,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "空地|空地|空地",
+              "墙/台面|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              4,
+              2
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "3cf0d604763103ee3160",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "45883ad47948579c006c",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              2,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|伙伴(空手)",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              2,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "空地|墙/台面|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              3,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "57c4a85895b1ac823650",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "62e754d13ac186275f24",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              2,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "洋葱台|锅[空]|墙/台面",
+              "空地|空地|伙伴(空手)",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              1
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              2,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "洋葱台|锅[空]|墙/台面",
+              "空地|空地|空地",
+              "空地|墙/台面|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              3,
+              2
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "6dde694c27d02e857342",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              8,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|伙伴(空手)",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              9,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              8,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "空地|墙/台面|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              9,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "74b288d2a8812c99564c",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "7aae97f8a368a51d3e4f",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "8133b838283d123cfc78",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              2,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "洋葱台|锅[空]|墙/台面",
+              "伙伴(空手)|空地|空地",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              1,
+              1
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              2,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "洋葱台|锅[空]|墙/台面",
+              "空地|空地|空地",
+              "伙伴(空手)|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              1,
+              2
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "82cb028786272047fd99",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              8,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "伙伴(空手)|空地|空地",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              7,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              8,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "伙伴(空手)|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              7,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      }
+    ]
+  },
+  "formal_test": {
+    "summary": {
+      "events": 50,
+      "pot_counts": {
+        "0": 24,
+        "1": 24,
+        "2": 2
+      },
+      "action_counts": {
+        "(-1, 0)": 15,
+        "(0, -1)": 15,
+        "(0, 1)": 16,
+        "(1, 0)": 4
+      }
+    },
+    "events": [
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "514cddb4b51be209588b",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              9,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|空地|墙/台面",
+              "伙伴(空手)|空地|出餐口",
+              "墙/台面|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              8,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              9,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|空地|墙/台面",
+              "空地|空地|出餐口",
+              "墙/台面|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "91bac3e3d47fa2f7afdc",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              3,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|空地|空地",
+              "伙伴(空手)|空地|空地",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": [
+              2,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              3,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|空地|空地",
+              "空地|空地|空地",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "dd7df7d62edf95bee911",
+        "group": {
+          "cooking_pot_index": 2,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[煮中]|墙/台面|盘台",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              6,
+              1
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[煮中]|墙/台面|盘台",
+              "空地|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "5727e60bcc164ce7ae28",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "盘台|墙/台面|锅[空]",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              1
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "盘台|墙/台面|锅[空]",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "a838be1e62c5039ffc96",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              3,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "伙伴(空手)|空地|空地",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": [
+              2,
+              1
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              3,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "空地|空地|空地",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "740d171bef006a003139",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              1
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "ab7d33f837202db59d45",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "锅[煮中]|盘台|墙/台面"
+            ],
+            "alice_visible_position": [
+              6,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "锅[煮中]|盘台|墙/台面"
+            ],
+            "alice_visible_position": [
+              5,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "7b5d499a85c3002463de",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|锅[空]|墙/台面",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              1
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|锅[空]|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "be0f27f64f76c88206f8",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              6,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              5
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "8238def178e3939c9da5",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              1
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              1
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "d0ee03a821b15f7b5f70",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "墙/台面|锅[煮中]|盘台"
+            ],
+            "alice_visible_position": [
+              5,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "墙/台面|锅[煮中]|盘台"
+            ],
+            "alice_visible_position": [
+              4,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "88c6501b238a80eec8ce",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              9,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "墙/台面|空地|墙/台面",
+              "伙伴(空手)|空地|出餐口"
+            ],
+            "alice_visible_position": [
+              8,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              9,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "墙/台面|空地|墙/台面",
+              "空地|空地|出餐口"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "d9d3b2eed7d688079db9",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              5
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "0fc43572d63e5101c186",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              1,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "出餐口|伙伴(空手)|空地",
+              "墙/台面|空地|墙/台面",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": [
+              1,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              1,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "出餐口|空地|空地",
+              "墙/台面|空地|墙/台面",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "ed78abd9ab48983cde19",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地",
+              "洋葱台|墙/台面|锅[煮中]"
+            ],
+            "alice_visible_position": [
+              3,
+              5
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "洋葱台|墙/台面|锅[煮中]"
+            ],
+            "alice_visible_position": [
+              3,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "cooking",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "070e0ecd0fb7da6132e5",
+        "group": {
+          "cooking_pot_index": 2,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              3,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              3,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|空地|空地",
+              "空地|空地|空地",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_2"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "20a7670c1cebd8bb1fca",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              2,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|墙/台面|空地",
+              "空地|空地|空地",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              1,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              2,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "21fcdbcf9d1adac4bcc1",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "254793cbff890aeefaa5",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              6,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "3803c10a26e7588daa8d",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              2,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|伙伴(空手)",
+              "空地|空地|空地",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              2,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "3b0bffb2597b4a66c17d",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              6,
+              2
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              6,
+              1
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "4426fb689dd42d4506a6",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)",
+              "锅[空]|盘台|墙/台面"
+            ],
+            "alice_visible_position": [
+              7,
+              5
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "锅[空]|盘台|墙/台面"
+            ],
+            "alice_visible_position": [
+              7,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "448f8911ec3b83db6458",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              7,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "44bed39c72026e10b188",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "4dab3cf03ed059d508cf",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地",
+              "锅[空]|盘台|墙/台面"
+            ],
+            "alice_visible_position": [
+              5,
+              5
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地",
+              "锅[空]|盘台|墙/台面"
+            ],
+            "alice_visible_position": [
+              5,
+              4
+            ],
+            "remembered_pots": {
+              "(5, 6)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "4f9072f7fe56bface741",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|伙伴(空手)|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "9519d2cdbda07c1016b3",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              9,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "盘台|墙/台面|墙/台面",
+              "空地|空地|墙/台面",
+              "墙/台面|伙伴(空手)|墙/台面"
+            ],
+            "alice_visible_position": [
+              9,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              9,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "盘台|墙/台面|墙/台面",
+              "空地|空地|墙/台面",
+              "墙/台面|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "095db39de06479ff4bf4",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              6,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "0ca3ec8e3b5e8fb886e4",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|盘台|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              5,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|盘台|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "1c31e6eae2c8ed78c142",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "盘台|墙/台面|锅[空]",
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              6,
+              2
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "盘台|墙/台面|锅[空]",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "2c17d3eb0401c31a3d4d",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              3,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "墙/台面|空地|空地",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              3,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "墙/台面|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "3b064312d97f59af0468",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              4
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "42d9c600a3929612afc5",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|墙/台面",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              7,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "4358234651dcb96f13be",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|墙/台面",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|墙/台面",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "5a4b975425e1f7c636b2",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              2,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "空地|墙/台面|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              3,
+              4
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              2,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|墙/台面|空地",
+              "空地|空地|空地",
+              "空地|墙/台面|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "769a955ac5d6ab6cb8b8",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "7aa3bdb5526e15a1b5e8",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "83151185dd9cfdcbcb52",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              7,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              7,
+              4
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "59fe1a98f4b2fc17d6f7",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              1,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "出餐口|空地|空地",
+              "墙/台面|空地|墙/台面",
+              "墙/台面|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              2,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              1,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "出餐口|空地|空地",
+              "墙/台面|空地|墙/台面",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "72e34854f7a9abf6e7fd",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              1,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|洋葱台|锅[空]",
+              "墙/台面|空地|伙伴(空手)",
+              "墙/台面|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              2,
+              1
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              1,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|洋葱台|锅[空]",
+              "墙/台面|空地|空地",
+              "墙/台面|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "d689097dcd2f1cad0ea0",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "空地|空地|伙伴(空手)",
+              "盘台|墙/台面|出餐口"
+            ],
+            "alice_visible_position": [
+              8,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              5
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "空地|空地|空地",
+              "盘台|墙/台面|出餐口"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "f806fc32f0de9275260d",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              7,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "空地|空地|伙伴(空手)",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": [
+              8,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              7,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|墙/台面"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "86d3a4d5e65ccdc00bd0",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              6,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|锅[空]|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              7,
+              2
+            ],
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              6,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|锅[空]|墙/台面",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(6, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "88472e575c224ea30994",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              3,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "空地|空地|空地",
+              "墙/台面|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              4,
+              2
+            ],
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 0,
+                "source": "visible"
+              }
+            }
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              3,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "锅[空]|墙/台面|盘台",
+              "空地|空地|空地",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {
+              "(2, 0)": {
+                "kind": "empty",
+                "t": 1,
+                "source": "visible"
+              }
+            }
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "519be0b17d2979b2f22a",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|伙伴(空手)",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              6,
+              1
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "edf31c5eed3d51e2c592",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|伙伴(空手)"
+            ],
+            "alice_visible_position": [
+              5,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              5
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "5506d8c056513d510398",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            0,
+            -1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|盘台|墙/台面",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              2
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              -1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              1
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|盘台|墙/台面",
+              "伙伴(空手)|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              1
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_0"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "8ba58b66d3825a193405",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              3,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|空地|空地",
+              "空地|空地|空地",
+              "墙/台面|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              3,
+              4
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              3,
+              3
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "墙/台面|空地|空地",
+              "空地|空地|空地",
+              "墙/台面|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "928f88bb8e23b973eabc",
+        "group": {
+          "cooking_pot_index": 0,
+          "action_delta": [
+            -1,
+            0
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              5,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              5,
+              5
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              -1,
+              0
+            ]
+          },
+          "after": {
+            "bob_position": [
+              5,
+              4
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "伙伴(空手)|空地|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              5
+            ],
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_0"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      },
+      {
+        "seed": 0,
+        "episode_id": "controlled-m17-v1",
+        "event_id": "ad499351eacf72c75255",
+        "group": {
+          "cooking_pot_index": 1,
+          "action_delta": [
+            0,
+            1
+          ]
+        },
+        "public_event": {
+          "before": {
+            "bob_position": [
+              4,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|伙伴(空手)|空地"
+            ],
+            "alice_visible_position": [
+              4,
+              3
+            ],
+            "remembered_pots": {}
+          },
+          "realized_alice_action": {
+            "kind": "move",
+            "delta": [
+              0,
+              1
+            ]
+          },
+          "after": {
+            "bob_position": [
+              4,
+              2
+            ],
+            "bob_orientation": [
+              1,
+              0
+            ],
+            "bob_held": null,
+            "tiles": [
+              "空地|空地|空地",
+              "空地|空地|空地",
+              "空地|空地|空地"
+            ],
+            "alice_visible_position": null,
+            "remembered_pots": {}
+          }
+        },
+        "scoring_only": {
+          "pre": {
+            "intent": "PRE",
+            "target_facility": "pot_1"
+          },
+          "post": {
+            "intent": "FETCH",
+            "target_facility": "onion_1"
+          }
+        }
+      }
+    ]
+  }
+}

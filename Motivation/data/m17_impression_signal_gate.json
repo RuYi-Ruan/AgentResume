@@ -1,0 +1,115 @@
+{
+  "milestone": "M17 observable-impression separability gate",
+  "passed": true,
+  "qwen_calls": 0,
+  "method": "paired-event_id cross-validated logistic regression",
+  "feature_source": "only recorded visible-segment counts, actions, outcomes and lengths",
+  "forbidden_features": [
+    "Alice intent",
+    "Alice target",
+    "checkpoint weights",
+    "out-of-view behavior"
+  ],
+  "paired_units": 40,
+  "records": 80,
+  "minimum_accuracy": 0.75,
+  "accuracy": 0.7625,
+  "folds": [
+    {
+      "fold": 0,
+      "test_keys": [
+        "0e766c9da0addcbbaafc",
+        "3c429c8d34f5afd69309",
+        "7a2b5d0696f047693321",
+        "992cd5bdf8f338dd4f3a",
+        "bc2bac286b9a6fb52cf7"
+      ],
+      "records": 10,
+      "accuracy": 0.7
+    },
+    {
+      "fold": 1,
+      "test_keys": [
+        "1069d917cfc9a6b4d1a1",
+        "3dd132101185ebb8efdf",
+        "7b2f5631faa8f9b737cf",
+        "a3700b60574d643d0eb4",
+        "bd8a4a13234cf6869f19"
+      ],
+      "records": 10,
+      "accuracy": 0.8
+    },
+    {
+      "fold": 2,
+      "test_keys": [
+        "14d43a50213eb9c9208f",
+        "49c66ef7eefb5cb53a87",
+        "813eeec6e8081f4168e1",
+        "aafd4a30ae4010a94b91",
+        "bf6ca345646a5717869b"
+      ],
+      "records": 10,
+      "accuracy": 0.8
+    },
+    {
+      "fold": 3,
+      "test_keys": [
+        "193d9469b48b54a305e1",
+        "4adc84dc65f8843f3893",
+        "861a93dc6a38aaed76ad",
+        "b04b63d96c313e8bb97a",
+        "c37ea86bf15b7102f70a"
+      ],
+      "records": 10,
+      "accuracy": 0.8
+    },
+    {
+      "fold": 4,
+      "test_keys": [
+        "2025fbd2ea9aafeb387b",
+        "57866b9fd28083da18dc",
+        "8b3a6c1eaa4d685382ab",
+        "b395303de219d4cfb618",
+        "c6dcb129b30a52692bb6"
+      ],
+      "records": 10,
+      "accuracy": 0.8
+    },
+    {
+      "fold": 5,
+      "test_keys": [
+        "244b43cfb64dcc36743f",
+        "5d36b08fb9fa4fc1574e",
+        "8cc6cbc7e42a793282ae",
+        "b5350ef0848f39a7bb63",
+        "c78779f8137e51c442d4"
+      ],
+      "records": 10,
+      "accuracy": 0.7
+    },
+    {
+      "fold": 6,
+      "test_keys": [
+        "259b8c0acb67ff171027",
+        "649703881be76c980c74",
+        "8f540990352a31963949",
+        "b677f3fb816d68d37415",
+        "d076f8f83bb27966b462"
+      ],
+      "records": 10,
+      "accuracy": 0.8
+    },
+    {
+      "fold": 7,
+      "test_keys": [
+        "3132419f460c585c4328",
+        "722f5f42e8b6fa764dc5",
+        "90af9c3945899ee65964",
+        "b8827fa69bb07051dce2",
+        "fe37738ed428f7e32f5f"
+      ],
+      "records": 10,
+      "accuracy": 0.7
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+{
+  "milestone": "M14 trained-checkpoint impression counterfactual",
+  "pre_checkpoint": "artifacts\\checkpoints\\m11_bc_l0.pt",
+  "post_checkpoint": "artifacts\\checkpoints\\m13_ppo_post.pt",
+  "device": "cuda",
+  "split": {
+    "train_seeds": [
+      4001,
+      4002,
+      4003,
+      4004,
+      4005,
+      4006,
+      4007,
+      4008,
+      4009,
+      4010,
+      4011,
+      4012,
+      4013,
+      4014,
+      4015,
+      4016,
+      4017,
+      4018,
+      4019,
+      4020,
+      4021,
+      4022,
+      4023,
+      4024
+    ],
+    "test_seeds": [
+      5001,
+      5002,
+      5003,
+      5004,
+      5005,
+      5006,
+      5007,
+      5008,
+      5009,
+      5010,
+      5011,
+      5012,
+      5013,
+      5014,
+      5015,
+      5016
+    ]
+  },
+  "capability_deliveries": {
+    "train": {
+      "pre": {
+        "mean": 15.0,
+        "min": 15,
+        "max": 15
+      },
+      "post": {
+        "mean": 24.416666666666668,
+        "min": 23,
+        "max": 25
+      }
+    },
+    "test": {
+      "pre": {
+        "mean": 15.0,
+        "min": 15,
+        "max": 15
+      },
+      "post": {
+        "mean": 24.625,
+        "min": 24,
+        "max": 25
+      }
+    }
+  },
+  "event_counts": {
+    "train": 8342,
+    "test_pre": 2475,
+    "test_post": 3089
+  },
+  "accuracy": {
+    "pre_correct_impression": 0.9963636363636363,
+    "post_stale_impression": 0.6649401100679831,
+    "post_updated_impression": 1.0,
+    "post_state_only": 0.9961152476529621
+  },
+  "reinterpretation": {
+    "events": 39,
+    "post_stale_impression": 0.23076923076923078,
+    "post_updated_impression": 1.0,
+    "post_state_only": 0.717948717948718
+  },
+  "per_test_seed": [
+    {
+      "seed": 5001,
+      "events": 191,
+      "stale_acc": 0.6701570680628273,
+      "updated_acc": 1.0,
+      "state_only_acc": 0.9947643979057592,
+      "reinterpretation_events": 1,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.0
+    },
+    {
+      "seed": 5002,
+      "events": 194,
+      "stale_acc": 0.6701030927835051,
+      "updated_acc": 1.0,
+      "state_only_acc": 1.0,
+      "reinterpretation_events": 2,
+      "reinterpretation_stale_acc": 0.5,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 1.0
+    },
+    {
+      "seed": 5003,
+      "events": 192,
+      "stale_acc": 0.6614583333333334,
+      "updated_acc": 1.0,
+      "state_only_acc": 0.9947916666666666,
+      "reinterpretation_events": 3,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.6666666666666666
+    },
+    {
+      "seed": 5004,
+      "events": 196,
+      "stale_acc": 0.6785714285714286,
+      "updated_acc": 1.0,
+      "state_only_acc": 0.9897959183673469,
+      "reinterpretation_events": 3,
+      "reinterpretation_stale_acc": 0.6666666666666666,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.3333333333333333
+    },
+    {
+      "seed": 5005,
+      "events": 192,
+      "stale_acc": 0.6614583333333334,
+      "updated_acc": 1.0,
+      "state_only_acc": 0.9947916666666666,
+      "reinterpretation_events": 3,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.6666666666666666
+    },
+    {
+      "seed": 5006,
+      "events": 192,
+      "stale_acc": 0.6614583333333334,
+      "updated_acc": 1.0,
+      "state_only_acc": 0.9947916666666666,
+      "reinterpretation_events": 3,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.6666666666666666
+    },
+    {
+      "seed": 5007,
+      "events": 192,
+      "stale_acc": 0.6614583333333334,
+      "updated_acc": 1.0,
+      "state_only_acc": 0.9947916666666666,
+      "reinterpretation_events": 3,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.6666666666666666
+    },
+    {
+      "seed": 5008,
+      "events": 192,
+      "stale_acc": 0.6614583333333334,
+      "updated_acc": 1.0,
+      "state_only_acc": 0.9947916666666666,
+      "reinterpretation_events": 3,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.6666666666666666
+    },
+    {
+      "seed": 5009,
+      "events": 195,
+      "stale_acc": 0.6666666666666666,
+      "updated_acc": 1.0,
+      "state_only_acc": 1.0,
+      "reinterpretation_events": 2,
+      "reinterpretation_stale_acc": 0.5,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 1.0
+    },
+    {
+      "seed": 5010,
+      "events": 192,
+      "stale_acc": 0.65625,
+      "updated_acc": 1.0,
+      "state_only_acc": 0.9895833333333334,
+      "reinterpretation_events": 3,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.6666666666666666
+    },
+    {
+      "seed": 5011,
+      "events": 192,
+      "stale_acc": 0.6614583333333334,
+      "updated_acc": 1.0,
+      "state_only_acc": 0.9895833333333334,
+      "reinterpretation_events": 3,
+      "reinterpretation_stale_acc": 0.0,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 0.3333333333333333
+    },
+    {
+      "seed": 5012,
+      "events": 193,
+      "stale_acc": 0.6632124352331606,
+      "updated_acc": 1.0,
+      "state_only_acc": 1.0,
+      "reinterpretation_events": 2,
+      "reinterpretation_stale_acc": 0.5,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 1.0
+    },
+    {
+      "seed": 5013,
+      "events": 196,
+      "stale_acc": 0.6683673469387755,
+      "updated_acc": 1.0,
+      "state_only_acc": 1.0,
+      "reinterpretation_events": 2,
+      "reinterpretation_stale_acc": 0.5,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 1.0
+    },
+    {
+      "seed": 5014,
+      "events": 194,
+      "stale_acc": 0.6701030927835051,
+      "updated_acc": 1.0,
+      "state_only_acc": 1.0,
+      "reinterpretation_events": 2,
+      "reinterpretation_stale_acc": 0.5,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 1.0
+    },
+    {
+      "seed": 5015,
+      "events": 193,
+      "stale_acc": 0.6632124352331606,
+      "updated_acc": 1.0,
+      "state_only_acc": 1.0,
+      "reinterpretation_events": 2,
+      "reinterpretation_stale_acc": 0.5,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 1.0
+    },
+    {
+      "seed": 5016,
+      "events": 193,
+      "stale_acc": 0.6632124352331606,
+      "updated_acc": 1.0,
+      "state_only_acc": 1.0,
+      "reinterpretation_events": 2,
+      "reinterpretation_stale_acc": 0.5,
+      "reinterpretation_updated_acc": 1.0,
+      "reinterpretation_state_only_acc": 1.0
+    }
+  ],
+  "paired_bootstrap": {
+    "mean_updated_minus_stale": 0.3350871249058631,
+    "ci95": [
+      0.3323989238141602,
+      0.33746651997377336
+    ],
+    "seeds_updated_better": 16,
+    "seed_count": 16
+  },
+  "reinterpretation_paired_bootstrap": {
+    "mean_updated_minus_stale": 0.7395833333333334,
+    "ci95": [
+      0.6145833333333334,
+      0.875
+    ],
+    "seeds_updated_better": 16,
+    "seed_count": 16
+  },
+  "limitations": [
+    "The impression is supplied as an oracle one-hot belief; online belief inference is not tested yet.",
+    "Exact reinterpretation contexts are defined from training trajectories and may be repetitive.",
+    "This phase evaluates intent inference on fixed trajectories, not downstream team reward."
+  ]
+}

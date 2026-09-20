@@ -1,0 +1,624 @@
+{
+  "milestone": "M16-V2 four-pair fixed-event Qwen pilot",
+  "live": true,
+  "model": "Qwen/Qwen3.5-9B",
+  "base_url": "https://api.siliconflow.cn/v1",
+  "unique_requests": 12,
+  "leakage_check": {
+    "event_prompt_contains_ground_truth_fields": false,
+    "pre_and_post_records_share_the_same_event_prompt": true,
+    "only_impression_changes_across_conditions": true
+  },
+  "summaries": {
+    "pre": {
+      "events": 4,
+      "valid": 4,
+      "pre_intent_accuracy": 0.75,
+      "post_intent_accuracy": 0.25
+    },
+    "post": {
+      "events": 4,
+      "valid": 4,
+      "pre_intent_accuracy": 0.75,
+      "post_intent_accuracy": 0.25
+    },
+    "none": {
+      "events": 4,
+      "valid": 4,
+      "pre_intent_accuracy": 0.5,
+      "post_intent_accuracy": 0.5
+    }
+  },
+  "requests": [
+    {
+      "pair_id": 0,
+      "first_action": [
+        0,
+        -1
+      ],
+      "impression": "pre",
+      "prompt_hash": "0f320451ca74d42fd64ac69205aeedff963d8295b03638d906d0cc434d102e44",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\n以下是我在以往合作中亲眼看到的 Alice 行为摘要（视野外行为未知）：\n- Alice 空手且在视野内时，共观察到 1016 个时刻；其中移动占 35.2%，停留占 64.8%，与设施交互占 0.0%。\n- 在我记得有锅正在烹饪、同时还有锅可补料的 212 个可见时刻里，Alice 空手移动占 0.0%，停留占 100.0%，与设施交互占 0.0%。\n- 我看见 Alice 空手位于锅的交互位置 1 次，位于洋葱台交互位置 0 次，手持洋葱 290 次。\n这些只是有限视野下的历史习惯，不是她当前意图的直接答案。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  墙/台面|伙伴(空手)|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 当时相对我的位置为 (0, -1)，空手。\n我刚刚亲眼看到 Alice：向上移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 动作后相对我的位置为 (0, -2)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "FETCH",
+          "facility": "onion_1",
+          "confidence": 0.85,
+          "evidence": "Alice 空手向上移动远离我，结合历史印象她空手时多停留或取料，且 pot_1/pot_2 可补料，推测其前往下方洋葱台取料。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"FETCH\",\"facility\":\"onion_1\",\"confidence\":0.85,\"evidence\":\"Alice 空手向上移动远离我，结合历史印象她空手时多停留或取料，且 pot_1/pot_2 可补料，推测其前往下方洋葱台取料。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 0,
+      "first_action": [
+        0,
+        -1
+      ],
+      "impression": "post",
+      "prompt_hash": "c1f7e8fe749b5208fbceab89cd12a6bbb2f0d157d6b247576b76223316e9995e",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\n以下是我在以往合作中亲眼看到的 Alice 行为摘要（视野外行为未知）：\n- Alice 空手且在视野内时，共观察到 689 个时刻；其中移动占 70.4%，停留占 9.3%，与设施交互占 20.3%。\n- 在我记得有锅正在烹饪、同时还有锅可补料的 140 个可见时刻里，Alice 空手移动占 100.0%，停留占 0.0%，与设施交互占 0.0%。\n- 我看见 Alice 空手位于锅的交互位置 1 次，位于洋葱台交互位置 140 次，手持洋葱 934 次。\n这些只是有限视野下的历史习惯，不是她当前意图的直接答案。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  墙/台面|伙伴(空手)|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 当时相对我的位置为 (0, -1)，空手。\n我刚刚亲眼看到 Alice：向上移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 动作后相对我的位置为 (0, -2)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "FETCH",
+          "facility": "onion_1",
+          "confidence": 0.95,
+          "evidence": "Alice 空手向上移动远离我，结合历史印象（空手时多去洋葱台）及 pot_1/pot_2 可补料状态，推测其前往下方洋葱台取料。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"FETCH\",\"facility\":\"onion_1\",\"confidence\":0.95,\"evidence\":\"Alice 空手向上移动远离我，结合历史印象（空手时多去洋葱台）及 pot_1/pot_2 可补料状态，推测其前往下方洋葱台取料。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 0,
+      "first_action": [
+        0,
+        -1
+      ],
+      "impression": "none",
+      "prompt_hash": "1a31b1364f98aad87d1c33e938e7217a407e96f53efd06b323601022ace9cd32",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\nAlice 是我的合作伙伴；我没有她个人行为习惯的历史记录。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  墙/台面|伙伴(空手)|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 当时相对我的位置为 (0, -1)，空手。\n我刚刚亲眼看到 Alice：向上移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 动作后相对我的位置为 (0, -2)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "PRE",
+          "facility": "pot_0",
+          "confidence": 0.9,
+          "evidence": "Alice 空手向上移动远离我，结合 pot_0 正在烹饪且她此前位于其附近，推测她正前往 pot_0 附近的非阻塞区等待。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.9,\"evidence\":\"Alice 空手向上移动远离我，结合 pot_0 正在烹饪且她此前位于其附近，推测她正前往 pot_0 附近的非阻塞区等待。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 1,
+      "first_action": [
+        0,
+        1
+      ],
+      "impression": "pre",
+      "prompt_hash": "48583647b793dfcf0a3e5fc2a7e8d24c5b5513991c4e68ee0e3f4b67bfa67eff",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\n以下是我在以往合作中亲眼看到的 Alice 行为摘要（视野外行为未知）：\n- Alice 空手且在视野内时，共观察到 1016 个时刻；其中移动占 35.2%，停留占 64.8%，与设施交互占 0.0%。\n- 在我记得有锅正在烹饪、同时还有锅可补料的 212 个可见时刻里，Alice 空手移动占 0.0%，停留占 100.0%，与设施交互占 0.0%。\n- 我看见 Alice 空手位于锅的交互位置 1 次，位于洋葱台交互位置 0 次，手持洋葱 290 次。\n这些只是有限视野下的历史习惯，不是她当前意图的直接答案。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  伙伴(空手)|空地|空地\n  空地|空地|墙/台面\nAlice 当时相对我的位置为 (-1, 0)，空手。\n我刚刚亲眼看到 Alice：向下移动一步。\n动作后，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  空地|空地|空地\n  伙伴(空手)|空地|墙/台面\nAlice 动作后相对我的位置为 (-1, 1)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "PRE",
+          "facility": "pot_0",
+          "confidence": 0.9,
+          "evidence": "Alice 空手从锅旁移开，历史显示有锅可补料时她常停留，现向下移动可能正前往 pot_0 附近的非阻塞等待区。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.9,\"evidence\":\"Alice 空手从锅旁移开，历史显示有锅可补料时她常停留，现向下移动可能正前往 pot_0 附近的非阻塞等待区。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 1,
+      "first_action": [
+        0,
+        1
+      ],
+      "impression": "post",
+      "prompt_hash": "7daaec46247dd11024c9e312b07cb902bf9f53a1485dbc6f97ad2450f7e857a1",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\n以下是我在以往合作中亲眼看到的 Alice 行为摘要（视野外行为未知）：\n- Alice 空手且在视野内时，共观察到 689 个时刻；其中移动占 70.4%，停留占 9.3%，与设施交互占 20.3%。\n- 在我记得有锅正在烹饪、同时还有锅可补料的 140 个可见时刻里，Alice 空手移动占 100.0%，停留占 0.0%，与设施交互占 0.0%。\n- 我看见 Alice 空手位于锅的交互位置 1 次，位于洋葱台交互位置 140 次，手持洋葱 934 次。\n这些只是有限视野下的历史习惯，不是她当前意图的直接答案。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  伙伴(空手)|空地|空地\n  空地|空地|墙/台面\nAlice 当时相对我的位置为 (-1, 0)，空手。\n我刚刚亲眼看到 Alice：向下移动一步。\n动作后，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  空地|空地|空地\n  伙伴(空手)|空地|墙/台面\nAlice 动作后相对我的位置为 (-1, 1)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "PRE",
+          "facility": "pot_0",
+          "confidence": 0.95,
+          "evidence": "Alice 空手从洋葱台区域向 pot_0 移动，避开阻塞，符合前往烹饪锅旁等待补料的特征。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.95,\"evidence\":\"Alice 空手从洋葱台区域向 pot_0 移动，避开阻塞，符合前往烹饪锅旁等待补料的特征。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 1,
+      "first_action": [
+        0,
+        1
+      ],
+      "impression": "none",
+      "prompt_hash": "e8aad0f8d1d1d439ecff6ae189f84bb782a7ce2929840ba3a2788e70d61bda72",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\nAlice 是我的合作伙伴；我没有她个人行为习惯的历史记录。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  伙伴(空手)|空地|空地\n  空地|空地|墙/台面\nAlice 当时相对我的位置为 (-1, 0)，空手。\n我刚刚亲眼看到 Alice：向下移动一步。\n动作后，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  空地|空地|空地\n  伙伴(空手)|空地|墙/台面\nAlice 动作后相对我的位置为 (-1, 1)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.9,
+          "evidence": "Alice 从 pot_0 旁向下移动至 (-1,1)，靠近左侧洋葱台。鉴于 pot_0 正在烹饪且其他锅可补料，她极可能去取洋葱准备加料。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.9,\"evidence\":\"Alice 从 pot_0 旁向下移动至 (-1,1)，靠近左侧洋葱台。鉴于 pot_0 正在烹饪且其他锅可补料，她极可能去取洋葱准备加料。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 2,
+      "first_action": [
+        -1,
+        0
+      ],
+      "impression": "pre",
+      "prompt_hash": "c28da505a7e2c3d8f21c7bb7d7a6337facef9a8824bdfedadd6bd6680701db35",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\n以下是我在以往合作中亲眼看到的 Alice 行为摘要（视野外行为未知）：\n- Alice 空手且在视野内时，共观察到 1016 个时刻；其中移动占 35.2%，停留占 64.8%，与设施交互占 0.0%。\n- 在我记得有锅正在烹饪、同时还有锅可补料的 212 个可见时刻里，Alice 空手移动占 0.0%，停留占 100.0%，与设施交互占 0.0%。\n- 我看见 Alice 空手位于锅的交互位置 1 次，位于洋葱台交互位置 0 次，手持洋葱 290 次。\n这些只是有限视野下的历史习惯，不是她当前意图的直接答案。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  空地|伙伴(空手)|空地\nAlice 当时相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向左移动一步。\n动作后，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  伙伴(空手)|空地|空地\nAlice 动作后相对我的位置为 (-1, 1)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "PRE",
+          "facility": "pot_0",
+          "confidence": 0.85,
+          "evidence": "Alice 空手向左移动，结合历史印象（有锅可补料时空手多停留），推测其正前往 pot_0 附近等待关注，而非去取洋葱。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.85,\"evidence\":\"Alice 空手向左移动，结合历史印象（有锅可补料时空手多停留），推测其正前往 pot_0 附近等待关注，而非去取洋葱。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 2,
+      "first_action": [
+        -1,
+        0
+      ],
+      "impression": "post",
+      "prompt_hash": "47bde67d11725403aa1ca5d8f3a42a1706460ffd292c4c1328c5719c6f955685",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\n以下是我在以往合作中亲眼看到的 Alice 行为摘要（视野外行为未知）：\n- Alice 空手且在视野内时，共观察到 689 个时刻；其中移动占 70.4%，停留占 9.3%，与设施交互占 20.3%。\n- 在我记得有锅正在烹饪、同时还有锅可补料的 140 个可见时刻里，Alice 空手移动占 100.0%，停留占 0.0%，与设施交互占 0.0%。\n- 我看见 Alice 空手位于锅的交互位置 1 次，位于洋葱台交互位置 140 次，手持洋葱 934 次。\n这些只是有限视野下的历史习惯，不是她当前意图的直接答案。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  空地|伙伴(空手)|空地\nAlice 当时相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向左移动一步。\n动作后，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  伙伴(空手)|空地|空地\nAlice 动作后相对我的位置为 (-1, 1)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "PRE",
+          "facility": "pot_0",
+          "confidence": 0.85,
+          "evidence": "Alice 空手向左移动，结合历史印象（有锅可补料时空手必移动），推测其正前往 pot_0 附近等待关注，而非去取洋葱。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.85,\"evidence\":\"Alice 空手向左移动，结合历史印象（有锅可补料时空手必移动），推测其正前往 pot_0 附近等待关注，而非去取洋葱。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 2,
+      "first_action": [
+        -1,
+        0
+      ],
+      "impression": "none",
+      "prompt_hash": "f53e12dd947582b9e26c3599040d09693f8bafc78bacacf7aa6eef40683db07a",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\nAlice 是我的合作伙伴；我没有她个人行为习惯的历史记录。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  空地|伙伴(空手)|空地\nAlice 当时相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向左移动一步。\n动作后，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  伙伴(空手)|空地|空地\nAlice 动作后相对我的位置为 (-1, 1)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.9,
+          "evidence": "Alice 空手向左移动，正从视野中心移向左侧的 onion_0 区域，结合 pot_0 正在烹饪且其他锅可补料，推测其意图是去取洋葱。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.9,\"evidence\":\"Alice 空手向左移动，正从视野中心移向左侧的 onion_0 区域，结合 pot_0 正在烹饪且其他锅可补料，推测其意图是去取洋葱。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 3,
+      "first_action": [
+        1,
+        0
+      ],
+      "impression": "pre",
+      "prompt_hash": "9ec11aa8aad2a45a059c99574a03c3cdd10fc397d653c9a3424a0ff95e032ee6",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\n以下是我在以往合作中亲眼看到的 Alice 行为摘要（视野外行为未知）：\n- Alice 空手且在视野内时，共观察到 1016 个时刻；其中移动占 35.2%，停留占 64.8%，与设施交互占 0.0%。\n- 在我记得有锅正在烹饪、同时还有锅可补料的 212 个可见时刻里，Alice 空手移动占 0.0%，停留占 100.0%，与设施交互占 0.0%。\n- 我看见 Alice 空手位于锅的交互位置 1 次，位于洋葱台交互位置 0 次，手持洋葱 290 次。\n这些只是有限视野下的历史习惯，不是她当前意图的直接答案。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|伙伴(空手)|空地\nAlice 当时相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向右移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|伙伴(空手)\nAlice 动作后相对我的位置为 (1, 1)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "PRE",
+          "facility": "pot_0",
+          "confidence": 0.85,
+          "evidence": "Alice 空手从 (0,1) 右移至 (1,1)，正靠近 pot_0 交互位。历史显示她空手时多停留，且 pot_0 正在烹饪，符合前往关注而非取料特征。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.85,\"evidence\":\"Alice 空手从 (0,1) 右移至 (1,1)，正靠近 pot_0 交互位。历史显示她空手时多停留，且 pot_0 正在烹饪，符合前往关注而非取料特征。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 3,
+      "first_action": [
+        1,
+        0
+      ],
+      "impression": "post",
+      "prompt_hash": "3a785f3477fffe403c18644ac1b352bbc4d25356ed6f5b3ad18a292a83bbd978",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\n以下是我在以往合作中亲眼看到的 Alice 行为摘要（视野外行为未知）：\n- Alice 空手且在视野内时，共观察到 689 个时刻；其中移动占 70.4%，停留占 9.3%，与设施交互占 20.3%。\n- 在我记得有锅正在烹饪、同时还有锅可补料的 140 个可见时刻里，Alice 空手移动占 100.0%，停留占 0.0%，与设施交互占 0.0%。\n- 我看见 Alice 空手位于锅的交互位置 1 次，位于洋葱台交互位置 140 次，手持洋葱 934 次。\n这些只是有限视野下的历史习惯，不是她当前意图的直接答案。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|伙伴(空手)|空地\nAlice 当时相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向右移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|伙伴(空手)\nAlice 动作后相对我的位置为 (1, 1)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "PRE",
+          "facility": "pot_0",
+          "confidence": 0.85,
+          "evidence": "Alice 空手从 (0,1) 右移至 (1,1)，正靠近 pot_0 交互位。历史显示空手移动多用于补料，且 pot_0 正在烹饪需关注，符合 PRE 特征。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.85,\"evidence\":\"Alice 空手从 (0,1) 右移至 (1,1)，正靠近 pot_0 交互位。历史显示空手移动多用于补料，且 pot_0 正在烹饪需关注，符合 PRE 特征。\"}"
+        ]
+      }
+    },
+    {
+      "pair_id": 3,
+      "first_action": [
+        1,
+        0
+      ],
+      "impression": "none",
+      "prompt_hash": "fbd73ff49955f5819bd41b1877ffb1f385a9335e4b87112a9acd06d4c30fe014",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n第一步移动可能同时符合两个意图，不能把方向直接当成答案。历史印象也只是有限观察，不保证正确或仍然有效。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence\":\"不超过60个汉字，只引用可见信息和历史印象\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图（名称只表示设施，不包含当前动态状态）：\n上侧从左到右有 onion_0、pot_0、dish_0、pot_2、dish_1；\n下侧从左到右有 serve_1、onion_1、pot_1、dish_2、serve_2；\n左右侧另有 serve_0 和 serve_3。厨房中央有共享通道。\n\n关于 Alice 的历史印象：\nAlice 是我的合作伙伴；我没有她个人行为习惯的历史记录。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n动作前，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|伙伴(空手)|空地\nAlice 当时相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向右移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|伙伴(空手)\nAlice 动作后相对我的位置为 (1, 1)。\n请现在判断她这一动作背后的意图。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "intent": "PRE",
+          "facility": "pot_0",
+          "confidence": 0.9,
+          "evidence": "Alice 从 (0,1) 右移至 (1,1)，正朝向 pot_0 方向移动。已知 pot_0 烹饪中需关注，且她空手未去洋葱台，符合前往锅边等待的意图。"
+        },
+        "raw_attempts": [
+          "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.9,\"evidence\":\"Alice 从 (0,1) 右移至 (1,1)，正朝向 pot_0 方向移动。已知 pot_0 烹饪中需关注，且她空手未去洋葱台，符合前往锅边等待的意图。\"}"
+        ]
+      }
+    }
+  ],
+  "calls": {
+    "0f320451ca74d42fd64ac69205aeedff963d8295b03638d906d0cc434d102e44": {
+      "parsed": {
+        "intent": "FETCH",
+        "facility": "onion_1",
+        "confidence": 0.85,
+        "evidence": "Alice 空手向上移动远离我，结合历史印象她空手时多停留或取料，且 pot_1/pot_2 可补料，推测其前往下方洋葱台取料。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"FETCH\",\"facility\":\"onion_1\",\"confidence\":0.85,\"evidence\":\"Alice 空手向上移动远离我，结合历史印象她空手时多停留或取料，且 pot_1/pot_2 可补料，推测其前往下方洋葱台取料。\"}"
+      ]
+    },
+    "c1f7e8fe749b5208fbceab89cd12a6bbb2f0d157d6b247576b76223316e9995e": {
+      "parsed": {
+        "intent": "FETCH",
+        "facility": "onion_1",
+        "confidence": 0.95,
+        "evidence": "Alice 空手向上移动远离我，结合历史印象（空手时多去洋葱台）及 pot_1/pot_2 可补料状态，推测其前往下方洋葱台取料。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"FETCH\",\"facility\":\"onion_1\",\"confidence\":0.95,\"evidence\":\"Alice 空手向上移动远离我，结合历史印象（空手时多去洋葱台）及 pot_1/pot_2 可补料状态，推测其前往下方洋葱台取料。\"}"
+      ]
+    },
+    "1a31b1364f98aad87d1c33e938e7217a407e96f53efd06b323601022ace9cd32": {
+      "parsed": {
+        "intent": "PRE",
+        "facility": "pot_0",
+        "confidence": 0.9,
+        "evidence": "Alice 空手向上移动远离我，结合 pot_0 正在烹饪且她此前位于其附近，推测她正前往 pot_0 附近的非阻塞区等待。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.9,\"evidence\":\"Alice 空手向上移动远离我，结合 pot_0 正在烹饪且她此前位于其附近，推测她正前往 pot_0 附近的非阻塞区等待。\"}"
+      ]
+    },
+    "48583647b793dfcf0a3e5fc2a7e8d24c5b5513991c4e68ee0e3f4b67bfa67eff": {
+      "parsed": {
+        "intent": "PRE",
+        "facility": "pot_0",
+        "confidence": 0.9,
+        "evidence": "Alice 空手从锅旁移开，历史显示有锅可补料时她常停留，现向下移动可能正前往 pot_0 附近的非阻塞等待区。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.9,\"evidence\":\"Alice 空手从锅旁移开，历史显示有锅可补料时她常停留，现向下移动可能正前往 pot_0 附近的非阻塞等待区。\"}"
+      ]
+    },
+    "7daaec46247dd11024c9e312b07cb902bf9f53a1485dbc6f97ad2450f7e857a1": {
+      "parsed": {
+        "intent": "PRE",
+        "facility": "pot_0",
+        "confidence": 0.95,
+        "evidence": "Alice 空手从洋葱台区域向 pot_0 移动，避开阻塞，符合前往烹饪锅旁等待补料的特征。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.95,\"evidence\":\"Alice 空手从洋葱台区域向 pot_0 移动，避开阻塞，符合前往烹饪锅旁等待补料的特征。\"}"
+      ]
+    },
+    "e8aad0f8d1d1d439ecff6ae189f84bb782a7ce2929840ba3a2788e70d61bda72": {
+      "parsed": {
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.9,
+        "evidence": "Alice 从 pot_0 旁向下移动至 (-1,1)，靠近左侧洋葱台。鉴于 pot_0 正在烹饪且其他锅可补料，她极可能去取洋葱准备加料。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.9,\"evidence\":\"Alice 从 pot_0 旁向下移动至 (-1,1)，靠近左侧洋葱台。鉴于 pot_0 正在烹饪且其他锅可补料，她极可能去取洋葱准备加料。\"}"
+      ]
+    },
+    "c28da505a7e2c3d8f21c7bb7d7a6337facef9a8824bdfedadd6bd6680701db35": {
+      "parsed": {
+        "intent": "PRE",
+        "facility": "pot_0",
+        "confidence": 0.85,
+        "evidence": "Alice 空手向左移动，结合历史印象（有锅可补料时空手多停留），推测其正前往 pot_0 附近等待关注，而非去取洋葱。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.85,\"evidence\":\"Alice 空手向左移动，结合历史印象（有锅可补料时空手多停留），推测其正前往 pot_0 附近等待关注，而非去取洋葱。\"}"
+      ]
+    },
+    "47bde67d11725403aa1ca5d8f3a42a1706460ffd292c4c1328c5719c6f955685": {
+      "parsed": {
+        "intent": "PRE",
+        "facility": "pot_0",
+        "confidence": 0.85,
+        "evidence": "Alice 空手向左移动，结合历史印象（有锅可补料时空手必移动），推测其正前往 pot_0 附近等待关注，而非去取洋葱。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.85,\"evidence\":\"Alice 空手向左移动，结合历史印象（有锅可补料时空手必移动），推测其正前往 pot_0 附近等待关注，而非去取洋葱。\"}"
+      ]
+    },
+    "f53e12dd947582b9e26c3599040d09693f8bafc78bacacf7aa6eef40683db07a": {
+      "parsed": {
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.9,
+        "evidence": "Alice 空手向左移动，正从视野中心移向左侧的 onion_0 区域，结合 pot_0 正在烹饪且其他锅可补料，推测其意图是去取洋葱。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.9,\"evidence\":\"Alice 空手向左移动，正从视野中心移向左侧的 onion_0 区域，结合 pot_0 正在烹饪且其他锅可补料，推测其意图是去取洋葱。\"}"
+      ]
+    },
+    "9ec11aa8aad2a45a059c99574a03c3cdd10fc397d653c9a3424a0ff95e032ee6": {
+      "parsed": {
+        "intent": "PRE",
+        "facility": "pot_0",
+        "confidence": 0.85,
+        "evidence": "Alice 空手从 (0,1) 右移至 (1,1)，正靠近 pot_0 交互位。历史显示她空手时多停留，且 pot_0 正在烹饪，符合前往关注而非取料特征。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.85,\"evidence\":\"Alice 空手从 (0,1) 右移至 (1,1)，正靠近 pot_0 交互位。历史显示她空手时多停留，且 pot_0 正在烹饪，符合前往关注而非取料特征。\"}"
+      ]
+    },
+    "3a785f3477fffe403c18644ac1b352bbc4d25356ed6f5b3ad18a292a83bbd978": {
+      "parsed": {
+        "intent": "PRE",
+        "facility": "pot_0",
+        "confidence": 0.85,
+        "evidence": "Alice 空手从 (0,1) 右移至 (1,1)，正靠近 pot_0 交互位。历史显示空手移动多用于补料，且 pot_0 正在烹饪需关注，符合 PRE 特征。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.85,\"evidence\":\"Alice 空手从 (0,1) 右移至 (1,1)，正靠近 pot_0 交互位。历史显示空手移动多用于补料，且 pot_0 正在烹饪需关注，符合 PRE 特征。\"}"
+      ]
+    },
+    "fbd73ff49955f5819bd41b1877ffb1f385a9335e4b87112a9acd06d4c30fe014": {
+      "parsed": {
+        "intent": "PRE",
+        "facility": "pot_0",
+        "confidence": 0.9,
+        "evidence": "Alice 从 (0,1) 右移至 (1,1)，正朝向 pot_0 方向移动。已知 pot_0 烹饪中需关注，且她空手未去洋葱台，符合前往锅边等待的意图。"
+      },
+      "raw_attempts": [
+        "{\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.9,\"evidence\":\"Alice 从 (0,1) 右移至 (1,1)，正朝向 pot_0 方向移动。已知 pot_0 烹饪中需关注，且她空手未去洋葱台，符合前往锅边等待的意图。\"}"
+      ]
+    }
+  }
+}

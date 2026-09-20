@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>AgentResume · 实验环境总览</title>
+<style>
+  :root{
+    --ink:#2A2320; --ink-soft:#6B5F58;
+    --paper:#F7F3EC; --card:#FFFFFF;
+    --terra:#B85042; --terra-d:#8E3A2F; --terra-l:#E8CFC8;
+    --sage:#7FA08E; --gold:#E2B457; --dark:#241F1C; --dark-card:#332B27;
+    --r:22px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--dark);color:var(--ink);
+    font-family:"Segoe UI","Microsoft YaHei","PingFang SC",system-ui,sans-serif}
+  .deck{display:flex;flex-direction:column;align-items:center;gap:34px;padding:34px 0 64px}
+  .slide{position:relative;width:1280px;height:720px;flex:0 0 auto;
+    background:var(--paper);border-radius:26px;overflow:hidden;
+    padding:56px 64px 48px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+  .slide.dark{background:var(--dark);color:#F3EDE6}
+  .kicker{display:flex;align-items:center;gap:12px;font-size:15px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:14px}
+  .kicker.sage{color:var(--sage)}
+  h1{font-size:46px;line-height:1.16;font-weight:800;letter-spacing:-.5px}
+  h2{font-size:38px;line-height:1.18;font-weight:800}
+  .lead{font-size:20px;color:var(--ink-soft);margin-top:14px;line-height:1.55}
+  .dark .lead,.dark .kicker{color:#D9CCC2}
+  .num{position:absolute;right:34px;bottom:22px;font-size:14px;color:#A99A90;letter-spacing:.1em}
+  .foot{position:absolute;left:64px;bottom:26px;font-size:16px;color:var(--ink-soft)}
+  .dark .foot{color:#B9AAA0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:22px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:34px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:36px}
+  .card{background:var(--card);border-radius:var(--r);padding:26px 26px 24px;
+    box-shadow:0 10px 26px rgba(42,35,32,.10);border:1px solid #EDE5DA}
+  .card h3{font-size:23px;font-weight:800;margin-bottom:12px}
+  .card p{font-size:17px;line-height:1.5;color:var(--ink-soft)}
+  .badge{width:64px;height:64px;border-radius:50%;background:var(--terra-l);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .badge.sage{background:#DCE8E1}
+  .badge.gold{background:#F6E7C6}
+  .badge svg{width:34px;height:34px}
+  .row{display:flex;align-items:center;gap:12px}
+  .chain{display:flex;align-items:center;gap:9px;margin:18px 0 6px}
+  .blk{background:#EFE6DA;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px;color:#6B4A3F}
+  .blk.acc{background:var(--terra);color:#fff}
+  .arrow{color:#B7A79B;font-size:18px;font-weight:700}
+  .steps{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+  .step{display:flex;align-items:center;gap:14px;background:#fff;border-radius:16px;
+    padding:12px 16px;box-shadow:0 6px 18px rgba(42,35,32,.08);border:1px solid #EDE5DA}
+  .dot{width:38px;height:38px;border-radius:50%;background:var(--terra);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;flex:0 0 auto}
+  .step span{font-size:17px;font-weight:600}
+  .pipe{display:flex;align-items:flex-start;justify-content:space-between;margin-top:52px}
+  .pnode{width:172px;text-align:center}
+  .pnode .badge{margin:0 auto 14px}
+  .pnode b{font-size:17px;display:block;margin-bottom:6px}
+  .pnode i{font-style:normal;font-size:14px;color:var(--ink-soft);line-height:1.45;display:block}
+  .wire{flex:1;height:3px;background:repeating-linear-gradient(90deg,#C9B8AC 0 10px,transparent 10px 20px);margin-top:30px}
+  .var{position:absolute;left:64px;right:64px;bottom:84px;border:2px dashed var(--terra);
+    border-radius:16px;padding:14px 20px;font-size:17px;font-weight:700;color:var(--terra-d);
+    background:#FBEDE9;text-align:center}
+  .bars{display:flex;flex-direction:column;gap:26px;margin-top:44px}
+  .bar{display:flex;align-items:center;gap:22px}
+  .bar label{width:120px;font-size:19px;font-weight:700;color:#F3EDE6}
+  .track{flex:1;height:52px;background:var(--dark-card);border-radius:26px;overflow:hidden}
+  .fill{height:100%;border-radius:26px;display:flex;align-items:center;justify-content:flex-end;
+    padding-right:20px;color:#fff;font-size:22px;font-weight:800}
+  .fill.old{width:21.78%;background:#8E6A5E}
+  .fill.new{width:90%;background:var(--terra)}
+  .big2{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:30px}
+  .big2 .card{background:var(--dark-card);border-color:#463B35}
+  .big2 .card h3{color:#F3EDE6;font-size:20px}
+  .big2 .card .v{font-size:48px;font-weight:800;color:#F3EDE6;margin-top:6px}
+  .big2 .card .v.terra{color:#E08B7E}
+  .chips{display:flex;flex-direction:column;gap:14px;margin-top:34px}
+  .chip{background:var(--dark-card);border:1px solid #4A3E38;border-radius:14px;
+    padding:14px 20px;font-family:Consolas,monospace;font-size:17px;color:#EADFD6}
+  .tagline{margin-top:26px;font-size:22px;font-weight:700;color:#EBD9CF}
+  .legend{display:flex;gap:22px;margin-top:18px;font-size:15px;color:var(--ink-soft)}
+  .callout{margin-top:14px;background:#FBF3E9;border:1px solid #EBD9C8;border-radius:14px;
+    padding:10px 14px;font-size:14px;line-height:1.5;color:#7A5344}
+  .callout b{color:var(--terra-d)}
+  .keyband{margin-top:16px;background:#FBEDE9;
+    border:2px solid var(--terra);border-radius:18px;padding:16px 26px;
+    font-size:26px;font-weight:800;color:var(--terra-d);line-height:1.35}
+  .keyband small{display:block;font-size:15px;font-weight:600;color:#8C6A5E;margin-top:6px}
+  .legend i{font-style:normal;display:inline-flex;align-items:center;gap:8px}
+  .sw{width:16px;height:16px;border-radius:5px;display:inline-block}
+  /* 造题两页 */
+  .flow4{display:flex;align-items:center;gap:10px;margin-top:18px}
+  .fnode{flex:1;background:var(--card);border:1px solid #EDE5DA;border-radius:16px;
+    padding:14px 12px;text-align:center;box-shadow:0 6px 16px rgba(42,35,32,.07)}
+  .fnode .badge{width:46px;height:46px;margin:0 auto 10px}
+  .fnode .badge svg{width:26px;height:26px}
+  .fnode b{display:block;font-size:16px;font-weight:800}
+  .fnode i{font-style:normal;font-size:13px;color:var(--ink-soft)}
+  .farrow{color:#C0AFA4;font-size:20px;font-weight:800}
+  .funnel{display:flex;flex-direction:column;gap:16px;justify-content:center}
+  .fbar{border-radius:14px;color:#fff;font-weight:800;display:flex;align-items:center;
+    justify-content:space-between;padding:0 20px;height:64px;font-size:22px}
+  .fbar small{font-size:14px;font-weight:600;opacity:.9}
+  .band{display:flex;align-items:center;gap:16px;border-radius:18px;padding:18px 24px;margin-top:16px}
+  .band.man{background:#FBEDE9;border:2px solid var(--terra)}
+  .band.real{background:#24201D;border:2px solid #4A3E38;color:#F3EDE6}
+  .tagchip{font-size:13px;font-weight:800;border-radius:999px;padding:5px 12px;white-space:nowrap}
+  .tagchip.man{background:var(--terra);color:#fff}
+  .tagchip.real{background:var(--sage);color:#fff}
+  .pill{background:#EFE6DA;border-radius:12px;padding:12px 16px;font-weight:700;font-size:16px;
+    color:#6B4A3F;white-space:nowrap}
+  .pill.on{background:#fff;color:#3F322C}
+  .pill.acc{background:var(--sage);color:#fff}
+  .band.real .pill{background:#332B27;color:#EADFD6}
+  .band.real .pill.acc{background:var(--terra);color:#fff}
+  .bandnote{font-size:15px;color:var(--ink-soft);margin-top:12px}
+  .splitrow{display:flex;gap:10px;margin-top:6px}
+  .split{flex:1;background:#EFE6DA;border-radius:12px;padding:10px 6px;text-align:center}
+  .split b{display:block;font-size:15px;font-weight:800;color:#4A3B33}
+  .split i{font-style:normal;font-size:12px;color:var(--ink-soft)}
+  .down{text-align:center;color:#B7A79B;font-size:22px;font-weight:800;margin-top:10px}
+  /* 印象两页 */
+  .prow{display:flex;align-items:center;gap:16px;margin-top:14px}
+  .prow label{width:104px;font-size:16px;font-weight:800;color:#6B4A3F;text-align:right}
+  .ptrack{flex:1;height:46px;background:#EFE6DA;border-radius:23px;overflow:hidden}
+  .pfill{height:100%;border-radius:23px;display:flex;align-items:center;justify-content:flex-end;
+    padding-right:18px;color:#fff;font-weight:800;font-size:18px}
+  .v3{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .v3 div{background:#FBF7F1;border:1px solid #E8DCCB;border-radius:10px;padding:12px 6px;
+    font-size:13px;text-align:center;color:#5C4A42}
+  .v3 div.partner{background:#DCE8E1;border-color:#BBD3C7;font-weight:800}
+  .fields{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .field{background:#EFE6DA;border-radius:12px;padding:10px 14px;font-size:15px;font-weight:600;color:#4A3B33}
+  .field b{font-weight:800;color:#8E3A2F}
+  .forbid{display:flex;gap:12px;margin-top:18px}
+  .xf{background:#FBEDE9;border:1px dashed var(--terra);border-radius:12px;padding:10px 16px;
+    font-size:15px;font-weight:800;color:var(--terra-d)}
+  /* 训练细节两页 */
+  .stack{display:flex;height:54px;border-radius:14px;overflow:hidden;margin-top:12px}
+  .stack div{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px}
+  .pairrow{display:flex;align-items:center;gap:12px;margin-top:10px}
+  .pairrow b{width:104px;font-size:14px;font-weight:800;color:#6B4A3F;text-align:right}
+  .ptrack2{flex:1;height:30px;background:#EFE6DA;border-radius:15px;overflow:hidden}
+  .pfill2{height:100%;border-radius:15px;display:flex;align-items:center;justify-content:flex-end;
+    padding-right:10px;color:#fff;font-size:13px;font-weight:800}
+  .samples{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  .samp{background:#FBF7F1;border:1px solid #E8DCCB;border-radius:14px;padding:12px 14px}
+  .samp b{color:#8E3A2F;font-size:15px}
+  .samp p{font-size:13px;color:#6B5F58;margin-top:6px}
+  .gap3{display:flex;gap:12px;margin-top:16px}
+  .gapline{flex:1;background:#EFE6DA;border-radius:14px;padding:12px;text-align:center}
+  .gapline b{display:block;font-size:26px;font-weight:800;color:#4A3B33}
+  .gapline i{font-style:normal;font-size:12px;color:var(--ink-soft)}
+  .matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+  .mcell{background:var(--card);border:1px solid #EDE5DA;border-radius:16px;padding:14px 16px;
+    box-shadow:0 6px 16px rgba(42,35,32,.07)}
+  .mcell .top{display:flex;justify-content:space-between;font-size:13px;font-weight:800;color:#8C7C72}
+  .mcell .vals{font-size:24px;font-weight:800;color:#4A3B33;margin-top:8px}
+  .mcell .vals em{font-style:normal;color:#B85042}
+  .mcell .gain{font-size:13px;font-weight:700;color:#4E6B5B;margin-top:4px}
+  .nav{position:fixed;right:22px;bottom:22px;display:flex;gap:10px;z-index:9}
+  .nav button{width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;
+    background:#EFE6DA;color:#5A463C;font-size:20px;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+  .nav button:hover{background:var(--terra);color:#fff}
+  @media print{
+    html,body{background:#fff}
+    .deck{gap:0;padding:0}
+    .slide{box-shadow:none;border-radius:0;page-break-after:always}
+    .nav{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- 1 封面 -->
+  <section class="slide dark">
+    <div class="kicker">AgentResume · 环境总览</div>
+    <h1>过时的印象，<br>会让人读错伙伴吗？</h1>
+    <p class="lead">在 Overcooked 厨房里，让 Alice 变强，看 Bob 还能不能读懂她。</p>
+    <svg viewBox="0 0 900 150" style="margin-top:44px">
+      <circle cx="110" cy="75" r="52" fill="#B85042"/>
+      <text x="110" y="86" text-anchor="middle" font-size="26" fill="#fff" font-weight="700">Alice</text>
+      <circle cx="790" cy="75" r="52" fill="#7FA08E"/>
+      <text x="790" y="86" text-anchor="middle" font-size="26" fill="#fff" font-weight="700">Bob</text>
+      <path d="M190 60 h150" stroke="#5E4B43" stroke-width="6" stroke-dasharray="12 12"/>
+      <path d="M560 90 h150" stroke="#5E4B43" stroke-width="6" stroke-dasharray="12 12"/>
+      <text x="265" y="42" font-size="17" fill="#B9AAA0">旧印象</text>
+      <text x="600" y="128" font-size="17" fill="#B9AAA0">真实动作</text>
+      <text x="450" y="86" text-anchor="middle" font-size="30" fill="#E2B457" font-weight="800">?</text>
+    </svg>
+    <div class="foot">3 张地图 · 3 个训练种子 · 9 组实验 · 4050 次模型调用</div>
+    <div class="num">1 / 9</div>
+  </section>
+
+  <!-- 2 棋盘与任务 -->
+  <section class="slide">
+    <div class="kicker">环境</div>
+    <h2>11 × 7 的厨房，两人一起出汤</h2>
+    <div class="grid2" style="grid-template-columns:1.25fr 1fr;margin-top:22px">
+      <svg viewBox="0 0 620 400" style="width:100%">
+        <rect x="0" y="0" width="620" height="400" rx="18" fill="#FFFFFF" stroke="#EDE5DA"/>
+        <g stroke="#E5DACD" stroke-width="1">
+          <!-- 11 x 7 网格 -->
+          <!-- 生成于手写：每格 52 x 52，起点 (24,44) -->
+          <g id="g"></g>
+        </g>
+        <g id="grid"></g>
+        <text x="24" y="30" font-size="15" fill="#8C7C72">每格 1 步 · 墙挡住视线与通路</text>
+        <circle cx="180" cy="200" r="19" fill="#B85042"/>
+        <text x="180" y="206" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">A</text>
+        <circle cx="336" cy="252" r="19" fill="#7FA08E"/>
+        <text x="336" y="258" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">B</text>
+      </svg>
+      <div>
+        <div class="steps">
+          <div class="step"><div class="dot">1</div><span>拿 3 个洋葱，放进锅里</span></div>
+          <div class="step"><div class="dot">2</div><span>空手点火开煮</span></div>
+          <div class="step"><div class="dot">3</div><span>煮 20 个 tick 出锅</span></div>
+          <div class="step"><div class="dot">4</div><span>先拿盘子，再端汤</span></div>
+          <div class="step"><div class="dot">5</div><span>送到出餐口，每碗 +20 分</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="legend">
+      <i><span class="sw" style="background:#E2C88F"></span>洋葱台 ×2</i>
+      <i><span class="sw" style="background:#C9A0A0"></span>锅 ×3</i>
+      <i><span class="sw" style="background:#9FB8CF"></span>盘子台 ×3</i>
+      <i><span class="sw" style="background:#A7BEAE"></span>出餐口 ×4</i>
+      <i><span class="sw" style="background:#6B5F58"></span>墙</i>
+    </div>
+    <div class="foot">三张地图 A / B / C 设施相同，只有墙不一样 · 一局 700 tick</div>
+    <div class="num">2 / 9</div>
+  </section>
+
+  <!-- 3 两个角色 -->
+  <section class="slide">
+    <div class="kicker">角色</div>
+    <h2>Alice 负责"变强"，Bob 负责"搞懂她"</h2>
+    <div class="grid2">
+      <div class="card">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2">
+          <circle cx="12" cy="9" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div>
+        <h3>Alice · 被研究的那个</h3>
+        <div class="chain">
+          <span class="blk">182 维状态</span><span class="arrow">→</span>
+          <span class="blk">128</span><span class="arrow">→</span>
+          <span class="blk">128</span><span class="arrow">→</span>
+          <span class="blk acc">8 种意图</span>
+        </div>
+        <p>每次输出一个高层意图（拿料 / 下锅 / 点火 / 拿盘 / 取汤 / 送餐 / 等锅 / 原地）。<br>
+        走过去、按按钮由"执行器"代劳——那是肌肉，不是决策。</p>
+      </div>
+      <div class="card">
+        <div class="badge sage"><svg viewBox="0 0 24 24" fill="none" stroke="#5C7E6C" stroke-width="2">
+          <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+        <h3>Bob · 搭档兼读心者</h3>
+        <div class="chain">
+          <span class="blk">供料</span><span class="arrow">/</span>
+          <span class="blk">做服务</span><span class="arrow">+</span>
+          <span class="blk acc">猜 Alice 想干嘛</span>
+        </div>
+        <p>一方面和 Alice 一起干活；另一方面，看到她的第一步动作后，要判断她是"想等锅"还是"想拿料"。</p>
+        <div class="callout">
+          <b>为什么只猜这两种？</b>题目是有意挑出的岔路口：画面一样、第一步也一样，她要么守着锅（PRE），要么转身去拿洋葱（FETCH）。
+          其余 6 种意图的场面，要么第一步动作就不同，要么可见线索已经露了底，凑不出这种严格配对。
+        </div>
+      </div>
+    </div>
+    <div class="keyband">
+      关键：Alice 的真实意图不会喂给 Bob —— 他只能靠画面、动作和手里的印象。
+      <small>这三样东西的差别，就是实验唯一在变的量。</small>
+    </div>
+    <div class="num">3 / 9</div>
+  </section>
+
+  <!-- 4 Alice 怎么练成 -->
+  <section class="slide">
+    <div class="kicker">Alice 的训练</div>
+    <h2>两个台阶：先模仿，再变强</h2>
+    <div class="grid2" style="grid-template-columns:1fr 1fr;align-items:end;margin-top:52px">
+      <div class="card" style="margin-bottom:96px">
+        <div class="badge gold"><svg viewBox="0 0 24 24" fill="none" stroke="#8A6A22" stroke-width="2">
+          <path d="M4 19h16M6 19V9l6-4 6 4v10"/></svg></div>
+        <h3>成长前 · 行为克隆</h3>
+        <p>照着保守专家做：24 局训练 + 16 局独立测试，100 轮迭代。</p>
+      </div>
+      <div class="card">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2">
+          <path d="M4 19h16M4 19l6-6 4 4 6-8"/></svg></div>
+        <h3>成长后 · 继续强化学习（PPO）</h3>
+        <p>从成长前接着练：50 次更新 × 每次 8 局 × 700 tick，挑验证集最好的那次。</p>
+      </div>
+    </div>
+    <svg viewBox="0 0 1152 90" style="position:absolute;left:64px;bottom:120px;width:1152px">
+      <path d="M60 74 L300 74 L300 34 L1060 34" fill="none" stroke="#B85042" stroke-width="4"/>
+      <path d="M1046 22 l18 12 -18 12" fill="none" stroke="#B85042" stroke-width="4"/>
+      <text x="330" y="26" font-size="17" fill="#8E3A2F" font-weight="700">能力门槛：平均多出 ≥ 1.0 碗，且 ≥ 17/32 个起点变好</text>
+    </svg>
+    <div class="foot">9 组全部过门槛：3 个训练种子 × 3 张地图。</div>
+    <div class="num">4 / 9</div>
+  </section>
+
+  <!-- 训练细节 A：数据与流程 -->
+  <section class="slide">
+    <div class="kicker">训练 · 数据</div>
+    <h2>先跟专家抄，再自己练</h2>
+    <div class="flow4" style="margin-top:14px">
+      <div class="fnode"><div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2"><path d="M4 19h16M6 19V9l6-4 6 4v10"/></svg></div><b>规则专家跑 24 局</b><i>每局 700 tick</i></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="badge sage"><svg viewBox="0 0 24 24" fill="none" stroke="#5C7E6C" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><b>每个决策点记一条</b><i>状态 → 意图</i></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="badge gold"><svg viewBox="0 0 24 24" fill="none" stroke="#8A6A22" stroke-width="2"><path d="M4 5h7v15H4zM13 5h7v15h-7z"/></svg></div><b>3736 条样本</b><i>每局约 156 条</i></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div><b>BC 100 轮</b><i>照抄专家</i></div>
+    </div>
+    <div class="grid2" style="grid-template-columns:1.05fr 1fr;gap:26px;margin-top:12px">
+      <div class="card" style="padding:20px 22px">
+        <h3>训练数据的两条真样本</h3>
+        <div class="samples">
+          <div class="samp"><b>标签 FETCH</b><p>三口锅都空、两人空手、t=0<br>→ 该去拿洋葱</p></div>
+          <div class="samp"><b>标签 PRE</b><p>1 号锅正在煮、空手、t=33<br>→ 该在锅边等</p></div>
+        </div>
+        <p style="margin-top:12px">每条 = 182 维状态（位置 / 手持 / 三口锅 / 时间 / 已交付）+ 一个标签 + 一份"合法意图"掩码。</p>
+      </div>
+      <div class="card" style="padding:20px 22px">
+        <h3>专家的标签都长什么样</h3>
+        <div class="pairrow" style="margin-top:14px"><b>PRE 等锅</b><div class="ptrack2"><div class="pfill2" style="width:100%;background:#A98D80">52%</div></div></div>
+        <div class="pairrow"><b>HOLD 原地</b><div class="ptrack2"><div class="pfill2" style="width:23.1%;background:#C6B3A8">12%</div></div></div>
+        <div class="pairrow"><b>FETCH 拿料</b><div class="ptrack2"><div class="pfill2" style="width:19.2%;background:var(--sage)">10%</div></div></div>
+        <div class="pairrow"><b>PLACE 下锅</b><div class="ptrack2"><div class="pfill2" style="width:19.2%;background:#9FB8CF">10%</div></div></div>
+        <div class="pairrow"><b>其余四种</b><div class="ptrack2"><div class="pfill2" style="width:30.8%;background:#C9BCB3">16%</div></div></div>
+        <p style="margin-top:12px">一半以上的示范都是"在锅边等"——这就是基础版爱站着的出处（同一刻度）。</p>
+      </div>
+    </div>
+    <div class="num"></div>
+  </section>
+
+  <!-- 训练细节 B：为什么变强 -->
+  <section class="slide">
+    <div class="kicker sage">训练 · 变强</div>
+    <h2>变强不是被教出来的，是试出来又被留下的</h2>
+    <div class="grid2" style="grid-template-columns:1.15fr 1fr;gap:26px;margin-top:10px">
+      <div class="card" style="padding:18px 20px">
+        <h3>验证集出汤：先掉下去，再爬上来</h3>
+        <svg viewBox="0 0 520 240" style="width:100%;margin-top:6px">
+          <line x1="30" y1="113" x2="500" y2="113" stroke="#C0AFA4" stroke-dasharray="6 6"/>
+          <text x="34" y="106" font-size="12" fill="#8C7C72">基础版水平 14 碗</text>
+          <polyline fill="none" stroke="#B85042" stroke-width="4"
+            points="30,113 76,195 122,101 168,101 214,109 260,99 306,145 352,68 398,59 444,63 490,42"/>
+          <circle cx="30" cy="113" r="5" fill="#B85042"/><circle cx="76" cy="195" r="5" fill="#8E6A5E"/>
+          <circle cx="306" cy="145" r="5" fill="#8E6A5E"/><circle cx="490" cy="42" r="6" fill="#B85042"/>
+          <text x="86" y="212" font-size="12" fill="#8E6A5E">探索期掉到 7.1</text>
+          <text x="408" y="34" font-size="14" fill="#8E3A2F" font-weight="700">20 碗</text>
+          <text x="30" y="234" font-size="12" fill="#8C7C72">第 1 次更新</text>
+          <text x="452" y="234" font-size="12" fill="#8C7C72">第 50 次</text>
+        </svg>
+      </div>
+      <div class="card" style="padding:18px 20px">
+        <h3>行为被重新分配（同一批测试起点）</h3>
+        <div class="pairrow"><b>PRE 等锅</b><div class="ptrack2"><div class="pfill2" style="width:100%;background:#A98D80">648</div></div></div>
+        <div class="pairrow"><b></b><div class="ptrack2"><div class="pfill2" style="width:8.6%;background:#C9BCB3">56</div></div></div>
+        <div class="pairrow"><b>FETCH 拿料</b><div class="ptrack2"><div class="pfill2" style="width:19.1%;background:var(--sage)">124</div></div></div>
+        <div class="pairrow"><b></b><div class="ptrack2"><div class="pfill2" style="width:52.5%;background:var(--terra)">340</div></div></div>
+        <p style="margin-top:10px">深浅两条 = 基础版 / 提升版，同一刻度（100% = 648 次）；等待几乎消失，拿料翻近三倍。</p>
+      </div>
+    </div>
+    <div class="gap3">
+      <div class="gapline"><b>0.4%</b><i>平时"拿料"的概率</i></div>
+      <div class="gapline"><b>16.9%</b><i>探索时被抽中的概率</i></div>
+      <div class="gapline" style="background:#FBEDE9"><b style="color:var(--terra-d)">98.9%</b><i>练成后的概率</i></div>
+    </div>
+    <div class="num"></div>
+  </section>
+
+  <!-- 九组矩阵 -->
+  <section class="slide">
+    <div class="kicker">训练 · 覆盖</div>
+    <h2>9 组，9 个各自长大的 Alice</h2>
+    <div class="matrix">
+      <div class="mcell"><div class="top"><span>地图 A</span><span>种子 1801</span></div><div class="vals">14.0 <em>→</em> 20.0</div><div class="gain">提升 +6.0</div></div>
+      <div class="mcell"><div class="top"><span>地图 A</span><span>种子 1802</span></div><div class="vals">14.0 <em>→</em> 18.4</div><div class="gain">提升 +4.4</div></div>
+      <div class="mcell"><div class="top"><span>地图 A</span><span>种子 1803</span></div><div class="vals">13.6 <em>→</em> 19.2</div><div class="gain">提升 +5.6</div></div>
+      <div class="mcell"><div class="top"><span>地图 B</span><span>种子 1801</span></div><div class="vals">14.5 <em>→</em> 20.0</div><div class="gain">提升 +5.5</div></div>
+      <div class="mcell"><div class="top"><span>地图 B</span><span>种子 1802</span></div><div class="vals">14.4 <em>→</em> 18.3</div><div class="gain">提升 +3.9</div></div>
+      <div class="mcell"><div class="top"><span>地图 B</span><span>种子 1803</span></div><div class="vals">14.6 <em>→</em> 19.5</div><div class="gain">提升 +4.9</div></div>
+      <div class="mcell"><div class="top"><span>地图 C</span><span>种子 1801</span></div><div class="vals">15.7 <em>→</em> 19.8</div><div class="gain">提升 +4.1</div></div>
+      <div class="mcell"><div class="top"><span>地图 C</span><span>种子 1802</span></div><div class="vals">15.4 <em>→</em> 21.0</div><div class="gain">提升 +5.6</div></div>
+      <div class="mcell"><div class="top"><span>地图 C</span><span>种子 1803</span></div><div class="vals">15.1 <em>→</em> 20.7</div><div class="gain">提升 +5.6</div></div>
+    </div>
+    <div class="flow4" style="margin-top:16px">
+      <div class="fnode" style="text-align:left"><b>换地图</b><i>厨房几何全变，能力门槛要各自过一遍</i></div>
+      <div class="fnode" style="text-align:left"><b>换种子</b><i>起点、示范、训练回合全换，排除一次侥幸</i></div>
+      <div class="fnode" style="text-align:left"><b>不共享权重</b><i>post 从本组自己的 pre 接着练</i></div>
+      <div class="fnode" style="text-align:left"><b>要的是复现</b><i>9 组各自独立，才叫结论稳</i></div>
+    </div>
+    <div class="bandnote">每组各自采集示范（3725–4273 条）、各自跑 400 局 PPO；9 组合计约 86 分钟。</div>
+    <div class="num"></div>
+  </section>
+
+  <!-- 7 实验流程 -->
+  <section class="slide">
+    <div class="kicker sage">实验流程</div>
+    <h2>从训练到读数，一共六步</h2>
+    <div class="pipe">
+      <div class="pnode"><div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2"><path d="M4 19h16M6 19V9l6-4 6 4v10"/></svg></div><b>训练 Alice</b><i>成长前 → 成长后</i></div>
+      <div class="wire"></div>
+      <div class="pnode"><div class="badge sage"><svg viewBox="0 0 24 24" fill="none" stroke="#5C7E6C" stroke-width="2"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg></div><b>攒印象</b><i>Bob 旁观，只记看到的</i></div>
+      <div class="wire"></div>
+      <div class="pnode"><div class="badge gold"><svg viewBox="0 0 24 24" fill="none" stroke="#8A6A22" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><b>挑关键局面</b><i>50 个 / 组，严格配对</i></div>
+      <div class="wire"></div>
+      <div class="pnode"><div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div><b>模型猜意图</b><i>每题问 3 次，取多数</i></div>
+      <div class="wire"></div>
+      <div class="pnode"><div class="badge sage"><svg viewBox="0 0 24 24" fill="none" stroke="#5C7E6C" stroke-width="2"><path d="M5 20V9m7 11V4m7 16v-7"/></svg></div><b>续跑 200 tick</b><i>看后面出几碗汤</i></div>
+      <div class="wire"></div>
+      <div class="pnode"><div class="badge gold"><svg viewBox="0 0 24 24" fill="none" stroke="#8A6A22" stroke-width="2"><path d="M4 18l5-6 4 4 7-9"/><path d="M4 22h16"/></svg></div><b>统计对比</b><i>准确率为主，得分为辅</i></div>
+    </div>
+    <div class="var">唯一变量：Bob 手里那份印象（旧 / 新 / 无）——Alice 和局面都不动</div>
+    <div class="num">5 / 9</div>
+  </section>
+
+  <!-- 6 关键局面 -->
+  <section class="slide">
+    <div class="kicker">关键局面</div>
+    <h2>同一幅画面，两种心思</h2>
+    <div class="grid2" style="grid-template-columns:1fr 1fr;gap:46px;margin-top:26px">
+      <div class="card" style="text-align:center">
+        <svg viewBox="0 0 440 230" style="width:100%">
+          <rect x="0" y="0" width="440" height="230" rx="14" fill="#FBF7F1"/>
+          <circle cx="220" cy="112" r="26" fill="#E2B457"/>
+          <text x="220" y="119" text-anchor="middle" font-size="15" font-weight="700" fill="#5C4020">锅</text>
+          <circle cx="150" cy="150" r="17" fill="#B85042"/>
+          <text x="150" y="156" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">A</text>
+          <path d="M182 143 L204 126" stroke="#B85042" stroke-width="4" stroke-dasharray="7 7"/>
+          <text x="220" y="205" text-anchor="middle" font-size="19" font-weight="800" fill="#8E3A2F">成长前：先等着看锅</text>
+        </svg>
+      </div>
+      <div class="card" style="text-align:center">
+        <svg viewBox="0 0 440 230" style="width:100%">
+          <rect x="0" y="0" width="440" height="230" rx="14" fill="#FBF7F1"/>
+          <circle cx="220" cy="112" r="26" fill="#E2B457"/>
+          <text x="220" y="119" text-anchor="middle" font-size="15" font-weight="700" fill="#5C4020">锅</text>
+          <circle cx="150" cy="150" r="17" fill="#B85042"/>
+          <text x="150" y="156" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">A</text>
+          <path d="M150 168 L96 196" stroke="#7FA08E" stroke-width="4"/>
+          <circle cx="80" cy="204" r="14" fill="#E2C88F"/>
+          <text x="80" y="209" text-anchor="middle" font-size="12" font-weight="700" fill="#5C4020">O</text>
+          <text x="220" y="205" text-anchor="middle" font-size="19" font-weight="800" fill="#4E6B5B">成长后：转身去拿洋葱</text>
+        </svg>
+      </div>
+    </div>
+    <div class="foot">画面一样、第一步动作也一样——光看现场猜不出来，只能靠印象补那半句。</div>
+    <div class="num">6 / 9</div>
+  </section>
+
+  <!-- 造题 A：50 个局面怎么来的 -->
+  <section class="slide">
+    <div class="kicker">造题 · 第一步</div>
+    <h2>50 个局面，是"摆"出来再"筛"出来的</h2>
+    <div class="flow4">
+      <div class="fnode"><div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="10" r="2"/><circle cx="15" cy="14" r="2"/></svg></div><b>搭布景</b><i>两人站位 + 一口在煮的锅</i></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="badge sage"><svg viewBox="0 0 24 24" fill="none" stroke="#5C7E6C" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h6"/></svg></div><b>挨个试</b><i>每种站位都试一遍</i></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="badge gold"><svg viewBox="0 0 24 24" fill="none" stroke="#8A6A22" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5"/></svg></div><b>两个 Alice 各决定</b><i>想法不同才要</i></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2"><path d="M4 5h16l-6 8v6l-4 2v-8z"/></svg></div><b>一道筛子</b><i>只留"看不出差别"的</i></div>
+    </div>
+    <div class="grid2" style="grid-template-columns:1fr 1.15fr;margin-top:18px">
+      <svg viewBox="0 0 460 250" style="width:100%">
+        <rect x="0" y="0" width="460" height="250" rx="16" fill="#FFFFFF" stroke="#EDE5DA"/>
+        <g stroke="#EFE6DA">
+          <path d="M40 40h380M40 90h380M40 140h380M40 190h380"/>
+          <path d="M40 40v200M140 40v200M240 40v200M340 40v200M420 40v200"/>
+        </g>
+        <circle cx="230" cy="96" r="26" fill="#E2B457"/>
+        <text x="230" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#5C4020">锅</text>
+        <circle cx="170" cy="150" r="18" fill="#B85042"/>
+        <text x="170" y="156" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">A</text>
+        <circle cx="300" cy="180" r="18" fill="#7FA08E"/>
+        <text x="300" y="186" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">B</text>
+        <path d="M288 168 L246 132" stroke="#7FA08E" stroke-width="3" stroke-dasharray="6 6"/>
+        <text x="40" y="228" font-size="14" fill="#8C7C72">布景：两人空手 · 锅里有 3 个洋葱、正煮着</text>
+      </svg>
+      <div class="funnel">
+        <div class="fbar" style="width:100%;background:#C6B3A8"><span>5,043 种站位</span><small>每张图都试一遍</small></div>
+        <div class="fbar" style="width:74%;background:var(--sage)"><span>131–182 个合格</span><small>想法不同 + 画面一致</small></div>
+        <div class="fbar" style="width:64%;background:var(--terra)"><span>110 个够用</span><small>分成三份、互不重叠</small></div>
+        <div class="splitrow">
+          <div class="split"><b>开发 20</b><i>用来调提示词</i></div>
+          <div class="split"><b>印象 40</b><i>Bob 旁观、攒印象</i></div>
+          <div class="split"><b>正式 50</b><i>正式出题、定结论</i></div>
+        </div>
+        <div class="bandnote">筛的规矩：两人第一步动作相同、目标设施不同、走完这步后 Bob 看到的画面一字不差。</div>
+      </div>
+    </div>
+    <div class="num">7 / 11</div>
+  </section>
+
+  <!-- 造题 B：先递题，再真跑 -->
+  <section class="slide">
+    <div class="kicker sage">造题 · 第二步</div>
+    <h2>一题两段：上半段人造，下半段真跑</h2>
+    <div class="band man">
+      <span class="tagchip man">人造</span>
+      <span class="pill">画面</span>
+      <span class="pill">第一步动作</span>
+      <span class="pill">印象</span>
+      <span class="arrow" style="font-size:22px">→</span>
+      <span class="pill acc">Qwen 猜：等锅 / 拿料</span>
+    </div>
+    <div class="down">↓ 同一起点 ↓</div>
+    <div class="band real">
+      <span class="tagchip real">真实</span>
+      <span class="pill on">Alice（成长后）</span>
+      <span class="pill on">Bob（规则控制器）</span>
+      <span class="arrow" style="font-size:22px;color:#B7A79B">→</span>
+      <span class="pill on">跑 200 步</span>
+      <span class="arrow" style="font-size:22px;color:#B7A79B">→</span>
+      <span class="pill acc">数出几碗汤</span>
+    </div>
+    <div class="bandnote">造的那一帧只负责"出题"；答案对不对、配合好不好，全看下面这段真跑。</div>
+    <div class="num">8 / 11</div>
+  </section>
+
+  <!-- 印象 A：怎么攒的 -->
+  <section class="slide">
+    <div class="kicker">印象 · 第一步</div>
+    <h2>Bob 的印象不是听说的，是他亲眼看见的</h2>
+    <div class="flow4">
+      <div class="fnode"><div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 4v5"/></svg></div><b>40 个起点局面</b><i>另一批，不碰正式题</i></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="badge sage"><svg viewBox="0 0 24 24" fill="none" stroke="#5C7E6C" stroke-width="2"><path d="M5 20V6m7 14V3m7 17v-9"/></svg></div><b>让 Alice 真跑一段</b><i>最多 20 步</i></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="badge gold"><svg viewBox="0 0 24 24" fill="none" stroke="#8A6A22" stroke-width="2"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg></div><b>只看 3×3 里有的</b><i>走出视野就断片</i></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2"><path d="M4 5h7v15H4zM13 5h7v15h-7z"/></svg></div><b>攒成两本小本子</b><i>成长前跑 / 成长后跑</i></div>
+    </div>
+    <div class="grid2" style="grid-template-columns:1fr 1fr;gap:26px;margin-top:14px">
+      <div class="card" style="padding:20px 22px">
+        <h3 style="color:var(--terra-d)">旧印象 · 由成长前跑出来</h3>
+        <div class="prow"><label>27 / 40</label><div class="ptrack"><div class="pfill" style="width:67.5%;background:#A98D80">67.5%</div></div></div>
+        <p style="margin-top:10px">片段收场是"一直没去拿洋葱，空手站着"。</p>
+      </div>
+      <div class="card" style="padding:20px 22px">
+        <h3 style="color:#4E6B5B">新印象 · 由成长后跑出来</h3>
+        <div class="prow"><label>31 / 40</label><div class="ptrack"><div class="pfill" style="width:77.5%;background:var(--sage)">77.5%</div></div></div>
+        <p style="margin-top:10px">片段里出现了"被看到站在洋葱台旁"。</p>
+      </div>
+    </div>
+    <div class="bandnote" style="margin-top:12px">两边用的是同一批 40 个起点（举例：group_0）。看到的东西不一样，两本本子就不一样。</div>
+    <div class="num">9 / 13</div>
+  </section>
+
+  <!-- 印象 B：一帧结构 -->
+  <section class="slide">
+    <div class="kicker sage">印象 · 结构</div>
+    <h2>印象里的一帧，只装他看见的东西</h2>
+    <div class="grid2" style="grid-template-columns:1.05fr 1fr;gap:26px;margin-top:16px">
+      <div class="card" style="padding:20px 22px">
+        <h3>他一眼看到的 3 × 3</h3>
+        <div class="v3" style="margin-top:12px">
+          <div>盘台</div><div>墙 / 台面</div><div>锅[空]</div>
+          <div class="partner">伙伴（空手）</div><div>空地</div><div>空地</div>
+          <div>空地</div><div>空地</div><div>空地</div>
+        </div>
+        <p style="margin-top:12px">绿格就是 Alice 当时站的位置（这一帧她在 Bob 左手边）。</p>
+      </div>
+      <div class="card" style="padding:20px 22px">
+        <h3>同一帧记下的字段</h3>
+        <div class="fields">
+          <span class="field">Alice 位置 <b>(4, 1)</b></span>
+          <span class="field">朝向 <b>左</b></span>
+          <span class="field">手持 <b>空</b></span>
+          <span class="field">第 <b>1</b> 步</span>
+          <span class="field">动作 <b>向左移动</b></span>
+          <span class="field">Bob 位置 <b>(5, 1)</b></span>
+          <span class="field">看过的锅 <b>锅[空]</b></span>
+        </div>
+        <p style="margin-top:14px">每条都带"亲眼看到"的来源标记；看不到的东西不会写进来。</p>
+      </div>
+    </div>
+    <div class="forbid">
+      <span class="xf">✕ 她的真实意图</span>
+      <span class="xf">✕ 视野外的位置</span>
+      <span class="xf">✕ 没看见的锅态</span>
+    </div>
+    <div class="num">10 / 13</div>
+  </section>
+
+  <!-- 7 Bob 的配置 -->
+  <section class="slide">
+    <div class="kicker sage">Bob 的配置</div>
+    <h2>他怎么"看"、怎么"猜"</h2>
+    <div class="grid4">
+      <div class="card">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2"><rect x="7" y="7" width="10" height="10"/><path d="M2 12h5M17 12h5M12 2v5M12 17v5"/></svg></div>
+        <h3>3 × 3 视野</h3>
+        <p>只记亲眼看到的：Alice 的位置、手里拿什么、在做什么。</p>
+      </div>
+      <div class="card">
+        <div class="badge sage"><svg viewBox="0 0 24 24" fill="none" stroke="#5C7E6C" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="3"/><path d="M7 20h10"/></svg></div>
+        <h3>Qwen3.5-9B</h3>
+        <p>温度 0，输出固定 JSON：意图 / 目标设施 / 置信度 / 用了哪几条记录。</p>
+      </div>
+      <div class="card">
+        <div class="badge gold"><svg viewBox="0 0 24 24" fill="none" stroke="#8A6A22" stroke-width="2"><path d="M5 19V7m7 12V5m7 14v-9"/></svg></div>
+        <h3>每题 3 票</h3>
+        <p>同一个问题问 3 次，取多数——压住单次输出的抖动。</p>
+      </div>
+      <div class="card">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#B85042" stroke-width="2"><path d="M4 20h16M7 20v-6m10 6V9M7 14l10-5"/></svg></div>
+        <h3>规则控制器</h3>
+        <p>猜完之后按固定规则干活：去供洋葱，或者做服务。</p>
+      </div>
+    </div>
+    <div class="foot">印象片段最长 20 步；Alice 一走出视野，这段观察就结束。</div>
+    <div class="num">7 / 9</div>
+  </section>
+
+  <!-- 8 一页结果 -->
+  <section class="slide dark">
+    <div class="kicker">跑完的结果</div>
+    <h2>印象一旧，判断就跟着旧</h2>
+    <div class="bars">
+      <div class="bar"><label>旧印象</label><div class="track"><div class="fill old">21.8%</div></div></div>
+      <div class="bar"><label>新印象</label><div class="track"><div class="fill new">90.0%</div></div></div>
+    </div>
+    <div class="tagline">猜对意图的比例（9 组共 450 个局面，9/9 组方向一致）</div>
+    <div class="big2">
+      <div class="card"><h3>印象与真身匹配</h3><div class="v">84.4%</div></div>
+      <div class="card"><h3>印象与真身不匹配</h3><div class="v terra">16.2%</div></div>
+    </div>
+    <div class="foot">得分只作辅助：新印象比旧印象多 0.39 碗 / +7.9 分。</div>
+    <div class="num">8 / 9</div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button id="prev" title="上一页">‹</button>
+  <button id="next" title="下一页">›</button>
+</div>
+
+<script>
+  // 棋盘：11 x 7 格，格 52px，起点 (24,44)
+  const g = document.getElementById("grid");
+  if (g) {
+    const x0 = 24, y0 = 44, c = 52, W = 11, H = 7;
+    let s = "";
+    for (let y = 0; y <= H; y++) s += `<line x1="${x0}" y1="${y0 + y * c}" x2="${x0 + W * c}" y2="${y0 + y * c}"/>`;
+    for (let x = 0; x <= W; x++) s += `<line x1="${x0 + x * c}" y1="${y0}" x2="${x0 + x * c}" y2="${y0 + H * c}"/>`;
+    // 墙：几段示意
+    const walls = [[0,2],[1,2],[2,2],[6,2],[7,2],[8,2],[9,2],[4,4],[5,4]];
+    for (const [wx, wy] of walls) s += `<rect x="${x0 + wx * c + 1}" y="${y0 + wy * c + 1}" width="${c - 2}" height="${c - 2}" fill="#6B5F58" rx="6"/>`;
+    // 设施
+    const fac = [
+      [1,0,"#E2C88F","O"],[9,6,"#E2C88F","O"],
+      [3,1,"#C9A0A0","P"],[5,1,"#C9A0A0","P"],[7,1,"#C9A0A0","P"],
+      [2,6,"#9FB8CF","D"],[5,6,"#9FB8CF","D"],[8,6,"#9FB8CF","D"],
+      [0,3,"#A7BEAE","S"],[0,5,"#A7BEAE","S"],[10,3,"#A7BEAE","S"],[10,5,"#A7BEAE","S"]
+    ];
+    for (const [fx, fy, col, lab] of fac)
+      s += `<rect x="${x0 + fx * c + 4}" y="${y0 + fy * c + 4}" width="${c - 8}" height="${c - 8}" rx="9" fill="${col}"/>
+            <text x="${x0 + fx * c + c / 2}" y="${y0 + fy * c + c / 2 + 6}" text-anchor="middle" font-size="18" font-weight="700" fill="#4A3B33">${lab}</text>`;
+    g.innerHTML = s;
+    g.setAttribute("stroke", "#E5DACD");
+    g.setAttribute("stroke-width", "1");
+  }
+
+  const slides = [...document.querySelectorAll(".slide")];
+  slides.forEach((el, i) => {
+    const n = el.querySelector(".num");
+    if (n) n.textContent = `${i + 1} / ${slides.length}`;
+  });
+  const go = (i) => {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    slides[i].scrollIntoView({behavior: "smooth", block: "center"});
+    location.hash = "s" + (i + 1);
+  };
+  document.getElementById("prev").onclick = () => go(current() - 1);
+  document.getElementById("next").onclick = () => go(current() + 1);
+  function current() {
+    const m = /^#s(\d+)$/.exec(location.hash);
+    return m ? Number(m[1]) - 1 : 0;
+  }
+  addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") { e.preventDefault(); go(current() + 1); }
+    if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); go(current() - 1); }
+  });
+  if (location.hash) setTimeout(() => go(current()), 60);
+</script>
+</body>
+</html>

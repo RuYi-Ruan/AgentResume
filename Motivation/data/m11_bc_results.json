@@ -1,0 +1,96 @@
+{
+  "milestone": "M11 PyTorch macro-intent behavior-cloning baseline",
+  "claim_scope": "interface and supervised-learning validation only; Alice is still scripted",
+  "source_levels": [
+    "L0"
+  ],
+  "split": {
+    "unit": "episode/seed",
+    "test_seed": 8
+  },
+  "observation": {
+    "version": "m11-v1",
+    "dim": 92
+  },
+  "device": "cuda",
+  "torch_version": "2.1.0+cu118",
+  "cuda_device": "NVIDIA GeForce MX450",
+  "epochs": 120,
+  "final_loss": 0.000296117120409665,
+  "train": {
+    "n": 730,
+    "accuracy": 1.0,
+    "per_intent": {
+      "FETCH": {
+        "support": 176,
+        "accuracy": 1.0
+      },
+      "PLACE": {
+        "support": 175,
+        "accuracy": 1.0
+      },
+      "COOK_START": {
+        "support": 56,
+        "accuracy": 1.0
+      },
+      "GET_DISH": {
+        "support": 56,
+        "accuracy": 1.0
+      },
+      "PICKUP": {
+        "support": 50,
+        "accuracy": 1.0
+      },
+      "DELIVER": {
+        "support": 49,
+        "accuracy": 1.0
+      },
+      "PRE": {
+        "support": 56,
+        "accuracy": 1.0
+      },
+      "HOLD": {
+        "support": 112,
+        "accuracy": 1.0
+      }
+    }
+  },
+  "test": {
+    "n": 104,
+    "accuracy": 1.0,
+    "per_intent": {
+      "FETCH": {
+        "support": 25,
+        "accuracy": 1.0
+      },
+      "PLACE": {
+        "support": 25,
+        "accuracy": 1.0
+      },
+      "COOK_START": {
+        "support": 8,
+        "accuracy": 1.0
+      },
+      "GET_DISH": {
+        "support": 8,
+        "accuracy": 1.0
+      },
+      "PICKUP": {
+        "support": 7,
+        "accuracy": 1.0
+      },
+      "DELIVER": {
+        "support": 7,
+        "accuracy": 1.0
+      },
+      "PRE": {
+        "support": 8,
+        "accuracy": 1.0
+      },
+      "HOLD": {
+        "support": 16,
+        "accuracy": 1.0
+      }
+    }
+  }
+}

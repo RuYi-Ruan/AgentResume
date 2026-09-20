@@ -1,0 +1,852 @@
+{
+  "milestone": "M16-V2 grounded-evidence four-pair Qwen pilot R2",
+  "live": true,
+  "model": "Qwen/Qwen3.5-9B",
+  "base_url": "https://api.siliconflow.cn/v1",
+  "unique_requests": 12,
+  "leakage_check": {
+    "event_prompt_contains_ground_truth_fields": false,
+    "pre_and_post_records_share_the_same_event_prompt": true,
+    "only_impression_changes_across_conditions": true,
+    "absolute_positions_are_public_and_identical_within_each_strict_pair": true
+  },
+  "summaries": {
+    "pre": {
+      "events": 4,
+      "valid": 4,
+      "pre_intent_accuracy": 0.0,
+      "post_intent_accuracy": 1.0,
+      "evidence_boundary_pass_rate": 0.25
+    },
+    "post": {
+      "events": 4,
+      "valid": 4,
+      "pre_intent_accuracy": 0.25,
+      "post_intent_accuracy": 0.75,
+      "evidence_boundary_pass_rate": 0.25
+    },
+    "none": {
+      "events": 4,
+      "valid": 4,
+      "pre_intent_accuracy": 0.25,
+      "post_intent_accuracy": 0.75,
+      "evidence_boundary_pass_rate": 0.0
+    }
+  },
+  "requests": [
+    {
+      "pair_id": 0,
+      "first_action": [
+        0,
+        -1
+      ],
+      "impression": "pre",
+      "prompt_hash": "bd8d02d7dd346a542691d77e920b1aaa2c8cab0ebace4e338b7e0a677bb31d96",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\n以下是我在相似局面前后亲眼看到的伙伴记忆；中间看不见的过程没有补写，也不假定属于同一任务：\n- 我记得 202 个相似片段：当时我知道一口锅正在烹饪、另有锅还能补料，并看见 Alice 空手。\n- 这些片段开始时，我看见她移动 0 次、停留 202 次。\n- 在之后再次可见的画面中，我看到她拿着洋葱或到达洋葱台 130 次；看到她继续空手停留或停在锅边 0 次；另外 72 次在 20 步内没有再看到足够线索。\n这些只是有限视野下真实发生过的外在行为，不代表我知道她当时的内心目标。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (1, 3)；可见的具名设施为：['serve_0']。\n动作前，我的3×3视野是：\n  墙/台面|伙伴(空手)|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 当时位于全局坐标 (1, 2)，相对我的位置为 (0, -1)，空手。\n我刚刚亲眼看到 Alice：向上移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 动作后位于全局坐标 (1, 1)，相对我的位置为 (0, -2)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.65,
+          "evidence_types": [
+            "partner_impression",
+            "remembered_pots"
+          ],
+          "evidence": "Alice 空手且向上移动，符合 PRE 与 FETCH 的歧义。但历史印象显示她常空手去取洋葱，且 pot_0 正在烹饪需关注，pot_1/2 可补料需原料，结合她空手状态，推测其意图为去洋葱台取料。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.65,\"evidence_types\":[\"partner_impression\",\"remembered_pots\"],\"evidence\":\"Alice 空手且向上移动，符合 PRE 与 FETCH 的歧义。但历史印象显示她常空手去取洋葱，且 pot_0 正在烹饪需关注，pot_1/2 可补料需原料，结合她空手状态，推测其意图为去洋葱台取料。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": false,
+        "unsupported_named_facilities_in_evidence": [
+          "pot_0",
+          "pot_1"
+        ],
+        "passed": false
+      }
+    },
+    {
+      "pair_id": 0,
+      "first_action": [
+        0,
+        -1
+      ],
+      "impression": "post",
+      "prompt_hash": "4553c8f318bafe0b63d3ac8ef0290e46f5f7e3f83a5f2b4df4395bca01ca2da7",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\n以下是我在相似局面前后亲眼看到的伙伴记忆；中间看不见的过程没有补写，也不假定属于同一任务：\n- 我记得 140 个相似片段：当时我知道一口锅正在烹饪、另有锅还能补料，并看见 Alice 空手。\n- 这些片段开始时，我看见她移动 140 次、停留 0 次。\n- 在之后再次可见的画面中，我看到她拿着洋葱或到达洋葱台 140 次；看到她继续空手停留或停在锅边 0 次；另外 0 次在 20 步内没有再看到足够线索。\n这些只是有限视野下真实发生过的外在行为，不代表我知道她当时的内心目标。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (1, 3)；可见的具名设施为：['serve_0']。\n动作前，我的3×3视野是：\n  墙/台面|伙伴(空手)|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 当时位于全局坐标 (1, 2)，相对我的位置为 (0, -1)，空手。\n我刚刚亲眼看到 Alice：向上移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 动作后位于全局坐标 (1, 1)，相对我的位置为 (0, -2)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.85,
+          "evidence_types": [
+            "observed_action",
+            "remembered_pots",
+            "partner_impression"
+          ],
+          "evidence": "Alice 空手向上移动远离可见出餐口。历史印象显示空手移动后常去取洋葱。已知 pot_1/pot_2 可补料，符合 FETCH 特征。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.85,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 空手向上移动远离可见出餐口。历史印象显示空手移动后常去取洋葱。已知 pot_1/pot_2 可补料，符合 FETCH 特征。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": false,
+        "unsupported_named_facilities_in_evidence": [
+          "pot_1",
+          "pot_2"
+        ],
+        "passed": false
+      }
+    },
+    {
+      "pair_id": 0,
+      "first_action": [
+        0,
+        -1
+      ],
+      "impression": "none",
+      "prompt_hash": "4ab82c0977e84f3e1b3f00cb29e5bfb37ddde60358ece0172664a0603f72663d",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\nAlice 是我的合作伙伴；我没有她个人行为习惯的历史记录。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (1, 3)；可见的具名设施为：['serve_0']。\n动作前，我的3×3视野是：\n  墙/台面|伙伴(空手)|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 当时位于全局坐标 (1, 2)，相对我的位置为 (0, -1)，空手。\n我刚刚亲眼看到 Alice：向上移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|空地\nAlice 动作后位于全局坐标 (1, 1)，相对我的位置为 (0, -2)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.6,
+          "evidence_types": [
+            "observed_action",
+            "remembered_pots",
+            "partner_impression"
+          ],
+          "evidence": "Alice 空手向上移动远离出餐口，且 pot_0 正在烹饪需补料，pot_1/2 为空。无伙伴印象辅助，但空手状态与 pot_0 需求更支持去取洋葱。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.6,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 空手向上移动远离出餐口，且 pot_0 正在烹饪需补料，pot_1/2 为空。无伙伴印象辅助，但空手状态与 pot_0 需求更支持去取洋葱。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": false,
+        "unsupported_named_facilities_in_evidence": [
+          "pot_0",
+          "pot_1"
+        ],
+        "passed": false
+      }
+    },
+    {
+      "pair_id": 1,
+      "first_action": [
+        0,
+        1
+      ],
+      "impression": "pre",
+      "prompt_hash": "9154bcb737c24f78486fa3666adce691ed6f37c3270b884902f3a914ad4ceeb3",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\n以下是我在相似局面前后亲眼看到的伙伴记忆；中间看不见的过程没有补写，也不假定属于同一任务：\n- 我记得 202 个相似片段：当时我知道一口锅正在烹饪、另有锅还能补料，并看见 Alice 空手。\n- 这些片段开始时，我看见她移动 0 次、停留 202 次。\n- 在之后再次可见的画面中，我看到她拿着洋葱或到达洋葱台 130 次；看到她继续空手停留或停在锅边 0 次；另外 72 次在 20 步内没有再看到足够线索。\n这些只是有限视野下真实发生过的外在行为，不代表我知道她当时的内心目标。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (2, 1)；可见的具名设施为：['onion_0', 'pot_0']。\n动作前，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  伙伴(空手)|空地|空地\n  空地|空地|墙/台面\nAlice 当时位于全局坐标 (1, 1)，相对我的位置为 (-1, 0)，空手。\n我刚刚亲眼看到 Alice：向下移动一步。\n动作后，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  空地|空地|空地\n  伙伴(空手)|空地|墙/台面\nAlice 动作后位于全局坐标 (1, 2)，相对我的位置为 (-1, 1)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.85,
+          "evidence_types": [
+            "observed_action",
+            "remembered_pots",
+            "partner_impression"
+          ],
+          "evidence": "Alice 空手且锅 pot_0 正在烹饪。历史印象显示空手时多去取料。她向下移动远离 pot_0，朝向可见的 onion_0，符合取料特征。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.85,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 空手且锅 pot_0 正在烹饪。历史印象显示空手时多去取料。她向下移动远离 pot_0，朝向可见的 onion_0，符合取料特征。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": true,
+        "unsupported_named_facilities_in_evidence": [],
+        "passed": true
+      }
+    },
+    {
+      "pair_id": 1,
+      "first_action": [
+        0,
+        1
+      ],
+      "impression": "post",
+      "prompt_hash": "728a06cc7d9161fec27b786ed02e9264d6d2d49faf90a2e27f60e302fab2e71d",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\n以下是我在相似局面前后亲眼看到的伙伴记忆；中间看不见的过程没有补写，也不假定属于同一任务：\n- 我记得 140 个相似片段：当时我知道一口锅正在烹饪、另有锅还能补料，并看见 Alice 空手。\n- 这些片段开始时，我看见她移动 140 次、停留 0 次。\n- 在之后再次可见的画面中，我看到她拿着洋葱或到达洋葱台 140 次；看到她继续空手停留或停在锅边 0 次；另外 0 次在 20 步内没有再看到足够线索。\n这些只是有限视野下真实发生过的外在行为，不代表我知道她当时的内心目标。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (2, 1)；可见的具名设施为：['onion_0', 'pot_0']。\n动作前，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  伙伴(空手)|空地|空地\n  空地|空地|墙/台面\nAlice 当时位于全局坐标 (1, 1)，相对我的位置为 (-1, 0)，空手。\n我刚刚亲眼看到 Alice：向下移动一步。\n动作后，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  空地|空地|空地\n  伙伴(空手)|空地|墙/台面\nAlice 动作后位于全局坐标 (1, 2)，相对我的位置为 (-1, 1)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.9,
+          "evidence_types": [
+            "partner_impression",
+            "remembered_pots",
+            "visible_tiles"
+          ],
+          "evidence": "Alice 空手且锅 pot_0 正在烹饪。历史印象显示空手伙伴极大概率去取洋葱。视野可见 onion_0 且 Alice 正朝其方向移动。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.9,\"evidence_types\":[\"partner_impression\",\"remembered_pots\",\"visible_tiles\"],\"evidence\":\"Alice 空手且锅 pot_0 正在烹饪。历史印象显示空手伙伴极大概率去取洋葱。视野可见 onion_0 且 Alice 正朝其方向移动。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": true,
+        "unsupported_named_facilities_in_evidence": [],
+        "passed": true
+      }
+    },
+    {
+      "pair_id": 1,
+      "first_action": [
+        0,
+        1
+      ],
+      "impression": "none",
+      "prompt_hash": "f9d4973b6382aad87c6e428ba101385dfa6941717f7e128735b5793657172629",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\nAlice 是我的合作伙伴；我没有她个人行为习惯的历史记录。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (2, 1)；可见的具名设施为：['onion_0', 'pot_0']。\n动作前，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  伙伴(空手)|空地|空地\n  空地|空地|墙/台面\nAlice 当时位于全局坐标 (1, 1)，相对我的位置为 (-1, 0)，空手。\n我刚刚亲眼看到 Alice：向下移动一步。\n动作后，我的3×3视野是：\n  洋葱台|锅[煮中]|墙/台面\n  空地|空地|空地\n  伙伴(空手)|空地|墙/台面\nAlice 动作后位于全局坐标 (1, 2)，相对我的位置为 (-1, 1)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.8,
+          "evidence_types": [
+            "observed_action",
+            "remembered_pots",
+            "partner_impression"
+          ],
+          "evidence": "Alice 空手且 pot_1/pot_2 可补料，向下移动靠近洋葱台，符合取料特征。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.8,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 空手且 pot_1/pot_2 可补料，向下移动靠近洋葱台，符合取料特征。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": true,
+        "unsupported_named_facilities_in_evidence": [
+          "pot_1",
+          "pot_2"
+        ],
+        "passed": false
+      }
+    },
+    {
+      "pair_id": 2,
+      "first_action": [
+        -1,
+        0
+      ],
+      "impression": "pre",
+      "prompt_hash": "1b6fcc803a45fce5efce007874bbad22e0371d08222e98df025d9403c6352b56",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\n以下是我在相似局面前后亲眼看到的伙伴记忆；中间看不见的过程没有补写，也不假定属于同一任务：\n- 我记得 202 个相似片段：当时我知道一口锅正在烹饪、另有锅还能补料，并看见 Alice 空手。\n- 这些片段开始时，我看见她移动 0 次、停留 202 次。\n- 在之后再次可见的画面中，我看到她拿着洋葱或到达洋葱台 130 次；看到她继续空手停留或停在锅边 0 次；另外 72 次在 20 步内没有再看到足够线索。\n这些只是有限视野下真实发生过的外在行为，不代表我知道她当时的内心目标。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (2, 2)；可见的具名设施为：['无']。\n动作前，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  空地|伙伴(空手)|空地\nAlice 当时位于全局坐标 (2, 3)，相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向左移动一步。\n动作后，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  伙伴(空手)|空地|空地\nAlice 动作后位于全局坐标 (1, 3)，相对我的位置为 (-1, 1)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.65,
+          "evidence_types": [
+            "partner_impression",
+            "remembered_pots"
+          ],
+          "evidence": "Alice 空手向左移动靠近洋葱台 0。历史印象显示她常空手去取洋葱，且 pot_1 和 pot_2 可补料，符合 FETCH 特征。"
+        },
+        "raw_attempts": [
+          "{\n\"ambiguity_acknowledged\": true,\n\"intent\": \"FETCH\",\n\"facility\": \"onion_0\",\n\"confidence\": 0.65,\n\"evidence_types\": [\"partner_impression\", \"remembered_pots\"],\n\"evidence\": \"Alice 空手向左移动靠近洋葱台 0。历史印象显示她常空手去取洋葱，且 pot_1 和 pot_2 可补料，符合 FETCH 特征。\"\n}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": false,
+        "unsupported_named_facilities_in_evidence": [
+          "pot_1",
+          "pot_2"
+        ],
+        "passed": false
+      }
+    },
+    {
+      "pair_id": 2,
+      "first_action": [
+        -1,
+        0
+      ],
+      "impression": "post",
+      "prompt_hash": "d90310e78cac8eede870596f476e0acae19bcfb357e033a0171b71fcb34c3fe4",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\n以下是我在相似局面前后亲眼看到的伙伴记忆；中间看不见的过程没有补写，也不假定属于同一任务：\n- 我记得 140 个相似片段：当时我知道一口锅正在烹饪、另有锅还能补料，并看见 Alice 空手。\n- 这些片段开始时，我看见她移动 140 次、停留 0 次。\n- 在之后再次可见的画面中，我看到她拿着洋葱或到达洋葱台 140 次；看到她继续空手停留或停在锅边 0 次；另外 0 次在 20 步内没有再看到足够线索。\n这些只是有限视野下真实发生过的外在行为，不代表我知道她当时的内心目标。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (2, 2)；可见的具名设施为：['无']。\n动作前，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  空地|伙伴(空手)|空地\nAlice 当时位于全局坐标 (2, 3)，相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向左移动一步。\n动作后，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  伙伴(空手)|空地|空地\nAlice 动作后位于全局坐标 (1, 3)，相对我的位置为 (-1, 1)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.85,
+          "evidence_types": [
+            "partner_impression",
+            "remembered_pots",
+            "observed_action"
+          ],
+          "evidence": "Alice 空手且向左移动靠近洋葱台 0。历史印象显示空手伙伴常去取料，且 pot_0 正在烹饪无需关注，故推测其意图为取洋葱。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.85,\"evidence_types\":[\"partner_impression\",\"remembered_pots\",\"observed_action\"],\"evidence\":\"Alice 空手且向左移动靠近洋葱台 0。历史印象显示空手伙伴常去取料，且 pot_0 正在烹饪无需关注，故推测其意图为取洋葱。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": false,
+        "unsupported_named_facilities_in_evidence": [
+          "pot_0"
+        ],
+        "passed": false
+      }
+    },
+    {
+      "pair_id": 2,
+      "first_action": [
+        -1,
+        0
+      ],
+      "impression": "none",
+      "prompt_hash": "6e18793faa7a136bd2e70f2db67f8fee6a15d841c7b6e9cf49e9d6d2afbb4c6b",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\nAlice 是我的合作伙伴；我没有她个人行为习惯的历史记录。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (2, 2)；可见的具名设施为：['无']。\n动作前，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  空地|伙伴(空手)|空地\nAlice 当时位于全局坐标 (2, 3)，相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向左移动一步。\n动作后，我的3×3视野是：\n  空地|空地|空地\n  空地|空地|墙/台面\n  伙伴(空手)|空地|空地\nAlice 动作后位于全局坐标 (1, 3)，相对我的位置为 (-1, 1)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.6,
+          "evidence_types": [
+            "observed_action",
+            "remembered_pots",
+            "partner_impression"
+          ],
+          "evidence": "Alice 向左移动靠近洋葱台 0。已知 pot_0 烹饪中而 pot_1/2 可补料，且她空手，推测其意图是去取洋葱补料。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.6,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 向左移动靠近洋葱台 0。已知 pot_0 烹饪中而 pot_1/2 可补料，且她空手，推测其意图是去取洋葱补料。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": false,
+        "unsupported_named_facilities_in_evidence": [
+          "pot_0",
+          "pot_1"
+        ],
+        "passed": false
+      }
+    },
+    {
+      "pair_id": 3,
+      "first_action": [
+        1,
+        0
+      ],
+      "impression": "pre",
+      "prompt_hash": "8960e7773c8acd84d565d3b3848da11a18d8a4f7d3edc635c5f1fad366f7d57e",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\n以下是我在相似局面前后亲眼看到的伙伴记忆；中间看不见的过程没有补写，也不假定属于同一任务：\n- 我记得 202 个相似片段：当时我知道一口锅正在烹饪、另有锅还能补料，并看见 Alice 空手。\n- 这些片段开始时，我看见她移动 0 次、停留 202 次。\n- 在之后再次可见的画面中，我看到她拿着洋葱或到达洋葱台 130 次；看到她继续空手停留或停在锅边 0 次；另外 72 次在 20 步内没有再看到足够线索。\n这些只是有限视野下真实发生过的外在行为，不代表我知道她当时的内心目标。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (1, 3)；可见的具名设施为：['serve_0']。\n动作前，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|伙伴(空手)|空地\nAlice 当时位于全局坐标 (1, 4)，相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向右移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|伙伴(空手)\nAlice 动作后位于全局坐标 (2, 4)，相对我的位置为 (1, 1)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "FETCH",
+          "facility": "onion_0",
+          "confidence": 0.65,
+          "evidence_types": [
+            "partner_impression",
+            "remembered_pots"
+          ],
+          "evidence": "Alice 空手向右移动，符合 PRE 或 FETCH 的初始动作。但历史印象显示她常空手后去取洋葱，且 pot_0 正在烹饪无需补料，而 pot_1/2 可补料，故推测她正前往洋葱台取料。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.65,\"evidence_types\":[\"partner_impression\",\"remembered_pots\"],\"evidence\":\"Alice 空手向右移动，符合 PRE 或 FETCH 的初始动作。但历史印象显示她常空手后去取洋葱，且 pot_0 正在烹饪无需补料，而 pot_1/2 可补料，故推测她正前往洋葱台取料。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": false,
+        "unsupported_named_facilities_in_evidence": [
+          "pot_0",
+          "pot_1"
+        ],
+        "passed": false
+      }
+    },
+    {
+      "pair_id": 3,
+      "first_action": [
+        1,
+        0
+      ],
+      "impression": "post",
+      "prompt_hash": "3acec628c2f2ef641aedbab5666fb7cfcca86514abbf2f69802609f1ba9c0590",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\n以下是我在相似局面前后亲眼看到的伙伴记忆；中间看不见的过程没有补写，也不假定属于同一任务：\n- 我记得 140 个相似片段：当时我知道一口锅正在烹饪、另有锅还能补料，并看见 Alice 空手。\n- 这些片段开始时，我看见她移动 140 次、停留 0 次。\n- 在之后再次可见的画面中，我看到她拿着洋葱或到达洋葱台 140 次；看到她继续空手停留或停在锅边 0 次；另外 0 次在 20 步内没有再看到足够线索。\n这些只是有限视野下真实发生过的外在行为，不代表我知道她当时的内心目标。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (1, 3)；可见的具名设施为：['serve_0']。\n动作前，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|伙伴(空手)|空地\nAlice 当时位于全局坐标 (1, 4)，相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向右移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|伙伴(空手)\nAlice 动作后位于全局坐标 (2, 4)，相对我的位置为 (1, 1)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "PRE",
+          "facility": "pot_0",
+          "confidence": 0.6,
+          "evidence_types": [
+            "remembered_pots",
+            "observed_action"
+          ],
+          "evidence": "Alice 空手向右移动靠近 pot_0。已知 pot_0 正在烹饪，符合前往关注锅的 PRE 特征；虽未直接看到洋葱台，但空手移动且锅需关注，概率上倾向 PRE。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.6,\"evidence_types\":[\"remembered_pots\",\"observed_action\"],\"evidence\":\"Alice 空手向右移动靠近 pot_0。已知 pot_0 正在烹饪，符合前往关注锅的 PRE 特征；虽未直接看到洋葱台，但空手移动且锅需关注，概率上倾向 PRE。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": false,
+        "unsupported_named_facilities_in_evidence": [
+          "pot_0"
+        ],
+        "passed": false
+      }
+    },
+    {
+      "pair_id": 3,
+      "first_action": [
+        1,
+        0
+      ],
+      "impression": "none",
+      "prompt_hash": "b6e7776cc1e4cb0968ca393f2ecf8d13f924573fcdee6ccbeeb543b830c3a96a",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是 Overcooked 厨房中的 Bob。你的任务是根据自己能看到的 Alice 外在动作，以及给定的历史印象，推测 Alice 当前动作背后的意图。\n\n只允许两个意图：\n- PRE：Alice 正前往当前烹饪锅附近的非阻塞等待区，准备关注这锅，而不是取新原料。\n- FETCH：Alice 正前往某个洋葱台取洋葱，准备给仍可补料的锅继续加料。\n\n这是刻意挑选的歧义事件：当前公开状态和第一步动作同时符合 PRE 与 FETCH。因此禁止把“向上/下/左/右移动”单独当成意图答案，必须用伙伴印象作为概率上的辅助；没有印象时可以按公开状态作不确定判断。\n\n证据约束：\n1. 只能使用当前输入明确给出的动作、坐标、可见方格、已记住的锅状态和伙伴印象。\n2. 不得补写视野外发生的行为，不得声称 Alice 选择了输入没有给出的路线。\n3. “移动后离某设施更近”最多是位置事实，不能单独证明她要去该设施。\n4. 只有具名设施出现在当前可见设施列表时，facility 才能填该名称；否则必须填 none。\n5. evidence_types 只能从 observed_action、visible_tiles、remembered_pots、partner_impression 中选择。\n\n只输出一个 JSON 对象，不要添加其它文字：\n{\"ambiguity_acknowledged\":true,\"intent\":\"PRE或FETCH\",\"facility\":\"pot_0/pot_1/pot_2/onion_0/onion_1/none之一\",\"confidence\":0到1之间的数字,\"evidence_types\":[\"允许的证据类型\"],\"evidence\":\"不超过80个汉字，只陈述输入支持的事实\"}"
+        },
+        {
+          "role": "user",
+          "content": "你熟悉的静态地图采用全局坐标 (x,y)，左上角为 (0,0)，x 向右、y 向下。\n设施位置：dish_0=(4, 0)、dish_1=(6, 6)、dish_2=(8, 0)、onion_0=(1, 0)、onion_1=(3, 6)、pot_0=(2, 0)、pot_1=(5, 6)、pot_2=(6, 0)、serve_0=(0, 3)、serve_1=(2, 6)、serve_2=(8, 6)、serve_3=(10, 3)。\n坐标只描述公开位置，不包含 Alice 的目标或规划路线。\n\n关于 Alice 的历史印象：\nAlice 是我的合作伙伴；我没有她个人行为习惯的历史记录。\n\n我此前亲眼确认并记住的锅状态：pot_0=烹饪中, pot_1=空，可补料, pot_2=空，可补料。\n我当前位于全局坐标 (1, 3)；可见的具名设施为：['serve_0']。\n动作前，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|伙伴(空手)|空地\nAlice 当时位于全局坐标 (1, 4)，相对我的位置为 (0, 1)，空手。\n我刚刚亲眼看到 Alice：向右移动一步。\n动作后，我的3×3视野是：\n  墙/台面|空地|空地\n  出餐口|空地|空地\n  墙/台面|空地|伙伴(空手)\nAlice 动作后位于全局坐标 (2, 4)，相对我的位置为 (1, 1)。\n请先承认这一动作本身不能排除任一意图，再使用允许的证据作概率判断；最终只输出 JSON。"
+        }
+      ],
+      "pre_ground_truth": {
+        "intent": "PRE",
+        "facility": "pot_0"
+      },
+      "post_ground_truth": {
+        "intent": "FETCH",
+        "facility": "onion_0"
+      },
+      "response": {
+        "parsed": {
+          "ambiguity_acknowledged": true,
+          "intent": "PRE",
+          "facility": "pot_0",
+          "confidence": 0.6,
+          "evidence_types": [
+            "observed_action",
+            "remembered_pots",
+            "partner_impression"
+          ],
+          "evidence": "Alice 空手向右移动至 (2,4)，靠近 pot_0(2,0)。因 pot_0 正在烹饪且 pot_1/2 为空，推测其意图是前往 pot_0 附近等待关注，而非去取洋葱。"
+        },
+        "raw_attempts": [
+          "{\"ambiguity_acknowledged\":true,\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.6,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 空手向右移动至 (2,4)，靠近 pot_0(2,0)。因 pot_0 正在烹饪且 pot_1/2 为空，推测其意图是前往 pot_0 附近等待关注，而非去取洋葱。\"}"
+        ]
+      },
+      "evidence_boundary": {
+        "facility_claim_supported_by_current_view": false,
+        "unsupported_named_facilities_in_evidence": [
+          "pot_0",
+          "pot_1"
+        ],
+        "passed": false
+      }
+    }
+  ],
+  "calls": {
+    "bd8d02d7dd346a542691d77e920b1aaa2c8cab0ebace4e338b7e0a677bb31d96": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.65,
+        "evidence_types": [
+          "partner_impression",
+          "remembered_pots"
+        ],
+        "evidence": "Alice 空手且向上移动，符合 PRE 与 FETCH 的歧义。但历史印象显示她常空手去取洋葱，且 pot_0 正在烹饪需关注，pot_1/2 可补料需原料，结合她空手状态，推测其意图为去洋葱台取料。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.65,\"evidence_types\":[\"partner_impression\",\"remembered_pots\"],\"evidence\":\"Alice 空手且向上移动，符合 PRE 与 FETCH 的歧义。但历史印象显示她常空手去取洋葱，且 pot_0 正在烹饪需关注，pot_1/2 可补料需原料，结合她空手状态，推测其意图为去洋葱台取料。\"}"
+      ]
+    },
+    "4553c8f318bafe0b63d3ac8ef0290e46f5f7e3f83a5f2b4df4395bca01ca2da7": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.85,
+        "evidence_types": [
+          "observed_action",
+          "remembered_pots",
+          "partner_impression"
+        ],
+        "evidence": "Alice 空手向上移动远离可见出餐口。历史印象显示空手移动后常去取洋葱。已知 pot_1/pot_2 可补料，符合 FETCH 特征。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.85,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 空手向上移动远离可见出餐口。历史印象显示空手移动后常去取洋葱。已知 pot_1/pot_2 可补料，符合 FETCH 特征。\"}"
+      ]
+    },
+    "4ab82c0977e84f3e1b3f00cb29e5bfb37ddde60358ece0172664a0603f72663d": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.6,
+        "evidence_types": [
+          "observed_action",
+          "remembered_pots",
+          "partner_impression"
+        ],
+        "evidence": "Alice 空手向上移动远离出餐口，且 pot_0 正在烹饪需补料，pot_1/2 为空。无伙伴印象辅助，但空手状态与 pot_0 需求更支持去取洋葱。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.6,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 空手向上移动远离出餐口，且 pot_0 正在烹饪需补料，pot_1/2 为空。无伙伴印象辅助，但空手状态与 pot_0 需求更支持去取洋葱。\"}"
+      ]
+    },
+    "9154bcb737c24f78486fa3666adce691ed6f37c3270b884902f3a914ad4ceeb3": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.85,
+        "evidence_types": [
+          "observed_action",
+          "remembered_pots",
+          "partner_impression"
+        ],
+        "evidence": "Alice 空手且锅 pot_0 正在烹饪。历史印象显示空手时多去取料。她向下移动远离 pot_0，朝向可见的 onion_0，符合取料特征。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.85,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 空手且锅 pot_0 正在烹饪。历史印象显示空手时多去取料。她向下移动远离 pot_0，朝向可见的 onion_0，符合取料特征。\"}"
+      ]
+    },
+    "728a06cc7d9161fec27b786ed02e9264d6d2d49faf90a2e27f60e302fab2e71d": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.9,
+        "evidence_types": [
+          "partner_impression",
+          "remembered_pots",
+          "visible_tiles"
+        ],
+        "evidence": "Alice 空手且锅 pot_0 正在烹饪。历史印象显示空手伙伴极大概率去取洋葱。视野可见 onion_0 且 Alice 正朝其方向移动。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.9,\"evidence_types\":[\"partner_impression\",\"remembered_pots\",\"visible_tiles\"],\"evidence\":\"Alice 空手且锅 pot_0 正在烹饪。历史印象显示空手伙伴极大概率去取洋葱。视野可见 onion_0 且 Alice 正朝其方向移动。\"}"
+      ]
+    },
+    "f9d4973b6382aad87c6e428ba101385dfa6941717f7e128735b5793657172629": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.8,
+        "evidence_types": [
+          "observed_action",
+          "remembered_pots",
+          "partner_impression"
+        ],
+        "evidence": "Alice 空手且 pot_1/pot_2 可补料，向下移动靠近洋葱台，符合取料特征。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.8,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 空手且 pot_1/pot_2 可补料，向下移动靠近洋葱台，符合取料特征。\"}"
+      ]
+    },
+    "1b6fcc803a45fce5efce007874bbad22e0371d08222e98df025d9403c6352b56": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.65,
+        "evidence_types": [
+          "partner_impression",
+          "remembered_pots"
+        ],
+        "evidence": "Alice 空手向左移动靠近洋葱台 0。历史印象显示她常空手去取洋葱，且 pot_1 和 pot_2 可补料，符合 FETCH 特征。"
+      },
+      "raw_attempts": [
+        "{\n\"ambiguity_acknowledged\": true,\n\"intent\": \"FETCH\",\n\"facility\": \"onion_0\",\n\"confidence\": 0.65,\n\"evidence_types\": [\"partner_impression\", \"remembered_pots\"],\n\"evidence\": \"Alice 空手向左移动靠近洋葱台 0。历史印象显示她常空手去取洋葱，且 pot_1 和 pot_2 可补料，符合 FETCH 特征。\"\n}"
+      ]
+    },
+    "d90310e78cac8eede870596f476e0acae19bcfb357e033a0171b71fcb34c3fe4": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.85,
+        "evidence_types": [
+          "partner_impression",
+          "remembered_pots",
+          "observed_action"
+        ],
+        "evidence": "Alice 空手且向左移动靠近洋葱台 0。历史印象显示空手伙伴常去取料，且 pot_0 正在烹饪无需关注，故推测其意图为取洋葱。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.85,\"evidence_types\":[\"partner_impression\",\"remembered_pots\",\"observed_action\"],\"evidence\":\"Alice 空手且向左移动靠近洋葱台 0。历史印象显示空手伙伴常去取料，且 pot_0 正在烹饪无需关注，故推测其意图为取洋葱。\"}"
+      ]
+    },
+    "6e18793faa7a136bd2e70f2db67f8fee6a15d841c7b6e9cf49e9d6d2afbb4c6b": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.6,
+        "evidence_types": [
+          "observed_action",
+          "remembered_pots",
+          "partner_impression"
+        ],
+        "evidence": "Alice 向左移动靠近洋葱台 0。已知 pot_0 烹饪中而 pot_1/2 可补料，且她空手，推测其意图是去取洋葱补料。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.6,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 向左移动靠近洋葱台 0。已知 pot_0 烹饪中而 pot_1/2 可补料，且她空手，推测其意图是去取洋葱补料。\"}"
+      ]
+    },
+    "8960e7773c8acd84d565d3b3848da11a18d8a4f7d3edc635c5f1fad366f7d57e": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "FETCH",
+        "facility": "onion_0",
+        "confidence": 0.65,
+        "evidence_types": [
+          "partner_impression",
+          "remembered_pots"
+        ],
+        "evidence": "Alice 空手向右移动，符合 PRE 或 FETCH 的初始动作。但历史印象显示她常空手后去取洋葱，且 pot_0 正在烹饪无需补料，而 pot_1/2 可补料，故推测她正前往洋葱台取料。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"FETCH\",\"facility\":\"onion_0\",\"confidence\":0.65,\"evidence_types\":[\"partner_impression\",\"remembered_pots\"],\"evidence\":\"Alice 空手向右移动，符合 PRE 或 FETCH 的初始动作。但历史印象显示她常空手后去取洋葱，且 pot_0 正在烹饪无需补料，而 pot_1/2 可补料，故推测她正前往洋葱台取料。\"}"
+      ]
+    },
+    "3acec628c2f2ef641aedbab5666fb7cfcca86514abbf2f69802609f1ba9c0590": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "PRE",
+        "facility": "pot_0",
+        "confidence": 0.6,
+        "evidence_types": [
+          "remembered_pots",
+          "observed_action"
+        ],
+        "evidence": "Alice 空手向右移动靠近 pot_0。已知 pot_0 正在烹饪，符合前往关注锅的 PRE 特征；虽未直接看到洋葱台，但空手移动且锅需关注，概率上倾向 PRE。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.6,\"evidence_types\":[\"remembered_pots\",\"observed_action\"],\"evidence\":\"Alice 空手向右移动靠近 pot_0。已知 pot_0 正在烹饪，符合前往关注锅的 PRE 特征；虽未直接看到洋葱台，但空手移动且锅需关注，概率上倾向 PRE。\"}"
+      ]
+    },
+    "b6e7776cc1e4cb0968ca393f2ecf8d13f924573fcdee6ccbeeb543b830c3a96a": {
+      "parsed": {
+        "ambiguity_acknowledged": true,
+        "intent": "PRE",
+        "facility": "pot_0",
+        "confidence": 0.6,
+        "evidence_types": [
+          "observed_action",
+          "remembered_pots",
+          "partner_impression"
+        ],
+        "evidence": "Alice 空手向右移动至 (2,4)，靠近 pot_0(2,0)。因 pot_0 正在烹饪且 pot_1/2 为空，推测其意图是前往 pot_0 附近等待关注，而非去取洋葱。"
+      },
+      "raw_attempts": [
+        "{\"ambiguity_acknowledged\":true,\"intent\":\"PRE\",\"facility\":\"pot_0\",\"confidence\":0.6,\"evidence_types\":[\"observed_action\",\"remembered_pots\",\"partner_impression\"],\"evidence\":\"Alice 空手向右移动至 (2,4)，靠近 pot_0(2,0)。因 pot_0 正在烹饪且 pot_1/2 为空，推测其意图是前往 pot_0 附近等待关注，而非去取洋葱。\"}"
+      ]
+    }
+  }
+}

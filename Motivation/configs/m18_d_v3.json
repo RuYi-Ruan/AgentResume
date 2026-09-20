@@ -1,0 +1,12 @@
+{
+  "version": "m18-D-capacity-approved-20260916",
+  "approval": "User approved continuation after reviewing the at-most-50 natural D recommendation on 2026-09-16.",
+  "source_revision": "configs/m18_d_v2.json",
+  "source_starts_per_group": 100,
+  "maximum_events_per_group": 50,
+  "accept_actual_count_when_below_maximum": true,
+  "minimum_events_per_group": 1,
+  "preserve_v2_manifests": true,
+  "formal_total_expected_from_frozen_v2": 392,
+  "analysis_weighting": "training_group_then_map; do not weight a group merely because it has more events"
+}

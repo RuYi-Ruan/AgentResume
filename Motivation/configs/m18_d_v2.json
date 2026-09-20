@@ -1,0 +1,13 @@
+{
+  "version": "m18-D-approved-20260916",
+  "approval": "User accepted 100 fixed natural source starts and within-D near-family variants on 2026-09-16.",
+  "source_offset_start": 5000,
+  "source_offset_end_inclusive": 5099,
+  "events_per_group": 50,
+  "max_events_per_episode": 2,
+  "exclude_cross_partition_exact_hash": true,
+  "exclude_cross_partition_near_family": true,
+  "exclude_within_D_exact_hash": true,
+  "exclude_within_D_near_family": false,
+  "selection_seed_base": 18933
+}

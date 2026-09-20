@@ -1,0 +1,4897 @@
+{
+  "group": {
+    "group": 1,
+    "map": "A",
+    "rows": [
+      "XOPXDXPXDXX",
+      "X         X",
+      "X X     X X",
+      "S  1   2  S",
+      "X X     X X",
+      "X         X",
+      "XXSOXPDXSXX"
+    ],
+    "training_seed": 1802,
+    "episode_base": 200000
+  },
+  "config_hash": "010591109b343697abfd4d36e6ecd47dcdb2ab98cf4a036ea84d8e196be0b584",
+  "expert": [
+    {
+      "seed": 200100,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 5,
+        "PRE": 82,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 32,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        58,
+        126,
+        173,
+        236,
+        260,
+        328,
+        375,
+        438,
+        461,
+        475,
+        534,
+        604,
+        626,
+        678
+      ]
+    },
+    {
+      "seed": 200101,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 5,
+        "PRE": 82,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 32,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        54,
+        122,
+        169,
+        232,
+        256,
+        324,
+        371,
+        434,
+        457,
+        471,
+        530,
+        600,
+        622,
+        674
+      ]
+    },
+    {
+      "seed": 200102,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 5,
+        "PRE": 82,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 32,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        54,
+        122,
+        169,
+        232,
+        256,
+        324,
+        371,
+        434,
+        457,
+        471,
+        530,
+        600,
+        622,
+        674
+      ]
+    },
+    {
+      "seed": 200103,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 5,
+        "PRE": 82,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 32,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        54,
+        122,
+        169,
+        232,
+        256,
+        324,
+        371,
+        434,
+        457,
+        471,
+        530,
+        600,
+        622,
+        674
+      ]
+    },
+    {
+      "seed": 200104,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 78,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 51,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        74,
+        139,
+        164,
+        234,
+        256,
+        308,
+        355,
+        425,
+        447,
+        499,
+        546,
+        616,
+        638,
+        681
+      ]
+    },
+    {
+      "seed": 200105,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 72,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 47,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        80,
+        145,
+        170,
+        240,
+        262,
+        314,
+        361,
+        431,
+        453,
+        505,
+        552,
+        622,
+        644,
+        687
+      ]
+    },
+    {
+      "seed": 200106,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 5,
+        "PRE": 82,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 32,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        53,
+        121,
+        168,
+        231,
+        255,
+        323,
+        370,
+        433,
+        456,
+        470,
+        529,
+        599,
+        621,
+        673
+      ]
+    },
+    {
+      "seed": 200107,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 80,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 50,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        72,
+        137,
+        162,
+        232,
+        254,
+        306,
+        353,
+        423,
+        445,
+        497,
+        544,
+        614,
+        636,
+        679
+      ]
+    },
+    {
+      "seed": 200108,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 5,
+        "PRE": 82,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 32,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        57,
+        125,
+        172,
+        235,
+        259,
+        327,
+        374,
+        437,
+        460,
+        474,
+        533,
+        603,
+        625,
+        677
+      ]
+    },
+    {
+      "seed": 200109,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 5,
+        "PRE": 82,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 32,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        58,
+        126,
+        173,
+        236,
+        260,
+        328,
+        375,
+        438,
+        461,
+        475,
+        534,
+        604,
+        626,
+        678
+      ]
+    },
+    {
+      "seed": 200110,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 83,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 51,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        69,
+        134,
+        159,
+        229,
+        251,
+        303,
+        350,
+        420,
+        442,
+        494,
+        541,
+        611,
+        633,
+        676
+      ]
+    },
+    {
+      "seed": 200111,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 4,
+        "PRE": 81,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 33,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        68,
+        136,
+        183,
+        246,
+        270,
+        338,
+        385,
+        448,
+        471,
+        485,
+        544,
+        614,
+        636,
+        688
+      ]
+    },
+    {
+      "seed": 200112,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 81,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 50,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        71,
+        136,
+        161,
+        231,
+        253,
+        305,
+        352,
+        422,
+        444,
+        496,
+        543,
+        613,
+        635,
+        678
+      ]
+    },
+    {
+      "seed": 200113,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 82,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 50,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        70,
+        135,
+        160,
+        230,
+        252,
+        304,
+        351,
+        421,
+        443,
+        495,
+        542,
+        612,
+        634,
+        677
+      ]
+    },
+    {
+      "seed": 200114,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 83,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 50,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        69,
+        134,
+        159,
+        229,
+        251,
+        303,
+        350,
+        420,
+        442,
+        494,
+        541,
+        611,
+        633,
+        676
+      ]
+    },
+    {
+      "seed": 200115,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 80,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 50,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        72,
+        137,
+        162,
+        232,
+        254,
+        306,
+        353,
+        423,
+        445,
+        497,
+        544,
+        614,
+        636,
+        679
+      ]
+    },
+    {
+      "seed": 200116,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 83,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 50,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        69,
+        134,
+        159,
+        229,
+        251,
+        303,
+        350,
+        420,
+        442,
+        494,
+        541,
+        611,
+        633,
+        676
+      ]
+    },
+    {
+      "seed": 200117,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 5,
+        "PRE": 82,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 32,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        53,
+        121,
+        168,
+        231,
+        255,
+        323,
+        370,
+        433,
+        456,
+        470,
+        529,
+        599,
+        621,
+        673
+      ]
+    },
+    {
+      "seed": 200118,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 83,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 50,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        69,
+        134,
+        159,
+        229,
+        251,
+        303,
+        350,
+        420,
+        442,
+        494,
+        541,
+        611,
+        633,
+        676
+      ]
+    },
+    {
+      "seed": 200119,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 81,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 50,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        71,
+        136,
+        161,
+        231,
+        253,
+        305,
+        352,
+        422,
+        444,
+        496,
+        543,
+        613,
+        635,
+        678
+      ]
+    },
+    {
+      "seed": 200120,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 5,
+        "PRE": 82,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 32,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        61,
+        129,
+        176,
+        239,
+        263,
+        331,
+        378,
+        441,
+        464,
+        478,
+        537,
+        607,
+        629,
+        681
+      ]
+    },
+    {
+      "seed": 200121,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 79,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 50,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        73,
+        138,
+        163,
+        233,
+        255,
+        307,
+        354,
+        424,
+        446,
+        498,
+        545,
+        615,
+        637,
+        680
+      ]
+    },
+    {
+      "seed": 200122,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 16,
+        "PLACE": 16,
+        "COOK_START": 5,
+        "PRE": 82,
+        "HOLD": 18,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 32,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        60,
+        128,
+        175,
+        238,
+        262,
+        330,
+        377,
+        440,
+        463,
+        477,
+        536,
+        606,
+        628,
+        680
+      ]
+    },
+    {
+      "seed": 200123,
+      "deliveries": 14,
+      "reward": 280,
+      "steps": 700,
+      "decision_counts": {
+        "FETCH": 15,
+        "PLACE": 15,
+        "COOK_START": 3,
+        "PRE": 79,
+        "HOLD": 20,
+        "GET_DISH": 7,
+        "PICKUP": 7,
+        "DELIVER": 7
+      },
+      "visible_task_starts": 50,
+      "cycle_yields": [
+        0,
+        0
+      ],
+      "delivery_ticks": [
+        73,
+        138,
+        163,
+        233,
+        255,
+        307,
+        354,
+        424,
+        446,
+        498,
+        545,
+        615,
+        637,
+        680
+      ]
+    }
+  ],
+  "expert_intent_counts": {
+    "FETCH": 371,
+    "PLACE": 371,
+    "COOK_START": 93,
+    "PRE": 1945,
+    "HOLD": 458,
+    "GET_DISH": 168,
+    "PICKUP": 168,
+    "DELIVER": 168
+  },
+  "passed": true,
+  "bc": {
+    "samples": 3742,
+    "counts": {
+      "FETCH": 371,
+      "PLACE": 371,
+      "COOK_START": 93,
+      "GET_DISH": 168,
+      "PICKUP": 168,
+      "DELIVER": 168,
+      "PRE": 1945,
+      "HOLD": 458
+    },
+    "epoch_losses": [
+      0.5527557946984492,
+      0.08387592439064363,
+      0.012392455086765094,
+      0.0030872308750418357,
+      0.0014473078902467352,
+      0.0010420564807979325,
+      0.0008463562454817739,
+      0.0007612457564426661,
+      0.000701825193301583,
+      0.0006533849363816073,
+      0.0006242992880257401,
+      0.0005929586687262151,
+      0.0005707123214408819,
+      0.0005512412791842229,
+      0.0005338495877984053,
+      0.0005219905974255314,
+      0.0005126462658911541,
+      0.0005073288512164314,
+      0.000499047104809717,
+      0.0004938279433755323,
+      0.0004864538235500015,
+      0.0004772300220995331,
+      0.0004745145583106429,
+      0.0004697001551552703,
+      0.00046236307223283655,
+      0.000458505125181851,
+      0.00045884375979119384,
+      0.00045406880948350596,
+      0.0004510148381714807,
+      0.0004446260536477549,
+      0.0004439319379466926,
+      0.00043717264713267014,
+      0.00042544118955819497,
+      0.00042606433067656955,
+      0.00042255286632935984,
+      0.000420955146815581,
+      0.0004101729005916648,
+      0.0004066412665121873,
+      0.00040498845385178976,
+      0.00040348097025879714,
+      0.0003956236351185087,
+      0.00039675104326530213,
+      0.0003933852896485567,
+      0.0003868367514150682,
+      0.00038597906445589104,
+      0.0003854878802136939,
+      0.0003789485295508246,
+      0.00037399639271225586,
+      0.0003720389139992327,
+      0.00037018279821892183,
+      0.00037062702759170036,
+      0.00036742206271399335,
+      0.0003604052769655351,
+      0.0003548863456732101,
+      0.00035917226831542695,
+      0.00035763858228410187,
+      0.000347921541512569,
+      0.00034057059164934524,
+      0.00034315616935170503,
+      0.0003415983213701115,
+      0.00034205330340271364,
+      0.00033753414126324607,
+      0.00033358799086192765,
+      0.0003290882724222669,
+      0.0003311987529197167,
+      0.00033180752844337667,
+      0.00033134327792186234,
+      0.0003225123543986172,
+      0.0003242773928914472,
+      0.0003204921948857146,
+      0.0003201454428431764,
+      0.0003177462487932263,
+      0.0003152345452146064,
+      0.0003108360213378767,
+      0.0003126185315165605,
+      0.0003133534582933204,
+      0.000311563221195425,
+      0.0003128675635828662,
+      0.0003060926292344225,
+      0.0003075832909845186,
+      0.0002972579938372625,
+      0.0002976808791281033,
+      0.0003021989276377312,
+      0.00030308675533882327,
+      0.0002971994923614364,
+      0.0002945344746260909,
+      0.0002880751104980114,
+      0.0002919034773397012,
+      0.0002959405226745697,
+      0.000294143149468332,
+      0.00029673637223829685,
+      0.0002883003108981919,
+      0.00028761753372903785,
+      0.0002901122608458009,
+      0.0002857047693260345,
+      0.00028087141901704635,
+      0.00028191032202654027,
+      0.0002796690344408788,
+      0.000286085294847183,
+      0.0002853879942288667
+    ],
+    "training_classification": {
+      "labels": [
+        "FETCH",
+        "PLACE",
+        "COOK_START",
+        "GET_DISH",
+        "PICKUP",
+        "DELIVER",
+        "PRE",
+        "HOLD"
+      ],
+      "confusion": [
+        [
+          371,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          371,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          93,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          168,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          168,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          168,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1945,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          458
+        ]
+      ],
+      "accuracy": 1.0
+    }
+  },
+  "validation": [
+    {
+      "update": 0,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200201,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200202,
+          "deliveries": 14,
+          "macro_steps": 156
+        },
+        {
+          "seed": 200203,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200204,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200205,
+          "deliveries": 14,
+          "macro_steps": 153
+        },
+        {
+          "seed": 200206,
+          "deliveries": 14,
+          "macro_steps": 154
+        },
+        {
+          "seed": 200207,
+          "deliveries": 14,
+          "macro_steps": 156
+        },
+        {
+          "seed": 200208,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200209,
+          "deliveries": 14,
+          "macro_steps": 153
+        },
+        {
+          "seed": 200210,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200211,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200212,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200213,
+          "deliveries": 14,
+          "macro_steps": 150
+        },
+        {
+          "seed": 200214,
+          "deliveries": 14,
+          "macro_steps": 152
+        },
+        {
+          "seed": 200215,
+          "deliveries": 14,
+          "macro_steps": 155
+        }
+      ],
+      "delivery_mean": 14.0,
+      "delivery_std": 0.0,
+      "delivery_min": 14,
+      "delivery_max": 14
+    },
+    {
+      "update": 5,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 15,
+          "macro_steps": 138
+        },
+        {
+          "seed": 200201,
+          "deliveries": 15,
+          "macro_steps": 138
+        },
+        {
+          "seed": 200202,
+          "deliveries": 15,
+          "macro_steps": 123
+        },
+        {
+          "seed": 200203,
+          "deliveries": 15,
+          "macro_steps": 138
+        },
+        {
+          "seed": 200204,
+          "deliveries": 15,
+          "macro_steps": 138
+        },
+        {
+          "seed": 200205,
+          "deliveries": 15,
+          "macro_steps": 123
+        },
+        {
+          "seed": 200206,
+          "deliveries": 15,
+          "macro_steps": 123
+        },
+        {
+          "seed": 200207,
+          "deliveries": 15,
+          "macro_steps": 123
+        },
+        {
+          "seed": 200208,
+          "deliveries": 15,
+          "macro_steps": 136
+        },
+        {
+          "seed": 200209,
+          "deliveries": 15,
+          "macro_steps": 123
+        },
+        {
+          "seed": 200210,
+          "deliveries": 15,
+          "macro_steps": 138
+        },
+        {
+          "seed": 200211,
+          "deliveries": 16,
+          "macro_steps": 124
+        },
+        {
+          "seed": 200212,
+          "deliveries": 15,
+          "macro_steps": 138
+        },
+        {
+          "seed": 200213,
+          "deliveries": 15,
+          "macro_steps": 122
+        },
+        {
+          "seed": 200214,
+          "deliveries": 15,
+          "macro_steps": 123
+        },
+        {
+          "seed": 200215,
+          "deliveries": 15,
+          "macro_steps": 123
+        }
+      ],
+      "delivery_mean": 15.0625,
+      "delivery_std": 0.24206145913796356,
+      "delivery_min": 15,
+      "delivery_max": 16
+    },
+    {
+      "update": 10,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 16,
+          "macro_steps": 128
+        },
+        {
+          "seed": 200201,
+          "deliveries": 16,
+          "macro_steps": 130
+        },
+        {
+          "seed": 200202,
+          "deliveries": 15,
+          "macro_steps": 124
+        },
+        {
+          "seed": 200203,
+          "deliveries": 16,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200204,
+          "deliveries": 16,
+          "macro_steps": 130
+        },
+        {
+          "seed": 200205,
+          "deliveries": 15,
+          "macro_steps": 124
+        },
+        {
+          "seed": 200206,
+          "deliveries": 15,
+          "macro_steps": 124
+        },
+        {
+          "seed": 200207,
+          "deliveries": 15,
+          "macro_steps": 124
+        },
+        {
+          "seed": 200208,
+          "deliveries": 16,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200209,
+          "deliveries": 15,
+          "macro_steps": 124
+        },
+        {
+          "seed": 200210,
+          "deliveries": 16,
+          "macro_steps": 130
+        },
+        {
+          "seed": 200211,
+          "deliveries": 15,
+          "macro_steps": 125
+        },
+        {
+          "seed": 200212,
+          "deliveries": 16,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200213,
+          "deliveries": 15,
+          "macro_steps": 124
+        },
+        {
+          "seed": 200214,
+          "deliveries": 15,
+          "macro_steps": 124
+        },
+        {
+          "seed": 200215,
+          "deliveries": 15,
+          "macro_steps": 124
+        }
+      ],
+      "delivery_mean": 15.4375,
+      "delivery_std": 0.49607837082461076,
+      "delivery_min": 15,
+      "delivery_max": 16
+    },
+    {
+      "update": 15,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200201,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200202,
+          "deliveries": 6,
+          "macro_steps": 64
+        },
+        {
+          "seed": 200203,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200204,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200205,
+          "deliveries": 6,
+          "macro_steps": 64
+        },
+        {
+          "seed": 200206,
+          "deliveries": 6,
+          "macro_steps": 64
+        },
+        {
+          "seed": 200207,
+          "deliveries": 6,
+          "macro_steps": 64
+        },
+        {
+          "seed": 200208,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200209,
+          "deliveries": 6,
+          "macro_steps": 64
+        },
+        {
+          "seed": 200210,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200211,
+          "deliveries": 6,
+          "macro_steps": 64
+        },
+        {
+          "seed": 200212,
+          "deliveries": 14,
+          "macro_steps": 158
+        },
+        {
+          "seed": 200213,
+          "deliveries": 6,
+          "macro_steps": 64
+        },
+        {
+          "seed": 200214,
+          "deliveries": 6,
+          "macro_steps": 64
+        },
+        {
+          "seed": 200215,
+          "deliveries": 6,
+          "macro_steps": 64
+        }
+      ],
+      "delivery_mean": 9.5,
+      "delivery_std": 3.968626966596886,
+      "delivery_min": 6,
+      "delivery_max": 14
+    },
+    {
+      "update": 20,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 17,
+          "macro_steps": 106
+        },
+        {
+          "seed": 200201,
+          "deliveries": 17,
+          "macro_steps": 108
+        },
+        {
+          "seed": 200202,
+          "deliveries": 17,
+          "macro_steps": 118
+        },
+        {
+          "seed": 200203,
+          "deliveries": 17,
+          "macro_steps": 106
+        },
+        {
+          "seed": 200204,
+          "deliveries": 17,
+          "macro_steps": 107
+        },
+        {
+          "seed": 200205,
+          "deliveries": 17,
+          "macro_steps": 118
+        },
+        {
+          "seed": 200206,
+          "deliveries": 17,
+          "macro_steps": 118
+        },
+        {
+          "seed": 200207,
+          "deliveries": 17,
+          "macro_steps": 118
+        },
+        {
+          "seed": 200208,
+          "deliveries": 17,
+          "macro_steps": 106
+        },
+        {
+          "seed": 200209,
+          "deliveries": 17,
+          "macro_steps": 118
+        },
+        {
+          "seed": 200210,
+          "deliveries": 17,
+          "macro_steps": 108
+        },
+        {
+          "seed": 200211,
+          "deliveries": 17,
+          "macro_steps": 119
+        },
+        {
+          "seed": 200212,
+          "deliveries": 17,
+          "macro_steps": 106
+        },
+        {
+          "seed": 200213,
+          "deliveries": 17,
+          "macro_steps": 118
+        },
+        {
+          "seed": 200214,
+          "deliveries": 17,
+          "macro_steps": 118
+        },
+        {
+          "seed": 200215,
+          "deliveries": 17,
+          "macro_steps": 118
+        }
+      ],
+      "delivery_mean": 17.0,
+      "delivery_std": 0.0,
+      "delivery_min": 17,
+      "delivery_max": 17
+    },
+    {
+      "update": 25,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 17,
+          "macro_steps": 104
+        },
+        {
+          "seed": 200201,
+          "deliveries": 17,
+          "macro_steps": 105
+        },
+        {
+          "seed": 200202,
+          "deliveries": 17,
+          "macro_steps": 128
+        },
+        {
+          "seed": 200203,
+          "deliveries": 17,
+          "macro_steps": 104
+        },
+        {
+          "seed": 200204,
+          "deliveries": 17,
+          "macro_steps": 105
+        },
+        {
+          "seed": 200205,
+          "deliveries": 17,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200206,
+          "deliveries": 17,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200207,
+          "deliveries": 17,
+          "macro_steps": 128
+        },
+        {
+          "seed": 200208,
+          "deliveries": 17,
+          "macro_steps": 104
+        },
+        {
+          "seed": 200209,
+          "deliveries": 17,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200210,
+          "deliveries": 17,
+          "macro_steps": 105
+        },
+        {
+          "seed": 200211,
+          "deliveries": 17,
+          "macro_steps": 129
+        },
+        {
+          "seed": 200212,
+          "deliveries": 17,
+          "macro_steps": 104
+        },
+        {
+          "seed": 200213,
+          "deliveries": 16,
+          "macro_steps": 126
+        },
+        {
+          "seed": 200214,
+          "deliveries": 17,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200215,
+          "deliveries": 17,
+          "macro_steps": 128
+        }
+      ],
+      "delivery_mean": 16.9375,
+      "delivery_std": 0.24206145913796356,
+      "delivery_min": 16,
+      "delivery_max": 17
+    },
+    {
+      "update": 30,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 17,
+          "macro_steps": 109
+        },
+        {
+          "seed": 200201,
+          "deliveries": 17,
+          "macro_steps": 110
+        },
+        {
+          "seed": 200202,
+          "deliveries": 19,
+          "macro_steps": 140
+        },
+        {
+          "seed": 200203,
+          "deliveries": 17,
+          "macro_steps": 108
+        },
+        {
+          "seed": 200204,
+          "deliveries": 17,
+          "macro_steps": 110
+        },
+        {
+          "seed": 200205,
+          "deliveries": 18,
+          "macro_steps": 139
+        },
+        {
+          "seed": 200206,
+          "deliveries": 18,
+          "macro_steps": 140
+        },
+        {
+          "seed": 200207,
+          "deliveries": 19,
+          "macro_steps": 140
+        },
+        {
+          "seed": 200208,
+          "deliveries": 18,
+          "macro_steps": 118
+        },
+        {
+          "seed": 200209,
+          "deliveries": 18,
+          "macro_steps": 139
+        },
+        {
+          "seed": 200210,
+          "deliveries": 17,
+          "macro_steps": 110
+        },
+        {
+          "seed": 200211,
+          "deliveries": 19,
+          "macro_steps": 141
+        },
+        {
+          "seed": 200212,
+          "deliveries": 17,
+          "macro_steps": 108
+        },
+        {
+          "seed": 200213,
+          "deliveries": 18,
+          "macro_steps": 138
+        },
+        {
+          "seed": 200214,
+          "deliveries": 18,
+          "macro_steps": 138
+        },
+        {
+          "seed": 200215,
+          "deliveries": 19,
+          "macro_steps": 140
+        }
+      ],
+      "delivery_mean": 17.875,
+      "delivery_std": 0.7806247497997998,
+      "delivery_min": 17,
+      "delivery_max": 19
+    },
+    {
+      "update": 35,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 17,
+          "macro_steps": 109
+        },
+        {
+          "seed": 200201,
+          "deliveries": 17,
+          "macro_steps": 110
+        },
+        {
+          "seed": 200202,
+          "deliveries": 20,
+          "macro_steps": 143
+        },
+        {
+          "seed": 200203,
+          "deliveries": 17,
+          "macro_steps": 109
+        },
+        {
+          "seed": 200204,
+          "deliveries": 17,
+          "macro_steps": 110
+        },
+        {
+          "seed": 200205,
+          "deliveries": 20,
+          "macro_steps": 143
+        },
+        {
+          "seed": 200206,
+          "deliveries": 20,
+          "macro_steps": 143
+        },
+        {
+          "seed": 200207,
+          "deliveries": 20,
+          "macro_steps": 143
+        },
+        {
+          "seed": 200208,
+          "deliveries": 17,
+          "macro_steps": 108
+        },
+        {
+          "seed": 200209,
+          "deliveries": 20,
+          "macro_steps": 143
+        },
+        {
+          "seed": 200210,
+          "deliveries": 17,
+          "macro_steps": 110
+        },
+        {
+          "seed": 200211,
+          "deliveries": 20,
+          "macro_steps": 144
+        },
+        {
+          "seed": 200212,
+          "deliveries": 17,
+          "macro_steps": 109
+        },
+        {
+          "seed": 200213,
+          "deliveries": 20,
+          "macro_steps": 142
+        },
+        {
+          "seed": 200214,
+          "deliveries": 20,
+          "macro_steps": 142
+        },
+        {
+          "seed": 200215,
+          "deliveries": 20,
+          "macro_steps": 143
+        }
+      ],
+      "delivery_mean": 18.6875,
+      "delivery_std": 1.4882351124738322,
+      "delivery_min": 17,
+      "delivery_max": 20
+    },
+    {
+      "update": 40,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 17,
+          "macro_steps": 112
+        },
+        {
+          "seed": 200201,
+          "deliveries": 18,
+          "macro_steps": 113
+        },
+        {
+          "seed": 200202,
+          "deliveries": 15,
+          "macro_steps": 107
+        },
+        {
+          "seed": 200203,
+          "deliveries": 17,
+          "macro_steps": 112
+        },
+        {
+          "seed": 200204,
+          "deliveries": 18,
+          "macro_steps": 112
+        },
+        {
+          "seed": 200205,
+          "deliveries": 15,
+          "macro_steps": 107
+        },
+        {
+          "seed": 200206,
+          "deliveries": 15,
+          "macro_steps": 107
+        },
+        {
+          "seed": 200207,
+          "deliveries": 15,
+          "macro_steps": 107
+        },
+        {
+          "seed": 200208,
+          "deliveries": 17,
+          "macro_steps": 112
+        },
+        {
+          "seed": 200209,
+          "deliveries": 15,
+          "macro_steps": 107
+        },
+        {
+          "seed": 200210,
+          "deliveries": 18,
+          "macro_steps": 113
+        },
+        {
+          "seed": 200211,
+          "deliveries": 15,
+          "macro_steps": 107
+        },
+        {
+          "seed": 200212,
+          "deliveries": 17,
+          "macro_steps": 112
+        },
+        {
+          "seed": 200213,
+          "deliveries": 15,
+          "macro_steps": 107
+        },
+        {
+          "seed": 200214,
+          "deliveries": 15,
+          "macro_steps": 107
+        },
+        {
+          "seed": 200215,
+          "deliveries": 15,
+          "macro_steps": 107
+        }
+      ],
+      "delivery_mean": 16.0625,
+      "delivery_std": 1.248436522214886,
+      "delivery_min": 15,
+      "delivery_max": 18
+    },
+    {
+      "update": 45,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 17,
+          "macro_steps": 106
+        },
+        {
+          "seed": 200201,
+          "deliveries": 17,
+          "macro_steps": 108
+        },
+        {
+          "seed": 200202,
+          "deliveries": 19,
+          "macro_steps": 145
+        },
+        {
+          "seed": 200203,
+          "deliveries": 17,
+          "macro_steps": 106
+        },
+        {
+          "seed": 200204,
+          "deliveries": 17,
+          "macro_steps": 107
+        },
+        {
+          "seed": 200205,
+          "deliveries": 19,
+          "macro_steps": 145
+        },
+        {
+          "seed": 200206,
+          "deliveries": 19,
+          "macro_steps": 145
+        },
+        {
+          "seed": 200207,
+          "deliveries": 19,
+          "macro_steps": 145
+        },
+        {
+          "seed": 200208,
+          "deliveries": 17,
+          "macro_steps": 106
+        },
+        {
+          "seed": 200209,
+          "deliveries": 19,
+          "macro_steps": 145
+        },
+        {
+          "seed": 200210,
+          "deliveries": 17,
+          "macro_steps": 108
+        },
+        {
+          "seed": 200211,
+          "deliveries": 19,
+          "macro_steps": 146
+        },
+        {
+          "seed": 200212,
+          "deliveries": 17,
+          "macro_steps": 106
+        },
+        {
+          "seed": 200213,
+          "deliveries": 19,
+          "macro_steps": 144
+        },
+        {
+          "seed": 200214,
+          "deliveries": 19,
+          "macro_steps": 144
+        },
+        {
+          "seed": 200215,
+          "deliveries": 19,
+          "macro_steps": 145
+        }
+      ],
+      "delivery_mean": 18.125,
+      "delivery_std": 0.9921567416492215,
+      "delivery_min": 17,
+      "delivery_max": 19
+    },
+    {
+      "update": 50,
+      "rows": [
+        {
+          "seed": 200200,
+          "deliveries": 17,
+          "macro_steps": 112
+        },
+        {
+          "seed": 200201,
+          "deliveries": 18,
+          "macro_steps": 113
+        },
+        {
+          "seed": 200202,
+          "deliveries": 19,
+          "macro_steps": 128
+        },
+        {
+          "seed": 200203,
+          "deliveries": 17,
+          "macro_steps": 112
+        },
+        {
+          "seed": 200204,
+          "deliveries": 18,
+          "macro_steps": 112
+        },
+        {
+          "seed": 200205,
+          "deliveries": 19,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200206,
+          "deliveries": 19,
+          "macro_steps": 128
+        },
+        {
+          "seed": 200207,
+          "deliveries": 19,
+          "macro_steps": 128
+        },
+        {
+          "seed": 200208,
+          "deliveries": 17,
+          "macro_steps": 112
+        },
+        {
+          "seed": 200209,
+          "deliveries": 19,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200210,
+          "deliveries": 18,
+          "macro_steps": 113
+        },
+        {
+          "seed": 200211,
+          "deliveries": 19,
+          "macro_steps": 129
+        },
+        {
+          "seed": 200212,
+          "deliveries": 17,
+          "macro_steps": 112
+        },
+        {
+          "seed": 200213,
+          "deliveries": 19,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200214,
+          "deliveries": 19,
+          "macro_steps": 127
+        },
+        {
+          "seed": 200215,
+          "deliveries": 19,
+          "macro_steps": 128
+        }
+      ],
+      "delivery_mean": 18.3125,
+      "delivery_std": 0.8454843286542927,
+      "delivery_min": 17,
+      "delivery_max": 19
+    }
+  ],
+  "updates": [
+    {
+      "update": 1,
+      "rollouts": [
+        {
+          "seed": 201000,
+          "deliveries": 16,
+          "macro_steps": 137
+        },
+        {
+          "seed": 201001,
+          "deliveries": 11,
+          "macro_steps": 102
+        },
+        {
+          "seed": 201002,
+          "deliveries": 1,
+          "macro_steps": 44
+        },
+        {
+          "seed": 201003,
+          "deliveries": 1,
+          "macro_steps": 36
+        },
+        {
+          "seed": 201004,
+          "deliveries": 12,
+          "macro_steps": 97
+        },
+        {
+          "seed": 201005,
+          "deliveries": 12,
+          "macro_steps": 109
+        },
+        {
+          "seed": 201006,
+          "deliveries": 13,
+          "macro_steps": 115
+        },
+        {
+          "seed": 201007,
+          "deliveries": 15,
+          "macro_steps": 110
+        }
+      ],
+      "policy_loss": -0.00444355847624441,
+      "value_loss": 1.8334409991900127,
+      "entropy": 0.5105864281455675
+    },
+    {
+      "update": 2,
+      "rollouts": [
+        {
+          "seed": 201008,
+          "deliveries": 12,
+          "macro_steps": 104
+        },
+        {
+          "seed": 201009,
+          "deliveries": 15,
+          "macro_steps": 126
+        },
+        {
+          "seed": 201010,
+          "deliveries": 10,
+          "macro_steps": 81
+        },
+        {
+          "seed": 201011,
+          "deliveries": 6,
+          "macro_steps": 56
+        },
+        {
+          "seed": 201012,
+          "deliveries": 15,
+          "macro_steps": 128
+        },
+        {
+          "seed": 201013,
+          "deliveries": 6,
+          "macro_steps": 53
+        },
+        {
+          "seed": 201014,
+          "deliveries": 14,
+          "macro_steps": 105
+        },
+        {
+          "seed": 201015,
+          "deliveries": 12,
+          "macro_steps": 86
+        }
+      ],
+      "policy_loss": -0.005629127534727256,
+      "value_loss": 1.7756346066792805,
+      "entropy": 0.5195229575037956
+    },
+    {
+      "update": 3,
+      "rollouts": [
+        {
+          "seed": 201016,
+          "deliveries": 13,
+          "macro_steps": 98
+        },
+        {
+          "seed": 201017,
+          "deliveries": 13,
+          "macro_steps": 108
+        },
+        {
+          "seed": 201018,
+          "deliveries": 13,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201019,
+          "deliveries": 4,
+          "macro_steps": 55
+        },
+        {
+          "seed": 201020,
+          "deliveries": 14,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201021,
+          "deliveries": 6,
+          "macro_steps": 63
+        },
+        {
+          "seed": 201022,
+          "deliveries": 11,
+          "macro_steps": 91
+        },
+        {
+          "seed": 201023,
+          "deliveries": 11,
+          "macro_steps": 108
+        }
+      ],
+      "policy_loss": -0.005194544792175293,
+      "value_loss": 1.1557170699040096,
+      "entropy": 0.46130451808373135
+    },
+    {
+      "update": 4,
+      "rollouts": [
+        {
+          "seed": 201024,
+          "deliveries": 4,
+          "macro_steps": 48
+        },
+        {
+          "seed": 201025,
+          "deliveries": 13,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201026,
+          "deliveries": 16,
+          "macro_steps": 131
+        },
+        {
+          "seed": 201027,
+          "deliveries": 15,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201028,
+          "deliveries": 15,
+          "macro_steps": 135
+        },
+        {
+          "seed": 201029,
+          "deliveries": 14,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201030,
+          "deliveries": 15,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201031,
+          "deliveries": 12,
+          "macro_steps": 106
+        }
+      ],
+      "policy_loss": 0.0036490621423581615,
+      "value_loss": 0.7587266638875008,
+      "entropy": 0.4203351940959692
+    },
+    {
+      "update": 5,
+      "rollouts": [
+        {
+          "seed": 201032,
+          "deliveries": 12,
+          "macro_steps": 102
+        },
+        {
+          "seed": 201033,
+          "deliveries": 12,
+          "macro_steps": 113
+        },
+        {
+          "seed": 201034,
+          "deliveries": 13,
+          "macro_steps": 113
+        },
+        {
+          "seed": 201035,
+          "deliveries": 15,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201036,
+          "deliveries": 13,
+          "macro_steps": 107
+        },
+        {
+          "seed": 201037,
+          "deliveries": 10,
+          "macro_steps": 81
+        },
+        {
+          "seed": 201038,
+          "deliveries": 6,
+          "macro_steps": 52
+        },
+        {
+          "seed": 201039,
+          "deliveries": 13,
+          "macro_steps": 112
+        }
+      ],
+      "policy_loss": -0.04024454311002046,
+      "value_loss": 0.7481261566281319,
+      "entropy": 0.4152854010462761,
+      "validation_mean": 15.0625
+    },
+    {
+      "update": 6,
+      "rollouts": [
+        {
+          "seed": 201040,
+          "deliveries": 16,
+          "macro_steps": 133
+        },
+        {
+          "seed": 201041,
+          "deliveries": 14,
+          "macro_steps": 96
+        },
+        {
+          "seed": 201042,
+          "deliveries": 14,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201043,
+          "deliveries": 14,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201044,
+          "deliveries": 13,
+          "macro_steps": 112
+        },
+        {
+          "seed": 201045,
+          "deliveries": 12,
+          "macro_steps": 90
+        },
+        {
+          "seed": 201046,
+          "deliveries": 8,
+          "macro_steps": 69
+        },
+        {
+          "seed": 201047,
+          "deliveries": 15,
+          "macro_steps": 134
+        }
+      ],
+      "policy_loss": -0.005138076900038868,
+      "value_loss": 0.7453027293086052,
+      "entropy": 0.40771671384572983
+    },
+    {
+      "update": 7,
+      "rollouts": [
+        {
+          "seed": 201048,
+          "deliveries": 15,
+          "macro_steps": 130
+        },
+        {
+          "seed": 201049,
+          "deliveries": 15,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201050,
+          "deliveries": 16,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201051,
+          "deliveries": 13,
+          "macro_steps": 104
+        },
+        {
+          "seed": 201052,
+          "deliveries": 13,
+          "macro_steps": 112
+        },
+        {
+          "seed": 201053,
+          "deliveries": 14,
+          "macro_steps": 112
+        },
+        {
+          "seed": 201054,
+          "deliveries": 9,
+          "macro_steps": 89
+        },
+        {
+          "seed": 201055,
+          "deliveries": 15,
+          "macro_steps": 124
+        }
+      ],
+      "policy_loss": -0.012910627527162433,
+      "value_loss": 0.7738041877746582,
+      "entropy": 0.33103921823203564
+    },
+    {
+      "update": 8,
+      "rollouts": [
+        {
+          "seed": 201056,
+          "deliveries": 14,
+          "macro_steps": 107
+        },
+        {
+          "seed": 201057,
+          "deliveries": 15,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201058,
+          "deliveries": 4,
+          "macro_steps": 38
+        },
+        {
+          "seed": 201059,
+          "deliveries": 15,
+          "macro_steps": 119
+        },
+        {
+          "seed": 201060,
+          "deliveries": 16,
+          "macro_steps": 119
+        },
+        {
+          "seed": 201061,
+          "deliveries": 1,
+          "macro_steps": 36
+        },
+        {
+          "seed": 201062,
+          "deliveries": 10,
+          "macro_steps": 86
+        },
+        {
+          "seed": 201063,
+          "deliveries": 13,
+          "macro_steps": 111
+        }
+      ],
+      "policy_loss": 0.0003705429844558239,
+      "value_loss": 1.0083362658818562,
+      "entropy": 0.2805578062931697
+    },
+    {
+      "update": 9,
+      "rollouts": [
+        {
+          "seed": 201064,
+          "deliveries": 15,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201065,
+          "deliveries": 12,
+          "macro_steps": 102
+        },
+        {
+          "seed": 201066,
+          "deliveries": 14,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201067,
+          "deliveries": 16,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201068,
+          "deliveries": 10,
+          "macro_steps": 83
+        },
+        {
+          "seed": 201069,
+          "deliveries": 13,
+          "macro_steps": 103
+        },
+        {
+          "seed": 201070,
+          "deliveries": 15,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201071,
+          "deliveries": 15,
+          "macro_steps": 129
+        }
+      ],
+      "policy_loss": 0.007204595603980124,
+      "value_loss": 0.6300659142434597,
+      "entropy": 0.2673338642343879
+    },
+    {
+      "update": 10,
+      "rollouts": [
+        {
+          "seed": 201072,
+          "deliveries": 17,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201073,
+          "deliveries": 8,
+          "macro_steps": 73
+        },
+        {
+          "seed": 201074,
+          "deliveries": 15,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201075,
+          "deliveries": 8,
+          "macro_steps": 67
+        },
+        {
+          "seed": 201076,
+          "deliveries": 16,
+          "macro_steps": 130
+        },
+        {
+          "seed": 201077,
+          "deliveries": 2,
+          "macro_steps": 34
+        },
+        {
+          "seed": 201078,
+          "deliveries": 12,
+          "macro_steps": 104
+        },
+        {
+          "seed": 201079,
+          "deliveries": 12,
+          "macro_steps": 98
+        }
+      ],
+      "policy_loss": -0.0015250451397150755,
+      "value_loss": 0.6522627621889114,
+      "entropy": 0.2524205334484577,
+      "validation_mean": 15.4375
+    },
+    {
+      "update": 11,
+      "rollouts": [
+        {
+          "seed": 201080,
+          "deliveries": 16,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201081,
+          "deliveries": 8,
+          "macro_steps": 74
+        },
+        {
+          "seed": 201082,
+          "deliveries": 16,
+          "macro_steps": 128
+        },
+        {
+          "seed": 201083,
+          "deliveries": 17,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201084,
+          "deliveries": 16,
+          "macro_steps": 131
+        },
+        {
+          "seed": 201085,
+          "deliveries": 15,
+          "macro_steps": 117
+        },
+        {
+          "seed": 201086,
+          "deliveries": 4,
+          "macro_steps": 55
+        },
+        {
+          "seed": 201087,
+          "deliveries": 16,
+          "macro_steps": 137
+        }
+      ],
+      "policy_loss": 0.004053819662658498,
+      "value_loss": 0.46880091167986393,
+      "entropy": 0.26398771721869707
+    },
+    {
+      "update": 12,
+      "rollouts": [
+        {
+          "seed": 201088,
+          "deliveries": 16,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201089,
+          "deliveries": 14,
+          "macro_steps": 119
+        },
+        {
+          "seed": 201090,
+          "deliveries": 15,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201091,
+          "deliveries": 16,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201092,
+          "deliveries": 14,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201093,
+          "deliveries": 14,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201094,
+          "deliveries": 2,
+          "macro_steps": 34
+        },
+        {
+          "seed": 201095,
+          "deliveries": 8,
+          "macro_steps": 67
+        }
+      ],
+      "policy_loss": -0.0008244941709563136,
+      "value_loss": 0.4398689232766628,
+      "entropy": 0.3165116049349308
+    },
+    {
+      "update": 13,
+      "rollouts": [
+        {
+          "seed": 201096,
+          "deliveries": 16,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201097,
+          "deliveries": 15,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201098,
+          "deliveries": 14,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201099,
+          "deliveries": 16,
+          "macro_steps": 109
+        },
+        {
+          "seed": 201100,
+          "deliveries": 15,
+          "macro_steps": 113
+        },
+        {
+          "seed": 201101,
+          "deliveries": 15,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201102,
+          "deliveries": 10,
+          "macro_steps": 69
+        },
+        {
+          "seed": 201103,
+          "deliveries": 5,
+          "macro_steps": 59
+        }
+      ],
+      "policy_loss": 0.0042292141006328166,
+      "value_loss": 0.6387843526899815,
+      "entropy": 0.3907466493546963
+    },
+    {
+      "update": 14,
+      "rollouts": [
+        {
+          "seed": 201104,
+          "deliveries": 15,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201105,
+          "deliveries": 8,
+          "macro_steps": 80
+        },
+        {
+          "seed": 201106,
+          "deliveries": 8,
+          "macro_steps": 72
+        },
+        {
+          "seed": 201107,
+          "deliveries": 17,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201108,
+          "deliveries": 15,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201109,
+          "deliveries": 17,
+          "macro_steps": 136
+        },
+        {
+          "seed": 201110,
+          "deliveries": 4,
+          "macro_steps": 47
+        },
+        {
+          "seed": 201111,
+          "deliveries": 15,
+          "macro_steps": 132
+        }
+      ],
+      "policy_loss": -0.0164809470588807,
+      "value_loss": 0.40955450013279915,
+      "entropy": 0.26564262341707945
+    },
+    {
+      "update": 15,
+      "rollouts": [
+        {
+          "seed": 201112,
+          "deliveries": 15,
+          "macro_steps": 133
+        },
+        {
+          "seed": 201113,
+          "deliveries": 15,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201114,
+          "deliveries": 15,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201115,
+          "deliveries": 14,
+          "macro_steps": 107
+        },
+        {
+          "seed": 201116,
+          "deliveries": 3,
+          "macro_steps": 43
+        },
+        {
+          "seed": 201117,
+          "deliveries": 13,
+          "macro_steps": 104
+        },
+        {
+          "seed": 201118,
+          "deliveries": 16,
+          "macro_steps": 131
+        },
+        {
+          "seed": 201119,
+          "deliveries": 15,
+          "macro_steps": 122
+        }
+      ],
+      "policy_loss": -0.009833796066232026,
+      "value_loss": 0.5234865639358759,
+      "entropy": 0.4202324394136667,
+      "validation_mean": 9.5
+    },
+    {
+      "update": 16,
+      "rollouts": [
+        {
+          "seed": 201120,
+          "deliveries": 16,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201121,
+          "deliveries": 17,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201122,
+          "deliveries": 17,
+          "macro_steps": 126
+        },
+        {
+          "seed": 201123,
+          "deliveries": 17,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201124,
+          "deliveries": 7,
+          "macro_steps": 63
+        },
+        {
+          "seed": 201125,
+          "deliveries": 16,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201126,
+          "deliveries": 12,
+          "macro_steps": 106
+        },
+        {
+          "seed": 201127,
+          "deliveries": 12,
+          "macro_steps": 101
+        }
+      ],
+      "policy_loss": -0.00035258711432106793,
+      "value_loss": 0.43686018884181976,
+      "entropy": 0.40343186259269714
+    },
+    {
+      "update": 17,
+      "rollouts": [
+        {
+          "seed": 201128,
+          "deliveries": 3,
+          "macro_steps": 44
+        },
+        {
+          "seed": 201129,
+          "deliveries": 8,
+          "macro_steps": 74
+        },
+        {
+          "seed": 201130,
+          "deliveries": 1,
+          "macro_steps": 34
+        },
+        {
+          "seed": 201131,
+          "deliveries": 15,
+          "macro_steps": 102
+        },
+        {
+          "seed": 201132,
+          "deliveries": 8,
+          "macro_steps": 73
+        },
+        {
+          "seed": 201133,
+          "deliveries": 2,
+          "macro_steps": 32
+        },
+        {
+          "seed": 201134,
+          "deliveries": 17,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201135,
+          "deliveries": 18,
+          "macro_steps": 129
+        }
+      ],
+      "policy_loss": 0.0013710577817012866,
+      "value_loss": 0.9908684194087982,
+      "entropy": 0.3859551474452019
+    },
+    {
+      "update": 18,
+      "rollouts": [
+        {
+          "seed": 201136,
+          "deliveries": 16,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201137,
+          "deliveries": 16,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201138,
+          "deliveries": 5,
+          "macro_steps": 60
+        },
+        {
+          "seed": 201139,
+          "deliveries": 18,
+          "macro_steps": 128
+        },
+        {
+          "seed": 201140,
+          "deliveries": 14,
+          "macro_steps": 110
+        },
+        {
+          "seed": 201141,
+          "deliveries": 17,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201142,
+          "deliveries": 16,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201143,
+          "deliveries": 17,
+          "macro_steps": 115
+        }
+      ],
+      "policy_loss": -0.0006085085915401578,
+      "value_loss": 0.436200188472867,
+      "entropy": 0.43228576704859734
+    },
+    {
+      "update": 19,
+      "rollouts": [
+        {
+          "seed": 201144,
+          "deliveries": 14,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201145,
+          "deliveries": 16,
+          "macro_steps": 128
+        },
+        {
+          "seed": 201146,
+          "deliveries": 16,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201147,
+          "deliveries": 19,
+          "macro_steps": 133
+        },
+        {
+          "seed": 201148,
+          "deliveries": 17,
+          "macro_steps": 118
+        },
+        {
+          "seed": 201149,
+          "deliveries": 8,
+          "macro_steps": 71
+        },
+        {
+          "seed": 201150,
+          "deliveries": 15,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201151,
+          "deliveries": 1,
+          "macro_steps": 37
+        }
+      ],
+      "policy_loss": -0.013046154053881764,
+      "value_loss": 0.5265870597213507,
+      "entropy": 0.3813510201871395
+    },
+    {
+      "update": 20,
+      "rollouts": [
+        {
+          "seed": 201152,
+          "deliveries": 17,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201153,
+          "deliveries": 17,
+          "macro_steps": 126
+        },
+        {
+          "seed": 201154,
+          "deliveries": 16,
+          "macro_steps": 119
+        },
+        {
+          "seed": 201155,
+          "deliveries": 16,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201156,
+          "deliveries": 14,
+          "macro_steps": 112
+        },
+        {
+          "seed": 201157,
+          "deliveries": 15,
+          "macro_steps": 126
+        },
+        {
+          "seed": 201158,
+          "deliveries": 17,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201159,
+          "deliveries": 15,
+          "macro_steps": 125
+        }
+      ],
+      "policy_loss": -0.0011735243606381118,
+      "value_loss": 0.37598742358386517,
+      "entropy": 0.40970898047089577,
+      "validation_mean": 17.0
+    },
+    {
+      "update": 21,
+      "rollouts": [
+        {
+          "seed": 201160,
+          "deliveries": 16,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201161,
+          "deliveries": 17,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201162,
+          "deliveries": 1,
+          "macro_steps": 38
+        },
+        {
+          "seed": 201163,
+          "deliveries": 13,
+          "macro_steps": 102
+        },
+        {
+          "seed": 201164,
+          "deliveries": 17,
+          "macro_steps": 132
+        },
+        {
+          "seed": 201165,
+          "deliveries": 15,
+          "macro_steps": 117
+        },
+        {
+          "seed": 201166,
+          "deliveries": 10,
+          "macro_steps": 91
+        },
+        {
+          "seed": 201167,
+          "deliveries": 16,
+          "macro_steps": 125
+        }
+      ],
+      "policy_loss": -0.01888023008359596,
+      "value_loss": 0.5685604624450207,
+      "entropy": 0.40877040289342403
+    },
+    {
+      "update": 22,
+      "rollouts": [
+        {
+          "seed": 201168,
+          "deliveries": 15,
+          "macro_steps": 110
+        },
+        {
+          "seed": 201169,
+          "deliveries": 5,
+          "macro_steps": 63
+        },
+        {
+          "seed": 201170,
+          "deliveries": 16,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201171,
+          "deliveries": 17,
+          "macro_steps": 110
+        },
+        {
+          "seed": 201172,
+          "deliveries": 14,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201173,
+          "deliveries": 8,
+          "macro_steps": 65
+        },
+        {
+          "seed": 201174,
+          "deliveries": 6,
+          "macro_steps": 56
+        },
+        {
+          "seed": 201175,
+          "deliveries": 3,
+          "macro_steps": 44
+        }
+      ],
+      "policy_loss": -0.0036364626915504536,
+      "value_loss": 0.7875205377737681,
+      "entropy": 0.44702862451473874
+    },
+    {
+      "update": 23,
+      "rollouts": [
+        {
+          "seed": 201176,
+          "deliveries": 16,
+          "macro_steps": 140
+        },
+        {
+          "seed": 201177,
+          "deliveries": 17,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201178,
+          "deliveries": 11,
+          "macro_steps": 107
+        },
+        {
+          "seed": 201179,
+          "deliveries": 16,
+          "macro_steps": 117
+        },
+        {
+          "seed": 201180,
+          "deliveries": 12,
+          "macro_steps": 85
+        },
+        {
+          "seed": 201181,
+          "deliveries": 17,
+          "macro_steps": 134
+        },
+        {
+          "seed": 201182,
+          "deliveries": 11,
+          "macro_steps": 82
+        },
+        {
+          "seed": 201183,
+          "deliveries": 16,
+          "macro_steps": 122
+        }
+      ],
+      "policy_loss": 0.006838006898760796,
+      "value_loss": 0.3428094359114766,
+      "entropy": 0.3803165629506111
+    },
+    {
+      "update": 24,
+      "rollouts": [
+        {
+          "seed": 201184,
+          "deliveries": 15,
+          "macro_steps": 117
+        },
+        {
+          "seed": 201185,
+          "deliveries": 15,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201186,
+          "deliveries": 15,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201187,
+          "deliveries": 14,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201188,
+          "deliveries": 14,
+          "macro_steps": 117
+        },
+        {
+          "seed": 201189,
+          "deliveries": 17,
+          "macro_steps": 135
+        },
+        {
+          "seed": 201190,
+          "deliveries": 15,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201191,
+          "deliveries": 8,
+          "macro_steps": 73
+        }
+      ],
+      "policy_loss": -0.004494081484153867,
+      "value_loss": 0.3233437053859234,
+      "entropy": 0.34503159299492836
+    },
+    {
+      "update": 25,
+      "rollouts": [
+        {
+          "seed": 201192,
+          "deliveries": 16,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201193,
+          "deliveries": 16,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201194,
+          "deliveries": 17,
+          "macro_steps": 136
+        },
+        {
+          "seed": 201195,
+          "deliveries": 14,
+          "macro_steps": 107
+        },
+        {
+          "seed": 201196,
+          "deliveries": 16,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201197,
+          "deliveries": 10,
+          "macro_steps": 88
+        },
+        {
+          "seed": 201198,
+          "deliveries": 17,
+          "macro_steps": 134
+        },
+        {
+          "seed": 201199,
+          "deliveries": 15,
+          "macro_steps": 130
+        }
+      ],
+      "policy_loss": -0.0012141144834458828,
+      "value_loss": 0.24602168053388596,
+      "entropy": 0.3396575916558504,
+      "validation_mean": 16.9375
+    },
+    {
+      "update": 26,
+      "rollouts": [
+        {
+          "seed": 201200,
+          "deliveries": 15,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201201,
+          "deliveries": 14,
+          "macro_steps": 119
+        },
+        {
+          "seed": 201202,
+          "deliveries": 13,
+          "macro_steps": 113
+        },
+        {
+          "seed": 201203,
+          "deliveries": 17,
+          "macro_steps": 119
+        },
+        {
+          "seed": 201204,
+          "deliveries": 16,
+          "macro_steps": 133
+        },
+        {
+          "seed": 201205,
+          "deliveries": 14,
+          "macro_steps": 117
+        },
+        {
+          "seed": 201206,
+          "deliveries": 15,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201207,
+          "deliveries": 14,
+          "macro_steps": 111
+        }
+      ],
+      "policy_loss": -0.004640350991394371,
+      "value_loss": 0.21381875034421682,
+      "entropy": 0.31397033482789993
+    },
+    {
+      "update": 27,
+      "rollouts": [
+        {
+          "seed": 201208,
+          "deliveries": 15,
+          "macro_steps": 132
+        },
+        {
+          "seed": 201209,
+          "deliveries": 15,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201210,
+          "deliveries": 18,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201211,
+          "deliveries": 15,
+          "macro_steps": 115
+        },
+        {
+          "seed": 201212,
+          "deliveries": 16,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201213,
+          "deliveries": 15,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201214,
+          "deliveries": 14,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201215,
+          "deliveries": 6,
+          "macro_steps": 60
+        }
+      ],
+      "policy_loss": -0.008033250225707889,
+      "value_loss": 0.2598339691758156,
+      "entropy": 0.3618338964879513
+    },
+    {
+      "update": 28,
+      "rollouts": [
+        {
+          "seed": 201216,
+          "deliveries": 15,
+          "macro_steps": 112
+        },
+        {
+          "seed": 201217,
+          "deliveries": 18,
+          "macro_steps": 131
+        },
+        {
+          "seed": 201218,
+          "deliveries": 16,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201219,
+          "deliveries": 15,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201220,
+          "deliveries": 15,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201221,
+          "deliveries": 16,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201222,
+          "deliveries": 13,
+          "macro_steps": 117
+        },
+        {
+          "seed": 201223,
+          "deliveries": 15,
+          "macro_steps": 118
+        }
+      ],
+      "policy_loss": -0.00367116677807644,
+      "value_loss": 0.2164513198658824,
+      "entropy": 0.3591936230659485
+    },
+    {
+      "update": 29,
+      "rollouts": [
+        {
+          "seed": 201224,
+          "deliveries": 17,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201225,
+          "deliveries": 11,
+          "macro_steps": 101
+        },
+        {
+          "seed": 201226,
+          "deliveries": 16,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201227,
+          "deliveries": 16,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201228,
+          "deliveries": 16,
+          "macro_steps": 135
+        },
+        {
+          "seed": 201229,
+          "deliveries": 15,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201230,
+          "deliveries": 14,
+          "macro_steps": 105
+        },
+        {
+          "seed": 201231,
+          "deliveries": 15,
+          "macro_steps": 117
+        }
+      ],
+      "policy_loss": -0.008477824158035219,
+      "value_loss": 0.23560827877372503,
+      "entropy": 0.3835598398000002
+    },
+    {
+      "update": 30,
+      "rollouts": [
+        {
+          "seed": 201232,
+          "deliveries": 9,
+          "macro_steps": 94
+        },
+        {
+          "seed": 201233,
+          "deliveries": 15,
+          "macro_steps": 114
+        },
+        {
+          "seed": 201234,
+          "deliveries": 12,
+          "macro_steps": 105
+        },
+        {
+          "seed": 201235,
+          "deliveries": 14,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201236,
+          "deliveries": 16,
+          "macro_steps": 132
+        },
+        {
+          "seed": 201237,
+          "deliveries": 13,
+          "macro_steps": 110
+        },
+        {
+          "seed": 201238,
+          "deliveries": 6,
+          "macro_steps": 57
+        },
+        {
+          "seed": 201239,
+          "deliveries": 16,
+          "macro_steps": 124
+        }
+      ],
+      "policy_loss": 0.001795208634575829,
+      "value_loss": 0.4022342739626765,
+      "entropy": 0.3352372832596302,
+      "validation_mean": 17.875
+    },
+    {
+      "update": 31,
+      "rollouts": [
+        {
+          "seed": 201240,
+          "deliveries": 15,
+          "macro_steps": 112
+        },
+        {
+          "seed": 201241,
+          "deliveries": 17,
+          "macro_steps": 130
+        },
+        {
+          "seed": 201242,
+          "deliveries": 15,
+          "macro_steps": 112
+        },
+        {
+          "seed": 201243,
+          "deliveries": 17,
+          "macro_steps": 135
+        },
+        {
+          "seed": 201244,
+          "deliveries": 17,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201245,
+          "deliveries": 15,
+          "macro_steps": 110
+        },
+        {
+          "seed": 201246,
+          "deliveries": 8,
+          "macro_steps": 64
+        },
+        {
+          "seed": 201247,
+          "deliveries": 8,
+          "macro_steps": 71
+        }
+      ],
+      "policy_loss": -0.002026603076956235,
+      "value_loss": 0.3254321562126279,
+      "entropy": 0.3644728306680918
+    },
+    {
+      "update": 32,
+      "rollouts": [
+        {
+          "seed": 201248,
+          "deliveries": 16,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201249,
+          "deliveries": 13,
+          "macro_steps": 113
+        },
+        {
+          "seed": 201250,
+          "deliveries": 11,
+          "macro_steps": 100
+        },
+        {
+          "seed": 201251,
+          "deliveries": 17,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201252,
+          "deliveries": 12,
+          "macro_steps": 102
+        },
+        {
+          "seed": 201253,
+          "deliveries": 15,
+          "macro_steps": 117
+        },
+        {
+          "seed": 201254,
+          "deliveries": 17,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201255,
+          "deliveries": 17,
+          "macro_steps": 133
+        }
+      ],
+      "policy_loss": -0.004041563894134015,
+      "value_loss": 0.2689469903707504,
+      "entropy": 0.33641778118908405
+    },
+    {
+      "update": 33,
+      "rollouts": [
+        {
+          "seed": 201256,
+          "deliveries": 18,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201257,
+          "deliveries": 15,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201258,
+          "deliveries": 16,
+          "macro_steps": 119
+        },
+        {
+          "seed": 201259,
+          "deliveries": 14,
+          "macro_steps": 106
+        },
+        {
+          "seed": 201260,
+          "deliveries": 17,
+          "macro_steps": 132
+        },
+        {
+          "seed": 201261,
+          "deliveries": 15,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201262,
+          "deliveries": 17,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201263,
+          "deliveries": 14,
+          "macro_steps": 109
+        }
+      ],
+      "policy_loss": -0.0020216566626913846,
+      "value_loss": 0.22801674623042345,
+      "entropy": 0.37113788165152073
+    },
+    {
+      "update": 34,
+      "rollouts": [
+        {
+          "seed": 201264,
+          "deliveries": 16,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201265,
+          "deliveries": 17,
+          "macro_steps": 114
+        },
+        {
+          "seed": 201266,
+          "deliveries": 10,
+          "macro_steps": 80
+        },
+        {
+          "seed": 201267,
+          "deliveries": 18,
+          "macro_steps": 128
+        },
+        {
+          "seed": 201268,
+          "deliveries": 17,
+          "macro_steps": 133
+        },
+        {
+          "seed": 201269,
+          "deliveries": 15,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201270,
+          "deliveries": 16,
+          "macro_steps": 118
+        },
+        {
+          "seed": 201271,
+          "deliveries": 17,
+          "macro_steps": 118
+        }
+      ],
+      "policy_loss": -0.004686710657551885,
+      "value_loss": 0.21711996663361788,
+      "entropy": 0.35249962843954563
+    },
+    {
+      "update": 35,
+      "rollouts": [
+        {
+          "seed": 201272,
+          "deliveries": 14,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201273,
+          "deliveries": 17,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201274,
+          "deliveries": 17,
+          "macro_steps": 113
+        },
+        {
+          "seed": 201275,
+          "deliveries": 17,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201276,
+          "deliveries": 8,
+          "macro_steps": 69
+        },
+        {
+          "seed": 201277,
+          "deliveries": 17,
+          "macro_steps": 133
+        },
+        {
+          "seed": 201278,
+          "deliveries": 17,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201279,
+          "deliveries": 16,
+          "macro_steps": 116
+        }
+      ],
+      "policy_loss": -0.002027979353442788,
+      "value_loss": 0.30208955332636833,
+      "entropy": 0.34091489762067795,
+      "validation_mean": 18.6875
+    },
+    {
+      "update": 36,
+      "rollouts": [
+        {
+          "seed": 201280,
+          "deliveries": 19,
+          "macro_steps": 133
+        },
+        {
+          "seed": 201281,
+          "deliveries": 4,
+          "macro_steps": 45
+        },
+        {
+          "seed": 201282,
+          "deliveries": 19,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201283,
+          "deliveries": 19,
+          "macro_steps": 131
+        },
+        {
+          "seed": 201284,
+          "deliveries": 16,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201285,
+          "deliveries": 16,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201286,
+          "deliveries": 14,
+          "macro_steps": 105
+        },
+        {
+          "seed": 201287,
+          "deliveries": 16,
+          "macro_steps": 109
+        }
+      ],
+      "policy_loss": -0.017506784381112084,
+      "value_loss": 0.36982858926057816,
+      "entropy": 0.3892014380544424
+    },
+    {
+      "update": 37,
+      "rollouts": [
+        {
+          "seed": 201288,
+          "deliveries": 17,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201289,
+          "deliveries": 7,
+          "macro_steps": 75
+        },
+        {
+          "seed": 201290,
+          "deliveries": 19,
+          "macro_steps": 119
+        },
+        {
+          "seed": 201291,
+          "deliveries": 19,
+          "macro_steps": 126
+        },
+        {
+          "seed": 201292,
+          "deliveries": 14,
+          "macro_steps": 114
+        },
+        {
+          "seed": 201293,
+          "deliveries": 20,
+          "macro_steps": 137
+        },
+        {
+          "seed": 201294,
+          "deliveries": 18,
+          "macro_steps": 136
+        },
+        {
+          "seed": 201295,
+          "deliveries": 5,
+          "macro_steps": 51
+        }
+      ],
+      "policy_loss": -0.00676873279735446,
+      "value_loss": 0.6730647701770067,
+      "entropy": 0.3874563127756119
+    },
+    {
+      "update": 38,
+      "rollouts": [
+        {
+          "seed": 201296,
+          "deliveries": 14,
+          "macro_steps": 104
+        },
+        {
+          "seed": 201297,
+          "deliveries": 19,
+          "macro_steps": 126
+        },
+        {
+          "seed": 201298,
+          "deliveries": 16,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201299,
+          "deliveries": 16,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201300,
+          "deliveries": 16,
+          "macro_steps": 111
+        },
+        {
+          "seed": 201301,
+          "deliveries": 3,
+          "macro_steps": 42
+        },
+        {
+          "seed": 201302,
+          "deliveries": 19,
+          "macro_steps": 142
+        },
+        {
+          "seed": 201303,
+          "deliveries": 5,
+          "macro_steps": 67
+        }
+      ],
+      "policy_loss": 0.010039136104751378,
+      "value_loss": 0.7024155166000128,
+      "entropy": 0.34925651736557484
+    },
+    {
+      "update": 39,
+      "rollouts": [
+        {
+          "seed": 201304,
+          "deliveries": 16,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201305,
+          "deliveries": 19,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201306,
+          "deliveries": 16,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201307,
+          "deliveries": 17,
+          "macro_steps": 115
+        },
+        {
+          "seed": 201308,
+          "deliveries": 15,
+          "macro_steps": 113
+        },
+        {
+          "seed": 201309,
+          "deliveries": 18,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201310,
+          "deliveries": 15,
+          "macro_steps": 118
+        },
+        {
+          "seed": 201311,
+          "deliveries": 16,
+          "macro_steps": 120
+        }
+      ],
+      "policy_loss": -0.0021659869235008955,
+      "value_loss": 0.3506277874112129,
+      "entropy": 0.36665771156549454
+    },
+    {
+      "update": 40,
+      "rollouts": [
+        {
+          "seed": 201312,
+          "deliveries": 15,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201313,
+          "deliveries": 17,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201314,
+          "deliveries": 8,
+          "macro_steps": 82
+        },
+        {
+          "seed": 201315,
+          "deliveries": 17,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201316,
+          "deliveries": 18,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201317,
+          "deliveries": 9,
+          "macro_steps": 86
+        },
+        {
+          "seed": 201318,
+          "deliveries": 1,
+          "macro_steps": 36
+        },
+        {
+          "seed": 201319,
+          "deliveries": 20,
+          "macro_steps": 137
+        }
+      ],
+      "policy_loss": 0.0045643249759450555,
+      "value_loss": 0.7023339718580246,
+      "entropy": 0.35484807938337326,
+      "validation_mean": 16.0625
+    },
+    {
+      "update": 41,
+      "rollouts": [
+        {
+          "seed": 201320,
+          "deliveries": 11,
+          "macro_steps": 84
+        },
+        {
+          "seed": 201321,
+          "deliveries": 18,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201322,
+          "deliveries": 8,
+          "macro_steps": 65
+        },
+        {
+          "seed": 201323,
+          "deliveries": 19,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201324,
+          "deliveries": 17,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201325,
+          "deliveries": 6,
+          "macro_steps": 58
+        },
+        {
+          "seed": 201326,
+          "deliveries": 16,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201327,
+          "deliveries": 18,
+          "macro_steps": 121
+        }
+      ],
+      "policy_loss": -0.01559536880813539,
+      "value_loss": 0.4904389549046755,
+      "entropy": 0.3670682404190302
+    },
+    {
+      "update": 42,
+      "rollouts": [
+        {
+          "seed": 201328,
+          "deliveries": 19,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201329,
+          "deliveries": 18,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201330,
+          "deliveries": 5,
+          "macro_steps": 54
+        },
+        {
+          "seed": 201331,
+          "deliveries": 17,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201332,
+          "deliveries": 17,
+          "macro_steps": 130
+        },
+        {
+          "seed": 201333,
+          "deliveries": 20,
+          "macro_steps": 143
+        },
+        {
+          "seed": 201334,
+          "deliveries": 10,
+          "macro_steps": 75
+        },
+        {
+          "seed": 201335,
+          "deliveries": 10,
+          "macro_steps": 87
+        }
+      ],
+      "policy_loss": 0.0107966331706848,
+      "value_loss": 0.5541843753308058,
+      "entropy": 0.3415991757065058
+    },
+    {
+      "update": 43,
+      "rollouts": [
+        {
+          "seed": 201336,
+          "deliveries": 17,
+          "macro_steps": 117
+        },
+        {
+          "seed": 201337,
+          "deliveries": 17,
+          "macro_steps": 110
+        },
+        {
+          "seed": 201338,
+          "deliveries": 15,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201339,
+          "deliveries": 16,
+          "macro_steps": 127
+        },
+        {
+          "seed": 201340,
+          "deliveries": 16,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201341,
+          "deliveries": 19,
+          "macro_steps": 119
+        },
+        {
+          "seed": 201342,
+          "deliveries": 16,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201343,
+          "deliveries": 17,
+          "macro_steps": 119
+        }
+      ],
+      "policy_loss": -0.0010161882382817566,
+      "value_loss": 0.3235977981239557,
+      "entropy": 0.3383056465536356
+    },
+    {
+      "update": 44,
+      "rollouts": [
+        {
+          "seed": 201344,
+          "deliveries": 17,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201345,
+          "deliveries": 18,
+          "macro_steps": 118
+        },
+        {
+          "seed": 201346,
+          "deliveries": 17,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201347,
+          "deliveries": 18,
+          "macro_steps": 126
+        },
+        {
+          "seed": 201348,
+          "deliveries": 17,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201349,
+          "deliveries": 17,
+          "macro_steps": 124
+        },
+        {
+          "seed": 201350,
+          "deliveries": 11,
+          "macro_steps": 95
+        },
+        {
+          "seed": 201351,
+          "deliveries": 17,
+          "macro_steps": 122
+        }
+      ],
+      "policy_loss": -0.007070430438034236,
+      "value_loss": 0.28828753251582384,
+      "entropy": 0.3603684976696968
+    },
+    {
+      "update": 45,
+      "rollouts": [
+        {
+          "seed": 201352,
+          "deliveries": 15,
+          "macro_steps": 114
+        },
+        {
+          "seed": 201353,
+          "deliveries": 16,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201354,
+          "deliveries": 16,
+          "macro_steps": 112
+        },
+        {
+          "seed": 201355,
+          "deliveries": 16,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201356,
+          "deliveries": 17,
+          "macro_steps": 137
+        },
+        {
+          "seed": 201357,
+          "deliveries": 16,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201358,
+          "deliveries": 17,
+          "macro_steps": 133
+        },
+        {
+          "seed": 201359,
+          "deliveries": 16,
+          "macro_steps": 122
+        }
+      ],
+      "policy_loss": -0.0016579000948695466,
+      "value_loss": 0.2536515900865197,
+      "entropy": 0.32410508021712303,
+      "validation_mean": 18.125
+    },
+    {
+      "update": 46,
+      "rollouts": [
+        {
+          "seed": 201360,
+          "deliveries": 8,
+          "macro_steps": 70
+        },
+        {
+          "seed": 201361,
+          "deliveries": 19,
+          "macro_steps": 134
+        },
+        {
+          "seed": 201362,
+          "deliveries": 15,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201363,
+          "deliveries": 16,
+          "macro_steps": 134
+        },
+        {
+          "seed": 201364,
+          "deliveries": 8,
+          "macro_steps": 80
+        },
+        {
+          "seed": 201365,
+          "deliveries": 12,
+          "macro_steps": 94
+        },
+        {
+          "seed": 201366,
+          "deliveries": 17,
+          "macro_steps": 123
+        },
+        {
+          "seed": 201367,
+          "deliveries": 19,
+          "macro_steps": 134
+        }
+      ],
+      "policy_loss": 0.0011120806157123297,
+      "value_loss": 0.35044525377452374,
+      "entropy": 0.30957829765975475
+    },
+    {
+      "update": 47,
+      "rollouts": [
+        {
+          "seed": 201368,
+          "deliveries": 19,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201369,
+          "deliveries": 17,
+          "macro_steps": 126
+        },
+        {
+          "seed": 201370,
+          "deliveries": 10,
+          "macro_steps": 83
+        },
+        {
+          "seed": 201371,
+          "deliveries": 10,
+          "macro_steps": 80
+        },
+        {
+          "seed": 201372,
+          "deliveries": 20,
+          "macro_steps": 137
+        },
+        {
+          "seed": 201373,
+          "deliveries": 15,
+          "macro_steps": 117
+        },
+        {
+          "seed": 201374,
+          "deliveries": 19,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201375,
+          "deliveries": 18,
+          "macro_steps": 123
+        }
+      ],
+      "policy_loss": -0.0002673446433618665,
+      "value_loss": 0.3384361732751131,
+      "entropy": 0.36288098990917206
+    },
+    {
+      "update": 48,
+      "rollouts": [
+        {
+          "seed": 201376,
+          "deliveries": 18,
+          "macro_steps": 126
+        },
+        {
+          "seed": 201377,
+          "deliveries": 18,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201378,
+          "deliveries": 14,
+          "macro_steps": 95
+        },
+        {
+          "seed": 201379,
+          "deliveries": 17,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201380,
+          "deliveries": 16,
+          "macro_steps": 108
+        },
+        {
+          "seed": 201381,
+          "deliveries": 17,
+          "macro_steps": 103
+        },
+        {
+          "seed": 201382,
+          "deliveries": 17,
+          "macro_steps": 116
+        },
+        {
+          "seed": 201383,
+          "deliveries": 17,
+          "macro_steps": 134
+        }
+      ],
+      "policy_loss": 0.002672333735972643,
+      "value_loss": 0.25593684520572424,
+      "entropy": 0.36964999325573444
+    },
+    {
+      "update": 49,
+      "rollouts": [
+        {
+          "seed": 201384,
+          "deliveries": 18,
+          "macro_steps": 121
+        },
+        {
+          "seed": 201385,
+          "deliveries": 19,
+          "macro_steps": 125
+        },
+        {
+          "seed": 201386,
+          "deliveries": 17,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201387,
+          "deliveries": 15,
+          "macro_steps": 113
+        },
+        {
+          "seed": 201388,
+          "deliveries": 11,
+          "macro_steps": 89
+        },
+        {
+          "seed": 201389,
+          "deliveries": 17,
+          "macro_steps": 130
+        },
+        {
+          "seed": 201390,
+          "deliveries": 20,
+          "macro_steps": 129
+        },
+        {
+          "seed": 201391,
+          "deliveries": 20,
+          "macro_steps": 132
+        }
+      ],
+      "policy_loss": -0.004010516218841076,
+      "value_loss": 0.4033332038670778,
+      "entropy": 0.3766338378190994
+    },
+    {
+      "update": 50,
+      "rollouts": [
+        {
+          "seed": 201392,
+          "deliveries": 18,
+          "macro_steps": 149
+        },
+        {
+          "seed": 201393,
+          "deliveries": 17,
+          "macro_steps": 120
+        },
+        {
+          "seed": 201394,
+          "deliveries": 1,
+          "macro_steps": 33
+        },
+        {
+          "seed": 201395,
+          "deliveries": 9,
+          "macro_steps": 69
+        },
+        {
+          "seed": 201396,
+          "deliveries": 17,
+          "macro_steps": 115
+        },
+        {
+          "seed": 201397,
+          "deliveries": 8,
+          "macro_steps": 65
+        },
+        {
+          "seed": 201398,
+          "deliveries": 17,
+          "macro_steps": 122
+        },
+        {
+          "seed": 201399,
+          "deliveries": 15,
+          "macro_steps": 108
+        }
+      ],
+      "policy_loss": 0.015293344622477889,
+      "value_loss": 0.8745080251246691,
+      "entropy": 0.37026756070554256,
+      "validation_mean": 18.3125
+    }
+  ],
+  "status": "complete",
+  "pre_test": {
+    "rows": [
+      {
+        "seed": 200300,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200301,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200302,
+        "deliveries": 14,
+        "macro_steps": 157
+      },
+      {
+        "seed": 200303,
+        "deliveries": 14,
+        "macro_steps": 156
+      },
+      {
+        "seed": 200304,
+        "deliveries": 14,
+        "macro_steps": 153
+      },
+      {
+        "seed": 200305,
+        "deliveries": 14,
+        "macro_steps": 155
+      },
+      {
+        "seed": 200306,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200307,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200308,
+        "deliveries": 14,
+        "macro_steps": 152
+      },
+      {
+        "seed": 200309,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200310,
+        "deliveries": 14,
+        "macro_steps": 151
+      },
+      {
+        "seed": 200311,
+        "deliveries": 14,
+        "macro_steps": 156
+      },
+      {
+        "seed": 200312,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200313,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200314,
+        "deliveries": 14,
+        "macro_steps": 153
+      },
+      {
+        "seed": 200315,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200316,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200317,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200318,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200319,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200320,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200321,
+        "deliveries": 14,
+        "macro_steps": 154
+      },
+      {
+        "seed": 200322,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200323,
+        "deliveries": 14,
+        "macro_steps": 152
+      },
+      {
+        "seed": 200324,
+        "deliveries": 14,
+        "macro_steps": 156
+      },
+      {
+        "seed": 200325,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200326,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200327,
+        "deliveries": 14,
+        "macro_steps": 155
+      },
+      {
+        "seed": 200328,
+        "deliveries": 14,
+        "macro_steps": 150
+      },
+      {
+        "seed": 200329,
+        "deliveries": 14,
+        "macro_steps": 158
+      },
+      {
+        "seed": 200330,
+        "deliveries": 13,
+        "macro_steps": 142
+      },
+      {
+        "seed": 200331,
+        "deliveries": 14,
+        "macro_steps": 155
+      }
+    ],
+    "delivery_mean": 13.96875,
+    "delivery_std": 0.17399263633843817,
+    "delivery_min": 13,
+    "delivery_max": 14
+  },
+  "post_test": {
+    "rows": [
+      {
+        "seed": 200300,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200301,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200302,
+        "deliveries": 20,
+        "macro_steps": 144
+      },
+      {
+        "seed": 200303,
+        "deliveries": 20,
+        "macro_steps": 143
+      },
+      {
+        "seed": 200304,
+        "deliveries": 20,
+        "macro_steps": 143
+      },
+      {
+        "seed": 200305,
+        "deliveries": 20,
+        "macro_steps": 143
+      },
+      {
+        "seed": 200306,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200307,
+        "deliveries": 17,
+        "macro_steps": 110
+      },
+      {
+        "seed": 200308,
+        "deliveries": 20,
+        "macro_steps": 142
+      },
+      {
+        "seed": 200309,
+        "deliveries": 17,
+        "macro_steps": 110
+      },
+      {
+        "seed": 200310,
+        "deliveries": 20,
+        "macro_steps": 142
+      },
+      {
+        "seed": 200311,
+        "deliveries": 17,
+        "macro_steps": 108
+      },
+      {
+        "seed": 200312,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200313,
+        "deliveries": 17,
+        "macro_steps": 110
+      },
+      {
+        "seed": 200314,
+        "deliveries": 20,
+        "macro_steps": 143
+      },
+      {
+        "seed": 200315,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200316,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200317,
+        "deliveries": 17,
+        "macro_steps": 110
+      },
+      {
+        "seed": 200318,
+        "deliveries": 20,
+        "macro_steps": 144
+      },
+      {
+        "seed": 200319,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200320,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200321,
+        "deliveries": 20,
+        "macro_steps": 143
+      },
+      {
+        "seed": 200322,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200323,
+        "deliveries": 20,
+        "macro_steps": 142
+      },
+      {
+        "seed": 200324,
+        "deliveries": 20,
+        "macro_steps": 143
+      },
+      {
+        "seed": 200325,
+        "deliveries": 17,
+        "macro_steps": 110
+      },
+      {
+        "seed": 200326,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200327,
+        "deliveries": 20,
+        "macro_steps": 143
+      },
+      {
+        "seed": 200328,
+        "deliveries": 20,
+        "macro_steps": 142
+      },
+      {
+        "seed": 200329,
+        "deliveries": 17,
+        "macro_steps": 109
+      },
+      {
+        "seed": 200330,
+        "deliveries": 20,
+        "macro_steps": 143
+      },
+      {
+        "seed": 200331,
+        "deliveries": 20,
+        "macro_steps": 143
+      }
+    ],
+    "delivery_mean": 18.40625,
+    "delivery_std": 1.4970674458754356,
+    "delivery_min": 17,
+    "delivery_max": 20
+  },
+  "paired_differences": [
+    3,
+    3,
+    6,
+    6,
+    6,
+    6,
+    3,
+    3,
+    6,
+    3,
+    6,
+    3,
+    3,
+    3,
+    6,
+    3,
+    3,
+    3,
+    6,
+    3,
+    3,
+    6,
+    3,
+    6,
+    6,
+    3,
+    3,
+    6,
+    6,
+    3,
+    7,
+    6
+  ],
+  "mean_gain": 4.4375,
+  "improved_starts": 32,
+  "selected_update": 35,
+  "elapsed_seconds": 601.2189999999973
+}

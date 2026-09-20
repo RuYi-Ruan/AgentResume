@@ -1,0 +1,321 @@
+{
+  "milestone": "M16-V2 Bob controller sensitivity gate",
+  "prediction_effect_ticks": 12,
+  "seeds": [
+    9901,
+    9902,
+    9903,
+    9904,
+    9905,
+    9906,
+    9907,
+    9908,
+    9909,
+    9910,
+    9911,
+    9912,
+    9913,
+    9914,
+    9915,
+    9916
+  ],
+  "conditions": {
+    "oracle": {
+      "mean_deliveries": 6.875,
+      "min_deliveries": 6,
+      "max_deliveries": 7,
+      "mean_eligible_events": 2.3125,
+      "per_seed": [
+        {
+          "condition": "oracle",
+          "seed": 9901,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "oracle",
+          "seed": 9902,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 3,
+          "prediction_updates": 3
+        },
+        {
+          "condition": "oracle",
+          "seed": 9903,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "oracle",
+          "seed": 9904,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "oracle",
+          "seed": 9905,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "oracle",
+          "seed": 9906,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "oracle",
+          "seed": 9907,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "oracle",
+          "seed": 9908,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "oracle",
+          "seed": 9909,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 3,
+          "prediction_updates": 3
+        },
+        {
+          "condition": "oracle",
+          "seed": 9910,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 3,
+          "prediction_updates": 3
+        },
+        {
+          "condition": "oracle",
+          "seed": 9911,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "oracle",
+          "seed": 9912,
+          "deliveries": 6,
+          "reward": 120.0,
+          "eligible_events": 3,
+          "prediction_updates": 3
+        },
+        {
+          "condition": "oracle",
+          "seed": 9913,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "oracle",
+          "seed": 9914,
+          "deliveries": 6,
+          "reward": 120.0,
+          "eligible_events": 3,
+          "prediction_updates": 3
+        },
+        {
+          "condition": "oracle",
+          "seed": 9915,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "oracle",
+          "seed": 9916,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        }
+      ]
+    },
+    "inverted": {
+      "mean_deliveries": 6.875,
+      "min_deliveries": 6,
+      "max_deliveries": 7,
+      "mean_eligible_events": 2.3125,
+      "per_seed": [
+        {
+          "condition": "inverted",
+          "seed": 9901,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "inverted",
+          "seed": 9902,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 3,
+          "prediction_updates": 3
+        },
+        {
+          "condition": "inverted",
+          "seed": 9903,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "inverted",
+          "seed": 9904,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "inverted",
+          "seed": 9905,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "inverted",
+          "seed": 9906,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "inverted",
+          "seed": 9907,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "inverted",
+          "seed": 9908,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "inverted",
+          "seed": 9909,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 3,
+          "prediction_updates": 3
+        },
+        {
+          "condition": "inverted",
+          "seed": 9910,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 3,
+          "prediction_updates": 3
+        },
+        {
+          "condition": "inverted",
+          "seed": 9911,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "inverted",
+          "seed": 9912,
+          "deliveries": 6,
+          "reward": 120.0,
+          "eligible_events": 3,
+          "prediction_updates": 3
+        },
+        {
+          "condition": "inverted",
+          "seed": 9913,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "inverted",
+          "seed": 9914,
+          "deliveries": 6,
+          "reward": 120.0,
+          "eligible_events": 3,
+          "prediction_updates": 3
+        },
+        {
+          "condition": "inverted",
+          "seed": 9915,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        },
+        {
+          "condition": "inverted",
+          "seed": 9916,
+          "deliveries": 7,
+          "reward": 140.0,
+          "eligible_events": 2,
+          "prediction_updates": 2
+        }
+      ]
+    }
+  },
+  "paired_oracle_minus_inverted": {
+    "mean_difference": 0.0,
+    "seeds_oracle_better": 0,
+    "seeds_equal": 16,
+    "differences": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "passed": false,
+  "qwen_calls": 0
+}

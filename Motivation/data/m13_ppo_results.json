@@ -1,0 +1,1331 @@
+{
+  "milestone": "M13 PPO checkpoint training",
+  "selection_rule": "highest mean deliveries on fixed validation seeds; held-out test and Bob metrics unused",
+  "device": "cuda",
+  "seed": 20260910,
+  "horizon": 700,
+  "train_seed_policy": "fresh deterministic start seeds sampled from [10001, 1000000)",
+  "validation_seeds": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016
+  ],
+  "test_seeds": [
+    3001,
+    3002,
+    3003,
+    3004,
+    3005,
+    3006,
+    3007,
+    3008,
+    3009,
+    3010,
+    3011,
+    3012,
+    3013,
+    3014,
+    3015,
+    3016
+  ],
+  "pre_checkpoint": "artifacts\\checkpoints\\m11_bc_l0.pt",
+  "pre_checkpoint_meta": {
+    "source_levels": [
+      "L0"
+    ],
+    "test": {
+      "n": 104,
+      "accuracy": 1.0,
+      "per_intent": {
+        "FETCH": {
+          "support": 25,
+          "accuracy": 1.0
+        },
+        "PLACE": {
+          "support": 25,
+          "accuracy": 1.0
+        },
+        "COOK_START": {
+          "support": 8,
+          "accuracy": 1.0
+        },
+        "GET_DISH": {
+          "support": 8,
+          "accuracy": 1.0
+        },
+        "PICKUP": {
+          "support": 7,
+          "accuracy": 1.0
+        },
+        "DELIVER": {
+          "support": 7,
+          "accuracy": 1.0
+        },
+        "PRE": {
+          "support": 8,
+          "accuracy": 1.0
+        },
+        "HOLD": {
+          "support": 16,
+          "accuracy": 1.0
+        }
+      }
+    }
+  },
+  "pre_validation": {
+    "rows": [
+      {
+        "seed": 2001,
+        "deliveries": 15,
+        "macro_steps": 158
+      },
+      {
+        "seed": 2002,
+        "deliveries": 15,
+        "macro_steps": 159
+      },
+      {
+        "seed": 2003,
+        "deliveries": 15,
+        "macro_steps": 151
+      },
+      {
+        "seed": 2004,
+        "deliveries": 15,
+        "macro_steps": 158
+      },
+      {
+        "seed": 2005,
+        "deliveries": 15,
+        "macro_steps": 152
+      },
+      {
+        "seed": 2006,
+        "deliveries": 15,
+        "macro_steps": 152
+      },
+      {
+        "seed": 2007,
+        "deliveries": 15,
+        "macro_steps": 151
+      },
+      {
+        "seed": 2008,
+        "deliveries": 15,
+        "macro_steps": 158
+      },
+      {
+        "seed": 2009,
+        "deliveries": 15,
+        "macro_steps": 158
+      },
+      {
+        "seed": 2010,
+        "deliveries": 15,
+        "macro_steps": 151
+      },
+      {
+        "seed": 2011,
+        "deliveries": 15,
+        "macro_steps": 159
+      },
+      {
+        "seed": 2012,
+        "deliveries": 15,
+        "macro_steps": 158
+      },
+      {
+        "seed": 2013,
+        "deliveries": 15,
+        "macro_steps": 151
+      },
+      {
+        "seed": 2014,
+        "deliveries": 15,
+        "macro_steps": 150
+      },
+      {
+        "seed": 2015,
+        "deliveries": 15,
+        "macro_steps": 152
+      },
+      {
+        "seed": 2016,
+        "deliveries": 15,
+        "macro_steps": 152
+      }
+    ],
+    "delivery_mean": 15.0,
+    "delivery_std": 0.0,
+    "delivery_min": 15,
+    "delivery_max": 15
+  },
+  "pre_test": {
+    "rows": [
+      {
+        "seed": 3001,
+        "deliveries": 15,
+        "macro_steps": 150
+      },
+      {
+        "seed": 3002,
+        "deliveries": 15,
+        "macro_steps": 152
+      },
+      {
+        "seed": 3003,
+        "deliveries": 15,
+        "macro_steps": 151
+      },
+      {
+        "seed": 3004,
+        "deliveries": 15,
+        "macro_steps": 158
+      },
+      {
+        "seed": 3005,
+        "deliveries": 15,
+        "macro_steps": 152
+      },
+      {
+        "seed": 3006,
+        "deliveries": 15,
+        "macro_steps": 151
+      },
+      {
+        "seed": 3007,
+        "deliveries": 15,
+        "macro_steps": 158
+      },
+      {
+        "seed": 3008,
+        "deliveries": 15,
+        "macro_steps": 151
+      },
+      {
+        "seed": 3009,
+        "deliveries": 15,
+        "macro_steps": 158
+      },
+      {
+        "seed": 3010,
+        "deliveries": 15,
+        "macro_steps": 152
+      },
+      {
+        "seed": 3011,
+        "deliveries": 15,
+        "macro_steps": 158
+      },
+      {
+        "seed": 3012,
+        "deliveries": 15,
+        "macro_steps": 151
+      },
+      {
+        "seed": 3013,
+        "deliveries": 15,
+        "macro_steps": 150
+      },
+      {
+        "seed": 3014,
+        "deliveries": 15,
+        "macro_steps": 151
+      },
+      {
+        "seed": 3015,
+        "deliveries": 15,
+        "macro_steps": 151
+      },
+      {
+        "seed": 3016,
+        "deliveries": 15,
+        "macro_steps": 159
+      }
+    ],
+    "delivery_mean": 15.0,
+    "delivery_std": 0.0,
+    "delivery_min": 15,
+    "delivery_max": 15
+  },
+  "best_update": 30,
+  "post_validation": {
+    "rows": [
+      {
+        "seed": 2001,
+        "deliveries": 24,
+        "macro_steps": 191
+      },
+      {
+        "seed": 2002,
+        "deliveries": 24,
+        "macro_steps": 191
+      },
+      {
+        "seed": 2003,
+        "deliveries": 25,
+        "macro_steps": 195
+      },
+      {
+        "seed": 2004,
+        "deliveries": 24,
+        "macro_steps": 192
+      },
+      {
+        "seed": 2005,
+        "deliveries": 25,
+        "macro_steps": 196
+      },
+      {
+        "seed": 2006,
+        "deliveries": 25,
+        "macro_steps": 196
+      },
+      {
+        "seed": 2007,
+        "deliveries": 25,
+        "macro_steps": 194
+      },
+      {
+        "seed": 2008,
+        "deliveries": 24,
+        "macro_steps": 192
+      },
+      {
+        "seed": 2009,
+        "deliveries": 24,
+        "macro_steps": 192
+      },
+      {
+        "seed": 2010,
+        "deliveries": 25,
+        "macro_steps": 196
+      },
+      {
+        "seed": 2011,
+        "deliveries": 25,
+        "macro_steps": 192
+      },
+      {
+        "seed": 2012,
+        "deliveries": 24,
+        "macro_steps": 192
+      },
+      {
+        "seed": 2013,
+        "deliveries": 25,
+        "macro_steps": 194
+      },
+      {
+        "seed": 2014,
+        "deliveries": 24,
+        "macro_steps": 192
+      },
+      {
+        "seed": 2015,
+        "deliveries": 25,
+        "macro_steps": 196
+      },
+      {
+        "seed": 2016,
+        "deliveries": 25,
+        "macro_steps": 196
+      }
+    ],
+    "delivery_mean": 24.5625,
+    "delivery_std": 0.49607837082461076,
+    "delivery_min": 24,
+    "delivery_max": 25
+  },
+  "post_test": {
+    "rows": [
+      {
+        "seed": 3001,
+        "deliveries": 24,
+        "macro_steps": 192
+      },
+      {
+        "seed": 3002,
+        "deliveries": 25,
+        "macro_steps": 196
+      },
+      {
+        "seed": 3003,
+        "deliveries": 25,
+        "macro_steps": 194
+      },
+      {
+        "seed": 3004,
+        "deliveries": 23,
+        "macro_steps": 190
+      },
+      {
+        "seed": 3005,
+        "deliveries": 25,
+        "macro_steps": 196
+      },
+      {
+        "seed": 3006,
+        "deliveries": 25,
+        "macro_steps": 194
+      },
+      {
+        "seed": 3007,
+        "deliveries": 24,
+        "macro_steps": 192
+      },
+      {
+        "seed": 3008,
+        "deliveries": 25,
+        "macro_steps": 194
+      },
+      {
+        "seed": 3009,
+        "deliveries": 24,
+        "macro_steps": 192
+      },
+      {
+        "seed": 3010,
+        "deliveries": 25,
+        "macro_steps": 196
+      },
+      {
+        "seed": 3011,
+        "deliveries": 24,
+        "macro_steps": 192
+      },
+      {
+        "seed": 3012,
+        "deliveries": 25,
+        "macro_steps": 194
+      },
+      {
+        "seed": 3013,
+        "deliveries": 25,
+        "macro_steps": 194
+      },
+      {
+        "seed": 3014,
+        "deliveries": 25,
+        "macro_steps": 195
+      },
+      {
+        "seed": 3015,
+        "deliveries": 25,
+        "macro_steps": 195
+      },
+      {
+        "seed": 3016,
+        "deliveries": 25,
+        "macro_steps": 192
+      }
+    ],
+    "delivery_mean": 24.625,
+    "delivery_std": 0.5994789404140899,
+    "delivery_min": 23,
+    "delivery_max": 25
+  },
+  "post_minus_pre_test_deliveries": 9.625,
+  "paired_test": {
+    "method": "paired episode bootstrap",
+    "samples": 20000,
+    "mean_difference": 9.625,
+    "ci95": [
+      9.3125,
+      9.875
+    ],
+    "all_seeds_improved": true,
+    "differences": [
+      9,
+      10,
+      10,
+      8,
+      10,
+      10,
+      9,
+      10,
+      9,
+      10,
+      9,
+      10,
+      10,
+      10,
+      10,
+      10
+    ]
+  },
+  "curve": [
+    {
+      "update": 0,
+      "validation": {
+        "rows": [
+          {
+            "seed": 2001,
+            "deliveries": 15,
+            "macro_steps": 158
+          },
+          {
+            "seed": 2002,
+            "deliveries": 15,
+            "macro_steps": 159
+          },
+          {
+            "seed": 2003,
+            "deliveries": 15,
+            "macro_steps": 151
+          },
+          {
+            "seed": 2004,
+            "deliveries": 15,
+            "macro_steps": 158
+          },
+          {
+            "seed": 2005,
+            "deliveries": 15,
+            "macro_steps": 152
+          },
+          {
+            "seed": 2006,
+            "deliveries": 15,
+            "macro_steps": 152
+          },
+          {
+            "seed": 2007,
+            "deliveries": 15,
+            "macro_steps": 151
+          },
+          {
+            "seed": 2008,
+            "deliveries": 15,
+            "macro_steps": 158
+          },
+          {
+            "seed": 2009,
+            "deliveries": 15,
+            "macro_steps": 158
+          },
+          {
+            "seed": 2010,
+            "deliveries": 15,
+            "macro_steps": 151
+          },
+          {
+            "seed": 2011,
+            "deliveries": 15,
+            "macro_steps": 159
+          },
+          {
+            "seed": 2012,
+            "deliveries": 15,
+            "macro_steps": 158
+          },
+          {
+            "seed": 2013,
+            "deliveries": 15,
+            "macro_steps": 151
+          },
+          {
+            "seed": 2014,
+            "deliveries": 15,
+            "macro_steps": 150
+          },
+          {
+            "seed": 2015,
+            "deliveries": 15,
+            "macro_steps": 152
+          },
+          {
+            "seed": 2016,
+            "deliveries": 15,
+            "macro_steps": 152
+          }
+        ],
+        "delivery_mean": 15.0,
+        "delivery_std": 0.0,
+        "delivery_min": 15,
+        "delivery_max": 15
+      }
+    },
+    {
+      "update": 1,
+      "train_delivery_mean": 7.625,
+      "train_macro_steps": 739,
+      "policy_loss": -0.008917809774478277,
+      "value_loss": 1.1356635391712189,
+      "entropy": 0.2569033366938432
+    },
+    {
+      "update": 2,
+      "train_delivery_mean": 10.375,
+      "train_macro_steps": 923,
+      "policy_loss": -0.003949350488255732,
+      "value_loss": 1.0465242862701416,
+      "entropy": 0.23860939498990774
+    },
+    {
+      "update": 3,
+      "train_delivery_mean": 12.5,
+      "train_macro_steps": 1051,
+      "policy_loss": -0.013300401484593749,
+      "value_loss": 0.988172972202301,
+      "entropy": 0.21313497349619864
+    },
+    {
+      "update": 4,
+      "train_delivery_mean": 13.5,
+      "train_macro_steps": 1099,
+      "policy_loss": -0.010633895825594663,
+      "value_loss": 0.7507432863116265,
+      "entropy": 0.22038804441690446
+    },
+    {
+      "update": 5,
+      "train_delivery_mean": 13.875,
+      "train_macro_steps": 1152,
+      "policy_loss": -0.004961956292390823,
+      "value_loss": 0.6164952412247657,
+      "entropy": 0.2225974015891552,
+      "validation": {
+        "rows": [
+          {
+            "seed": 2001,
+            "deliveries": 17,
+            "macro_steps": 159
+          },
+          {
+            "seed": 2002,
+            "deliveries": 17,
+            "macro_steps": 159
+          },
+          {
+            "seed": 2003,
+            "deliveries": 18,
+            "macro_steps": 158
+          },
+          {
+            "seed": 2004,
+            "deliveries": 17,
+            "macro_steps": 158
+          },
+          {
+            "seed": 2005,
+            "deliveries": 17,
+            "macro_steps": 156
+          },
+          {
+            "seed": 2006,
+            "deliveries": 17,
+            "macro_steps": 156
+          },
+          {
+            "seed": 2007,
+            "deliveries": 18,
+            "macro_steps": 156
+          },
+          {
+            "seed": 2008,
+            "deliveries": 17,
+            "macro_steps": 159
+          },
+          {
+            "seed": 2009,
+            "deliveries": 17,
+            "macro_steps": 158
+          },
+          {
+            "seed": 2010,
+            "deliveries": 18,
+            "macro_steps": 159
+          },
+          {
+            "seed": 2011,
+            "deliveries": 17,
+            "macro_steps": 159
+          },
+          {
+            "seed": 2012,
+            "deliveries": 17,
+            "macro_steps": 159
+          },
+          {
+            "seed": 2013,
+            "deliveries": 18,
+            "macro_steps": 156
+          },
+          {
+            "seed": 2014,
+            "deliveries": 16,
+            "macro_steps": 150
+          },
+          {
+            "seed": 2015,
+            "deliveries": 17,
+            "macro_steps": 156
+          },
+          {
+            "seed": 2016,
+            "deliveries": 17,
+            "macro_steps": 156
+          }
+        ],
+        "delivery_mean": 17.1875,
+        "delivery_std": 0.5266343608235224,
+        "delivery_min": 16,
+        "delivery_max": 18
+      }
+    },
+    {
+      "update": 6,
+      "train_delivery_mean": 11.75,
+      "train_macro_steps": 1018,
+      "policy_loss": -0.0006446212064474821,
+      "value_loss": 0.6993115954101086,
+      "entropy": 0.21302489284425974
+    },
+    {
+      "update": 7,
+      "train_delivery_mean": 14.5,
+      "train_macro_steps": 1176,
+      "policy_loss": 0.0043394285254180435,
+      "value_loss": 0.6629822850227356,
+      "entropy": 0.2243381716310978
+    },
+    {
+      "update": 8,
+      "train_delivery_mean": 11.375,
+      "train_macro_steps": 979,
+      "policy_loss": -0.005273636430501938,
+      "value_loss": 0.8679980300366879,
+      "entropy": 0.2133664945140481
+    },
+    {
+      "update": 9,
+      "train_delivery_mean": 15.875,
+      "train_macro_steps": 1232,
+      "policy_loss": -0.0012230844236910342,
+      "value_loss": 0.5517816543579102,
+      "entropy": 0.21164410412311555
+    },
+    {
+      "update": 10,
+      "train_delivery_mean": 13.875,
+      "train_macro_steps": 1096,
+      "policy_loss": -0.009247322333976626,
+      "value_loss": 0.7656462103128433,
+      "entropy": 0.21791473627090455,
+      "validation": {
+        "rows": [
+          {
+            "seed": 2001,
+            "deliveries": 20,
+            "macro_steps": 166
+          },
+          {
+            "seed": 2002,
+            "deliveries": 20,
+            "macro_steps": 166
+          },
+          {
+            "seed": 2003,
+            "deliveries": 20,
+            "macro_steps": 161
+          },
+          {
+            "seed": 2004,
+            "deliveries": 20,
+            "macro_steps": 166
+          },
+          {
+            "seed": 2005,
+            "deliveries": 20,
+            "macro_steps": 161
+          },
+          {
+            "seed": 2006,
+            "deliveries": 20,
+            "macro_steps": 161
+          },
+          {
+            "seed": 2007,
+            "deliveries": 20,
+            "macro_steps": 159
+          },
+          {
+            "seed": 2008,
+            "deliveries": 20,
+            "macro_steps": 166
+          },
+          {
+            "seed": 2009,
+            "deliveries": 20,
+            "macro_steps": 166
+          },
+          {
+            "seed": 2010,
+            "deliveries": 20,
+            "macro_steps": 161
+          },
+          {
+            "seed": 2011,
+            "deliveries": 20,
+            "macro_steps": 166
+          },
+          {
+            "seed": 2012,
+            "deliveries": 20,
+            "macro_steps": 166
+          },
+          {
+            "seed": 2013,
+            "deliveries": 20,
+            "macro_steps": 159
+          },
+          {
+            "seed": 2014,
+            "deliveries": 20,
+            "macro_steps": 166
+          },
+          {
+            "seed": 2015,
+            "deliveries": 20,
+            "macro_steps": 161
+          },
+          {
+            "seed": 2016,
+            "deliveries": 20,
+            "macro_steps": 161
+          }
+        ],
+        "delivery_mean": 20.0,
+        "delivery_std": 0.0,
+        "delivery_min": 20,
+        "delivery_max": 20
+      }
+    },
+    {
+      "update": 11,
+      "train_delivery_mean": 15.375,
+      "train_macro_steps": 1211,
+      "policy_loss": -0.0019386332482099534,
+      "value_loss": 0.6107472479343414,
+      "entropy": 0.19760655984282494
+    },
+    {
+      "update": 12,
+      "train_delivery_mean": 14.375,
+      "train_macro_steps": 1132,
+      "policy_loss": -0.0065418449230492115,
+      "value_loss": 0.6698167771100998,
+      "entropy": 0.20790160670876504
+    },
+    {
+      "update": 13,
+      "train_delivery_mean": 15.75,
+      "train_macro_steps": 1169,
+      "policy_loss": -0.0038454324007034303,
+      "value_loss": 0.5830852702260018,
+      "entropy": 0.21824681758880615
+    },
+    {
+      "update": 14,
+      "train_delivery_mean": 16.375,
+      "train_macro_steps": 1234,
+      "policy_loss": -0.002428611647337675,
+      "value_loss": 0.5145628601312637,
+      "entropy": 0.2110541932284832
+    },
+    {
+      "update": 15,
+      "train_delivery_mean": 17.25,
+      "train_macro_steps": 1265,
+      "policy_loss": -0.0018410535994917154,
+      "value_loss": 0.43407305479049685,
+      "entropy": 0.18911214992403985,
+      "validation": {
+        "rows": [
+          {
+            "seed": 2001,
+            "deliveries": 20,
+            "macro_steps": 233
+          },
+          {
+            "seed": 2002,
+            "deliveries": 20,
+            "macro_steps": 234
+          },
+          {
+            "seed": 2003,
+            "deliveries": 20,
+            "macro_steps": 244
+          },
+          {
+            "seed": 2004,
+            "deliveries": 20,
+            "macro_steps": 233
+          },
+          {
+            "seed": 2005,
+            "deliveries": 20,
+            "macro_steps": 243
+          },
+          {
+            "seed": 2006,
+            "deliveries": 20,
+            "macro_steps": 243
+          },
+          {
+            "seed": 2007,
+            "deliveries": 20,
+            "macro_steps": 244
+          },
+          {
+            "seed": 2008,
+            "deliveries": 20,
+            "macro_steps": 233
+          },
+          {
+            "seed": 2009,
+            "deliveries": 20,
+            "macro_steps": 233
+          },
+          {
+            "seed": 2010,
+            "deliveries": 20,
+            "macro_steps": 245
+          },
+          {
+            "seed": 2011,
+            "deliveries": 20,
+            "macro_steps": 234
+          },
+          {
+            "seed": 2012,
+            "deliveries": 20,
+            "macro_steps": 233
+          },
+          {
+            "seed": 2013,
+            "deliveries": 20,
+            "macro_steps": 244
+          },
+          {
+            "seed": 2014,
+            "deliveries": 20,
+            "macro_steps": 233
+          },
+          {
+            "seed": 2015,
+            "deliveries": 20,
+            "macro_steps": 243
+          },
+          {
+            "seed": 2016,
+            "deliveries": 20,
+            "macro_steps": 243
+          }
+        ],
+        "delivery_mean": 20.0,
+        "delivery_std": 0.0,
+        "delivery_min": 20,
+        "delivery_max": 20
+      }
+    },
+    {
+      "update": 16,
+      "train_delivery_mean": 15.0,
+      "train_macro_steps": 1132,
+      "policy_loss": -0.004523079888895154,
+      "value_loss": 0.6097532600164414,
+      "entropy": 0.20191287994384766
+    },
+    {
+      "update": 17,
+      "train_delivery_mean": 18.625,
+      "train_macro_steps": 1338,
+      "policy_loss": 0.011394919167893628,
+      "value_loss": 0.35800957928101224,
+      "entropy": 0.2166931920995315
+    },
+    {
+      "update": 18,
+      "train_delivery_mean": 18.25,
+      "train_macro_steps": 1324,
+      "policy_loss": -0.010997481100882093,
+      "value_loss": 0.33804580941796303,
+      "entropy": 0.20309415211280188
+    },
+    {
+      "update": 19,
+      "train_delivery_mean": 17.875,
+      "train_macro_steps": 1305,
+      "policy_loss": -0.0026607615097115436,
+      "value_loss": 0.286990185889105,
+      "entropy": 0.19315377126137415
+    },
+    {
+      "update": 20,
+      "train_delivery_mean": 17.875,
+      "train_macro_steps": 1272,
+      "policy_loss": -0.002649326156824827,
+      "value_loss": 0.4302807584404945,
+      "entropy": 0.22736197486519813,
+      "validation": {
+        "rows": [
+          {
+            "seed": 2001,
+            "deliveries": 23,
+            "macro_steps": 200
+          },
+          {
+            "seed": 2002,
+            "deliveries": 23,
+            "macro_steps": 200
+          },
+          {
+            "seed": 2003,
+            "deliveries": 25,
+            "macro_steps": 206
+          },
+          {
+            "seed": 2004,
+            "deliveries": 23,
+            "macro_steps": 199
+          },
+          {
+            "seed": 2005,
+            "deliveries": 25,
+            "macro_steps": 207
+          },
+          {
+            "seed": 2006,
+            "deliveries": 25,
+            "macro_steps": 207
+          },
+          {
+            "seed": 2007,
+            "deliveries": 25,
+            "macro_steps": 205
+          },
+          {
+            "seed": 2008,
+            "deliveries": 23,
+            "macro_steps": 200
+          },
+          {
+            "seed": 2009,
+            "deliveries": 23,
+            "macro_steps": 199
+          },
+          {
+            "seed": 2010,
+            "deliveries": 25,
+            "macro_steps": 207
+          },
+          {
+            "seed": 2011,
+            "deliveries": 23,
+            "macro_steps": 200
+          },
+          {
+            "seed": 2012,
+            "deliveries": 23,
+            "macro_steps": 199
+          },
+          {
+            "seed": 2013,
+            "deliveries": 25,
+            "macro_steps": 205
+          },
+          {
+            "seed": 2014,
+            "deliveries": 23,
+            "macro_steps": 199
+          },
+          {
+            "seed": 2015,
+            "deliveries": 25,
+            "macro_steps": 207
+          },
+          {
+            "seed": 2016,
+            "deliveries": 25,
+            "macro_steps": 207
+          }
+        ],
+        "delivery_mean": 24.0,
+        "delivery_std": 1.0,
+        "delivery_min": 23,
+        "delivery_max": 25
+      }
+    },
+    {
+      "update": 21,
+      "train_delivery_mean": 19.75,
+      "train_macro_steps": 1389,
+      "policy_loss": -0.004357269499450922,
+      "value_loss": 0.22541444127758345,
+      "entropy": 0.2039202426870664
+    },
+    {
+      "update": 22,
+      "train_delivery_mean": 20.375,
+      "train_macro_steps": 1410,
+      "policy_loss": -0.0029928977601230145,
+      "value_loss": 0.23779811710119247,
+      "entropy": 0.19102808771034083
+    },
+    {
+      "update": 23,
+      "train_delivery_mean": 20.75,
+      "train_macro_steps": 1450,
+      "policy_loss": -0.0006861695631717643,
+      "value_loss": 0.2989857556919257,
+      "entropy": 0.1728348775456349
+    },
+    {
+      "update": 24,
+      "train_delivery_mean": 21.0,
+      "train_macro_steps": 1457,
+      "policy_loss": -0.004181060125119984,
+      "value_loss": 0.23541156140466532,
+      "entropy": 0.16026695631444454
+    },
+    {
+      "update": 25,
+      "train_delivery_mean": 21.875,
+      "train_macro_steps": 1512,
+      "policy_loss": -0.0025221283237139383,
+      "value_loss": 0.2585186939686537,
+      "entropy": 0.15048973510662714,
+      "validation": {
+        "rows": [
+          {
+            "seed": 2001,
+            "deliveries": 24,
+            "macro_steps": 202
+          },
+          {
+            "seed": 2002,
+            "deliveries": 24,
+            "macro_steps": 202
+          },
+          {
+            "seed": 2003,
+            "deliveries": 25,
+            "macro_steps": 206
+          },
+          {
+            "seed": 2004,
+            "deliveries": 24,
+            "macro_steps": 202
+          },
+          {
+            "seed": 2005,
+            "deliveries": 25,
+            "macro_steps": 207
+          },
+          {
+            "seed": 2006,
+            "deliveries": 25,
+            "macro_steps": 207
+          },
+          {
+            "seed": 2007,
+            "deliveries": 25,
+            "macro_steps": 205
+          },
+          {
+            "seed": 2008,
+            "deliveries": 24,
+            "macro_steps": 203
+          },
+          {
+            "seed": 2009,
+            "deliveries": 24,
+            "macro_steps": 202
+          },
+          {
+            "seed": 2010,
+            "deliveries": 25,
+            "macro_steps": 207
+          },
+          {
+            "seed": 2011,
+            "deliveries": 24,
+            "macro_steps": 203
+          },
+          {
+            "seed": 2012,
+            "deliveries": 24,
+            "macro_steps": 202
+          },
+          {
+            "seed": 2013,
+            "deliveries": 25,
+            "macro_steps": 205
+          },
+          {
+            "seed": 2014,
+            "deliveries": 24,
+            "macro_steps": 202
+          },
+          {
+            "seed": 2015,
+            "deliveries": 25,
+            "macro_steps": 207
+          },
+          {
+            "seed": 2016,
+            "deliveries": 25,
+            "macro_steps": 207
+          }
+        ],
+        "delivery_mean": 24.5,
+        "delivery_std": 0.5,
+        "delivery_min": 24,
+        "delivery_max": 25
+      }
+    },
+    {
+      "update": 26,
+      "train_delivery_mean": 22.375,
+      "train_macro_steps": 1513,
+      "policy_loss": -0.0014602762457798235,
+      "value_loss": 0.21529974540074667,
+      "entropy": 0.13748780203362307
+    },
+    {
+      "update": 27,
+      "train_delivery_mean": 22.75,
+      "train_macro_steps": 1535,
+      "policy_loss": -0.001311164433597393,
+      "value_loss": 0.29365842665235203,
+      "entropy": 0.1320852835973104
+    },
+    {
+      "update": 28,
+      "train_delivery_mean": 22.125,
+      "train_macro_steps": 1510,
+      "policy_loss": -0.001101023376880524,
+      "value_loss": 0.300665644928813,
+      "entropy": 0.12209378213932116
+    },
+    {
+      "update": 29,
+      "train_delivery_mean": 23.0,
+      "train_macro_steps": 1548,
+      "policy_loss": -0.012048633419908583,
+      "value_loss": 0.24914705700107984,
+      "entropy": 0.10985847043671779
+    },
+    {
+      "update": 30,
+      "train_delivery_mean": 22.125,
+      "train_macro_steps": 1512,
+      "policy_loss": -0.0015528470588227112,
+      "value_loss": 0.3361671268939972,
+      "entropy": 0.11421838557968537,
+      "validation": {
+        "rows": [
+          {
+            "seed": 2001,
+            "deliveries": 24,
+            "macro_steps": 191
+          },
+          {
+            "seed": 2002,
+            "deliveries": 24,
+            "macro_steps": 191
+          },
+          {
+            "seed": 2003,
+            "deliveries": 25,
+            "macro_steps": 195
+          },
+          {
+            "seed": 2004,
+            "deliveries": 24,
+            "macro_steps": 192
+          },
+          {
+            "seed": 2005,
+            "deliveries": 25,
+            "macro_steps": 196
+          },
+          {
+            "seed": 2006,
+            "deliveries": 25,
+            "macro_steps": 196
+          },
+          {
+            "seed": 2007,
+            "deliveries": 25,
+            "macro_steps": 194
+          },
+          {
+            "seed": 2008,
+            "deliveries": 24,
+            "macro_steps": 192
+          },
+          {
+            "seed": 2009,
+            "deliveries": 24,
+            "macro_steps": 192
+          },
+          {
+            "seed": 2010,
+            "deliveries": 25,
+            "macro_steps": 196
+          },
+          {
+            "seed": 2011,
+            "deliveries": 25,
+            "macro_steps": 192
+          },
+          {
+            "seed": 2012,
+            "deliveries": 24,
+            "macro_steps": 192
+          },
+          {
+            "seed": 2013,
+            "deliveries": 25,
+            "macro_steps": 194
+          },
+          {
+            "seed": 2014,
+            "deliveries": 24,
+            "macro_steps": 192
+          },
+          {
+            "seed": 2015,
+            "deliveries": 25,
+            "macro_steps": 196
+          },
+          {
+            "seed": 2016,
+            "deliveries": 25,
+            "macro_steps": 196
+          }
+        ],
+        "delivery_mean": 24.5625,
+        "delivery_std": 0.49607837082461076,
+        "delivery_min": 24,
+        "delivery_max": 25
+      }
+    }
+  ]
+}
