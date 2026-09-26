@@ -346,6 +346,115 @@ WWWWWWWWWWWWWWWWWWW
 CANDIDATES["three_arm_v2"] = dict(ascii=THREE_ARM_V2, recipes=[[0, 0, 0]])
 
 
+# Bottleneck-balancing variant: ingredient piles moved to the BOTTOM of the left arm (short
+# ingredient->pot leg) while the plate piles move to the bottom of the right arm and the goal stays
+# at the top (long service leg), so the two roles' costs are comparable and the binding constraint
+# can migrate with partner competence. P1 is kept by the long return paths, not by loading
+# everything onto the ingredient arm.
+THREE_ARM_BALANCED = """
+WWWWWWWWWWWWWWWWWWW
+W   WWWWP PWWWW  XW
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW R WWWW   W
+W0 0WWWW   WWWWB BW
+W                 W
+W  A     A     A  W
+WWWWWWWWWWWWWWWWWWW
+"""
+
+CANDIDATES["three_arm_balanced"] = dict(ascii=THREE_ARM_BALANCED, recipes=[[0, 0, 0]])
+
+
+THREE_ARM_BALANCED2 = """
+WWWWWWWWWWWWWWWWWWW
+W   WWWWP PWWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW R WWWW   W
+W   WWWW   WWWW   W
+W0 0               W
+W  A     A     A  W
+WWWWWWWWWWWWWWWWWWX
+"""
+CANDIDATES["three_arm_balanced2"] = dict(ascii=THREE_ARM_BALANCED2, recipes=[[0, 0, 0]])
+
+
+# Candidate B' #1: workload transfer, not cost reduction. Ingredient piles moved to the middle of
+# the left arm (shorter fetch leg) and the delivery point moved to the BOTTOM-LEFT of the map, so the
+# service specialist's steady-state cycle (plates -> pot -> goal -> back to plates) crosses the whole
+# kitchen. Only two dog-legs, distinct wall shapes at each corner: no serpentine repetition, which
+# would reintroduce observation aliasing for the feed-forward policy.
+THREE_ARM_B1 = """
+WWWWWWWWWWWWWWWWWWW
+W   WWWWP PWWWW   W
+W   WWWW   WWWWB BW
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W0 0WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW R WWWW   W
+W   WWWW   WWWW   W
+W                 W
+W  A     A     A  W
+WWXWWWWWWWWWWWWWWWW
+"""
+CANDIDATES["three_arm_b1"] = dict(ascii=THREE_ARM_B1, recipes=[[0, 0, 0]])
+
+
+# Candidate B' #2: keep the three-arm traffic structure of three_arm_v2 (left arm = ingredients,
+# middle = pot hub, right = service) so no two roles share a corridor, but move the plate piles to
+# the BOTTOM of the service arm so the steady-state service cycle is longer (target T_S ~ 72-90
+# steps/soup, which is what the throughput window [0.8*mu_I/3, mu_I/3] requires).
+THREE_ARM_B2 = """
+WWWWWWWWWWWWWWWWWWW
+W0 0WWWWP PWWWW  XW
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW R WWWW   W
+W   WWWW   WWWWB BW
+W                 W
+W  A     A     A  W
+WWWWWWWWWWWWWWWWWWW
+"""
+CANDIDATES["three_arm_b2"] = dict(ascii=THREE_ARM_B2, recipes=[[0, 0, 0]])
+
+
+# Candidate B' #3 (final allowed map): the service path stays entirely inside the service arm.
+# Plates stay at the TOP of the right arm; the delivery point moves to the BOTTOM of the right arm,
+# so the steady-state service cycle (plates -> pot -> goal -> back) is long while ingredient and
+# service traffic never share a corridor.
+THREE_ARM_B3 = """
+WWWWWWWWWWWWWWWWWWW
+W0 0WWWWP PWWWW   W
+W   WWWW   WWWWB BW
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW   WWWW   W
+W   WWWW R WWWW   W
+W   WWWW   WWWW   W
+W                 X
+W  A     A     A  W
+WWWWWWWWWWWWWWWWWWW
+"""
+CANDIDATES["three_arm_b3"] = dict(ascii=THREE_ARM_B3, recipes=[[0, 0, 0]])
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--layout", default="kitchen3_mid", choices=sorted(CANDIDATES))

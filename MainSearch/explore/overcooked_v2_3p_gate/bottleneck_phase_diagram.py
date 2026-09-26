@@ -111,27 +111,27 @@ def main() -> None:
     c_variants = {spec: load_spec(spec) for spec in args.c_checkpoints}
     partner_net = MLPActorOnly(action_dim=6)
 
-    def scripted_action(state, agent, role, facing):
+    def scripted_action(state, agent, role, facing, blocked=frozenset()):
         here = (int(state.agents.pos.x[agent]), int(state.agents.pos.y[agent]))
         inventory = int(state.agents.inventory[agent])
         if role == "fetcher":
             pot = pots[agent % len(pots)]
             target = (min(piles, key=lambda p: abs(p[0] - here[0]) + abs(p[1] - here[1]))
                       if inventory == 0 else pot)
-            return approach_and_interact(mask, here, facing, target, frozenset())
+            return approach_and_interact(mask, here, facing, target, blocked)
         if inventory == 0:
             target = min(plates, key=lambda p: abs(p[0] - here[0]) + abs(p[1] - here[1]))
-            return approach_and_interact(mask, here, facing, target, frozenset())
+            return approach_and_interact(mask, here, facing, target, blocked)
         holding_plate = inventory == int(DynamicObject.PLATE)
         holding_dish = bool(inventory & int(DynamicObject.COOKED))
         if holding_dish:
-            return approach_and_interact(mask, here, facing, objects["goal"][0], frozenset())
+            return approach_and_interact(mask, here, facing, objects["goal"][0], blocked)
         if holding_plate:
             cooked = [p for p in pots if pot_cell(state, p)[0] & int(DynamicObject.COOKED)]
             target = (min(cooked, key=lambda p: abs(p[0] - here[0]) + abs(p[1] - here[1]))
                       if cooked else min(pots, key=lambda p: abs(p[0] - here[0])
                                          + abs(p[1] - here[1])))
-            return approach_and_interact(mask, here, facing, target, frozenset())
+            return approach_and_interact(mask, here, facing, target, blocked)
         target = min(plates, key=lambda p: abs(p[0] - here[0]) + abs(p[1] - here[1]))
         return approach_and_interact(mask, here, facing, target, frozenset())
 
@@ -149,7 +149,18 @@ def main() -> None:
                 step = 0
                 while step < args.max_steps:
                     # ego (agent 0): scripted role; agent 1: learned partner; agent 2: scripted server
-                    a_ego = scripted_action(state, 0, role, facing[0])
+                    occupied = {tuple(int(v) for v in (state.agents.pos.x[i],
+                                                       state.agents.pos.y[i])): i
+                                for i in range(3)}
+                    ego_here = (int(state.agents.pos.x[0]), int(state.agents.pos.y[0]))
+                    ego_blocked = frozenset(c for c, o in occupied.items() if o != 0)
+                    a_ego = scripted_action(state, 0, role, facing[0], ego_blocked)
+                    if a_ego == 4:
+                        legal = [d for d, (dx, dy) in MOVE_VECTORS.items()
+                                 if mask[ego_here[1] + dy, ego_here[0] + dx]
+                                 and (ego_here[0] + dx, ego_here[1] + dy) not in ego_blocked]
+                        if legal:
+                            a_ego = legal[step % len(legal)]
                     p1 = partner_net.apply(
                         b_params, jnp.asarray(np.asarray(obs[env.agents[1]]).reshape(1, -1)))[0]
                     a_partner = int(jax.random.categorical(
