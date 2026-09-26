@@ -34,7 +34,6 @@ import jax
 import jax.numpy as jnp
 import numpy as np
 import optax
-from flax.training.train_state import TrainState
 
 HERE = Path(__file__).resolve().parent
 FF_GATE = HERE.parent / "overcooked_v2_ff_gate"
@@ -50,6 +49,10 @@ from train_overcooked_ff import (  # noqa: E402
     critic_spec,
 )
 from train_ocv2_oracle_gate import load_plain_params  # noqa: E402
+
+# The behaviour-cloned actor always occupies these layers in MLPActorCriticPriv; never infer the
+# split from dictionary order.
+ACTOR_LAYERS = {"Dense_0", "Dense_1", "Dense_2"}
 
 
 class Ctx:
@@ -160,9 +163,8 @@ def main() -> None:
         return {"params": merged}
 
     def make_optimizer(params):
-        names = list(params["params"].keys())
-        actor_layers = set(names[: len(names) // 2])
-        labels = {"params": {n: {leaf: ("actor" if n in actor_layers else "critic")
+        assert ACTOR_LAYERS <= set(params["params"].keys()), "actor layers missing"
+        labels = {"params": {n: {leaf: ("actor" if n in ACTOR_LAYERS else "critic")
                                  for leaf in sub} for n, sub in params["params"].items()}}
         return optax.multi_transform(
             {"actor": optax.chain(optax.clip_by_global_norm(args.max_grad_norm),
@@ -178,9 +180,7 @@ def main() -> None:
     optimizers = [make_optimizer(p) for p in params]
     opt_states = [opt.init(p) for opt, p in zip(optimizers, params)]
 
-    mask_names = list(params[0]["params"].keys())
-    actor_names = set(mask_names[: len(mask_names) // 2])
-    actor_mask = {"params": {n: {leaf: jnp.asarray(n in actor_names) for leaf in sub}
+    actor_mask = {"params": {n: {leaf: jnp.asarray(n in ACTOR_LAYERS) for leaf in sub}
                              for n, sub in params[0]["params"].items()}}
 
     def obs_flat_of(obs):
@@ -316,42 +316,50 @@ def main() -> None:
             minibatch = batch // args.num_minibatches
 
             def _epoch(carry, _):
-                train_state, opt_state, rng = carry
+                p_cur, opt_state, rng = carry
                 rng, sub = jax.random.split(rng)
                 idxs = jax.random.permutation(sub, batch).reshape(
                     args.num_minibatches, minibatch)
 
                 def _minibatch(carry, ix):
-                    train_state, opt_state = carry
+                    p_cur, opt_state = carry
                     mb = (obs[ix], cin[ix], act[ix], logp[ix], adv[ix], ret[ix], val[ix])
-                    (loss, aux), grads = jax.value_and_grad(loss_fn, has_aux=True)(
-                        train_state.params, mb)
+                    (loss, aux), grads = jax.value_and_grad(loss_fn, has_aux=True)(p_cur, mb)
                     grads = jax.tree.map(
                         lambda g, m: jnp.where(
                             ((idx < args.critic_warmup_updates) | args.freeze_critic) & m,
                             jnp.zeros_like(g), g), grads, actor_mask)
                     if args.freeze_critic:
-                        # also zero the critic part: freeze the whole network
                         grads = jax.tree.map(jnp.zeros_like, grads)
-                    updates, opt_state = tx.update(grads, opt_state, train_state.params)
-                    approx_kl = jnp.mean(mb[3] - new_logp_of(train_state.params, mb))
-                    scale = jnp.where(approx_kl > args.target_kl, 0.0, 1.0)
-                    updates = jax.tree.map(lambda u: u * scale, updates)
-                    train_state = train_state.apply_gradients(grads=updates)
-                    return (train_state, opt_state), {
+                    # KL of the current policy against the rollout policy (trust region)
+                    approx_kl = jnp.mean(mb[3] - new_logp_of(p_cur, mb))
+
+                    def _apply(_):
+                        # ONE optimizer application: tx.update returns the parameter update, and it
+                        # must be applied with optax.apply_updates. Passing it to
+                        # TrainState.apply_gradients would run Adam a second time (and keep two
+                        # divergent optimizer states) - the bug that caused the collapse.
+                        upd, new_state = tx.update(grads, opt_state, p_cur)
+                        return optax.apply_updates(p_cur, upd), new_state
+
+                    def _skip(_):
+                        return p_cur, opt_state
+
+                    p_new, opt_state = jax.lax.cond(
+                        approx_kl <= args.target_kl, _apply, _skip, operand=None)
+                    return (p_new, opt_state), {
                         "loss": loss, "actor_loss": aux[0], "value_loss": aux[1],
                         "entropy": aux[2], "bc_loss": aux[3], "ref_kl": aux[4],
                         "approx_kl": approx_kl}
 
-                (train_state, opt_state), losses = jax.lax.scan(
-                    _minibatch, (train_state, opt_state), idxs)
-                return (train_state, opt_state, rng), losses
+                (p_cur, opt_state), losses = jax.lax.scan(
+                    _minibatch, (p_cur, opt_state), idxs)
+                return (p_cur, opt_state, rng), losses
 
             tx = optimizers[rng_key]
-            train_state = TrainState.create(apply_fn=network.apply, params=params, tx=tx)
-            (train_state, opt_state, rng), losses = jax.lax.scan(
-                _epoch, (train_state, opt_state, rng), None, args.ppo_epochs)
-            return train_state.params, opt_state, rng, losses
+            (params_out, opt_state, rng), losses = jax.lax.scan(
+                _epoch, (params, opt_state, rng), None, args.ppo_epochs)
+            return params_out, opt_state, rng, losses
 
         return update
 
@@ -412,7 +420,7 @@ def main() -> None:
     num_segments = args.updates // args.segment_updates
     for segment in range(num_segments):
         t0 = time.perf_counter()
-        last_losses = None
+        per_agent_metrics = []
         adv_absmax = ret_absmax = 0.0
         value_absmean = reward_norm_std = reward_norm_mean = 0.0
         for step in range(args.segment_updates):
@@ -441,8 +449,10 @@ def main() -> None:
             for i in range(num_agents):
                 rng, sub = jax.random.split(runner[2])
                 runner = (runner[0], runner[1], rng, runner[3])
-                params[i], opt_states[i], _, last_losses = updates[i](
+                params[i], opt_states[i], _, agent_losses = updates[i](
                     params[i], opt_states[i], transitions, advantages, returns, sub, idx)
+                per_agent_metrics.append({k: float(np.asarray(v).mean())
+                                          for k, v in agent_losses.items()})
         seconds = time.perf_counter() - t0
         cumulative = (segment + 1) * args.segment_updates * num_envs * args.rollout_length
         params_host = [jax.tree.map(np.asarray, p) for p in params]
@@ -456,18 +466,22 @@ def main() -> None:
             "eval_team_soups_mean": float(delivered.mean()),
             "eval_team_soups_max": float(delivered.max()),
             "eval_episodes_with_delivery": int((delivered > 0).sum()),
-            "loss": float(np.asarray(last_losses["loss"]).mean()),
-            "actor_loss": float(np.asarray(last_losses["actor_loss"]).mean()),
+            "loss_by_agent": [m["loss"] for m in per_agent_metrics],
+            "value_loss_by_agent": [m["value_loss"] for m in per_agent_metrics],
+            "bc_loss_by_agent": [m["bc_loss"] for m in per_agent_metrics],
+            "ref_kl_by_agent": [m["ref_kl"] for m in per_agent_metrics],
+            "entropy_by_agent": [m["entropy"] for m in per_agent_metrics],
+            "approx_kl_by_agent": [m["approx_kl"] for m in per_agent_metrics],
+            "loss_max": max((m["loss"] for m in per_agent_metrics), default=0.0),
+            "value_loss_max": max((m["value_loss"] for m in per_agent_metrics), default=0.0),
+            "bc_loss_max": max((m["bc_loss"] for m in per_agent_metrics), default=0.0),
+            "ref_kl_max": max((m["ref_kl"] for m in per_agent_metrics), default=0.0),
+            "entropy_min": min((m["entropy"] for m in per_agent_metrics), default=0.0),
             "advantage_absmax": adv_absmax,
             "return_absmax": ret_absmax,
             "value_absmean": value_absmean,
             "reward_norm_std": reward_norm_std,
             "reward_norm_mean": reward_norm_mean,
-            "value_loss": float(np.asarray(last_losses["value_loss"]).mean()),
-            "entropy": float(np.asarray(last_losses["entropy"]).mean()),
-            "approx_kl": float(np.asarray(last_losses["approx_kl"]).mean()),
-            "bc_loss": float(np.asarray(last_losses["bc_loss"]).mean()),
-            "ref_kl": float(np.asarray(last_losses["ref_kl"]).mean()),
         }
         metadata["segments"].append(record)
         metadata["wall_seconds_total"] = round(time.perf_counter() - started, 2)
