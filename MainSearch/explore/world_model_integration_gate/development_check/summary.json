@@ -1,0 +1,39 @@
+{
+  "status": "development_world_model_integration_gate",
+  "claim_boundary": "One-step high-level reward world model on one three-agent Overcooked map; not a formal main-experiment result.",
+  "config": {
+    "scenarios": 30,
+    "train_scenarios": 15,
+    "validation_scenarios": 5,
+    "horizon": 80,
+    "model_seeds": 2,
+    "epochs": 50,
+    "learning_rate": 0.01
+  },
+  "rollouts": 90,
+  "training_rows": 135,
+  "test_scenarios": 10,
+  "test_mae_soups": {
+    "shared_private": 0.5237019339369403,
+    "independent": 0.5442012000622021,
+    "shared_no_etm": 0.6134855632980665
+  },
+  "decision_mean_soups": {
+    "shared_private": 1.05,
+    "independent": 1.2000000000000002,
+    "shared_no_etm": 0.9,
+    "direct_rule": 1.6,
+    "oracle": 1.7
+  },
+  "decision_mean_regret": {
+    "shared_private": 0.6499999999999999,
+    "independent": 0.5,
+    "shared_no_etm": 0.8,
+    "direct_rule": 0.1
+  },
+  "parameter_count": {
+    "shared_private": 1569,
+    "independent_total": 4707,
+    "shared_no_etm": 1569
+  }
+}

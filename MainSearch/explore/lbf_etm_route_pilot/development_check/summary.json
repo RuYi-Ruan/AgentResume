@@ -1,0 +1,46 @@
+{
+  "status": "development_route_test",
+  "claim_boundary": "Minimal LBF ETM route test; not a formal benchmark result.",
+  "config": {
+    "seeds": 5,
+    "episodes": 300,
+    "window": 100,
+    "warmup": 150,
+    "learning_rate": 0.025,
+    "epsilon_start": 0.85,
+    "epsilon_end": 0.08,
+    "epsilon_decay_episodes": 800,
+    "etm_decay": 0.99,
+    "etm_prior": 1.0,
+    "skill_weight": 0.3,
+    "environment_id": "Foraging-8x8-3p-3f-v3",
+    "permutation_samples": 20000
+  },
+  "condition_episodes": 4500,
+  "late_comparisons": [
+    {
+      "metric": "intent_accuracy",
+      "comparison": "dynamic_etm - frozen_etm",
+      "late_episodes": 300,
+      "paired_seeds": 5,
+      "mean_difference": 0.0,
+      "normal_approx_95ci": [
+        0.0,
+        0.0
+      ],
+      "two_sided_sign_flip_p": 1.0
+    },
+    {
+      "metric": "team_reward",
+      "comparison": "dynamic_etm - frozen_etm",
+      "late_episodes": 300,
+      "paired_seeds": 5,
+      "mean_difference": 0.0,
+      "normal_approx_95ci": [
+        0.0,
+        0.0
+      ],
+      "two_sided_sign_flip_p": 1.0
+    }
+  ]
+}

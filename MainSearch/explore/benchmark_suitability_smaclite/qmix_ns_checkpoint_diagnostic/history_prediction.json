@@ -1,0 +1,165 @@
+{
+  "status": "completed_development_probe",
+  "train_events": 40000,
+  "test_events": 12000,
+  "train_seeds": "0-39",
+  "test_seeds": "40-49",
+  "checkpoints": [
+    100325,
+    160424,
+    200453,
+    220460,
+    240497,
+    260503,
+    280546,
+    300017
+  ],
+  "current_only_accuracy": 0.6995,
+  "current_plus_3_observations_accuracy": 0.657,
+  "attack_events": 7804,
+  "current_only_attack_accuracy": 0.8039,
+  "history_attack_accuracy": 0.7345,
+  "pair_results": [
+    {
+      "observer": 0,
+      "target": 1,
+      "events": 658,
+      "current": 0.6398,
+      "history": 0.5638
+    },
+    {
+      "observer": 0,
+      "target": 2,
+      "events": 406,
+      "current": 0.6182,
+      "history": 0.6502
+    },
+    {
+      "observer": 0,
+      "target": 3,
+      "events": 877,
+      "current": 0.8244,
+      "history": 0.7754
+    },
+    {
+      "observer": 0,
+      "target": 4,
+      "events": 683,
+      "current": 0.7965,
+      "history": 0.7994
+    },
+    {
+      "observer": 1,
+      "target": 0,
+      "events": 703,
+      "current": 0.6387,
+      "history": 0.5846
+    },
+    {
+      "observer": 1,
+      "target": 2,
+      "events": 365,
+      "current": 0.6575,
+      "history": 0.7014
+    },
+    {
+      "observer": 1,
+      "target": 3,
+      "events": 848,
+      "current": 0.7465,
+      "history": 0.717
+    },
+    {
+      "observer": 1,
+      "target": 4,
+      "events": 733,
+      "current": 0.794,
+      "history": 0.7326
+    },
+    {
+      "observer": 2,
+      "target": 0,
+      "events": 408,
+      "current": 0.6667,
+      "history": 0.5049
+    },
+    {
+      "observer": 2,
+      "target": 1,
+      "events": 342,
+      "current": 0.6667,
+      "history": 0.5205
+    },
+    {
+      "observer": 2,
+      "target": 3,
+      "events": 382,
+      "current": 0.6937,
+      "history": 0.6806
+    },
+    {
+      "observer": 2,
+      "target": 4,
+      "events": 296,
+      "current": 0.6757,
+      "history": 0.6419
+    },
+    {
+      "observer": 3,
+      "target": 0,
+      "events": 876,
+      "current": 0.718,
+      "history": 0.6575
+    },
+    {
+      "observer": 3,
+      "target": 1,
+      "events": 837,
+      "current": 0.6547,
+      "history": 0.6404
+    },
+    {
+      "observer": 3,
+      "target": 2,
+      "events": 351,
+      "current": 0.6097,
+      "history": 0.604
+    },
+    {
+      "observer": 3,
+      "target": 4,
+      "events": 764,
+      "current": 0.7225,
+      "history": 0.7055
+    },
+    {
+      "observer": 4,
+      "target": 0,
+      "events": 664,
+      "current": 0.616,
+      "history": 0.5648
+    },
+    {
+      "observer": 4,
+      "target": 1,
+      "events": 759,
+      "current": 0.6825,
+      "history": 0.6061
+    },
+    {
+      "observer": 4,
+      "target": 2,
+      "events": 287,
+      "current": 0.5226,
+      "history": 0.5331
+    },
+    {
+      "observer": 4,
+      "target": 3,
+      "events": 761,
+      "current": 0.7438,
+      "history": 0.6912
+    }
+  ],
+  "note": "Observer-local visible history only. Improvement would show temporal information, not by itself prove ETM-specific cognition or team reward gain. Single training seed."
+}

@@ -1,0 +1,109 @@
+{
+  "status": "completed",
+  "scope": "development learning gate; no ETM",
+  "config": {
+    "seed": 2,
+    "steps": 100000,
+    "num_envs": 16,
+    "horizon": 25,
+    "eval_interval": 10000,
+    "eval_episodes": 64,
+    "epochs": 4,
+    "minibatch": 200,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip": 0.2
+  },
+  "elapsed_seconds": 218.17591520000133,
+  "evaluations": [
+    {
+      "step": 0,
+      "mean_return": -90.36152368908222,
+      "return_std": 22.69507244142713,
+      "mean_nearest_landmark_distance": 1.0445416466795487,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    },
+    {
+      "step": 10000,
+      "mean_return": -86.13667423482156,
+      "return_std": 20.960005067084587,
+      "mean_nearest_landmark_distance": 0.8866396265970228,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    },
+    {
+      "step": 20000,
+      "mean_return": -100.98613864404112,
+      "return_std": 27.116479443287805,
+      "mean_nearest_landmark_distance": 1.0887132659116743,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    },
+    {
+      "step": 30000,
+      "mean_return": -90.36261294100376,
+      "return_std": 23.055533304137658,
+      "mean_nearest_landmark_distance": 0.9383436184798125,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    },
+    {
+      "step": 40000,
+      "mean_return": -87.63782288794307,
+      "return_std": 20.420603784942653,
+      "mean_nearest_landmark_distance": 0.8881813301545329,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    },
+    {
+      "step": 50000,
+      "mean_return": -89.85366131631179,
+      "return_std": 22.472371767245715,
+      "mean_nearest_landmark_distance": 0.9225408004637045,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    },
+    {
+      "step": 60000,
+      "mean_return": -110.56875866217287,
+      "return_std": 27.939932581568108,
+      "mean_nearest_landmark_distance": 1.2936980926864123,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    },
+    {
+      "step": 70000,
+      "mean_return": -104.67208041408279,
+      "return_std": 21.224933544382527,
+      "mean_nearest_landmark_distance": 1.1619373259927142,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    },
+    {
+      "step": 80000,
+      "mean_return": -87.62136288443224,
+      "return_std": 19.70147184982363,
+      "mean_nearest_landmark_distance": 0.909610055154432,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    },
+    {
+      "step": 90000,
+      "mean_return": -88.45910630367524,
+      "return_std": 19.212414691882056,
+      "mean_nearest_landmark_distance": 0.9636139684121133,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    },
+    {
+      "step": 100000,
+      "mean_return": -88.58293764274082,
+      "return_std": 18.841166453898023,
+      "mean_nearest_landmark_distance": 0.9166855022422918,
+      "full_cover_episodes": 0,
+      "eval_episodes": 64
+    }
+  ]
+}

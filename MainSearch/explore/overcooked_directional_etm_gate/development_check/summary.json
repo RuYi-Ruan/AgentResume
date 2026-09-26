@@ -1,0 +1,27 @@
+{
+  "status": "development_directional_etm_gate",
+  "claim_boundary": "ETMs predict high-level role intentions but do not yet control policies; fixed map and scripted low-level execution.",
+  "config": {
+    "seeds": 1,
+    "episodes": 80,
+    "horizon": 120,
+    "window": 40,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.02,
+    "frozen_after": 60,
+    "visibility_radius": 4
+  },
+  "prediction_events": 480,
+  "late_dynamic_accuracy": 0.32916666666666666,
+  "late_frozen_accuracy": 0.325,
+  "paired_seed_accuracy_gain": 0.004166666666666667,
+  "normal_approx_95ci": [
+    0.004166666666666667,
+    0.004166666666666667
+  ],
+  "late_observer_disagreement": 0.13333333333333333,
+  "directed_update_count_range": [
+    62,
+    66
+  ]
+}

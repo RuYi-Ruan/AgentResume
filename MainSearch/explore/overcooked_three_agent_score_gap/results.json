@@ -1,0 +1,399 @@
+{
+  "status": "development_score_separation_gate",
+  "claim_boundary": "Scripted three-agent role-allocation test, not an ETM effectiveness result.",
+  "config": {
+    "episodes": 30,
+    "horizon": 500,
+    "seed": 20260922
+  },
+  "conditions": {
+    "stale_model": {
+      "roles": [
+        "serve",
+        "cook",
+        "serve"
+      ],
+      "mean_soups": 6.6
+    },
+    "updated_model": {
+      "roles": [
+        "cook",
+        "cook",
+        "serve"
+      ],
+      "mean_soups": 17.333333333333332
+    }
+  },
+  "paired_difference_soups": {
+    "mean": 10.733333333333333,
+    "normal_approx_95ci": [
+      7.116910545857042,
+      14.349756120809623
+    ],
+    "updated_better_episodes": 26,
+    "ties": 0,
+    "stale_better_episodes": 4
+  },
+  "episodes": [
+    {
+      "episode": 0,
+      "seed": 20260922,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 0,
+      "seed": 20260922,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 1,
+      "seed": 20260923,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 1,
+      "seed": 20260923,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 2,
+      "seed": 20260924,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 2,
+      "seed": 20260924,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 3,
+      "seed": 20260925,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 3,
+      "seed": 20260925,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 4,
+      "seed": 20260926,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 4,
+      "seed": 20260926,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 5,
+      "seed": 20260927,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 5,
+      "seed": 20260927,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 6,
+      "seed": 20260928,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 6,
+      "seed": 20260928,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 7,
+      "seed": 20260929,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 7,
+      "seed": 20260929,
+      "condition": "updated_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 8,
+      "seed": 20260930,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 8,
+      "seed": 20260930,
+      "condition": "updated_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 9,
+      "seed": 20260931,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 9,
+      "seed": 20260931,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 10,
+      "seed": 20260932,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 10,
+      "seed": 20260932,
+      "condition": "updated_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 11,
+      "seed": 20260933,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 11,
+      "seed": 20260933,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 12,
+      "seed": 20260934,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 12,
+      "seed": 20260934,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 13,
+      "seed": 20260935,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 13,
+      "seed": 20260935,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 14,
+      "seed": 20260936,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 14,
+      "seed": 20260936,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 15,
+      "seed": 20260937,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 15,
+      "seed": 20260937,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 16,
+      "seed": 20260938,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 16,
+      "seed": 20260938,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 17,
+      "seed": 20260939,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 17,
+      "seed": 20260939,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 18,
+      "seed": 20260940,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 18,
+      "seed": 20260940,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 19,
+      "seed": 20260941,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 19,
+      "seed": 20260941,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 20,
+      "seed": 20260942,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 20,
+      "seed": 20260942,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 21,
+      "seed": 20260943,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 21,
+      "seed": 20260943,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 22,
+      "seed": 20260944,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 22,
+      "seed": 20260944,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 23,
+      "seed": 20260945,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 23,
+      "seed": 20260945,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 24,
+      "seed": 20260946,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 24,
+      "seed": 20260946,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 25,
+      "seed": 20260947,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 25,
+      "seed": 20260947,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 26,
+      "seed": 20260948,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 26,
+      "seed": 20260948,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 27,
+      "seed": 20260949,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 27,
+      "seed": 20260949,
+      "condition": "updated_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 28,
+      "seed": 20260950,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 28,
+      "seed": 20260950,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 29,
+      "seed": 20260951,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 29,
+      "seed": 20260951,
+      "condition": "updated_model",
+      "soups": 20.0
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "development_gate0_gradual_learning_revalidation",
+  "claim_boundary": "Continuous high-level role learning with a central payoff teacher and scripted low-level execution; no ETM and not a formal main result.",
+  "config": {
+    "seed_start": 0,
+    "seeds": 1,
+    "episodes": 360,
+    "horizon": 180,
+    "checkpoint_interval": 40,
+    "eval_episodes": 12,
+    "actor_learning_rate": 0.01,
+    "exploration_end": 0.1
+  },
+  "training_games": 360,
+  "evaluation_cases": 120,
+  "static_control_invariant": true,
+  "initial_learned_soups": 0.0,
+  "final_learned_soups": 4.5,
+  "paired_seed_gain_soups": 4.5,
+  "gain_normal_approx_95ci": [
+    4.5,
+    4.5
+  ],
+  "improved_seeds": 1,
+  "per_seed_gain_soups": {
+    "0": 4.5
+  },
+  "final_agent_agreement": [
+    1.0,
+    0.75,
+    0.75
+  ],
+  "final_agent_hybrid_soups": [
+    6.0,
+    4.5,
+    5.25
+  ],
+  "final_teacher_soups": 6.0,
+  "initial_to_final_behavior_change_rate": 1.0
+}

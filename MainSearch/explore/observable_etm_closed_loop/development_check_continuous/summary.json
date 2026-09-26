@@ -1,0 +1,72 @@
+{
+  "status": "development_observable_etm_closed_loop_gate",
+  "claim_boundary": "Learned high-level coordination with scripted low-level execution; exploratory, not a formal result.",
+  "config": {
+    "seed_start": 0,
+    "seeds": 1,
+    "episodes": 120,
+    "horizon": 80,
+    "macro_steps": 10,
+    "window_episodes": 40,
+    "freeze_after": 60,
+    "visibility_radius": 4,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.01,
+    "controller_learning_rate": 0.01,
+    "controller_mode": "continuous"
+  },
+  "condition_games": 360,
+  "prediction_events": 10080,
+  "prefreeze_dynamic_frozen_exact_match": true,
+  "late_metrics": {
+    "no_etm": {
+      "window_start": 80,
+      "window_end": 119,
+      "condition": "no_etm",
+      "games": 40,
+      "mean_soups": 1.475,
+      "teacher_role_accuracy": 0.7416666666666667,
+      "nonempty_etm_events": 0,
+      "nonempty_etm_accuracy": null
+    },
+    "frozen_etm": {
+      "window_start": 80,
+      "window_end": 119,
+      "condition": "frozen_etm",
+      "games": 40,
+      "mean_soups": 1.5,
+      "teacher_role_accuracy": 0.7416666666666667,
+      "nonempty_etm_events": 886,
+      "nonempty_etm_accuracy": 0.19751693002257337
+    },
+    "dynamic_etm": {
+      "window_start": 80,
+      "window_end": 119,
+      "condition": "dynamic_etm",
+      "games": 40,
+      "mean_soups": 1.375,
+      "teacher_role_accuracy": 0.725,
+      "nonempty_etm_events": 832,
+      "nonempty_etm_accuracy": 0.6887019230769231
+    }
+  },
+  "late_soups_by_seed": {
+    "0": {
+      "no_etm": 1.475,
+      "frozen_etm": 1.5,
+      "dynamic_etm": 1.375
+    }
+  },
+  "dynamic_minus_frozen_soups": -0.125,
+  "dynamic_minus_frozen_normal_approx_95ci": [
+    -0.125,
+    -0.125
+  ],
+  "dynamic_better_frozen_seeds": 0,
+  "dynamic_minus_no_etm_soups": -0.10000000000000009,
+  "dynamic_minus_no_etm_normal_approx_95ci": [
+    -0.10000000000000009,
+    -0.10000000000000009
+  ],
+  "dynamic_better_no_etm_seeds": 0
+}

@@ -1,0 +1,78 @@
+{
+  "status": "development_continuous_learning_gate",
+  "claim_boundary": "Three independent PPO policies learn atomic actions continuously in VMAS Transport; no ETM yet.",
+  "config": {
+    "seed": 0,
+    "updates": 60,
+    "num_envs": 64,
+    "horizon": 100,
+    "eval_envs": 64,
+    "eval_interval": 10,
+    "ppo_epochs": 3,
+    "minibatch": 512,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95
+  },
+  "evaluations": [
+    {
+      "seed": 0,
+      "checkpoint": 0,
+      "mean_return": -0.0002619028091430664,
+      "mean_final_distance": 1.0763028860092163,
+      "positive_worlds": 0,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 10,
+      "mean_return": -0.001634836196899414,
+      "mean_final_distance": 1.0763165950775146,
+      "positive_worlds": 1,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 20,
+      "mean_return": -0.019763588905334473,
+      "mean_final_distance": 1.0764979124069214,
+      "positive_worlds": 2,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 30,
+      "mean_return": 0.002988576889038086,
+      "mean_final_distance": 1.0762704610824585,
+      "positive_worlds": 1,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 40,
+      "mean_return": 0.002046644687652588,
+      "mean_final_distance": 1.0762797594070435,
+      "positive_worlds": 2,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 50,
+      "mean_return": -0.049143314361572266,
+      "mean_final_distance": 1.0767916440963745,
+      "positive_worlds": 1,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 60,
+      "mean_return": -0.052620112895965576,
+      "mean_final_distance": 1.0768264532089233,
+      "positive_worlds": 4,
+      "worlds": 64
+    }
+  ],
+  "initial_return": -0.0002619028091430664,
+  "final_return": -0.052620112895965576,
+  "gain": -0.05235821008682251
+}

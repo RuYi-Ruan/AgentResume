@@ -1,0 +1,5 @@
+seed,model,gradient_updates
+3,frozen,12240
+3,evolving_dynamic,48960
+3,stale_budget,48960
+3,static_dynamic,48960

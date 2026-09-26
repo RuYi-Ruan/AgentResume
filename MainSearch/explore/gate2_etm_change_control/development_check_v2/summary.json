@@ -1,0 +1,104 @@
+{
+  "status": "development_gate2_change_control",
+  "claim_boundary": "Cognition-only change-vs-training-budget control with scripted low-level execution; exploratory only.",
+  "config": {
+    "seed_start": 0,
+    "seeds": 1,
+    "calibration_episodes": 60,
+    "learning_episodes": 160,
+    "horizon": 100,
+    "macro_steps": 10,
+    "window_episodes": 40,
+    "visibility_radius": 4,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.01,
+    "exploration_end": 0.1,
+    "hidden_mode": "episodic"
+  },
+  "prediction_events": 56160,
+  "learning_trace_episodes": 160,
+  "calibration_all_models_exact_match": true,
+  "post_calibration_update_budgets_equal": true,
+  "late_metrics": {
+    "evolving_frozen": {
+      "window_start": 120,
+      "window_end": 159,
+      "condition": "evolving_frozen",
+      "predictions": 2160,
+      "nonempty_predictions": 988,
+      "overall_accuracy": 0.3902777777777778,
+      "nonempty_accuracy": 0.12550607287449392
+    },
+    "evolving_dynamic": {
+      "window_start": 120,
+      "window_end": 159,
+      "condition": "evolving_dynamic",
+      "predictions": 2160,
+      "nonempty_predictions": 988,
+      "overall_accuracy": 0.3990740740740741,
+      "nonempty_accuracy": 0.45951417004048584
+    },
+    "evolving_stale_budget": {
+      "window_start": 120,
+      "window_end": 159,
+      "condition": "evolving_stale_budget",
+      "predictions": 2160,
+      "nonempty_predictions": 988,
+      "overall_accuracy": 0.4097222222222222,
+      "nonempty_accuracy": 0.10728744939271255
+    },
+    "static_frozen": {
+      "window_start": 120,
+      "window_end": 159,
+      "condition": "static_frozen",
+      "predictions": 2160,
+      "nonempty_predictions": 984,
+      "overall_accuracy": 0.9574074074074074,
+      "nonempty_accuracy": 0.9207317073170732
+    },
+    "static_dynamic": {
+      "window_start": 120,
+      "window_end": 159,
+      "condition": "static_dynamic",
+      "predictions": 2160,
+      "nonempty_predictions": 984,
+      "overall_accuracy": 0.9819444444444444,
+      "nonempty_accuracy": 0.9684959349593496
+    }
+  },
+  "contrasts": {
+    "evolving_dynamic_minus_frozen": {
+      "mean_gain": 0.3340080971659919,
+      "normal_approx_95ci": [
+        0.3340080971659919,
+        0.3340080971659919
+      ],
+      "positive_seeds": 1,
+      "per_seed": {
+        "0": 0.3340080971659919
+      }
+    },
+    "evolving_dynamic_minus_stale_budget": {
+      "mean_gain": 0.3522267206477733,
+      "normal_approx_95ci": [
+        0.3522267206477733,
+        0.3522267206477733
+      ],
+      "positive_seeds": 1,
+      "per_seed": {
+        "0": 0.3522267206477733
+      }
+    },
+    "static_dynamic_minus_frozen": {
+      "mean_gain": 0.04776422764227639,
+      "normal_approx_95ci": [
+        0.04776422764227639,
+        0.04776422764227639
+      ],
+      "positive_seeds": 1,
+      "per_seed": {
+        "0": 0.04776422764227639
+      }
+    }
+  }
+}

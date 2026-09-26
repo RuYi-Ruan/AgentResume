@@ -1,0 +1,42 @@
+{
+  "status": "development_observable_etm_revalidation",
+  "claim_boundary": "Cognition-only revalidation with scripted low-level execution; ETM sees only causal local trajectory summaries and predicts future observable interaction events.",
+  "config": {
+    "seeds": 1,
+    "episodes": 80,
+    "horizon": 60,
+    "macro_steps": 10,
+    "window_episodes": 40,
+    "frozen_after": 60,
+    "visibility_radius": 4,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.01
+  },
+  "prediction_events": 4800,
+  "late_metrics": {
+    "frozen_etm": {
+      "window_start": 40,
+      "window_end": 79,
+      "condition": "frozen_etm",
+      "predictions": 1200,
+      "nonempty_predictions": 472,
+      "overall_accuracy": 0.6033333333333334,
+      "nonempty_accuracy": 0.4322033898305085
+    },
+    "dynamic_etm": {
+      "window_start": 40,
+      "window_end": 79,
+      "condition": "dynamic_etm",
+      "predictions": 1200,
+      "nonempty_predictions": 472,
+      "overall_accuracy": 0.6233333333333333,
+      "nonempty_accuracy": 0.7563559322033898
+    }
+  },
+  "paired_seed_nonempty_accuracy_gain": 0.3241525423728813,
+  "normal_approx_95ci": [
+    0.3241525423728813,
+    0.3241525423728813
+  ],
+  "dynamic_better_seeds": 1
+}

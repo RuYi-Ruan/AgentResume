@@ -1,0 +1,24 @@
+{
+  "checkpoint": "D:\\omp\\MainSearch\\explore\\overcooked_v2_3p_gate\\bc\\smoke_bc.pkl",
+  "greedy": {
+    "episodes": 32,
+    "fraction_episodes_with_shaping": 0.0,
+    "fraction_episodes_with_delivery": 0.0,
+    "mean_deliveries_per_episode": 0.0,
+    "max_deliveries_in_an_episode": 0.0,
+    "mean_shaped_events_per_episode": 0.0,
+    "mean_shaped_reward_per_episode": 0.0,
+    "mean_episode_length": 320.0
+  },
+  "sampled": {
+    "episodes": 32,
+    "fraction_episodes_with_shaping": 0.0,
+    "fraction_episodes_with_delivery": 0.0,
+    "mean_deliveries_per_episode": 0.0,
+    "max_deliveries_in_an_episode": 0.0,
+    "mean_shaped_events_per_episode": 0.0,
+    "mean_shaped_reward_per_episode": 0.0,
+    "mean_episode_length": 320.0
+  },
+  "closed_loop_gate_passed": false
+}

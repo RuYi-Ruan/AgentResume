@@ -1,0 +1,47 @@
+{
+  "status": "development_continuous_learning_gate",
+  "claim_boundary": "Three independent PPO policies train atomic actions continuously in VMAS; no ETM yet; learning must be judged by evaluation.",
+  "config": {
+    "scenario": "football",
+    "seed": 0,
+    "updates": 2,
+    "num_envs": 8,
+    "horizon": 40,
+    "eval_envs": 64,
+    "eval_interval": 1,
+    "ppo_epochs": 3,
+    "minibatch": 512,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95
+  },
+  "evaluations": [
+    {
+      "seed": 0,
+      "checkpoint": 0,
+      "mean_return": -0.5197992324829102,
+      "mean_final_distance": 1.562041997909546,
+      "positive_worlds": 19,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 1,
+      "mean_return": -0.5208050608634949,
+      "mean_final_distance": 1.5621297359466553,
+      "positive_worlds": 18,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 2,
+      "mean_return": -0.5163859128952026,
+      "mean_final_distance": 1.5616936683654785,
+      "positive_worlds": 18,
+      "worlds": 64
+    }
+  ],
+  "initial_return": -0.5197992324829102,
+  "final_return": -0.5163859128952026,
+  "gain": 0.0034133195877075195
+}

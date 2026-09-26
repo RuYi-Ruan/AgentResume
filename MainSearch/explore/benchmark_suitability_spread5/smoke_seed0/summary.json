@@ -1,0 +1,37 @@
+{
+  "status": "completed",
+  "scope": "development learning gate; no ETM",
+  "config": {
+    "seed": 0,
+    "steps": 400,
+    "num_envs": 16,
+    "horizon": 25,
+    "eval_interval": 10000,
+    "eval_episodes": 4,
+    "epochs": 4,
+    "minibatch": 200,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip": 0.2
+  },
+  "elapsed_seconds": 1.2571899000031408,
+  "evaluations": [
+    {
+      "step": 0,
+      "mean_return": -84.15254724551896,
+      "return_std": 13.286653801097819,
+      "mean_nearest_landmark_distance": 0.8569520350486322,
+      "full_cover_episodes": 0,
+      "eval_episodes": 4
+    },
+    {
+      "step": 400,
+      "mean_return": -81.59558134507503,
+      "return_std": 12.198578539857367,
+      "mean_nearest_landmark_distance": 0.8234087255291473,
+      "full_cover_episodes": 0,
+      "eval_episodes": 4
+    }
+  ]
+}

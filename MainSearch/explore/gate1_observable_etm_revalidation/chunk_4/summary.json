@@ -1,0 +1,75 @@
+{
+  "status": "development_gate1_observable_etm_revalidation",
+  "claim_boundary": "Cognition-only prediction on an exogenous continuous learning path; six independent directional ETMs, scripted low-level execution, not a formal result.",
+  "config": {
+    "seed_start": 4,
+    "seeds": 1,
+    "calibration_episodes": 120,
+    "learning_episodes": 360,
+    "horizon": 180,
+    "macro_steps": 10,
+    "window_episodes": 60,
+    "visibility_radius": 4,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.01,
+    "exploration_end": 0.1
+  },
+  "prediction_events": 97920,
+  "learning_trace_episodes": 360,
+  "calibration_conditions_exact_match": true,
+  "late_metrics": {
+    "frozen_etm": {
+      "window_start": 300,
+      "window_end": 359,
+      "condition": "frozen_etm",
+      "predictions": 6120,
+      "nonempty_predictions": 3480,
+      "overall_accuracy": 0.43137254901960786,
+      "nonempty_accuracy": 0.0
+    },
+    "dynamic_etm": {
+      "window_start": 300,
+      "window_end": 359,
+      "condition": "dynamic_etm",
+      "predictions": 6120,
+      "nonempty_predictions": 3480,
+      "overall_accuracy": 0.46111111111111114,
+      "nonempty_accuracy": 0.5522988505747126
+    }
+  },
+  "paired_seed_nonempty_accuracy_gain": 0.5522988505747126,
+  "gain_normal_approx_95ci": [
+    0.5522988505747126,
+    0.5522988505747126
+  ],
+  "dynamic_better_seeds": 1,
+  "per_seed_nonempty_accuracy_gain": {
+    "4": 0.5522988505747126
+  },
+  "late_pair_nonempty_accuracy": {
+    "0->1": {
+      "frozen_etm": 0.0,
+      "dynamic_etm": 0.5741525423728814
+    },
+    "0->2": {
+      "frozen_etm": 0.0,
+      "dynamic_etm": 0.33197278911564626
+    },
+    "1->0": {
+      "frozen_etm": 0.0,
+      "dynamic_etm": 0.7861163227016885
+    },
+    "1->2": {
+      "frozen_etm": 0.0,
+      "dynamic_etm": 0.33197278911564626
+    },
+    "2->0": {
+      "frozen_etm": 0.0,
+      "dynamic_etm": 0.8855534709193246
+    },
+    "2->1": {
+      "frozen_etm": 0.0,
+      "dynamic_etm": 0.576271186440678
+    }
+  }
+}

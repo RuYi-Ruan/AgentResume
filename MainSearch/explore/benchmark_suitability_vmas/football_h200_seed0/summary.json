@@ -1,0 +1,93 @@
+{
+  "status": "development_continuous_learning_gate",
+  "claim_boundary": "Three independent PPO policies train atomic actions continuously in VMAS; no ETM yet; learning must be judged by evaluation.",
+  "config": {
+    "scenario": "football",
+    "seed": 0,
+    "updates": 60,
+    "num_envs": 32,
+    "horizon": 200,
+    "eval_envs": 64,
+    "eval_interval": 10,
+    "ppo_epochs": 3,
+    "minibatch": 512,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95
+  },
+  "evaluations": [
+    {
+      "seed": 0,
+      "checkpoint": 0,
+      "mean_return": -105.7162857055664,
+      "mean_final_distance": 2.8816823959350586,
+      "positive_worlds": 0,
+      "blue_goals": 0,
+      "red_goals": 58,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 10,
+      "mean_return": -105.68578338623047,
+      "mean_final_distance": 2.8814520835876465,
+      "positive_worlds": 0,
+      "blue_goals": 0,
+      "red_goals": 58,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 20,
+      "mean_return": -107.13617706298828,
+      "mean_final_distance": 2.8822550773620605,
+      "positive_worlds": 0,
+      "blue_goals": 0,
+      "red_goals": 59,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 30,
+      "mean_return": -112.00318145751953,
+      "mean_final_distance": 2.9070541858673096,
+      "positive_worlds": 0,
+      "blue_goals": 0,
+      "red_goals": 62,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 40,
+      "mean_return": -113.6028823852539,
+      "mean_final_distance": 2.8955941200256348,
+      "positive_worlds": 0,
+      "blue_goals": 0,
+      "red_goals": 63,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 50,
+      "mean_return": -112.03040313720703,
+      "mean_final_distance": 2.9031386375427246,
+      "positive_worlds": 0,
+      "blue_goals": 0,
+      "red_goals": 62,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 60,
+      "mean_return": -110.42747497558594,
+      "mean_final_distance": 2.890740394592285,
+      "positive_worlds": 0,
+      "blue_goals": 0,
+      "red_goals": 61,
+      "worlds": 64
+    }
+  ],
+  "initial_return": -105.7162857055664,
+  "final_return": -110.42747497558594,
+  "gain": -4.711189270019531
+}

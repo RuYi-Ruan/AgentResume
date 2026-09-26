@@ -1,0 +1,40 @@
+{
+  "checkpoint": "D:\\omp\\MainSearch\\explore\\overcooked_v2_3p_gate\\bc\\three_arm_bc_seed0.pkl",
+  "greedy": {
+    "episodes": 64,
+    "fraction_episodes_with_shaping": 0.0,
+    "fraction_episodes_with_delivery": 0.0,
+    "mean_deliveries_per_episode": 0.0,
+    "max_deliveries_in_an_episode": 0.0,
+    "mean_shaped_events_per_episode": 0.0,
+    "mean_shaped_reward_per_episode": 0.0,
+    "mean_episode_length": 320.0,
+    "action_mix": {
+      "right": 0.0,
+      "down": 0.0,
+      "left": 0.0,
+      "up": 0.0,
+      "stay": 1.0,
+      "interact": 0.0
+    }
+  },
+  "sampled": {
+    "episodes": 64,
+    "fraction_episodes_with_shaping": 0.953125,
+    "fraction_episodes_with_delivery": 0.6875,
+    "mean_deliveries_per_episode": 1.125,
+    "max_deliveries_in_an_episode": 3.0,
+    "mean_shaped_events_per_episode": 3.671875,
+    "mean_shaped_reward_per_episode": 11.203125,
+    "mean_episode_length": 320.0,
+    "action_mix": {
+      "right": 0.1171061247587204,
+      "down": 0.23154298961162567,
+      "left": 0.1250976324081421,
+      "up": 0.24928387999534607,
+      "stay": 0.009879556484520435,
+      "interact": 0.2670899033546448
+    }
+  },
+  "closed_loop_gate_passed": true
+}

@@ -1,0 +1,40 @@
+{
+  "status": "development_observable_etm_closed_loop_gate",
+  "claim_boundary": "Learned high-level coordination with scripted low-level execution; exploratory, not a formal result.",
+  "config": {
+    "seed_start": 0,
+    "seeds": 1,
+    "episodes": 100,
+    "horizon": 80,
+    "macro_steps": 10,
+    "window_episodes": 40,
+    "freeze_after": 60,
+    "visibility_radius": 4,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.01,
+    "controller_learning_rate": 0.01
+  },
+  "condition_games": 300,
+  "prediction_events": 8400,
+  "prefreeze_dynamic_frozen_exact_match": true,
+  "late_metrics": {},
+  "late_soups_by_seed": {
+    "0": {
+      "no_etm": 1.05,
+      "frozen_etm": 1.05,
+      "dynamic_etm": 0.8
+    }
+  },
+  "dynamic_minus_frozen_soups": -0.25,
+  "dynamic_minus_frozen_normal_approx_95ci": [
+    -0.25,
+    -0.25
+  ],
+  "dynamic_better_frozen_seeds": 0,
+  "dynamic_minus_no_etm_soups": -0.25,
+  "dynamic_minus_no_etm_normal_approx_95ci": [
+    -0.25,
+    -0.25
+  ],
+  "dynamic_better_no_etm_seeds": 0
+}

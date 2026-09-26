@@ -1,0 +1,138 @@
+{
+  "status": "development_pilot",
+  "claim_boundary": "Closed-loop toy mechanism check; not a benchmark result.",
+  "config": {
+    "seeds": 20,
+    "rounds": 600,
+    "window": 100,
+    "warmup": 150,
+    "learning_rate": 0.018,
+    "temperature": 0.6,
+    "cue_accuracy": 0.52,
+    "etm_decay": 0.99,
+    "etm_prior": 1.0,
+    "individual_reward": 0.35,
+    "coordination_weight": 1.2,
+    "skill_weight": 0.55,
+    "permutation_samples": 20000
+  },
+  "condition_rounds": 48000,
+  "phase_summary": {
+    "early": {
+      "no_model": {
+        "target_accuracy": 0.41675,
+        "intent_accuracy": 0.5188333333333333,
+        "team_success": 0.232,
+        "rounds": 4000
+      },
+      "frozen_etm": {
+        "target_accuracy": 0.36833333333333323,
+        "intent_accuracy": 0.49016666666666664,
+        "team_success": 0.226,
+        "rounds": 4000
+      },
+      "dynamic_etm": {
+        "target_accuracy": 0.3659166666666666,
+        "intent_accuracy": 0.491,
+        "team_success": 0.22775,
+        "rounds": 4000
+      },
+      "oracle": {
+        "target_accuracy": 0.4334166666666666,
+        "intent_accuracy": 1.0,
+        "team_success": 0.29875,
+        "rounds": 4000
+      }
+    },
+    "middle": {
+      "no_model": {
+        "target_accuracy": 0.448,
+        "intent_accuracy": 0.5233333333333332,
+        "team_success": 0.22025,
+        "rounds": 4000
+      },
+      "frozen_etm": {
+        "target_accuracy": 0.4234166666666666,
+        "intent_accuracy": 0.50125,
+        "team_success": 0.2255,
+        "rounds": 4000
+      },
+      "dynamic_etm": {
+        "target_accuracy": 0.4501666666666666,
+        "intent_accuracy": 0.5106666666666666,
+        "team_success": 0.23,
+        "rounds": 4000
+      },
+      "oracle": {
+        "target_accuracy": 0.53725,
+        "intent_accuracy": 1.0,
+        "team_success": 0.31975,
+        "rounds": 4000
+      }
+    },
+    "late": {
+      "no_model": {
+        "target_accuracy": 0.4553333333333333,
+        "intent_accuracy": 0.5130833333333332,
+        "team_success": 0.2245,
+        "rounds": 4000
+      },
+      "frozen_etm": {
+        "target_accuracy": 0.4675833333333333,
+        "intent_accuracy": 0.5001666666666666,
+        "team_success": 0.25525,
+        "rounds": 4000
+      },
+      "dynamic_etm": {
+        "target_accuracy": 0.5688333333333333,
+        "intent_accuracy": 0.5068333333333332,
+        "team_success": 0.3195,
+        "rounds": 4000
+      },
+      "oracle": {
+        "target_accuracy": 0.5753333333333334,
+        "intent_accuracy": 1.0,
+        "team_success": 0.3175,
+        "rounds": 4000
+      }
+    }
+  },
+  "paired_late_comparisons": [
+    {
+      "metric": "target_accuracy",
+      "comparison": "dynamic_etm - frozen_etm",
+      "phase": "late",
+      "paired_seeds": 20,
+      "mean_difference": 0.10124999999999995,
+      "normal_approx_95ci": [
+        0.07151580054955126,
+        0.13098419945044865
+      ],
+      "two_sided_sign_flip_p": 9.99950002499875e-05
+    },
+    {
+      "metric": "intent_accuracy",
+      "comparison": "dynamic_etm - frozen_etm",
+      "phase": "late",
+      "paired_seeds": 20,
+      "mean_difference": 0.0066666666666666515,
+      "normal_approx_95ci": [
+        -0.0009317757714505338,
+        0.014265109104783836
+      ],
+      "two_sided_sign_flip_p": 0.1071946402679866
+    },
+    {
+      "metric": "team_success",
+      "comparison": "dynamic_etm - frozen_etm",
+      "phase": "late",
+      "paired_seeds": 20,
+      "mean_difference": 0.06425,
+      "normal_approx_95ci": [
+        0.028621592425203887,
+        0.09987840757479612
+      ],
+      "two_sided_sign_flip_p": 0.0016999150042497876
+    }
+  ]
+}

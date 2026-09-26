@@ -1,0 +1,21 @@
+2026-09-24 11:50:33,546 INFO    MainThread:5344 [wandb_setup.py:_flush():81] Current SDK version is 0.30.0
+2026-09-24 11:50:33,546 INFO    MainThread:5344 [wandb_setup.py:_flush():81] Configure stats pid to 5344
+2026-09-24 11:50:33,546 INFO    MainThread:5344 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-09-24 11:50:33,546 INFO    MainThread:5344 [wandb_init.py:setup_run_log_directory():739] Logging user logs to D:\omp\MainSearch\explore\benchmark_suitability_smax\wandb\offline-run-20260924_115033-jxtesvmz\logs\debug.log
+2026-09-24 11:50:33,547 INFO    MainThread:5344 [wandb_init.py:setup_run_log_directory():740] Logging internal logs to D:\omp\MainSearch\explore\benchmark_suitability_smax\wandb\offline-run-20260924_115033-jxtesvmz\logs\debug-internal.log
+2026-09-24 11:50:33,548 INFO    MainThread:5344 [wandb_init.py:init():783] calling init triggers
+2026-09-24 11:50:33,548 INFO    MainThread:5344 [wandb_init.py:init():788] wandb.init called with sweep_config: {}
+config: {'NUM_SEEDS': 1, 'SEED': 0, 'HYP_TUNE': False, 'ENTITY': '', 'PROJECT': '', 'WANDB_MODE': 'offline', 'WANDB_LOG_ALL_SEEDS': False, 'SAVE_PATH': 'D:/omp/MainSearch/explore/benchmark_suitability_smax/smoke_models', 'alg': {'TOTAL_TIMESTEPS': 8192, 'NUM_ENVS': 2, 'NUM_STEPS': 32, 'BUFFER_SIZE': 512, 'BUFFER_BATCH_SIZE': 8, 'HIDDEN_SIZE': 64, 'MIXER_EMBEDDING_DIM': 16, 'MIXER_HYPERNET_HIDDEN_DIM': 32, 'MIXER_INIT_SCALE': 0.001, 'EPS_START': 1.0, 'EPS_FINISH': 0.05, 'EPS_DECAY': 0.1, 'MAX_GRAD_NORM': 10, 'TARGET_UPDATE_INTERVAL': 10, 'TAU': 1.0, 'NUM_EPOCHS': 1, 'LR': 5e-05, 'LEARNING_STARTS': 512, 'LR_LINEAR_DECAY': False, 'GAMMA': 0.99, 'REW_SCALE': 10.0, 'ENV_NAME': 'HeuristicEnemySMAX', 'MAP_NAME': 'smacv2_5_units', 'ENV_KWARGS': {'see_enemy_actions': True, 'walls_cause_death': True, 'attack_mode': 'closest'}, 'TEST_DURING_TRAINING': True, 'TEST_INTERVAL': 0.2, 'TEST_NUM_STEPS': 128, 'TEST_NUM_ENVS': 16}, 'TOTAL_TIMESTEPS': 8192, 'NUM_ENVS': 2, 'NUM_STEPS': 32, 'BUFFER_SIZE': 512, 'BUFFER_BATCH_SIZE': 8, 'HIDDEN_SIZE': 64, 'MIXER_EMBEDDING_DIM': 16, 'MIXER_HYPERNET_HIDDEN_DIM': 32, 'MIXER_INIT_SCALE': 0.001, 'EPS_START': 1.0, 'EPS_FINISH': 0.05, 'EPS_DECAY': 0.1, 'MAX_GRAD_NORM': 10, 'TARGET_UPDATE_INTERVAL': 10, 'TAU': 1.0, 'NUM_EPOCHS': 1, 'LR': 5e-05, 'LEARNING_STARTS': 512, 'LR_LINEAR_DECAY': False, 'GAMMA': 0.99, 'REW_SCALE': 10.0, 'ENV_NAME': 'HeuristicEnemySMAX', 'MAP_NAME': 'smacv2_5_units', 'ENV_KWARGS': {'see_enemy_actions': True, 'walls_cause_death': True, 'attack_mode': 'closest'}, 'TEST_DURING_TRAINING': True, 'TEST_INTERVAL': 0.2, 'TEST_NUM_STEPS': 128, 'TEST_NUM_ENVS': 16, '_wandb': {}}
+2026-09-24 11:50:33,548 INFO    MainThread:5344 [wandb_init.py:init():831] starting backend
+2026-09-24 11:50:35,818 INFO    MainThread:5344 [wandb_init.py:init():846] sending inform_init request
+2026-09-24 11:50:35,868 INFO    MainThread:5344 [wandb_init.py:init():851] backend started and connected
+2026-09-24 11:50:35,871 INFO    MainThread:5344 [wandb_init.py:init():921] updated telemetry
+2026-09-24 11:50:36,028 INFO    MainThread:5344 [wandb_init.py:init():944] communicating run to backend with 90.0 second timeout
+2026-09-24 11:50:36,037 INFO    MainThread:5344 [wandb_init.py:init():981] starting run threads in backend
+2026-09-24 11:50:36,357 INFO    MainThread:5344 [wandb_run.py:_console_start():2531] atexit reg
+2026-09-24 11:50:36,357 INFO    MainThread:5344 [wandb_run.py:_redirect():2381] redirect: wrap_raw
+2026-09-24 11:50:36,358 INFO    MainThread:5344 [wandb_run.py:_redirect():2450] Wrapping output streams.
+2026-09-24 11:50:36,358 INFO    MainThread:5344 [wandb_run.py:_redirect():2473] Redirects installed.
+2026-09-24 11:50:36,365 INFO    MainThread:5344 [wandb_init.py:init():1019] run started, returning control to user process
+2026-09-24 11:50:39,956 INFO    wandb-AsyncioManager-main:5344 [service_client.py:_forward_responses():122] Reached EOF.
+2026-09-24 11:50:39,956 INFO    wandb-AsyncioManager-main:5344 [mailbox.py:close():154] Closing mailbox, abandoning 0 handles.

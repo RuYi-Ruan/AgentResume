@@ -1,0 +1,16 @@
+seed,model,gradient_updates
+0,frozen,12240
+0,dynamic,48960
+0,stale_budget,48960
+1,frozen,12240
+1,dynamic,48960
+1,stale_budget,48960
+2,frozen,12240
+2,dynamic,48960
+2,stale_budget,48960
+3,frozen,12240
+3,dynamic,48960
+3,stale_budget,48960
+4,frozen,12240
+4,dynamic,48960
+4,stale_budget,48960

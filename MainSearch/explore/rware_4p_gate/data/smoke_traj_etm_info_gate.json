@@ -1,0 +1,424 @@
+{
+  "stages": [
+    {
+      "checkpoint": "checkpoint_0000409600.pkl",
+      "cumulative_env_steps": 409600,
+      "episodes": 4
+    },
+    {
+      "checkpoint": "checkpoint_0004505600.pkl",
+      "cumulative_env_steps": 4505600,
+      "episodes": 4
+    }
+  ],
+  "results": {
+    "observer0_partner1": {
+      "frozen_early": {
+        "accuracy": 0.22560974955558777,
+        "macro_f1": 0.16880619380619383,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "late_only": {
+        "accuracy": 0.2926829159259796,
+        "macro_f1": 0.11873684210526317,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "online_all": {
+        "accuracy": 0.2073170691728592,
+        "macro_f1": 0.16000412927288168,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "history_late": {
+        "accuracy": 0.28658536076545715,
+        "macro_f1": 0.1952749279766914,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      }
+    },
+    "observer0_partner2": {
+      "frozen_early": {
+        "accuracy": 0.2804878056049347,
+        "macro_f1": 0.08846153846153845,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "late_only": {
+        "accuracy": 0.2499999850988388,
+        "macro_f1": 0.10771804062126641,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "online_all": {
+        "accuracy": 0.2804878056049347,
+        "macro_f1": 0.08761904761904762,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "history_late": {
+        "accuracy": 0.30487802624702454,
+        "macro_f1": 0.20563332995183786,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      }
+    },
+    "observer0_partner3": {
+      "frozen_early": {
+        "accuracy": 0.19512194395065308,
+        "macro_f1": 0.09328493647912886,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "late_only": {
+        "accuracy": 0.27439022064208984,
+        "macro_f1": 0.10199134199134201,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "online_all": {
+        "accuracy": 0.2987804710865021,
+        "macro_f1": 0.10880371660859464,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "history_late": {
+        "accuracy": 0.2926829159259796,
+        "macro_f1": 0.13054132657847828,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      }
+    },
+    "observer1_partner0": {
+      "frozen_early": {
+        "accuracy": 0.2926829159259796,
+        "macro_f1": 0.14190394998579142,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "late_only": {
+        "accuracy": 0.28658536076545715,
+        "macro_f1": 0.12084614901763854,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "online_all": {
+        "accuracy": 0.2926829159259796,
+        "macro_f1": 0.0977137488255559,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "history_late": {
+        "accuracy": 0.2926829159259796,
+        "macro_f1": 0.14439355385920272,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      }
+    },
+    "observer1_partner2": {
+      "frozen_early": {
+        "accuracy": 0.2804878056049347,
+        "macro_f1": 0.08761904761904762,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "late_only": {
+        "accuracy": 0.19512194395065308,
+        "macro_f1": 0.09357247539953942,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "online_all": {
+        "accuracy": 0.23170730471611023,
+        "macro_f1": 0.11041050429261959,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "history_late": {
+        "accuracy": 0.27439022064208984,
+        "macro_f1": 0.1648984388114823,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      }
+    },
+    "observer1_partner3": {
+      "frozen_early": {
+        "accuracy": 0.04268292337656021,
+        "macro_f1": 0.03553297855184647,
+        "accuracy_partner_visible": 0.5,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 2
+      },
+      "late_only": {
+        "accuracy": 0.33536583185195923,
+        "macro_f1": 0.16304025612142053,
+        "accuracy_partner_visible": 0.5,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 2
+      },
+      "online_all": {
+        "accuracy": 0.27439022064208984,
+        "macro_f1": 0.1424949290060852,
+        "accuracy_partner_visible": 0.5,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 2
+      },
+      "history_late": {
+        "accuracy": 0.23780487477779388,
+        "macro_f1": 0.12698356634780478,
+        "accuracy_partner_visible": 0.0,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 2
+      }
+    },
+    "observer2_partner0": {
+      "frozen_early": {
+        "accuracy": 0.24390242993831635,
+        "macro_f1": 0.16234542747524314,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "late_only": {
+        "accuracy": 0.20121949911117554,
+        "macro_f1": 0.15903805496828755,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "online_all": {
+        "accuracy": 0.2926829159259796,
+        "macro_f1": 0.13613219094247248,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "history_late": {
+        "accuracy": 0.22560974955558777,
+        "macro_f1": 0.18021729904082845,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      }
+    },
+    "observer2_partner1": {
+      "frozen_early": {
+        "accuracy": 0.2804878056049347,
+        "macro_f1": 0.1998240724268122,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "late_only": {
+        "accuracy": 0.30487802624702454,
+        "macro_f1": 0.151627732432686,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "online_all": {
+        "accuracy": 0.2621951103210449,
+        "macro_f1": 0.17798663324979114,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "history_late": {
+        "accuracy": 0.2804878056049347,
+        "macro_f1": 0.1957947338074188,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      }
+    },
+    "observer2_partner3": {
+      "frozen_early": {
+        "accuracy": 0.34756097197532654,
+        "macro_f1": 0.1722305764411028,
+        "accuracy_partner_visible": 0.2926829268292683,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 41
+      },
+      "late_only": {
+        "accuracy": 0.2621951103210449,
+        "macro_f1": 0.19076584469159028,
+        "accuracy_partner_visible": 0.34146341463414637,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 41
+      },
+      "online_all": {
+        "accuracy": 0.3841463327407837,
+        "macro_f1": 0.22014092764521465,
+        "accuracy_partner_visible": 0.3170731707317073,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 41
+      },
+      "history_late": {
+        "accuracy": 0.2621951103210449,
+        "macro_f1": 0.18332004104768002,
+        "accuracy_partner_visible": 0.2682926829268293,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 41
+      }
+    },
+    "observer3_partner0": {
+      "frozen_early": {
+        "accuracy": 0.23780487477779388,
+        "macro_f1": 0.1466393921683226,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "late_only": {
+        "accuracy": 0.2073170691728592,
+        "macro_f1": 0.16239279694381822,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "online_all": {
+        "accuracy": 0.2621951103210449,
+        "macro_f1": 0.14601409077077918,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 0
+      },
+      "history_late": {
+        "accuracy": 0.27439022064208984,
+        "macro_f1": 0.21793557041171763,
+        "accuracy_partner_visible": NaN,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 0
+      }
+    },
+    "observer3_partner1": {
+      "frozen_early": {
+        "accuracy": 0.18902438879013062,
+        "macro_f1": 0.17875215165537744,
+        "accuracy_partner_visible": 0.0,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 2
+      },
+      "late_only": {
+        "accuracy": 0.3231707215309143,
+        "macro_f1": 0.20456545920588093,
+        "accuracy_partner_visible": 0.0,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 2
+      },
+      "online_all": {
+        "accuracy": 0.30487802624702454,
+        "macro_f1": 0.20098365210947994,
+        "accuracy_partner_visible": 0.0,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 2
+      },
+      "history_late": {
+        "accuracy": 0.2987804710865021,
+        "macro_f1": 0.2204987834549878,
+        "accuracy_partner_visible": 0.5,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 2
+      }
+    },
+    "observer3_partner2": {
+      "frozen_early": {
+        "accuracy": 0.20121949911117554,
+        "macro_f1": 0.10910844701667358,
+        "accuracy_partner_visible": 0.17073170731707318,
+        "train_samples": 489,
+        "test_samples": 164,
+        "visible_samples": 41
+      },
+      "late_only": {
+        "accuracy": 0.2987804710865021,
+        "macro_f1": 0.19435254803675858,
+        "accuracy_partner_visible": 0.36585365853658536,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 41
+      },
+      "online_all": {
+        "accuracy": 0.28658536076545715,
+        "macro_f1": 0.18210170666204623,
+        "accuracy_partner_visible": 0.34146341463414637,
+        "train_samples": 1162,
+        "test_samples": 164,
+        "visible_samples": 41
+      },
+      "history_late": {
+        "accuracy": 0.24390242993831635,
+        "macro_f1": 0.18166924699667314,
+        "accuracy_partner_visible": 0.2682926829268293,
+        "train_samples": 673,
+        "test_samples": 164,
+        "visible_samples": 41
+      }
+    }
+  }
+}

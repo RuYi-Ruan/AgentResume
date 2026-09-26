@@ -1,0 +1,27 @@
+{
+  "status": "development_gradual_learning_gate",
+  "claim_boundary": "Three independent contextual MLP role policies in one scripted low-level Overcooked map; not a formal ETM result.",
+  "config": {
+    "seeds": 1,
+    "episodes": 360,
+    "horizon": 220,
+    "window": 60,
+    "learning_rate": 0.015,
+    "epsilon_start": 0.9,
+    "epsilon_end": 0.05,
+    "eval_episodes": 12
+  },
+  "initial_mean_soups": 5.333333333333333,
+  "final_mean_soups": 4.916666666666667,
+  "paired_seed_gain_soups": -0.4166666666666661,
+  "normal_approx_95ci": [
+    -0.4166666666666661,
+    -0.4166666666666661
+  ],
+  "improved_seeds": 0,
+  "final_agent_role_accuracy": [
+    0.5833333333333334,
+    0.75,
+    0.4166666666666667
+  ]
+}

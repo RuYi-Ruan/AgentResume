@@ -1,0 +1,46 @@
+{
+  "status": "development_all_agent_closed_loop_gate",
+  "claim_boundary": "All agents rotate through an ETM-based responder role; policy learning trajectory is paired and exogenous to ETM condition; not a formal result.",
+  "config": {
+    "seeds": 1,
+    "episodes": 80,
+    "horizon": 100,
+    "window": 40,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.02,
+    "frozen_after": 50,
+    "visibility_radius": 4
+  },
+  "condition_games": 160,
+  "late_metrics": {
+    "frozen_etm": {
+      "window_start": 40,
+      "window_end": 79,
+      "condition": "frozen_etm",
+      "games": 40,
+      "mean_soups": 1.225,
+      "intent_accuracy": 0.8083333333333333,
+      "role_change_rate": 0.525
+    },
+    "dynamic_etm": {
+      "window_start": 40,
+      "window_end": 79,
+      "condition": "dynamic_etm",
+      "games": 40,
+      "mean_soups": 1.85,
+      "intent_accuracy": 0.85,
+      "role_change_rate": 0.325
+    }
+  },
+  "paired_seed_soup_gain": 0.625,
+  "soup_gain_normal_approx_95ci": [
+    0.625,
+    0.625
+  ],
+  "paired_seed_intent_gain": 0.04166666666666663,
+  "intent_gain_normal_approx_95ci": [
+    0.04166666666666663,
+    0.04166666666666663
+  ],
+  "dynamic_better_soup_seeds": 1
+}

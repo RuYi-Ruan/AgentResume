@@ -1,0 +1,118 @@
+{
+  "status": "completed_offline_diagnostic",
+  "episodes_per_checkpoint": 1,
+  "checkpoints": [
+    {
+      "step": 220460,
+      "games": 1,
+      "wins": 1,
+      "mean_return": 20.0,
+      "mean_length": 50.0,
+      "agents": [
+        {
+          "id": 0,
+          "alive_decisions": 43,
+          "stop_pct": 0.0,
+          "move_pct": 16.28,
+          "attack_pct": 83.72,
+          "survived_episodes": 0
+        },
+        {
+          "id": 1,
+          "alive_decisions": 24,
+          "stop_pct": 4.17,
+          "move_pct": 25.0,
+          "attack_pct": 70.83,
+          "survived_episodes": 0
+        },
+        {
+          "id": 2,
+          "alive_decisions": 19,
+          "stop_pct": 0.0,
+          "move_pct": 52.63,
+          "attack_pct": 47.37,
+          "survived_episodes": 0
+        },
+        {
+          "id": 3,
+          "alive_decisions": 50,
+          "stop_pct": 0.0,
+          "move_pct": 10.0,
+          "attack_pct": 90.0,
+          "survived_episodes": 1
+        },
+        {
+          "id": 4,
+          "alive_decisions": 32,
+          "stop_pct": 0.0,
+          "move_pct": 21.88,
+          "attack_pct": 78.12,
+          "survived_episodes": 0
+        }
+      ]
+    },
+    {
+      "step": 240497,
+      "games": 1,
+      "wins": 0,
+      "mean_return": 15.5882,
+      "mean_length": 50.0,
+      "agents": [
+        {
+          "id": 0,
+          "alive_decisions": 47,
+          "stop_pct": 0.0,
+          "move_pct": 23.4,
+          "attack_pct": 76.6,
+          "survived_episodes": 0
+        },
+        {
+          "id": 1,
+          "alive_decisions": 15,
+          "stop_pct": 0.0,
+          "move_pct": 73.33,
+          "attack_pct": 26.67,
+          "survived_episodes": 0
+        },
+        {
+          "id": 2,
+          "alive_decisions": 24,
+          "stop_pct": 0.0,
+          "move_pct": 25.0,
+          "attack_pct": 75.0,
+          "survived_episodes": 0
+        },
+        {
+          "id": 3,
+          "alive_decisions": 50,
+          "stop_pct": 0.0,
+          "move_pct": 20.0,
+          "attack_pct": 80.0,
+          "survived_episodes": 0
+        },
+        {
+          "id": 4,
+          "alive_decisions": 21,
+          "stop_pct": 0.0,
+          "move_pct": 23.81,
+          "attack_pct": 76.19,
+          "survived_episodes": 0
+        }
+      ]
+    }
+  ],
+  "fixed_observation_switches": [
+    {
+      "from": 220460,
+      "to": 240497,
+      "action_switch_rate_by_agent": [
+        0.1444,
+        0.4359,
+        0.2093,
+        0.13,
+        0.2642
+      ]
+    }
+  ],
+  "note": "Checkpoints evaluated in separate episodes; no policy changes within an episode. Action fractions exclude dead agents. Fixed-observation switches use pooled states, not partner-intent labels."
+}

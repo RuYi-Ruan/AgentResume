@@ -1,0 +1,4 @@
+window_start,window_end,episodes,intent_alignment_rate,team_success_rate,mean_environment_reward,planner_success_given_alignment
+0,99,500,0.146,0.146,0.048666666666666664,1.0
+100,199,500,0.148,0.148,0.049333333333333326,1.0
+200,299,500,0.252,0.252,0.084,1.0

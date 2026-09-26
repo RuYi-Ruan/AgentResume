@@ -1,0 +1,20 @@
+{
+  "type": "structural_diagnostic_not_learning",
+  "horizon": 40,
+  "rows": [
+    {
+      "seed": 0,
+      "worlds": 8,
+      "blue_ai": {
+        "blue_goals": 0,
+        "red_goals": 0,
+        "mean_final_ball_to_blue_goal": 1.5282483100891113
+      },
+      "blue_idle": {
+        "blue_goals": 0,
+        "red_goals": 0,
+        "mean_final_ball_to_blue_goal": 1.5282483100891113
+      }
+    }
+  ]
+}

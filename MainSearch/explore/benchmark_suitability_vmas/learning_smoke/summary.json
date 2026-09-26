@@ -1,0 +1,46 @@
+{
+  "status": "development_continuous_learning_gate",
+  "claim_boundary": "Three independent PPO policies learn atomic actions continuously in VMAS Transport; no ETM yet.",
+  "config": {
+    "seed": 0,
+    "updates": 4,
+    "num_envs": 8,
+    "horizon": 40,
+    "eval_envs": 64,
+    "eval_interval": 2,
+    "ppo_epochs": 3,
+    "minibatch": 512,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95
+  },
+  "evaluations": [
+    {
+      "seed": 0,
+      "checkpoint": 0,
+      "mean_return": 0.0,
+      "mean_final_distance": 1.0763002634048462,
+      "positive_worlds": 0,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 2,
+      "mean_return": 0.0,
+      "mean_final_distance": 1.0763002634048462,
+      "positive_worlds": 0,
+      "worlds": 64
+    },
+    {
+      "seed": 0,
+      "checkpoint": 4,
+      "mean_return": 0.0,
+      "mean_final_distance": 1.0763002634048462,
+      "positive_worlds": 0,
+      "worlds": 64
+    }
+  ],
+  "initial_return": 0.0,
+  "final_return": 0.0,
+  "gain": 0.0
+}

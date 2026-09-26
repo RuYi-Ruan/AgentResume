@@ -1,0 +1,7 @@
+{
+  "scope": "Privileged world-state controller; environment diagnostic only, not a valid MARL baseline or ETM result",
+  "episodes": 64,
+  "mean_return": -21.279447515901715,
+  "mean_nearest_landmark_distance": 0.06238275632508009,
+  "full_cover_episodes": 51
+}

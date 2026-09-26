@@ -1,0 +1,103 @@
+{
+  "status": "development_gate3_decision_control",
+  "claim_boundary": "Controlled ETM-to-decision test with scripted low-level execution; not a formal main result.",
+  "config": {
+    "seed_start": 0,
+    "seeds": 1,
+    "calibration_episodes": 3,
+    "learning_episodes": 4,
+    "horizon": 40,
+    "macro_steps": 10,
+    "probe_windows": 1,
+    "eval_interval": 2,
+    "eval_episodes": 1,
+    "table_repeats": 1,
+    "visibility_radius": 4,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.01,
+    "exploration_end": 0.1
+  },
+  "evaluation_rows": 30,
+  "late_condition_metrics": {
+    "base": {
+      "decisions": 3,
+      "mean_soups": 0.0,
+      "oracle_decision_agreement": 0.6666666666666666
+    },
+    "frozen": {
+      "decisions": 3,
+      "mean_soups": 0.0,
+      "oracle_decision_agreement": 1.0
+    },
+    "dynamic": {
+      "decisions": 3,
+      "mean_soups": 0.0,
+      "oracle_decision_agreement": 1.0
+    },
+    "stale_budget": {
+      "decisions": 3,
+      "mean_soups": 0.0,
+      "oracle_decision_agreement": 1.0
+    },
+    "oracle": {
+      "decisions": 3,
+      "mean_soups": 0.0,
+      "oracle_decision_agreement": 1.0
+    }
+  },
+  "late_contrasts": {
+    "dynamic_minus_frozen": {
+      "mean_soup_gain": 0.0,
+      "normal_approx_95ci": [
+        0.0,
+        0.0
+      ],
+      "positive_seeds": 0,
+      "ties": 1,
+      "per_seed": {
+        "0": 0.0
+      }
+    },
+    "dynamic_minus_stale_budget": {
+      "mean_soup_gain": 0.0,
+      "normal_approx_95ci": [
+        0.0,
+        0.0
+      ],
+      "positive_seeds": 0,
+      "ties": 1,
+      "per_seed": {
+        "0": 0.0
+      }
+    },
+    "dynamic_minus_base": {
+      "mean_soup_gain": 0.0,
+      "normal_approx_95ci": [
+        0.0,
+        0.0
+      ],
+      "positive_seeds": 0,
+      "ties": 1,
+      "per_seed": {
+        "0": 0.0
+      }
+    }
+  },
+  "update_counts": [
+    {
+      "seed": 0,
+      "model": "frozen",
+      "gradient_updates": 54
+    },
+    {
+      "seed": 0,
+      "model": "dynamic",
+      "gradient_updates": 126
+    },
+    {
+      "seed": 0,
+      "model": "stale_budget",
+      "gradient_updates": 126
+    }
+  ]
+}

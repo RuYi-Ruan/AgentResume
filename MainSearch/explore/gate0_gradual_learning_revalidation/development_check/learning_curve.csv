@@ -1,0 +1,6 @@
+checkpoint,evaluation_games_per_condition,learned_mean_soups,static_mean_soups,teacher_mean_soups,agent_0_agreement,agent_0_hybrid_soups,agent_1_agreement,agent_1_hybrid_soups,agent_2_agreement,agent_2_hybrid_soups
+0,16,0.625,0.625,,,,,,,
+40,16,2.0,0.625,2.3125,0.4375,1.75,0.5625,1.8125,0.3125,1.875
+80,16,1.875,0.625,2.6875,0.5,1.9375,0.625,2.25,0.75,2.4375
+120,16,2.375,0.625,2.9375,0.75,2.375,0.5,2.25,0.6875,2.25
+160,16,2.4375,0.625,3.0,0.875,2.875,0.5625,2.3125,0.75,2.375

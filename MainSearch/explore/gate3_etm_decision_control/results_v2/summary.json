@@ -1,0 +1,252 @@
+{
+  "status": "development_gate3_decision_control",
+  "claim_boundary": "Controlled ETM-to-decision test with scripted low-level execution; not a formal main result.",
+  "config": {
+    "seed_start": 0,
+    "seeds": 5,
+    "calibration_episodes": 120,
+    "learning_episodes": 360,
+    "horizon": 180,
+    "macro_steps": 10,
+    "probe_windows": 3,
+    "eval_interval": 60,
+    "eval_episodes": 6,
+    "table_repeats": 2,
+    "visibility_radius": 4,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.01,
+    "exploration_end": 0.1
+  },
+  "evaluation_rows": 2700,
+  "all_checkpoint_condition_metrics": {
+    "base": {
+      "decisions": 540,
+      "mean_soups": 4.711111111111111,
+      "oracle_decision_agreement": 0.7666666666666667
+    },
+    "frozen": {
+      "decisions": 540,
+      "mean_soups": 3.7574074074074075,
+      "oracle_decision_agreement": 0.4759259259259259
+    },
+    "dynamic": {
+      "decisions": 540,
+      "mean_soups": 4.368518518518519,
+      "oracle_decision_agreement": 0.7518518518518519
+    },
+    "stale_budget": {
+      "decisions": 540,
+      "mean_soups": 3.8055555555555554,
+      "oracle_decision_agreement": 0.4685185185185185
+    },
+    "oracle": {
+      "decisions": 540,
+      "mean_soups": 5.17037037037037,
+      "oracle_decision_agreement": 1.0
+    }
+  },
+  "all_checkpoint_contrasts": {
+    "dynamic_minus_frozen": {
+      "mean_soup_gain": 0.6111111111111109,
+      "normal_approx_95ci": [
+        0.23609817123377036,
+        0.9861240509884515
+      ],
+      "positive_seeds": 4,
+      "ties": 0,
+      "per_seed": {
+        "0": 0.9444444444444442,
+        "1": 0.9722222222222219,
+        "2": 0.6759259259259256,
+        "3": 0.5462962962962967,
+        "4": -0.08333333333333393
+      }
+    },
+    "dynamic_minus_stale_budget": {
+      "mean_soup_gain": 0.5629629629629629,
+      "normal_approx_95ci": [
+        0.1765139253000877,
+        0.9494120006258381
+      ],
+      "positive_seeds": 4,
+      "ties": 0,
+      "per_seed": {
+        "0": 0.9444444444444442,
+        "1": 0.8981481481481479,
+        "2": 0.583333333333333,
+        "3": 0.5462962962962967,
+        "4": -0.15740740740740744
+      }
+    },
+    "dynamic_minus_base": {
+      "mean_soup_gain": -0.3425925925925927,
+      "normal_approx_95ci": [
+        -0.35882478976259147,
+        -0.326360395422594
+      ],
+      "positive_seeds": 0,
+      "ties": 0,
+      "per_seed": {
+        "0": -0.34259259259259256,
+        "1": -0.3611111111111116,
+        "2": -0.3611111111111116,
+        "3": -0.3240740740740735,
+        "4": -0.3240740740740744
+      }
+    }
+  },
+  "late_condition_metrics": {
+    "base": {
+      "decisions": 90,
+      "mean_soups": 4.9,
+      "oracle_decision_agreement": 0.7666666666666667
+    },
+    "frozen": {
+      "decisions": 90,
+      "mean_soups": 3.7333333333333334,
+      "oracle_decision_agreement": 0.43333333333333335
+    },
+    "dynamic": {
+      "decisions": 90,
+      "mean_soups": 4.444444444444445,
+      "oracle_decision_agreement": 0.7333333333333333
+    },
+    "stale_budget": {
+      "decisions": 90,
+      "mean_soups": 3.566666666666667,
+      "oracle_decision_agreement": 0.35555555555555557
+    },
+    "oracle": {
+      "decisions": 90,
+      "mean_soups": 5.355555555555555,
+      "oracle_decision_agreement": 1.0
+    }
+  },
+  "late_contrasts": {
+    "dynamic_minus_frozen": {
+      "mean_soup_gain": 0.711111111111111,
+      "normal_approx_95ci": [
+        -0.02531918446811987,
+        1.447541406690342
+      ],
+      "positive_seeds": 4,
+      "ties": 0,
+      "per_seed": {
+        "0": 0.7222222222222219,
+        "1": 1.6666666666666665,
+        "2": -0.33333333333333304,
+        "3": 0.11111111111111116,
+        "4": 1.3888888888888888
+      }
+    },
+    "dynamic_minus_stale_budget": {
+      "mean_soup_gain": 0.8777777777777775,
+      "normal_approx_95ci": [
+        0.16010169279029318,
+        1.595453862765262
+      ],
+      "positive_seeds": 5,
+      "ties": 0,
+      "per_seed": {
+        "0": 0.7222222222222219,
+        "1": 1.5555555555555554,
+        "2": 0.11111111111111072,
+        "3": 0.11111111111111116,
+        "4": 1.8888888888888888
+      }
+    },
+    "dynamic_minus_base": {
+      "mean_soup_gain": -0.4555555555555556,
+      "normal_approx_95ci": [
+        -1.4339814518644691,
+        0.522870340753358
+      ],
+      "positive_seeds": 2,
+      "ties": 0,
+      "per_seed": {
+        "0": -1.3333333333333335,
+        "1": 0.05555555555555536,
+        "2": -1.2222222222222223,
+        "3": -1.0555555555555554,
+        "4": 1.2777777777777777
+      }
+    }
+  },
+  "update_counts": [
+    {
+      "seed": 0,
+      "model": "frozen",
+      "gradient_updates": 12240
+    },
+    {
+      "seed": 0,
+      "model": "dynamic",
+      "gradient_updates": 48960
+    },
+    {
+      "seed": 0,
+      "model": "stale_budget",
+      "gradient_updates": 48960
+    },
+    {
+      "seed": 1,
+      "model": "frozen",
+      "gradient_updates": 12240
+    },
+    {
+      "seed": 1,
+      "model": "dynamic",
+      "gradient_updates": 48960
+    },
+    {
+      "seed": 1,
+      "model": "stale_budget",
+      "gradient_updates": 48960
+    },
+    {
+      "seed": 2,
+      "model": "frozen",
+      "gradient_updates": 12240
+    },
+    {
+      "seed": 2,
+      "model": "dynamic",
+      "gradient_updates": 48960
+    },
+    {
+      "seed": 2,
+      "model": "stale_budget",
+      "gradient_updates": 48960
+    },
+    {
+      "seed": 3,
+      "model": "frozen",
+      "gradient_updates": 12240
+    },
+    {
+      "seed": 3,
+      "model": "dynamic",
+      "gradient_updates": 48960
+    },
+    {
+      "seed": 3,
+      "model": "stale_budget",
+      "gradient_updates": 48960
+    },
+    {
+      "seed": 4,
+      "model": "frozen",
+      "gradient_updates": 12240
+    },
+    {
+      "seed": 4,
+      "model": "dynamic",
+      "gradient_updates": 48960
+    },
+    {
+      "seed": 4,
+      "model": "stale_budget",
+      "gradient_updates": 48960
+    }
+  ]
+}

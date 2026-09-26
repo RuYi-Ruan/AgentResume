@@ -1,0 +1,49 @@
+{
+  "status": "development_structural_suitability",
+  "claim_boundary": "Fixed diagnostic controllers only; no online learning or ETM tested.",
+  "config": {
+    "seeds": 2,
+    "parallel_worlds": 8,
+    "steps": 80,
+    "n_agents": 3
+  },
+  "conditions": {
+    "all_active": {
+      "worlds": 16,
+      "mean_return": 0.9038069248199463,
+      "mean_final_distance": 1.1767029706388712
+    },
+    "two_active": {
+      "worlds": 16,
+      "mean_return": 0.7982010841369629,
+      "mean_final_distance": 1.1777590289711952
+    },
+    "all_idle": {
+      "worlds": 16,
+      "mean_return": 0.0,
+      "mean_final_distance": 1.1857410352677107
+    }
+  },
+  "paired": {
+    "all_active_minus_two_active": {
+      "mean_return_gain": 0.1056058406829834,
+      "positive_worlds": 9,
+      "ties": 1,
+      "negative_worlds": 6,
+      "per_seed_mean": {
+        "0": 0.26881885528564453,
+        "1": -0.057607173919677734
+      }
+    },
+    "all_active_minus_all_idle": {
+      "mean_return_gain": 0.9038069248199463,
+      "positive_worlds": 15,
+      "ties": 0,
+      "negative_worlds": 1,
+      "per_seed_mean": {
+        "0": 1.0607385635375977,
+        "1": 0.7468752861022949
+      }
+    }
+  }
+}

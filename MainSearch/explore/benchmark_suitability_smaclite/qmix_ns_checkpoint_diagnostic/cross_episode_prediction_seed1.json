@@ -1,0 +1,215 @@
+{
+  "status": "completed_development_probe",
+  "model_seed": 1,
+  "source_checkpoints": [
+    100325,
+    160424,
+    200453,
+    220460,
+    240497,
+    260503,
+    280546,
+    300017
+  ],
+  "support_seeds": "0-9",
+  "train_query_seeds": "10-39",
+  "test_query_seeds": "40-49",
+  "train_events": 40000,
+  "test_events": 12000,
+  "attack_events": 6847,
+  "accuracy": {
+    "current": 0.6652,
+    "correct_partner_support": 0.6894,
+    "wrong_partner_support": 0.6714,
+    "stale_partner_support": 0.6777
+  },
+  "attack_accuracy": {
+    "current": 0.8077,
+    "correct_partner_support": 0.8277,
+    "wrong_partner_support": 0.8141,
+    "stale_partner_support": 0.8296
+  },
+  "pair_results": [
+    {
+      "observer": 0,
+      "target": 1,
+      "events": 674,
+      "current": 0.5727,
+      "correct_partner_support": 0.6454,
+      "wrong_partner_support": 0.6172,
+      "stale_partner_support": 0.6202
+    },
+    {
+      "observer": 0,
+      "target": 2,
+      "events": 449,
+      "current": 0.5947,
+      "correct_partner_support": 0.6147,
+      "wrong_partner_support": 0.5679,
+      "stale_partner_support": 0.6036
+    },
+    {
+      "observer": 0,
+      "target": 3,
+      "events": 821,
+      "current": 0.7893,
+      "correct_partner_support": 0.8453,
+      "wrong_partner_support": 0.8149,
+      "stale_partner_support": 0.8258
+    },
+    {
+      "observer": 0,
+      "target": 4,
+      "events": 690,
+      "current": 0.7536,
+      "correct_partner_support": 0.7377,
+      "wrong_partner_support": 0.7275,
+      "stale_partner_support": 0.7333
+    },
+    {
+      "observer": 1,
+      "target": 0,
+      "events": 659,
+      "current": 0.5979,
+      "correct_partner_support": 0.6191,
+      "wrong_partner_support": 0.6085,
+      "stale_partner_support": 0.6267
+    },
+    {
+      "observer": 1,
+      "target": 2,
+      "events": 384,
+      "current": 0.5885,
+      "correct_partner_support": 0.6016,
+      "wrong_partner_support": 0.5651,
+      "stale_partner_support": 0.5599
+    },
+    {
+      "observer": 1,
+      "target": 3,
+      "events": 823,
+      "current": 0.7436,
+      "correct_partner_support": 0.7242,
+      "wrong_partner_support": 0.7254,
+      "stale_partner_support": 0.757
+    },
+    {
+      "observer": 1,
+      "target": 4,
+      "events": 698,
+      "current": 0.765,
+      "correct_partner_support": 0.7264,
+      "wrong_partner_support": 0.7221,
+      "stale_partner_support": 0.7221
+    },
+    {
+      "observer": 2,
+      "target": 0,
+      "events": 414,
+      "current": 0.6522,
+      "correct_partner_support": 0.6208,
+      "wrong_partner_support": 0.6208,
+      "stale_partner_support": 0.6473
+    },
+    {
+      "observer": 2,
+      "target": 1,
+      "events": 386,
+      "current": 0.5881,
+      "correct_partner_support": 0.5777,
+      "wrong_partner_support": 0.5466,
+      "stale_partner_support": 0.5466
+    },
+    {
+      "observer": 2,
+      "target": 3,
+      "events": 383,
+      "current": 0.7728,
+      "correct_partner_support": 0.7963,
+      "wrong_partner_support": 0.7963,
+      "stale_partner_support": 0.8068
+    },
+    {
+      "observer": 2,
+      "target": 4,
+      "events": 353,
+      "current": 0.5722,
+      "correct_partner_support": 0.6969,
+      "wrong_partner_support": 0.6261,
+      "stale_partner_support": 0.6459
+    },
+    {
+      "observer": 3,
+      "target": 0,
+      "events": 813,
+      "current": 0.69,
+      "correct_partner_support": 0.7036,
+      "wrong_partner_support": 0.7073,
+      "stale_partner_support": 0.6974
+    },
+    {
+      "observer": 3,
+      "target": 1,
+      "events": 812,
+      "current": 0.5998,
+      "correct_partner_support": 0.6502,
+      "wrong_partner_support": 0.633,
+      "stale_partner_support": 0.6589
+    },
+    {
+      "observer": 3,
+      "target": 2,
+      "events": 382,
+      "current": 0.5524,
+      "correct_partner_support": 0.6152,
+      "wrong_partner_support": 0.6152,
+      "stale_partner_support": 0.6073
+    },
+    {
+      "observer": 3,
+      "target": 4,
+      "events": 782,
+      "current": 0.7276,
+      "correct_partner_support": 0.7353,
+      "wrong_partner_support": 0.7251,
+      "stale_partner_support": 0.7199
+    },
+    {
+      "observer": 4,
+      "target": 0,
+      "events": 684,
+      "current": 0.6418,
+      "correct_partner_support": 0.6901,
+      "wrong_partner_support": 0.6462,
+      "stale_partner_support": 0.6272
+    },
+    {
+      "observer": 4,
+      "target": 1,
+      "events": 696,
+      "current": 0.6078,
+      "correct_partner_support": 0.6552,
+      "wrong_partner_support": 0.6164,
+      "stale_partner_support": 0.602
+    },
+    {
+      "observer": 4,
+      "target": 2,
+      "events": 327,
+      "current": 0.5229,
+      "correct_partner_support": 0.5627,
+      "wrong_partner_support": 0.5596,
+      "stale_partner_support": 0.5474
+    },
+    {
+      "observer": 4,
+      "target": 3,
+      "events": 770,
+      "current": 0.7,
+      "correct_partner_support": 0.7325,
+      "wrong_partner_support": 0.7234,
+      "stale_partner_support": 0.7338
+    }
+  ],
+  "note": "Support contains only observer-local visibility, relative position, HP, and relative motion from previous games. Frozen checkpoints are separate offline samples, not a simulated online-learning trajectory. Positive prediction alone would not show cooperation gain."
+}

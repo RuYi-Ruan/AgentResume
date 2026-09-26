@@ -1,0 +1,4 @@
+seed,checkpoint,mean_return,mean_final_distance,positive_worlds,worlds
+0,0,0.0,1.0763002634048462,0,64
+0,2,0.0,1.0763002634048462,0,64
+0,4,0.0,1.0763002634048462,0,64

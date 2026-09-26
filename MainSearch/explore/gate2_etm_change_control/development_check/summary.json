@@ -1,0 +1,103 @@
+{
+  "status": "development_gate2_change_control",
+  "claim_boundary": "Cognition-only change-vs-training-budget control with scripted low-level execution; exploratory only.",
+  "config": {
+    "seed_start": 0,
+    "seeds": 1,
+    "calibration_episodes": 60,
+    "learning_episodes": 160,
+    "horizon": 100,
+    "macro_steps": 10,
+    "window_episodes": 40,
+    "visibility_radius": 4,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.01,
+    "exploration_end": 0.1
+  },
+  "prediction_events": 56160,
+  "learning_trace_episodes": 160,
+  "calibration_all_models_exact_match": true,
+  "post_calibration_update_budgets_equal": true,
+  "late_metrics": {
+    "evolving_frozen": {
+      "window_start": 120,
+      "window_end": 159,
+      "condition": "evolving_frozen",
+      "predictions": 2160,
+      "nonempty_predictions": 988,
+      "overall_accuracy": 0.45,
+      "nonempty_accuracy": 0.1194331983805668
+    },
+    "evolving_dynamic": {
+      "window_start": 120,
+      "window_end": 159,
+      "condition": "evolving_dynamic",
+      "predictions": 2160,
+      "nonempty_predictions": 988,
+      "overall_accuracy": 0.40185185185185185,
+      "nonempty_accuracy": 0.347165991902834
+    },
+    "evolving_stale_budget": {
+      "window_start": 120,
+      "window_end": 159,
+      "condition": "evolving_stale_budget",
+      "predictions": 2160,
+      "nonempty_predictions": 988,
+      "overall_accuracy": 0.38287037037037036,
+      "nonempty_accuracy": 0.058704453441295545
+    },
+    "static_frozen": {
+      "window_start": 120,
+      "window_end": 159,
+      "condition": "static_frozen",
+      "predictions": 2160,
+      "nonempty_predictions": 984,
+      "overall_accuracy": 0.5462962962962963,
+      "nonempty_accuracy": 0.3333333333333333
+    },
+    "static_dynamic": {
+      "window_start": 120,
+      "window_end": 159,
+      "condition": "static_dynamic",
+      "predictions": 2160,
+      "nonempty_predictions": 984,
+      "overall_accuracy": 0.9662037037037037,
+      "nonempty_accuracy": 0.9400406504065041
+    }
+  },
+  "contrasts": {
+    "evolving_dynamic_minus_frozen": {
+      "mean_gain": 0.22773279352226716,
+      "normal_approx_95ci": [
+        0.22773279352226716,
+        0.22773279352226716
+      ],
+      "positive_seeds": 1,
+      "per_seed": {
+        "0": 0.22773279352226716
+      }
+    },
+    "evolving_dynamic_minus_stale_budget": {
+      "mean_gain": 0.28846153846153844,
+      "normal_approx_95ci": [
+        0.28846153846153844,
+        0.28846153846153844
+      ],
+      "positive_seeds": 1,
+      "per_seed": {
+        "0": 0.28846153846153844
+      }
+    },
+    "static_dynamic_minus_frozen": {
+      "mean_gain": 0.6067073170731707,
+      "normal_approx_95ci": [
+        0.6067073170731707,
+        0.6067073170731707
+      ],
+      "positive_seeds": 1,
+      "per_seed": {
+        "0": 0.6067073170731707
+      }
+    }
+  }
+}

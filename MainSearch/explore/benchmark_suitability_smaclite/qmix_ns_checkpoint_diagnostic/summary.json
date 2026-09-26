@@ -1,0 +1,478 @@
+{
+  "status": "completed_offline_diagnostic",
+  "episodes_per_checkpoint": 50,
+  "checkpoints": [
+    {
+      "step": 100325,
+      "games": 50,
+      "wins": 0,
+      "mean_return": 12.2549,
+      "mean_length": 46.0,
+      "agents": [
+        {
+          "id": 0,
+          "alive_decisions": 2300,
+          "stop_pct": 0.0,
+          "move_pct": 45.65,
+          "attack_pct": 54.35,
+          "survived_episodes": 0
+        },
+        {
+          "id": 1,
+          "alive_decisions": 1300,
+          "stop_pct": 0.0,
+          "move_pct": 15.38,
+          "attack_pct": 84.62,
+          "survived_episodes": 0
+        },
+        {
+          "id": 2,
+          "alive_decisions": 700,
+          "stop_pct": 0.0,
+          "move_pct": 35.71,
+          "attack_pct": 64.29,
+          "survived_episodes": 0
+        },
+        {
+          "id": 3,
+          "alive_decisions": 750,
+          "stop_pct": 0.0,
+          "move_pct": 26.67,
+          "attack_pct": 73.33,
+          "survived_episodes": 0
+        },
+        {
+          "id": 4,
+          "alive_decisions": 950,
+          "stop_pct": 0.0,
+          "move_pct": 31.58,
+          "attack_pct": 68.42,
+          "survived_episodes": 0
+        }
+      ]
+    },
+    {
+      "step": 160424,
+      "games": 50,
+      "wins": 0,
+      "mean_return": 14.1176,
+      "mean_length": 150.0,
+      "agents": [
+        {
+          "id": 0,
+          "alive_decisions": 1850,
+          "stop_pct": 0.0,
+          "move_pct": 29.73,
+          "attack_pct": 70.27,
+          "survived_episodes": 0
+        },
+        {
+          "id": 1,
+          "alive_decisions": 3750,
+          "stop_pct": 24.0,
+          "move_pct": 25.33,
+          "attack_pct": 50.67,
+          "survived_episodes": 0
+        },
+        {
+          "id": 2,
+          "alive_decisions": 800,
+          "stop_pct": 0.0,
+          "move_pct": 56.25,
+          "attack_pct": 43.75,
+          "survived_episodes": 0
+        },
+        {
+          "id": 3,
+          "alive_decisions": 7500,
+          "stop_pct": 4.0,
+          "move_pct": 76.67,
+          "attack_pct": 19.33,
+          "survived_episodes": 50
+        },
+        {
+          "id": 4,
+          "alive_decisions": 1750,
+          "stop_pct": 0.0,
+          "move_pct": 37.14,
+          "attack_pct": 62.86,
+          "survived_episodes": 0
+        }
+      ]
+    },
+    {
+      "step": 200453,
+      "games": 50,
+      "wins": 0,
+      "mean_return": 11.4314,
+      "mean_length": 35.0,
+      "agents": [
+        {
+          "id": 0,
+          "alive_decisions": 1650,
+          "stop_pct": 0.0,
+          "move_pct": 18.18,
+          "attack_pct": 81.82,
+          "survived_episodes": 0
+        },
+        {
+          "id": 1,
+          "alive_decisions": 1750,
+          "stop_pct": 28.57,
+          "move_pct": 2.86,
+          "attack_pct": 68.57,
+          "survived_episodes": 0
+        },
+        {
+          "id": 2,
+          "alive_decisions": 1350,
+          "stop_pct": 7.41,
+          "move_pct": 33.33,
+          "attack_pct": 59.26,
+          "survived_episodes": 0
+        },
+        {
+          "id": 3,
+          "alive_decisions": 1050,
+          "stop_pct": 0.0,
+          "move_pct": 28.57,
+          "attack_pct": 71.43,
+          "survived_episodes": 0
+        },
+        {
+          "id": 4,
+          "alive_decisions": 650,
+          "stop_pct": 30.77,
+          "move_pct": 15.38,
+          "attack_pct": 53.85,
+          "survived_episodes": 0
+        }
+      ]
+    },
+    {
+      "step": 220460,
+      "games": 50,
+      "wins": 50,
+      "mean_return": 20.0,
+      "mean_length": 48.96,
+      "agents": [
+        {
+          "id": 0,
+          "alive_decisions": 2150,
+          "stop_pct": 0.0,
+          "move_pct": 16.28,
+          "attack_pct": 83.72,
+          "survived_episodes": 0
+        },
+        {
+          "id": 1,
+          "alive_decisions": 1200,
+          "stop_pct": 4.17,
+          "move_pct": 25.0,
+          "attack_pct": 70.83,
+          "survived_episodes": 0
+        },
+        {
+          "id": 2,
+          "alive_decisions": 950,
+          "stop_pct": 0.0,
+          "move_pct": 52.63,
+          "attack_pct": 47.37,
+          "survived_episodes": 0
+        },
+        {
+          "id": 3,
+          "alive_decisions": 2448,
+          "stop_pct": 0.0,
+          "move_pct": 10.21,
+          "attack_pct": 89.79,
+          "survived_episodes": 50
+        },
+        {
+          "id": 4,
+          "alive_decisions": 1600,
+          "stop_pct": 0.0,
+          "move_pct": 21.88,
+          "attack_pct": 78.12,
+          "survived_episodes": 0
+        }
+      ]
+    },
+    {
+      "step": 240497,
+      "games": 50,
+      "wins": 0,
+      "mean_return": 14.3882,
+      "mean_length": 50.6,
+      "agents": [
+        {
+          "id": 0,
+          "alive_decisions": 2470,
+          "stop_pct": 0.0,
+          "move_pct": 30.16,
+          "attack_pct": 69.84,
+          "survived_episodes": 0
+        },
+        {
+          "id": 1,
+          "alive_decisions": 900,
+          "stop_pct": 0.0,
+          "move_pct": 47.78,
+          "attack_pct": 52.22,
+          "survived_episodes": 0
+        },
+        {
+          "id": 2,
+          "alive_decisions": 1350,
+          "stop_pct": 0.0,
+          "move_pct": 33.33,
+          "attack_pct": 66.67,
+          "survived_episodes": 0
+        },
+        {
+          "id": 3,
+          "alive_decisions": 1900,
+          "stop_pct": 0.0,
+          "move_pct": 18.42,
+          "attack_pct": 81.58,
+          "survived_episodes": 0
+        },
+        {
+          "id": 4,
+          "alive_decisions": 1050,
+          "stop_pct": 0.0,
+          "move_pct": 23.81,
+          "attack_pct": 76.19,
+          "survived_episodes": 0
+        }
+      ]
+    },
+    {
+      "step": 260503,
+      "games": 50,
+      "wins": 32,
+      "mean_return": 18.5035,
+      "mean_length": 50.36,
+      "agents": [
+        {
+          "id": 0,
+          "alive_decisions": 2300,
+          "stop_pct": 2.17,
+          "move_pct": 26.09,
+          "attack_pct": 71.74,
+          "survived_episodes": 0
+        },
+        {
+          "id": 1,
+          "alive_decisions": 1300,
+          "stop_pct": 7.69,
+          "move_pct": 34.62,
+          "attack_pct": 57.69,
+          "survived_episodes": 0
+        },
+        {
+          "id": 2,
+          "alive_decisions": 1200,
+          "stop_pct": 8.33,
+          "move_pct": 41.67,
+          "attack_pct": 50.0,
+          "survived_episodes": 0
+        },
+        {
+          "id": 3,
+          "alive_decisions": 2518,
+          "stop_pct": 3.97,
+          "move_pct": 15.89,
+          "attack_pct": 80.14,
+          "survived_episodes": 32
+        },
+        {
+          "id": 4,
+          "alive_decisions": 1400,
+          "stop_pct": 3.57,
+          "move_pct": 46.43,
+          "attack_pct": 50.0,
+          "survived_episodes": 0
+        }
+      ]
+    },
+    {
+      "step": 280546,
+      "games": 50,
+      "wins": 0,
+      "mean_return": 12.0212,
+      "mean_length": 61.46,
+      "agents": [
+        {
+          "id": 0,
+          "alive_decisions": 1300,
+          "stop_pct": 23.08,
+          "move_pct": 34.62,
+          "attack_pct": 42.31,
+          "survived_episodes": 0
+        },
+        {
+          "id": 1,
+          "alive_decisions": 3073,
+          "stop_pct": 0.0,
+          "move_pct": 47.93,
+          "attack_pct": 52.07,
+          "survived_episodes": 0
+        },
+        {
+          "id": 2,
+          "alive_decisions": 1400,
+          "stop_pct": 32.14,
+          "move_pct": 64.29,
+          "attack_pct": 3.57,
+          "survived_episodes": 0
+        },
+        {
+          "id": 3,
+          "alive_decisions": 2400,
+          "stop_pct": 0.0,
+          "move_pct": 41.67,
+          "attack_pct": 58.33,
+          "survived_episodes": 0
+        },
+        {
+          "id": 4,
+          "alive_decisions": 2750,
+          "stop_pct": 7.27,
+          "move_pct": 43.64,
+          "attack_pct": 49.09,
+          "survived_episodes": 0
+        }
+      ]
+    },
+    {
+      "step": 300017,
+      "games": 50,
+      "wins": 50,
+      "mean_return": 20.0,
+      "mean_length": 54.32,
+      "agents": [
+        {
+          "id": 0,
+          "alive_decisions": 2622,
+          "stop_pct": 1.91,
+          "move_pct": 40.05,
+          "attack_pct": 58.05,
+          "survived_episodes": 0
+        },
+        {
+          "id": 1,
+          "alive_decisions": 2716,
+          "stop_pct": 1.84,
+          "move_pct": 42.34,
+          "attack_pct": 55.82,
+          "survived_episodes": 50
+        },
+        {
+          "id": 2,
+          "alive_decisions": 850,
+          "stop_pct": 0.0,
+          "move_pct": 100.0,
+          "attack_pct": 0.0,
+          "survived_episodes": 0
+        },
+        {
+          "id": 3,
+          "alive_decisions": 2422,
+          "stop_pct": 0.0,
+          "move_pct": 30.97,
+          "attack_pct": 69.03,
+          "survived_episodes": 0
+        },
+        {
+          "id": 4,
+          "alive_decisions": 2250,
+          "stop_pct": 2.22,
+          "move_pct": 17.78,
+          "attack_pct": 80.0,
+          "survived_episodes": 0
+        }
+      ]
+    }
+  ],
+  "fixed_observation_switches": [
+    {
+      "from": 100325,
+      "to": 160424,
+      "action_switch_rate_by_agent": [
+        0.4044,
+        0.5019,
+        0.6438,
+        0.3862,
+        0.3469
+      ]
+    },
+    {
+      "from": 160424,
+      "to": 200453,
+      "action_switch_rate_by_agent": [
+        0.3987,
+        0.3356,
+        0.4094,
+        0.3513,
+        0.4325
+      ]
+    },
+    {
+      "from": 200453,
+      "to": 220460,
+      "action_switch_rate_by_agent": [
+        0.31,
+        0.3456,
+        0.2794,
+        0.2394,
+        0.3244
+      ]
+    },
+    {
+      "from": 220460,
+      "to": 240497,
+      "action_switch_rate_by_agent": [
+        0.2,
+        0.2475,
+        0.1981,
+        0.1969,
+        0.3531
+      ]
+    },
+    {
+      "from": 240497,
+      "to": 260503,
+      "action_switch_rate_by_agent": [
+        0.375,
+        0.305,
+        0.2725,
+        0.3375,
+        0.2325
+      ]
+    },
+    {
+      "from": 260503,
+      "to": 280546,
+      "action_switch_rate_by_agent": [
+        0.3962,
+        0.3406,
+        0.3875,
+        0.1988,
+        0.2081
+      ]
+    },
+    {
+      "from": 280546,
+      "to": 300017,
+      "action_switch_rate_by_agent": [
+        0.2794,
+        0.3931,
+        0.3694,
+        0.1263,
+        0.16
+      ]
+    }
+  ],
+  "note": "Checkpoints evaluated in separate episodes; no policy changes within an episode. Action fractions exclude dead agents. Fixed-observation switches use pooled states, not partner-intent labels."
+}

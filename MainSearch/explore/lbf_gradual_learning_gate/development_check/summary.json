@@ -1,0 +1,54 @@
+{
+  "status": "development_gate",
+  "claim_boundary": "LBF online-learning feasibility only; ETM is not tested.",
+  "config": {
+    "seeds": 5,
+    "episodes": 300,
+    "window": 100,
+    "learning_rate": 0.025,
+    "epsilon_start": 0.9,
+    "epsilon_end": 0.05,
+    "epsilon_decay_episodes": 700,
+    "planner_step_limit": 50,
+    "environment_id": "Foraging-8x8-3p-3f-coop-v3"
+  },
+  "episodes": 1500,
+  "intent_labels": {
+    "target_food": "canonical rank of selected food position",
+    "intended_collaborators": "the other two fixed-identity agents"
+  },
+  "level_leakage": "The raw LBF observation exposes player and food levels; mask them before ETM evaluation.",
+  "early_window": {
+    "window_start": 0,
+    "window_end": 99,
+    "episodes": 500,
+    "intent_alignment_rate": 0.146,
+    "team_success_rate": 0.146,
+    "mean_environment_reward": 0.048666666666666664,
+    "planner_success_given_alignment": 1.0
+  },
+  "late_window": {
+    "window_start": 200,
+    "window_end": 299,
+    "episodes": 500,
+    "intent_alignment_rate": 0.252,
+    "team_success_rate": 0.252,
+    "mean_environment_reward": 0.084,
+    "planner_success_given_alignment": 1.0
+  },
+  "mean_seed_improvement": 0.10600000000000001,
+  "improvement_95ci": [
+    0.05735407930771587,
+    0.15464592069228417
+  ],
+  "fraction_seeds_improving_over_0_10": 0.6,
+  "planner_success_given_alignment": 1.0,
+  "largest_adjacent_window_change": 0.10400000000000001,
+  "gate_checks": {
+    "late_success_at_least_0_50": false,
+    "mean_improvement_at_least_0_25": false,
+    "at_least_80pct_seeds_improve": false,
+    "planner_reliability_at_least_0_98": true
+  },
+  "gate_pass": false
+}

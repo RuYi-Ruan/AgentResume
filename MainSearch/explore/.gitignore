@@ -1,0 +1,7 @@
+# Large, reproducible artifacts stay local: training checkpoints, demo datasets, logs.
+*/results/
+*/demos/
+*.npz
+*.pkl
+*_run.log
+__pycache__/

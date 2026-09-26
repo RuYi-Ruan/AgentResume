@@ -1,0 +1,103 @@
+{
+  "status": "development_gate3_decision_control",
+  "claim_boundary": "Controlled ETM-to-decision test with scripted low-level execution; not a formal main result.",
+  "config": {
+    "seed_start": 0,
+    "seeds": 1,
+    "calibration_episodes": 60,
+    "learning_episodes": 160,
+    "horizon": 100,
+    "macro_steps": 10,
+    "probe_windows": 2,
+    "eval_interval": 40,
+    "eval_episodes": 3,
+    "table_repeats": 1,
+    "visibility_radius": 4,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.01,
+    "exploration_end": 0.1
+  },
+  "evaluation_rows": 180,
+  "late_condition_metrics": {
+    "base": {
+      "decisions": 9,
+      "mean_soups": 1.6666666666666667,
+      "oracle_decision_agreement": 0.5555555555555556
+    },
+    "frozen": {
+      "decisions": 9,
+      "mean_soups": 1.3333333333333333,
+      "oracle_decision_agreement": 0.3333333333333333
+    },
+    "dynamic": {
+      "decisions": 9,
+      "mean_soups": 2.111111111111111,
+      "oracle_decision_agreement": 0.8888888888888888
+    },
+    "stale_budget": {
+      "decisions": 9,
+      "mean_soups": 1.3333333333333333,
+      "oracle_decision_agreement": 0.3333333333333333
+    },
+    "oracle": {
+      "decisions": 9,
+      "mean_soups": 2.3333333333333335,
+      "oracle_decision_agreement": 1.0
+    }
+  },
+  "late_contrasts": {
+    "dynamic_minus_frozen": {
+      "mean_soup_gain": 0.7777777777777779,
+      "normal_approx_95ci": [
+        0.7777777777777779,
+        0.7777777777777779
+      ],
+      "positive_seeds": 1,
+      "ties": 0,
+      "per_seed": {
+        "0": 0.7777777777777779
+      }
+    },
+    "dynamic_minus_stale_budget": {
+      "mean_soup_gain": 0.7777777777777779,
+      "normal_approx_95ci": [
+        0.7777777777777779,
+        0.7777777777777779
+      ],
+      "positive_seeds": 1,
+      "ties": 0,
+      "per_seed": {
+        "0": 0.7777777777777779
+      }
+    },
+    "dynamic_minus_base": {
+      "mean_soup_gain": 0.4444444444444444,
+      "normal_approx_95ci": [
+        0.4444444444444444,
+        0.4444444444444444
+      ],
+      "positive_seeds": 1,
+      "ties": 0,
+      "per_seed": {
+        "0": 0.4444444444444444
+      }
+    }
+  },
+  "update_counts": [
+    {
+      "seed": 0,
+      "model": "frozen",
+      "gradient_updates": 3240
+    },
+    {
+      "seed": 0,
+      "model": "dynamic",
+      "gradient_updates": 11880
+    },
+    {
+      "seed": 0,
+      "model": "stale_budget",
+      "gradient_updates": 11880
+    }
+  ]
+}

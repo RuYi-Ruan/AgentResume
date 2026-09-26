@@ -1,0 +1,217 @@
+{
+  "status": "structural_no_learning",
+  "map": "2s3z",
+  "agents": 5,
+  "rows": [
+    {
+      "seed": 0,
+      "random": {
+        "reward": 3.8823529411764706,
+        "steps": 40,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      },
+      "stop": {
+        "reward": 0.0,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "random": {
+        "reward": 2.8431372549019605,
+        "steps": 34,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      },
+      "stop": {
+        "reward": 0.0,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "random": {
+        "reward": 4.0588235294117645,
+        "steps": 38,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      },
+      "stop": {
+        "reward": 0.0,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "random": {
+        "reward": 3.2156862745098036,
+        "steps": 40,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      },
+      "stop": {
+        "reward": 0.0,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "random": {
+        "reward": 3.019607843137255,
+        "steps": 39,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      },
+      "stop": {
+        "reward": 0.0,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "random": {
+        "reward": 3.4901960784313726,
+        "steps": 69,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      },
+      "stop": {
+        "reward": 0.0,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      }
+    },
+    {
+      "seed": 6,
+      "random": {
+        "reward": 4.470588235294118,
+        "steps": 38,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      },
+      "stop": {
+        "reward": 0.0,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "random": {
+        "reward": 5.941176470588235,
+        "steps": 32,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      },
+      "stop": {
+        "reward": 0.0,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      }
+    },
+    {
+      "seed": 8,
+      "random": {
+        "reward": 4.176470588235294,
+        "steps": 66,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      },
+      "stop": {
+        "reward": 0.0,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      }
+    },
+    {
+      "seed": 9,
+      "random": {
+        "reward": 3.705882352941176,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      },
+      "stop": {
+        "reward": 0.0,
+        "steps": 35,
+        "done": true,
+        "truncated": false,
+        "info": {
+          "battle_won": false
+        }
+      }
+    }
+  ]
+}

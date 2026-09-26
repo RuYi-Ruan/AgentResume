@@ -1,0 +1,76 @@
+{
+  "status": "development_gate1_observable_etm_revalidation",
+  "claim_boundary": "Cognition-only prediction on an exogenous continuous learning path; six independent directional ETMs, scripted low-level execution, not a formal result.",
+  "config": {
+    "seed_start": 0,
+    "seeds": 2,
+    "calibration_episodes": 120,
+    "learning_episodes": 360,
+    "horizon": 180,
+    "macro_steps": 10,
+    "window_episodes": 60,
+    "visibility_radius": 4,
+    "actor_learning_rate": 0.01,
+    "etm_learning_rate": 0.01,
+    "exploration_end": 0.1
+  },
+  "prediction_events": 195840,
+  "learning_trace_episodes": 720,
+  "calibration_conditions_exact_match": true,
+  "late_metrics": {
+    "frozen_etm": {
+      "window_start": 300,
+      "window_end": 359,
+      "condition": "frozen_etm",
+      "predictions": 12240,
+      "nonempty_predictions": 6726,
+      "overall_accuracy": 0.2079248366013072,
+      "nonempty_accuracy": 0.0023788284269997025
+    },
+    "dynamic_etm": {
+      "window_start": 300,
+      "window_end": 359,
+      "condition": "dynamic_etm",
+      "predictions": 12240,
+      "nonempty_predictions": 6726,
+      "overall_accuracy": 0.31037581699346406,
+      "nonempty_accuracy": 0.5035682426404996
+    }
+  },
+  "paired_seed_nonempty_accuracy_gain": 0.5007011281056533,
+  "gain_normal_approx_95ci": [
+    0.4675204258979361,
+    0.5338818303133704
+  ],
+  "dynamic_better_seeds": 2,
+  "per_seed_nonempty_accuracy_gain": {
+    "0": 0.5176300578034682,
+    "1": 0.48377219840783836
+  },
+  "late_pair_nonempty_accuracy": {
+    "0->1": {
+      "frozen_etm": 0.008724100327153763,
+      "dynamic_etm": 0.5943293347873501
+    },
+    "0->2": {
+      "frozen_etm": 0.0,
+      "dynamic_etm": 0.3323903818953324
+    },
+    "1->0": {
+      "frozen_etm": 0.0,
+      "dynamic_etm": 0.6976744186046512
+    },
+    "1->2": {
+      "frozen_etm": 0.0,
+      "dynamic_etm": 0.3323903818953324
+    },
+    "2->0": {
+      "frozen_etm": 0.0,
+      "dynamic_etm": 0.6172480620155039
+    },
+    "2->1": {
+      "frozen_etm": 0.008724100327153763,
+      "dynamic_etm": 0.5943293347873501
+    }
+  }
+}

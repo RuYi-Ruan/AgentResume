@@ -1,0 +1,111 @@
+{
+  "status": "development_score_separation_gate",
+  "claim_boundary": "Scripted three-agent role-allocation test, not an ETM effectiveness result.",
+  "config": {
+    "episodes": 6,
+    "horizon": 500,
+    "seed": 20260922
+  },
+  "conditions": {
+    "stale_model": {
+      "roles": [
+        "serve",
+        "cook",
+        "serve"
+      ],
+      "mean_soups": 7.333333333333333
+    },
+    "updated_model": {
+      "roles": [
+        "cook",
+        "cook",
+        "serve"
+      ],
+      "mean_soups": 20.0
+    }
+  },
+  "paired_difference_soups": {
+    "mean": 12.666666666666666,
+    "normal_approx_95ci": [
+      8.121419576451316,
+      17.211913756882016
+    ],
+    "updated_better_episodes": 6,
+    "ties": 0,
+    "stale_better_episodes": 0
+  },
+  "episodes": [
+    {
+      "episode": 0,
+      "seed": 20260922,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 0,
+      "seed": 20260922,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 1,
+      "seed": 20260923,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 1,
+      "seed": 20260923,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 2,
+      "seed": 20260924,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 2,
+      "seed": 20260924,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 3,
+      "seed": 20260925,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 3,
+      "seed": 20260925,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 4,
+      "seed": 20260926,
+      "condition": "stale_model",
+      "soups": 11.0
+    },
+    {
+      "episode": 4,
+      "seed": 20260926,
+      "condition": "updated_model",
+      "soups": 20.0
+    },
+    {
+      "episode": 5,
+      "seed": 20260927,
+      "condition": "stale_model",
+      "soups": 0.0
+    },
+    {
+      "episode": 5,
+      "seed": 20260927,
+      "condition": "updated_model",
+      "soups": 20.0
+    }
+  ]
+}

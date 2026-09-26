@@ -1,0 +1,26 @@
+{
+  "status": "development_ctde_gate",
+  "claim_boundary": "Central payoff memory trains three separate MLP actors; fixed map and scripted low-level control; not a formal ETM result.",
+  "config": {
+    "seeds": 1,
+    "episodes": 100,
+    "horizon": 140,
+    "window": 50,
+    "actor_learning_rate": 0.01,
+    "exploration_end": 0.1,
+    "eval_episodes": 6
+  },
+  "initial_mean_soups": 2.3333333333333335,
+  "final_mean_soups": 4.0,
+  "paired_seed_gain_soups": 1.6666666666666665,
+  "normal_approx_95ci": [
+    1.6666666666666665,
+    1.6666666666666665
+  ],
+  "improved_seeds": 1,
+  "final_teacher_agreement": [
+    1.0,
+    0.6666666666666666,
+    1.0
+  ]
+}

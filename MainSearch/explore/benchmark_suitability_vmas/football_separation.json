@@ -1,0 +1,76 @@
+{
+  "type": "structural_diagnostic_not_learning",
+  "horizon": 200,
+  "rows": [
+    {
+      "seed": 0,
+      "worlds": 64,
+      "blue_ai": {
+        "blue_goals": 0,
+        "red_goals": 0,
+        "mean_final_ball_to_blue_goal": 1.503612756729126
+      },
+      "blue_idle": {
+        "blue_goals": 0,
+        "red_goals": 54,
+        "mean_final_ball_to_blue_goal": 2.911210775375366
+      }
+    },
+    {
+      "seed": 1,
+      "worlds": 64,
+      "blue_ai": {
+        "blue_goals": 0,
+        "red_goals": 0,
+        "mean_final_ball_to_blue_goal": 1.487512469291687
+      },
+      "blue_idle": {
+        "blue_goals": 0,
+        "red_goals": 57,
+        "mean_final_ball_to_blue_goal": 2.9075255393981934
+      }
+    },
+    {
+      "seed": 2,
+      "worlds": 64,
+      "blue_ai": {
+        "blue_goals": 1,
+        "red_goals": 0,
+        "mean_final_ball_to_blue_goal": 1.6336826086044312
+      },
+      "blue_idle": {
+        "blue_goals": 0,
+        "red_goals": 56,
+        "mean_final_ball_to_blue_goal": 2.9080708026885986
+      }
+    },
+    {
+      "seed": 3,
+      "worlds": 64,
+      "blue_ai": {
+        "blue_goals": 1,
+        "red_goals": 0,
+        "mean_final_ball_to_blue_goal": 1.5211060047149658
+      },
+      "blue_idle": {
+        "blue_goals": 0,
+        "red_goals": 56,
+        "mean_final_ball_to_blue_goal": 2.897686004638672
+      }
+    },
+    {
+      "seed": 4,
+      "worlds": 64,
+      "blue_ai": {
+        "blue_goals": 1,
+        "red_goals": 0,
+        "mean_final_ball_to_blue_goal": 1.5403624773025513
+      },
+      "blue_idle": {
+        "blue_goals": 0,
+        "red_goals": 58,
+        "mean_final_ball_to_blue_goal": 2.872037887573242
+      }
+    }
+  ]
+}
