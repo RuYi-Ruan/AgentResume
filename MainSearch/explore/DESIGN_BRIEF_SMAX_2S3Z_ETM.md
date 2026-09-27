@@ -37,7 +37,7 @@ actor 头 `actor_mean*`、critic 头 `value*`，隐藏层/GRU 共享；`hstate` 
 | 1 | 每个盟友身份一套完整参数（GRU + 隐藏层 + actor 头 + **自己的局部 critic 头**） | 满足"各自独立优化" |
 | 2 | 每个身份独立 optimizer；scan 携带 `(params_i, opt_state_i)`，用 `tx.update(...)` → `optax.apply_updates` | 复用 `overcooked_v2_3p_gate/train_ocv2_independent.py` 的修复模式；**禁止** `TrainState.apply_gradients(grads=tx.update(...))`（双重优化器） |
 | 3 | 逐身份 GRU 隐状态（每 env 每身份一个槽） | 与官方的逐单位槽位语义一致 |
-| 4 | **学习率退火按优化器步数**：`transition_steps = num_updates × ppo_epochs × num_minibatches` | 明确不继承 A 轮的错误 |
+| 4 | **学习率退火直接沿用官方公式**：`frac = 1 − (count // (minibatches × epochs)) / num_updates`（`count` = 优化器步数，整除 ⇒ 更新内 LR 恒定） | 明确不继承 A 轮的错误；与官方同形便于对照。注意 `optax.linear_schedule` 时间尺度相同但**形状不同**（每次优化器更新都微降），不采用 |
 | 5 | 保存**完整训练状态**（params + opt_state + hstate + update 计数）与逐身份指标 | 官方脚本什么都不存；P2 与 Oracle 都要用 |
 | 6 | 逐身份指标 + **胜局/总局数**计数（不只写均值） | 便于判断统计充分性 |
 

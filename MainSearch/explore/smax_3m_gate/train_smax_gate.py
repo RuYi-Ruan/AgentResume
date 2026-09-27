@@ -90,6 +90,7 @@ def build_config(args, env) -> dict:
         "seed": args.seed,
         "anneal_lr": args.anneal_lr,
         "total_updates": args.updates,
+        "anneal_mode": "official_per_update_stepdown" if args.anneal_lr else "none",
         "total_optimizer_steps": args.updates * args.ppo_epochs * args.num_minibatches,
     }
 
@@ -116,15 +117,20 @@ def make_train(config: dict, run_updates: int, env: SMAXLogWrapper, base_env: SM
     def init_runner_state(rng):
         rng, init_rng, reset_rng = jax.random.split(rng, 3)
         params = network.init(init_rng, jnp.zeros((num_actors, obs_dim)))
-        # optax schedules count OPTIMIZER steps, not PPO updates: each update runs
-        # ppo_epochs * num_minibatches optimizer steps. Passing --updates directly here
-        # annealed the LR to 0 after updates/(epochs*minibatches) = 156 updates (~640k env
-        # steps) in the first A-round run, which invalidated that run's "does not learn" read.
-        total_optimizer_steps = (config["total_updates"] * config["ppo_epochs"]
-                                 * config["num_minibatches"])
-        lr = (optax.linear_schedule(init_value=config["lr"], end_value=0.0,
-                                    transition_steps=total_optimizer_steps)
-              if config["anneal_lr"] else config["lr"])
+        # LR annealing, using the official JaxMARL SMAX baseline's convention verbatim
+        # (baselines/IPPO/ippo_rnn_smax.py:137-142): `count` is the number of OPTIMIZER steps,
+        # floor-divided by (minibatches * epochs) to recover the PPO update index, so the LR is
+        # CONSTANT within one update and steps down once per update.
+        # NOTE: the previous version here passed --updates straight to optax.linear_schedule,
+        # i.e. annealed over 2500 optimizer steps = 156 updates (~640k env steps) instead of
+        # 10.24M, which invalidated the A-round read. optax.linear_schedule and this official
+        # formula share the same time scale but are NOT algebraically identical: the former
+        # decreases slightly at every optimizer step, the latter only between updates.
+        def lr_schedule(count):
+            frac = 1.0 - (count // (config["num_minibatches"] * config["ppo_epochs"])) / config["total_updates"]
+            return config["lr"] * frac
+
+        lr = lr_schedule if config["anneal_lr"] else config["lr"]
         train_state = TrainState.create(
             apply_fn=network.apply,
             params=params,

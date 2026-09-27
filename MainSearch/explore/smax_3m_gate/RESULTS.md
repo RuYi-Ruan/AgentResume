@@ -26,8 +26,14 @@
 **优化器步数**；每轮 4 epochs × 4 minibatches = 16 步 ⇒ 学习率在 **update 156 ≈ 64 万环境步**就降为 0，
 而预算本是 1024 万步。此后参数基本不再更新，所以"第一段之后平线、贪心固定 9%"不能归因于网络形态。
 
-- 代码已修：`total_optimizer_steps = updates × ppo_epochs × num_minibatches`（`train_smax_gate.py:123-126`），
-  并把 `total_optimizer_steps` 写入元数据（L93）。
+- 代码已改为**直接沿用官方公式**（`train_smax_gate.py:124-133`）：`frac = 1 − (count // (minibatches × epochs)) / total_updates`，
+  `count` 为**优化器步数** ⇒ 与官方 `baselines/IPPO/ippo_rnn_smax.py:137-142` 完全同形；元数据记 `anneal_mode` 与 `total_optimizer_steps`。
+- **写法差异（外部纠正，记录在案）**：最初的 bug 是时间尺度错了 16 倍；而 `optax.linear_schedule(transition_steps = updates × epochs × minibatches)`
+  与官方公式**时间尺度相同、但不严格代数等价**——官方用整除，**同一个 PPO 更新内 LR 恒定**、每更新只降一档；
+  `linear_schedule` 则**每次优化器更新**都微降（实测 lr0=1e-3、minibatches=4、epochs=4、updates=4：count=1 处官方 0.001000 vs linear 0.000984；
+  两者都在 count=64 归零）。按"最小改造、便于与官方对照"改用官方公式。
+- 冒烟验证：`--num-envs 4 --rollout-length 8 --updates 2 --segment-updates 1 --ppo-epochs 4 --num-minibatches 4 --lr 1e-3 --anneal-lr --eval-episodes 2`
+  ⇒ 2 分 56 秒跑完两段、正常打印分段指标并写出 `results/smoke_official_schedule/run.json`。
 - **不重跑 A**（按外部指示）；`3m` 的使命仍是训练器自检，**迁移官方 RNN backbone 的方向由 B 轮单独支撑**（B ✓），
   但 A 轮不再作为"前馈不可行"的论据。新代码不得继承该错误（独立版实现要求：优化器步数口径必须显式核对）。
 
