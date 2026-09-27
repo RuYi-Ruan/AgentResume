@@ -10,27 +10,45 @@ SMAX `2s3z`: five allies (agent 0/1 = Stalker, agent 2/3/4 = Zealot) against the
 policy.  **Only `ally_0` learns.**  Agents 1..4 are *frozen* policies that keep their own network
 and their own GRU hidden state; they never receive a gradient.
 
-`z` (contract §1) is read **only** from `results/oracle_gate/profiles.json`.  These scripts never
-re-derive damage or focus attribution: that measurement belongs to `measure_partner_profiles.py`,
-which follows the environment's own hit rule (`_world_step` / `update_agent_health`: range, both
-alive, `i != target`, weapon cooldown `<= 0`) at sub-step granularity.  The z used here therefore
-means: **"this partner's behaviour profile as measured under the fixed reference team (the other
-identities at their u1250 parameters) on the fixed measurement situations A"** - it is *not* a
-team-independent statement about a partner's true ability, and it is a 3-number summary of
-`[damage_per_len, alive_frac, focus_share]`, nothing more.  `profiles.json` is authoritative; any
-legacy copy of the old (v1) table is ignored.
+`z` (contract §1) is read **only** from `results/oracle_gate/profiles.json` - and only by the
+`profile` arm; the `placeholder` and `onehot` channels are defined in this file and read no table.
+These scripts never re-derive damage or focus attribution: that measurement belongs to
+`measure_partner_profiles.py`, which follows the environment's own hit rule (`_world_step` /
+`update_agent_health`: range, both alive, `i != target`, weapon cooldown `<= 0`) at sub-step
+granularity.  The `profile` arm's z therefore means: **"this partner's behaviour profile as
+measured under the fixed reference team (the other identities at their u1250 parameters) on the
+fixed measurement situations A"** - it is *not* a team-independent statement about a partner's true
+ability, and it is a 3-number summary of `[damage_per_len, alive_frac, focus_share]`, nothing more.
+`profiles.json` is authoritative; any legacy copy of the old (v1) table is ignored.
 
-Two arms, identical in every way except one input channel of the observer:
+Three arms, identical in every way except the observer's second input channel.  The channel is
+12-dimensional in all three; only what is put into it differs:
 
-* `--arm profile`      observer input = `obs(ally_0)` ++ `z` (12 dims, contract §1);
-* `--arm placeholder`  observer input = `obs(ally_0)` ++ `0` (the same 12 dims, all zero).
+* `--arm profile`      observer input = `obs(ally_0)` ++ `z` (12 dims, contract §1) - the
+                       three-metric behaviour profile **measured** by `measure_partner_profiles.py`
+                       and read from `results/oracle_gate/profiles.json`;
+* `--arm placeholder`  observer input = `obs(ally_0)` ++ `0` (the same 12 dims, all zero) - the null
+                       channel, a constant at training *and* at evaluation;
+* `--arm onehot`       observer input = `obs(ally_0)` ++ `onehot` (the same 12 dims) - the battle's
+                       partner-stage combination as a per-identity **stage-index one-hot**:
+                       identity order `[1,2,3,4]`, 3 dims each, stage order `[u50,u600,u1250]`, so
+                       dims `[3j, 3j+3)` of identity `j` are `e_k` where `k` is the stage that
+                       identity is drawn to play in this battle.
 
-Both arms therefore have **exactly the same input dimension and the same number of parameters**
+`onehot` is an **oracle-level encoding of the real stage label** - which of the 12 candidate
+parameter sets each partner is drawn to play.  It is *not* a measured behaviour profile (that is
+the `profile` arm), it is *not* the null channel (that is `placeholder`), and it is emphatically
+*not* a claim about the partner's team-independent ability: it carries the stage index and nothing
+else.  Its purpose is to separate "the observer receives partner information at all" from "the
+observer receives a constant": any `onehot - placeholder` gap is attributable to the information
+the channel carries, with the same architecture, budget, training sequence and random streams.
+
+All three arms therefore have **exactly the same input dimension and the same number of parameters**
 (`config["observer_input_dim"] = obs_dim + 12`), the same network recipe (the frozen
 `train_smax_2s3z_independent.IdentityActorCritic` GRU actor-critic), the same PPO/GAE maths, the
 same official segmented LR annealing and the same single `optax.apply_updates` (the inherited
 `Trainer._update_one`, which never uses `TrainState.apply_gradients(grads=tx.update(...))`).
-The observer starts from the *same* initial parameters in both arms (the init key is derived from
+The observer starts from the *same* initial parameters in every arm (the init key is derived from
 `--seed` only), so the arms are paired from step 0.
 
 Partners (contract §0, §2)
@@ -40,7 +58,7 @@ The 12 candidate partner policies are `stage x identity` from the existing run
 each identity `{1,2,3,4}`.  A partner may only ever use *its own identity's* checkpoint parameters,
 and a partner never switches stage inside an episode.
 
-Random streams (contract §2) - the two arms must see the same partner world
+Random streams (contract §2) - the arms must see the same partner world
 --------------------------------------------------------------------------
 Every stream below is a pure function of `(slot, episode_index, in-episode step)` (plus the
 identity where relevant) and of nothing else - in particular **not** of the action-sampling rng
@@ -122,6 +140,44 @@ STAGE_LABELS = ("u50", "u600", "u1250")
 METRIC_NAMES = ("damage_per_len", "alive_frac", "focus_share")
 PROFILE_DIM = 3 * len(PARTNER_IDENTITIES)  # 12
 NUM_COMBOS = len(STAGE_UPDATES) ** len(PARTNER_IDENTITIES)  # 81
+
+# The three arms (ticket 2026-09-27 added `onehot` to the contract's `profile` / `placeholder`).
+# They differ in the observer's second input channel only; the dimension is 12 in all three.
+ARMS = ("profile", "placeholder", "onehot")
+
+# What each arm's channel is made of, and what it means.  These strings are recorded in `run.json`
+# and in the evaluation payload, so the semantics cannot drift between code, metadata and report.
+Z_CHANNEL_BY_ARM = {
+    "profile": "obs ++ z(12, per-battle partner combination)",
+    "placeholder": "obs ++ zeros(12)",
+    "onehot": "obs ++ onehot(12, per-battle partner combination)",
+}
+Z_SEMANTICS_BY_ARM = {
+    "profile": (
+        "z is the partner's 3-metric behaviour profile as measured under the FIXED reference "
+        "team (every other identity kept at its u1250 parameters) on the fixed measurement "
+        "situations A, normalized by the frozen 12-candidate mean/std (contract §1 v2: the "
+        "metrics come from the environment's real hit events at sub-step granularity, and they "
+        "are read from results/oracle_gate/profiles.json, never re-derived here).  It is a "
+        "profile under that reference team, NOT a team-independent statement of the partner's "
+        "true ability."
+    ),
+    "placeholder": (
+        "the placeholder arm feeds a constant zero vector in the same 12 dims, at training and at "
+        "evaluation alike: it is the null channel (no partner information whatsoever), not a "
+        "profile and not a label."
+    ),
+    "onehot": (
+        "z is this battle's partner-stage combination as a per-identity stage-index one-hot "
+        "(identity order [1,2,3,4], 3 dims each; stage order [u50,u600,u1250] -> index [0,1,2]): "
+        "dims [3j, 3j+3) of identity j are e_k, k being the stage identity j is drawn to play in "
+        "this battle.  It is an ORACLE-level encoding of the real stage label - which of the 12 "
+        "candidate parameter sets each partner uses - so it is NOT a measured behaviour profile "
+        "(that is the profile arm), NOT the null channel (that is placeholder), and NOT a "
+        "team-independent statement of the partner's true ability: it carries the stage index and "
+        "nothing else."
+    ),
+}
 
 # Disjoint seed sets (contract §3).  A = profile measurement, B = training flow (`--seed`),
 # C = gate evaluation.  Never mix them.
@@ -365,6 +421,30 @@ def z_vector_from_table(z_table: np.ndarray, combo: Sequence[int]) -> np.ndarray
 
 
 # --------------------------------------------------------------------------------------------
+# One-hot channel (the third arm; ticket 2026-09-27)
+# --------------------------------------------------------------------------------------------
+def onehot_z_table() -> np.ndarray:
+    """The one-hot arm's `(4, 3, 3)` z table: row `[j, s]` is stage `s`'s one-hot of length 3.
+
+    The table is indexed exactly like the profile table (`[partner_index, stage_index, metric]`)
+    and is *not* read from `profiles.json` - the one-hot arm never touches the measured profile.
+    Because the concatenation order is fixed (identity `[1,2,3,4]`, 3 dims each), the trainer's own
+    table machinery turns this into the contract's 12-dim `z` for free:
+    `z_vector_from_table(onehot_z_table(), combo)` - see `onehot_z_vector`.  Stage order is
+    `[u50, u600, u1250]`, so the hot index is the stage index the partner is drawn to play.
+    """
+    table = np.zeros((len(PARTNER_IDENTITIES), len(STAGE_UPDATES), len(METRIC_NAMES)), np.float32)
+    for stage in range(len(STAGE_UPDATES)):
+        table[:, stage, stage] = 1.0
+    return table
+
+
+def onehot_z_vector(combo: Sequence[int]) -> np.ndarray:
+    """12-dim one-hot `z` for a partner-stage combination (the one-hot arm's channel)."""
+    return z_vector_from_table(onehot_z_table(), combo).astype(np.float32)
+
+
+# --------------------------------------------------------------------------------------------
 # Partner parameters (frozen; identity x stage)
 # --------------------------------------------------------------------------------------------
 def load_checkpoint_params(path: Path):
@@ -464,13 +544,21 @@ class ObserverGateTrainer(base_train.Trainer):
         self.config["partner_identities"] = list(PARTNER_IDENTITIES)
         self.config["partner_stage_updates"] = list(STAGE_UPDATES)
         self.config["arm"] = arm
-        if arm not in ("profile", "placeholder"):
-            raise SystemExit(f"unknown arm {arm!r}")
+        if arm not in ARMS:
+            raise SystemExit(f"unknown arm {arm!r}; expected one of {list(ARMS)}")
         self.arm = arm
         self.partner_stack = partner_stack
-        zeros = np.zeros((len(PARTNER_IDENTITIES), len(STAGE_UPDATES), len(METRIC_NAMES)), np.float32)
-        self.z_table = jnp.asarray(zeros if arm == "placeholder" else np.asarray(z_table,
-                                                                                 np.float32))
+        # The channel of the two arms that have a *fixed* channel is derived from the arm name, so
+        # no caller can hand an arm the wrong input: `placeholder` is a constant zero by definition
+        # and `onehot` is the combination's stage label, never the measured profile.  Only
+        # `profile` uses the table the caller passes in (`profiles.json`, contract §1).
+        if arm == "placeholder":
+            self.z_table = jnp.asarray(np.zeros((len(PARTNER_IDENTITIES), len(STAGE_UPDATES),
+                                                 len(METRIC_NAMES)), np.float32))
+        elif arm == "onehot":
+            self.z_table = jnp.asarray(onehot_z_table())
+        else:
+            self.z_table = jnp.asarray(np.asarray(z_table, np.float32))
         # Diagnostics (contract §7 checks) are opt-in: they are what the preflight inspects.
         self.collect_diagnostics = False
         self.last_diagnostics: Dict[str, jnp.ndarray] = {}
@@ -554,7 +642,7 @@ class ObserverGateTrainer(base_train.Trainer):
             z = jnp.concatenate(
                 [jnp.take(self.z_table[j], stage_idx[j], axis=0)
                  for j in range(len(PARTNER_IDENTITIES))], axis=-1
-            )  # (num_envs, 12); all-zero in the placeholder arm
+            )  # (num_envs, 12); all-zero in the placeholder arm, the stage one-hot in the onehot arm
 
             # In-episode step index (errata 1): `ep_length` counts the steps already played in the
             # episode running in each slot, so it is the position inside the battle - it does not
@@ -715,11 +803,14 @@ class ObserverGateTrainer(base_train.Trainer):
         """Per-(combination, seed) battles, each run to its real termination.
 
         Returns `won`, `return`, `length` and `truncated` arrays shaped `(len(combos), len(seeds))`.
-        Both arms are evaluated on the *same* combos and the *same* seeds (contract §4);
+        All arms are evaluated on the *same* combos and the *same* seeds (contract §4);
         `z_mode="zero"` is the placeholder arm's input (its channel is a constant zero, never the
-        battle's z).  `length` is the number of steps actually played and `truncated` marks battles
-        that were still running when the loop guard ran out (`max_steps` is **not** the loop bound -
-        errata 4); any truncated battle raises instead of being reported as a normal result.
+        battle's z), while `z_mode="table"` is what the profile and onehot arms use: it reads the
+        arm's own `z_table`, which for the onehot arm is the stage one-hot table and for the
+        profile arm the measured profile table.  `length` is the number of steps actually played
+        and `truncated` marks battles that were still running when the loop guard ran out
+        (`max_steps` is **not** the loop bound - errata 4); any truncated battle raises instead of
+        being reported as a normal result.
         """
         if z_mode not in ("table", "zero"):
             raise SystemExit(f"unknown z_mode {z_mode!r}")
@@ -919,11 +1010,13 @@ def _add_shared_flags(parser: argparse.ArgumentParser) -> None:
 
 def parse_args(argv=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Single-observer oracle-gate trainer (profile vs placeholder arm)."
+        description="Single-observer oracle-gate trainer (profile vs placeholder vs onehot arm)."
     )
     _add_shared_flags(parser)
-    parser.add_argument("--arm", choices=("profile", "placeholder"), required=True,
-                        help="profile: observer input obs++z (12 dims); placeholder: obs++zeros")
+    parser.add_argument("--arm", choices=ARMS, required=True,
+                        help="profile: obs++z(12, measured profile table); placeholder: "
+                             "obs++zeros(12); onehot: obs++the battle combination's 12-dim "
+                             "per-identity stage-index one-hot (oracle-level stage label)")
     parser.add_argument("--profiles", default=None,
                         help="profile table (default: results/oracle_gate/profiles.json, falling "
                              "back to results/oracle_gate/fixtures/profiles_fixture.json)")
@@ -1009,20 +1102,25 @@ def main(argv=None) -> None:
 
     table_note = "not loaded (placeholder arm: the z channel is a constant zero)"
     table_meta = None
+    z_table = np.zeros((len(PARTNER_IDENTITIES), len(STAGE_UPDATES), len(METRIC_NAMES)), np.float32)
     if args.arm == "profile" or args.profiles is not None:
+        # Only the profile arm *uses* the table; the other two arms may still validate one when
+        # `--profiles` is given (handy for the tri-arm evaluation), but their channel never reads it.
         table, source, is_fixture = load_profile_table(args.profiles)
-        z_table = z_table_from_profile_table(table)
         table_note = f"{source}{' (FIXTURE - replace with the measured table)' if is_fixture else ''}"
         table_meta = {"path": str(source), "sha256": sha256_file(source), "is_fixture": is_fixture}
+        if args.arm == "profile":
+            z_table = z_table_from_profile_table(table)
+        else:
+            table_meta["used_for_input"] = False
         print(f"[profile table] {table_note}", flush=True)
-    else:
-        z_table = np.zeros((len(PARTNER_IDENTITIES), len(STAGE_UPDATES), len(METRIC_NAMES)),
-                           np.float32)
-    if args.arm == "placeholder" and args.profiles is not None:
-        # A placeholder run may still validate the table (handy for the paired evaluation), but it
-        # never uses it: its z channel is defined to be zero.
-        table_meta = {"path": str(source), "sha256": sha256_file(source), "is_fixture": is_fixture,
-                      "used_for_input": False}
+    if args.arm == "onehot":
+        # No profile table at all: the channel is the battle combination's stage one-hot (see the
+        # module docstring) - an oracle-level stage label, not a measured profile.  The trainer
+        # derives the same table from the arm name; computing it here keeps `main` self-contained.
+        z_table = onehot_z_table()
+        table_note = ("not used (onehot arm: z is the per-identity stage-index one-hot of the "
+                      "battle's combination - an oracle-level stage label, not a measured profile)")
 
     trainer = ObserverGateTrainer(config, partner_stack, z_table, arm=args.arm)
     # From here on the trainer's config is canonical: it carries the derived input dimension, the
@@ -1063,17 +1161,8 @@ def main(argv=None) -> None:
         "arm": args.arm,
         "argv": sys.argv[1:],
         "config": config,
-        "z_channel": ("obs ++ z(12, per-battle partner combination)" if args.arm == "profile"
-                      else "obs ++ zeros(12)"),
-        "z_semantics": (
-            "z is the partner's 3-metric behaviour profile as measured under the FIXED reference "
-            "team (every other identity kept at its u1250 parameters) on the fixed measurement "
-            "situations A, normalized by the frozen 12-candidate mean/std (contract §1 v2: the "
-            "metrics come from the environment's real hit events at sub-step granularity, and they "
-            "are read from results/oracle_gate/profiles.json, never re-derived here).  It is a "
-            "profile under that reference team, NOT a team-independent statement of the partner's "
-            "true ability."
-        ),
+        "z_channel": Z_CHANNEL_BY_ARM[args.arm],
+        "z_semantics": Z_SEMANTICS_BY_ARM[args.arm],
         "profile_table": table_meta,
         "profile_table_note": table_note,
         "partner_run_dir": str(partner_dir),
@@ -1123,12 +1212,12 @@ def main(argv=None) -> None:
     print(f"[oracle gate] arm={args.arm} observer=ally_0 partners={list(PARTNER_IDENTITIES)} "
           f"frozen; input_dim={config['observer_input_dim']} "
           f"(obs {config['obs_dim']} + z {PROFILE_DIM})", flush=True)
-    print("  z semantics: partner profile measured under the FIXED reference team (other "
-          "identities at their u1250 params) on measurement situations A, normalized by the "
-          "frozen 12-candidate mean/std - a profile under that team, not a team-independent "
-          "capability", flush=True)
-    print(f"  z channel  : " + ("the episode combination's z (contract §1 table)" if args.arm ==
-                                "profile" else "constant zeros (contract §1)"), flush=True)
+    print(f"  z semantics: {Z_SEMANTICS_BY_ARM[args.arm]}", flush=True)
+    print(f"  z channel  : {Z_CHANNEL_BY_ARM[args.arm]}"
+          f"{' (the per-episode combination z from the contract §1 table)' if args.arm == 'profile' else ''}"
+          f"{' (constant by definition)' if args.arm == 'placeholder' else ''}"
+          f"{' (derived from the combination, no table read)' if args.arm == 'onehot' else ''}",
+          flush=True)
     print("  partners   : argmax (errata 2) - the same rule as the profile measurement; only the "
           "observer samples", flush=True)
     print(f"  metadata   : {metadata_path}"
@@ -1172,7 +1261,9 @@ def main(argv=None) -> None:
         train_seconds = time.perf_counter() - segment_started
         metrics = {k: np.asarray(jax.device_get(v)) for k, v in records.items()}
 
-        z_mode = "table" if args.arm == "profile" else "zero"
+        # The monitor uses the arm's own channel: `zero` is the placeholder arm (whose table is a
+        # constant zero anyway); the profile and onehot arms both go through their table.
+        z_mode = "zero" if args.arm == "placeholder" else "table"
         battle = trainer.eval_battles(runner.params[0], monitor_combos, args.eval_seeds,
                                       z_mode=z_mode)
         primary = float(battle["return"].mean())      # primary metric: mean team return
