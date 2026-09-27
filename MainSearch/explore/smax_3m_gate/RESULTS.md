@@ -1,30 +1,31 @@
-# SMAX `3m` 学习门槛（结果，2026-09-25）
+# SMAX 训练器自检与 2s3z 候选（2026-09-27）
 
-## 结论
+## 执行顺序（外部给定，不再扩展分支）
 
-**本预算下未学出胜局。** 按官方 JaxMARL SMAX IPPO 超参（LR 4e-3、clip 0.05、grad-norm 0.25、128 环境×128 步、4 epoch、4 minibatch）训练 **9,994,240 环境步**（1,269 秒 / 21 分钟、8,275 环境步/秒），每约 100 万步用**固定 100 局**评测（argmax 与采样两种动作模式）：**胜率全程 0.000**，训练侧均值回报仅从 0.20 升到 0.30（伤害奖励），训练侧胜率也是 0。
+1. `train_smax_gate.py` 修正：评测胜率统一用环境原生 `returned_won_episode`；custom 3m 加线性 LR 退火 1e-3 → 0。
+2. **A 轮**：custom 3m smoke（FF MLP、10.24M 步、LR 1e-3 + anneal）——只判"能不能学"。
+3. **B 轮**：官方 `ippo_rnn_smax.py` 原生 `2s3z`（GRU-128、LR 4e-3、ANNEAL_LR、默认 128 环境 × 128 步 × 10M 步）。
+4. 分流：A✓B✓ → 进入 2s3z 的 fixed-identity / independent actor + P2 + Oracle；A✗B✓ → 迁移官方 RNN backbone；A✓B✗ → 查官方 config；A✗B✗ → 查环境/wrapper。
 
-这不等于“SMAX 不可学”：JaxMARL 论文的 IPPO 需要远多于 1000 万步；本项目此前的经验是 QMIX（离策略）在五单位 `2s3z` 上 30 万步后就出现 100/100 胜（但伴随 50→0→32→0→50 的跳变）。**本门槛只说明：MLP + IPPO 在本机 1000 万步内没有形成可评测的胜利能力。**
+## 已完成的代码修正
 
-## 两轮记录（都保留）
+- 评测胜率：`won = live & (info["returned_won_episode"][0] > 0)`（旧 `step_reward >= 1.0` 删除）。理由：SMAX 奖励含伤害/击杀等 shaped 分量，奖励阈值不等价于赢下一局。
+- 线性退火：`optax.linear_schedule(config["lr"] → 0, transition_steps=--updates)` 包在 `optax.adam(...)`，由 `--anneal-lr` 控制，写入元数据。
+- 归档的"贪心胜率 0.38 / 0.21"在修正口径下**作废**：降级为未验证旧结果。
 
-| 运行 | 超参 | 步数 | 吞吐 | 结果 |
-| --- | --- | --- | --- | --- |
-| `smax_3m_seed0_20M_offspeclr_stopped` | 误用 Overcooked 的 LR 2.5e-4 / clip 0.067（非官方） | 10,813,440（第 33/61 段时停止） | 5,300 环境步/秒 | 胜率徘徊在 0–0.06，判定为超参离规格后停止并归档 |
-| `smax_3m_seed0_10M_officialhp` | 官方：LR 4e-3、clip 0.05、grad-norm 0.25、128×128 | 9,994,240 | 8,275 环境步/秒 | **胜率全程 0.000** |
+## A 轮结果（custom 3m，FF MLP，LR 1e-3 + anneal，10.24M 步 / 19.4 分钟）
 
-## 与官方配置的差异（不冒充复现）
+| 段 | 训练胜率 | 训练回报 | 评测贪心胜率 | 评测采样胜率 | 熵 | 说明 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 0.000 | 0.23 | 0.090 | 0.000 | — | 贪心胜率从第 1 段即固定 |
+| 10 | 0.000 | 0.26 | 0.090 | 0.000 | — | 全程无上升趋势 |
 
-- 官方 `ippo_rnn_smax` 用 **GRU-128（带记忆）**，本次用纯前馈 MLP-128。SMAC 是部分可观测任务，记忆很可能是必需项——这是本轮最主要的离规格点。
-- 官方 `NUM_ENVS 128 / NUM_STEPS 128 / 10M 步` 与本次一致；LR、clip、grad-norm、epoch、minibatch 均已对齐。
-- 环境用 `HeuristicEnemySMAX`（脚本敌人），与本项目此前 SMAX 记录一致。
+**判定：A ✗**（前馈策略没能学起来；采样策略从未赢过；贪心 9% 平线不构成学习）。
 
-## 判定边界
+## B 轮（官方原生 2s3z，默认配置）
 
-- 不能据此排除 SMAX；也不能据此认为 ETM 在 SMAX 无效——训练门槛都没过，谈不上 ETM。
-- 若要继续 SMAX，下一步是补上记忆（GRU，需要 BPTT）或改用离策略 QMIX（本项目唯一在这类任务上见过胜局的学习器），两者都是 2–4 小时的实现 + 训练。
+启动于 2026-09-27 12:40 左右（`hub` 进程名 `smax_official_2s3z_default`）。
+测量补丁：给官方 callback 增加一行 print（`WANDB_MODE=disabled` 时官方脚本无任何输出），**训练计算未改动**。
+实测吞吐参考：64 环境配置下约 210 步/秒 ⇒ 默认 128 环境 × 10M 步为长跑（小时级）。
 
-## 文件
-
-- `train_smax_gate.py`：分段训练 + 固定 100 局冻结评测（argmax/采样，胜利判据按 JaxMARL `SMAXLogWrapper` 约定：终局奖励 ≥ 1）+ 检查点。
-- `results/smax_3m_seed0_10M_officialhp/run.json`、`results/smax_gate_run.log`；离规格运行归档在 `results/smax_3m_seed0_20M_offspeclr_stopped/` 与 `results/smax_gate_run_offspeclr.log`。
+前几个打点（64 环境配置下的先导运行）：step 0 win 0.000 ret 0.200 → step 57,344 win 0.000 ret 0.270（entropy ~1.2、value loss 0.001、KL ~3e-4）⇒ 训练链在正常优化，但尚无胜局。

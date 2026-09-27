@@ -88,6 +88,8 @@ def build_config(args, env) -> dict:
         "vf_coef": 0.5,
         "max_grad_norm": args.max_grad_norm,
         "seed": args.seed,
+        "anneal_lr": args.anneal_lr,
+        "total_updates": args.updates,
     }
 
 
@@ -113,12 +115,15 @@ def make_train(config: dict, run_updates: int, env: SMAXLogWrapper, base_env: SM
     def init_runner_state(rng):
         rng, init_rng, reset_rng = jax.random.split(rng, 3)
         params = network.init(init_rng, jnp.zeros((num_actors, obs_dim)))
+        lr = (optax.linear_schedule(init_value=config["lr"], end_value=0.0,
+                                    transition_steps=config["total_updates"])
+              if config["anneal_lr"] else config["lr"])
         train_state = TrainState.create(
             apply_fn=network.apply,
             params=params,
             tx=optax.chain(
                 optax.clip_by_global_norm(config["max_grad_norm"]),
-                optax.adam(config["lr"], eps=1e-5),
+                optax.adam(lr, eps=1e-5),
             ),
         )
         obsv, env_state = jax.vmap(env.reset)(jax.random.split(reset_rng, num_envs))
@@ -348,7 +353,11 @@ def build_eval_fn(config: dict, env: SMAXLogWrapper, base_env: SMAX, num_episode
                     step_reward = reward[env.agents[0]]
                     ep_return = ep_return + jnp.where(live, step_reward, 0.0)
                     length = length + jnp.where(live, 1, 0)
-                    won = jnp.where(live & (step_reward >= 1.0), 1.0, won)
+                    # win = the environment's own flag (SMAXLogWrapper.returned_won_episode), NOT a
+                    # reward threshold: SMAX rewards include shaped damage/kill components, so
+                    # reward >= 1.0 is not equivalent to winning the episode
+                    won = jnp.where(
+                        live & (jnp.asarray(info["returned_won_episode"][0]) > 0), 1.0, won)
                     live = live & ~done["__all__"]
                     return (env_state, obs, live, ep_return, length, won), None
 
@@ -393,6 +402,9 @@ def parse_args(argv=None) -> argparse.Namespace:
     parser.add_argument("--lr", type=float, default=4e-3)
     parser.add_argument("--clip-eps", type=float, default=0.05)
     parser.add_argument("--max-grad-norm", type=float, default=0.25)
+    parser.add_argument("--anneal-lr", action="store_true",
+                        help="linear decay of the learning rate to 0 over --updates "
+                             "(official SMAX IPPO config sets ANNEAL_LR: True)")
     parser.add_argument("--eval-episodes", type=int, default=100)
     parser.add_argument("--eval-seed", type=int, default=1234)
     parser.add_argument("--seed", type=int, default=0)
