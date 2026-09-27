@@ -205,6 +205,9 @@ def build_config(args) -> dict:
         "steps_per_update": args.ppo_epochs * args.num_minibatches,
         "total_optimizer_steps": args.updates * args.ppo_epochs * args.num_minibatches,
         "lr_schedule": "official_piecewise_constant" if args.anneal_lr else "constant",
+        "eval_episodes": args.eval_episodes,
+        "eval_seeds": list(args.eval_seeds),
+        "eval_seed": args.eval_seeds[0],  # kept for single-seed callers/tests
         "unit_types": [int(t) for t in np.asarray(base_env.scenario)[:num_allies]],
         "unit_type_names": [base_env.unit_type_names[int(t)]
                             for t in np.asarray(base_env.scenario)[:num_allies]],
@@ -584,12 +587,23 @@ class Trainer:
         return runner, jax.tree.map(lambda *xs: jnp.stack(xs), *records)
 
     # -- evaluation --------------------------------------------------------------------------
-    def make_evaluator(self, num_episodes: int, seed: int):
-        """Build the jitted evaluator over fixed evaluation keys (independent of training)."""
-        self._evaluate_impl = jax.jit(self._evaluate)
-        self.eval_keys = jax.random.split(jax.random.PRNGKey(seed), num_episodes)
+    def make_evaluator(self, num_episodes: int, seeds):
+        """Build the jitted evaluator over fixed evaluation keys (independent of training).
+
+        `seeds` is an int (single-seed shortcut) or a list of seeds.  Every stage evaluates the
+        SAME fixed seed set, so stage-to-stage comparisons are paired per seed.  Repeating a single
+        deterministic evaluation would be bitwise identical and would fake a zero variance; the
+        across-seed spread of the per-seed means is the noise reference instead.
+        """
+        if isinstance(seeds, (int, np.integer)):
+            seeds = [int(seeds)]
+        seeds = [int(x) for x in seeds]
+        self._evaluate_impl = jax.jit(jax.vmap(self._evaluate, in_axes=(None, 0)))
+        self.eval_keys = jnp.stack(
+            [jax.random.split(jax.random.PRNGKey(x), num_episodes) for x in seeds]
+        )
         self.eval_episodes = num_episodes
-        self.eval_seed = seed
+        self.eval_seeds = seeds
         return self._evaluate_impl
 
     def _evaluate(self, params, keys):
@@ -715,39 +729,83 @@ class Trainer:
         return jax.vmap(lambda k: _episode(k))(keys)
 
     def evaluate(self, runner: RunnerState) -> dict:
-        """Fixed-seed evaluation of `runner.params` only; the runner itself is never touched."""
-        team, per_agent = self._evaluate_impl(runner.params, self.eval_keys)
-        team = np.asarray(jax.device_get(team), dtype=np.float64)
-        per_agent = np.asarray(jax.device_get(per_agent), dtype=np.float64)
-        num_eps = team.shape[0]
-        wins = int(round(team[:, 0].sum()))
-        mean_length = float(team[:, 2].mean())
-        identities = []
-        for i in range(self.num_agents):
-            metrics = per_agent[:, i, :]
-            dist_sum, dist_cnt = float(metrics[:, 4].sum()), float(metrics[:, 5].sum())
-            identities.append({
-                "index": i,
-                "agent": self.env.agents[i],
-                "unit_type": self.config["unit_type_names"][i],
-                "damage_dealt": float(metrics[:, 0].mean()),
-                "damage_taken": float(metrics[:, 1].mean()),
-                "kills": float(metrics[:, 2].mean()),
-                "alive_steps": float(metrics[:, 3].mean()),
-                "alive_fraction": float(metrics[:, 3].mean() / mean_length) if mean_length else 0.0,
-                "nearest_enemy_dist": (dist_sum / dist_cnt) if dist_cnt > 0 else float("nan"),
+        """Fixed-seed evaluation of `runner.params` only; the runner itself is never touched.
+
+        NOTE (pairing): every identity is evaluated with ALL five teammates using their *current*
+        parameters, so a change in one identity's metrics can come from its own progress OR from
+        its teammates getting stronger.  This is therefore NOT yet the P2 measurement; the
+        diagnostic version (frozen reference teammates, one identity's params swapped across
+        checkpoints) is `evaluate_reference_team.py`.
+        """
+        team_by_seed, per_agent_by_seed = self._evaluate_impl(runner.params, self.eval_keys)
+        team = np.asarray(jax.device_get(team_by_seed), dtype=np.float64)          # (S, n, 3)
+        per_agent = np.asarray(jax.device_get(per_agent_by_seed), dtype=np.float64)  # (S, n, A, F)
+        num_seeds, num_eps = team.shape[0], team.shape[1]
+
+        def identity_metrics(per_agent, mean_length):
+            out = []
+            for i in range(self.num_agents):
+                metrics = per_agent[:, i, :]
+                dist_sum, dist_cnt = float(metrics[:, 4].sum()), float(metrics[:, 5].sum())
+                out.append({
+                    "index": i,
+                    "agent": self.env.agents[i],
+                    "unit_type": self.config["unit_type_names"][i],
+                    "damage_dealt": float(metrics[:, 0].mean()),
+                    "damage_taken": float(metrics[:, 1].mean()),
+                    "kills": float(metrics[:, 2].mean()),
+                    "alive_steps": float(metrics[:, 3].mean()),
+                    "alive_fraction": (float(metrics[:, 3].mean() / mean_length)
+                                       if mean_length else 0.0),
+                    "nearest_enemy_dist": (dist_sum / dist_cnt) if dist_cnt > 0 else float("nan"),
+                })
+            return out
+
+        per_seed = []
+        for s in range(num_seeds):
+            t = team[s]
+            wins_s = int(round(t[:, 0].sum()))
+            per_seed.append({
+                "seed": self.eval_seeds[s],
+                "episodes": num_eps,
+                "wins": wins_s,
+                "win_rate": wins_s / num_eps,
+                "mean_return": float(t[:, 1].mean()),
+                "mean_length": float(t[:, 2].mean()),
+                "episode_wons": [int(round(w)) for w in t[:, 0]],
+                "episode_returns": [float(r) for r in t[:, 1]],
+                "episode_lengths": [int(round(l)) for l in t[:, 2]],
+                "identities": identity_metrics(per_agent[s], float(t[:, 2].mean())),
             })
+
+        flat_team = team.reshape(-1, team.shape[-1])
+        flat_agents = per_agent.reshape(-1, per_agent.shape[-2], per_agent.shape[-1])
+        num_total = int(flat_team.shape[0])
+        wins = int(round(flat_team[:, 0].sum()))
+        mean_length = float(flat_team[:, 2].mean())
+        std_keys = ("damage_dealt", "damage_taken", "kills", "alive_steps", "alive_fraction",
+                    "nearest_enemy_dist")
+        across_seed_std = [
+            {k: float(np.std([per_seed[s]["identities"][i][k] for s in range(num_seeds)]))
+             for k in std_keys}
+            for i in range(self.num_agents)
+        ]
         return {
-            "episodes": num_eps,
+            "seeds": self.eval_seeds,
+            "episodes_per_seed": num_eps,
+            "episodes": num_total,
             "wins": wins,
-            "win_rate": wins / num_eps,
-            "mean_return": float(team[:, 1].mean()),
+            "win_rate": wins / num_total,
+            "mean_return": float(flat_team[:, 1].mean()),
             "mean_length": mean_length,
             # per-episode detail: makes the win count and the length spread auditable
-            "episode_wons": [int(round(w)) for w in team[:, 0]],
-            "episode_returns": [float(r) for r in team[:, 1]],
-            "episode_lengths": [int(round(l)) for l in team[:, 2]],
-            "identities": identities,
+            "episode_wons": [int(round(w)) for w in flat_team[:, 0]],
+            "episode_returns": [float(r) for r in flat_team[:, 1]],
+            "episode_lengths": [int(round(l)) for l in flat_team[:, 2]],
+            "identities": identity_metrics(flat_agents, mean_length),
+            # across-seed spread of the per-seed means == the noise reference for pairing
+            "identities_across_seed_std": across_seed_std,
+            "per_seed": per_seed,
         }
 
     def current_lr(self, update_count: int) -> float:
@@ -816,7 +874,11 @@ def parse_args(argv=None) -> argparse.Namespace:
     parser.add_argument("--fc-dim-size", type=int, default=128)
     parser.add_argument("--gru-hidden-dim", type=int, default=128)
     parser.add_argument("--eval-episodes", type=int, default=None)
-    parser.add_argument("--eval-seed", type=int, default=1234)
+    parser.add_argument("--eval-seeds", default="1234,1235,1236,1237,1238",
+                        help="comma-separated FIXED evaluation seeds, identical at every stage so "
+                             "stage-to-stage comparisons are paired per seed")
+    parser.add_argument("--eval-seed", type=int, default=None,
+                        help="single-seed shortcut; overrides --eval-seeds when given")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--run-name", default=None)
     parser.add_argument("--save-dir", default=None)
@@ -831,12 +893,21 @@ def parse_args(argv=None) -> argparse.Namespace:
         "ppo_epochs": 2, "num_minibatches": 2, "eval_episodes": 4,
     }
     defaults = {
-        "num_envs": 64, "rollout_length": 64, "updates": 2000, "segment_updates": 25,
-        "ppo_epochs": 4, "num_minibatches": 4, "eval_episodes": 16,
+        "num_envs": 64, "rollout_length": 64, "updates": 1250, "segment_updates": 50,
+        "ppo_epochs": 4, "num_minibatches": 4, "eval_episodes": 4,
     }
     for name, value in defaults.items():
         if getattr(args, name) is None:
             setattr(args, name, tiny[name] if args.tiny else value)
+    if args.eval_seed is not None:
+        args.eval_seeds = [int(args.eval_seed)]
+    else:
+        try:
+            args.eval_seeds = [int(x) for x in str(args.eval_seeds).replace(" ", "").split(",") if x]
+        except ValueError:
+            parser.error("--eval-seeds must be comma-separated integers")
+        if not args.eval_seeds:
+            parser.error("--eval-seeds must contain at least one seed")
     if args.updates % args.segment_updates:
         parser.error("--updates must be divisible by --segment-updates")
     if args.save_every_segments < 1:
@@ -844,15 +915,29 @@ def parse_args(argv=None) -> argparse.Namespace:
     return args
 
 
-def format_identity_table(identities: Sequence[dict]) -> str:
-    header = (f"  {'identity':<16}{'dealt':>9}{'taken':>9}{'kills':>8}"
-              f"{'alive_steps':>13}{'nearest_enemy_dist':>20}")
+def format_identity_table(identities: Sequence[dict], across_seed_std=None) -> str:
+    if across_seed_std is None:
+        header = (f"  {'identity':<16}{'dealt':>9}{'taken':>9}{'kills':>8}"
+                  f"{'alive_steps':>13}{'nearest_enemy_dist':>20}")
+        rows = [header]
+        for m in identities:
+            rows.append(
+                f"  {m['agent'] + '/' + m['unit_type']:<16}"
+                f"{m['damage_dealt']:>9.3f}{m['damage_taken']:>9.3f}{m['kills']:>8.3f}"
+                f"{m['alive_steps']:>13.1f}{m['nearest_enemy_dist']:>20.3f}"
+            )
+        return "\n".join(rows)
+    header = (f"  {'identity':<16}{'dealt±sd(seed)':>22}{'taken':>9}{'kills':>8}"
+              f"{'alive_steps±sd':>22}{'nearest_enemy_dist':>20}")
     rows = [header]
-    for m in identities:
+    for i, m in enumerate(identities):
+        sd = across_seed_std[i]
         rows.append(
             f"  {m['agent'] + '/' + m['unit_type']:<16}"
-            f"{m['damage_dealt']:>9.3f}{m['damage_taken']:>9.3f}{m['kills']:>8.3f}"
-            f"{m['alive_steps']:>13.1f}{m['nearest_enemy_dist']:>20.3f}"
+            f"{m['damage_dealt']:>12.3f}±{sd['damage_dealt']:<9.3f}"
+            f"{m['damage_taken']:>9.3f}{m['kills']:>8.3f}"
+            f"{m['alive_steps']:>14.1f}±{sd['alive_steps']:<7.1f}"
+            f"{m['nearest_enemy_dist']:>20.3f}"
         )
     return "\n".join(rows)
 
@@ -865,7 +950,7 @@ def main(argv=None) -> None:
 
     config = build_config(args)
     trainer = Trainer(config)
-    trainer.make_evaluator(args.eval_episodes, args.eval_seed)
+    trainer.make_evaluator(args.eval_episodes, args.eval_seeds)
 
     runner = trainer.init_runner(jax.random.PRNGKey(args.seed))
     resumed_from = None
@@ -891,7 +976,7 @@ def main(argv=None) -> None:
         "argv": sys.argv[1:],
         "config": config,
         "lr_schedule": config["lr_schedule"],
-        "eval_seed": args.eval_seed,
+        "eval_seeds": args.eval_seeds,
         "eval_episodes": args.eval_episodes,
         "params_per_identity": int(sum(x.size for x in jax.tree.leaves(runner.params[0]))),
         "resumed_from": resumed_from,
@@ -902,6 +987,17 @@ def main(argv=None) -> None:
     (out_dir / "run.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
 
     updates_done = int(runner.update_count)
+    if resumed_from is None:
+        # keep the untrained state: the early/middle/late diagnostic comparison needs it
+        initial = save_checkpoint(
+            out_dir / "checkpoint_00000000.bin", runner,
+            {"update_count": 0, "segment": 0, "config": config, "argv": sys.argv[1:],
+             "kind": "initial_state"},
+        )
+        metadata["initial_checkpoint"] = initial.name
+        (out_dir / "run.json").write_text(json.dumps(metadata, indent=2) + "\n",
+                                          encoding="utf-8")
+        print(f"[initial state] saved {initial.name} (update_count=0, untrained)", flush=True)
     if updates_done % args.segment_updates:
         raise SystemExit(f"resumed update_count {updates_done} is not a multiple of "
                          f"--segment-updates {args.segment_updates}")
@@ -969,14 +1065,18 @@ def main(argv=None) -> None:
             flush=True,
         )
         print(
-            f"  eval  : {eval_metrics['episodes']} fixed episodes (seed {args.eval_seed}) -> "
-            f"won {eval_metrics['wins']}/{eval_metrics['episodes']} "
-            f"({eval_metrics['win_rate']:.3f}), mean_return={eval_metrics['mean_return']:.2f}, "
-            f"mean_length={eval_metrics['mean_length']:.1f} "
-            f"lengths={eval_metrics['episode_lengths']} wons={eval_metrics['episode_wons']}",
+            f"  eval  : {eval_metrics['episodes']} episodes over {len(eval_metrics['seeds'])} "
+            f"fixed seeds {eval_metrics['seeds']} -> won {eval_metrics['wins']}/"
+            f"{eval_metrics['episodes']} ({eval_metrics['win_rate']:.3f}), "
+            f"mean_return={eval_metrics['mean_return']:.2f}, "
+            f"mean_length={eval_metrics['mean_length']:.1f}",
             flush=True,
         )
-        print(format_identity_table(eval_metrics["identities"]), flush=True)
+        print("  eval per seed : " + "  ".join(
+            f"{ps['seed']}:{ps['wins']}/{ps['episodes']}(ret {ps['mean_return']:.2f},"
+            f"len {ps['mean_length']:.1f})" for ps in eval_metrics["per_seed"]), flush=True)
+        print(format_identity_table(eval_metrics["identities"],
+                                    eval_metrics["identities_across_seed_std"]), flush=True)
 
     print(
         f"[smax 2s3z independent] finished {int(runner.update_count)} updates "

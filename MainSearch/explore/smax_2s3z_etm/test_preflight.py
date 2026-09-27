@@ -114,7 +114,7 @@ class Reporter:
               f"segment_updates={config['segment_updates']} ppo_epochs={config['ppo_epochs']} "
               f"num_minibatches={config['num_minibatches']} lr={config['lr']} "
               f"anneal_lr={config['anneal_lr']} eval_episodes={config['eval_episodes']} "
-              f"eval_seed={config['eval_seed']} seed={config['seed']} "
+              f"eval_seeds={config['eval_seeds']} seed={config['seed']} "
               f"obs_dim={config['obs_dim']} action_dim={config['action_dim']} "
               f"num_agents={config['num_agents']} gru={config['gru_hidden_dim']} "
               f"total_optimizer_steps={config['total_optimizer_steps']} "
@@ -369,7 +369,7 @@ def check_d(trainer: T.Trainer, config: dict, rep: Reporter) -> None:
     counts_after = sorted({c for st in runner.opt_states for c in int_leaves(st)})
 
     lines = [
-        f"evaluation ({evaluated['episodes']} fixed episodes, seed {config['eval_seed']}): "
+        f"evaluation ({evaluated['episodes']} fixed episodes, seeds {config['eval_seeds']}): "
         f"won {evaluated['wins']}/{evaluated['episodes']}, "
         f"mean_return={evaluated['mean_return']:.4f}, "
         f"mean_length={evaluated['mean_length']:.2f}",
@@ -640,9 +640,10 @@ def main() -> int:
     args = T.parse_args(argv)
     config = T.build_config(args)
     trainer = T.Trainer(config)
-    trainer.make_evaluator(args.eval_episodes, args.eval_seed)
+    trainer.make_evaluator(args.eval_episodes, args.eval_seeds)
     config["eval_episodes"] = args.eval_episodes
-    config["eval_seed"] = args.eval_seed
+    config["eval_seeds"] = list(args.eval_seeds)
+    config["eval_seed"] = args.eval_seeds[0]
 
     rep = Reporter(config, argv)
     out_dir = HERE / "results" / "preflight"
