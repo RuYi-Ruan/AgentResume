@@ -36,8 +36,12 @@ Measurement convention (must be quoted with any number taken from here)
     - `focus_share`    = (sum of this identity's real hits whose target at least one *other* ally
                           also hit **in the same sub-step**) / (sum of its real hits);
                           0.0 when there is no real hit.
-  The episode length counts non-terminal environment steps (the terminal transition is excluded
-  from every accumulator, as in v1), and alive steps are counted at the start of an environment
+  The accumulator masks use the *current* step's `live` flag, which is cleared only after the
+  accumulation block, so the TERMINAL environment step IS counted in episode length, alive steps,
+  hits and damage (its reward is counted too).  The only quantity that excludes the terminal step
+  is the replica-vs-wrapper state comparison (`envstep_checked = ~done_all`), because the wrapper
+  auto-resets there.  (An earlier comment claiming the opposite was wrong.)
+  Alive steps are counted at the start of an environment
   step.
 
 Attribution (v2 - this is what changed relative to v1)
