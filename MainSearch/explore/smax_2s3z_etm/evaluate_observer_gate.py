@@ -35,16 +35,35 @@ team-independent statement about the partner's ability.
 §5 (profile-swap check, matched states)
 ---------------------------------------
 On one batch of matched states (same battles, same trajectory positions) the `profile` arm's
-observer is run twice: once with the correct `z` and once with a **stale same-identity profile**
-(partner `swap_identity`'s z replaced by another of *its own* stages, default `u1250 -> u50`).
-Both forward passes are given **the same GRU hidden states** - the hstates are injected explicitly
-and compared leaf-by-leaf - so any difference is attributable to the z channel alone.
+observer is run twice: once with the correct `z` and once with a **stale same-identity profile** -
+the partner is inspected in a combination where it really plays its **late** parameters (`u1250`)
+and the z dims handed to the observer for that same identity are replaced by its **early** `u50`
+profile.  Both forward passes are given **the same GRU hidden states** - the hstates are injected
+explicitly and compared leaf-by-leaf - so any difference is attributable to the z channel alone.
 
 Reported: action-distribution TV and JS, argmax switching rate.
 
 **Interpretation constraint (contract §5, §6)**: a changed action distribution only shows that the
 input *affects* the decision.  It says nothing about whether the change is *beneficial*.  Nothing
 here is a causal claim, and the battle counts are not independent samples.
+
+Errata (review ticket 2026-09-27; overrides the earlier implementation)
+----------------------------------------------------------------------
+1. Stale, not future.  The swap default used to start from the lexicographically first combination
+   (`[u50,u50,u50,u50]`) and replace that partner's `u50` profile by its `u1250` one - i.e. it gave
+   the observer a profile of the *future* while the partner played its early parameters.  The
+   default now comes from `default_matched_combo`, a combination in which the inspected partner
+   really uses its **latest** stage, and `resolve_swap_target` guarantees
+   `param_stage > profile_stage` (stale); the automatic flip changes *which* identity is inspected,
+   never the direction.
+2. Partner actions are **argmax** in the evaluation too (`G.partner_action_argmax`), the rule the
+   profile measurement used; the observer plays argmax in a battle, while in the matched-state
+   rollouts the recorded position is what matters.
+3. Every battle runs to its **real termination** (`done["__all__"]`), not to a fixed step count:
+   the local SMAX environment flags `done` before incrementing its own step counter, so a battle
+   that ends on the time limit needs `max_steps + 1` calls.  `eval_step_limit` is a loop guard and
+   a battle still running when it runs out is reported as a **truncated failure**, never as a
+   normal result.
 """
 
 from __future__ import annotations
@@ -220,7 +239,8 @@ def collect_matched_states(trainer, observer_params, combo: Sequence[int], seeds
 
     Short rollouts of the *correct-profile* observer on `combo` x `seeds`; every recorded position
     keeps the hidden state the observer actually had when it saw that input, so the later swap can
-    inject identical hidden states into both forward passes.
+    inject identical hidden states into both forward passes.  The observer plays argmax and the
+    partners play argmax too (errata 2, as in training and in the gate battles).
     """
     partners = tuple(trainer.partner_stack[j][int(combo[j])]
                      for j in range(len(G.PARTNER_IDENTITIES)))
@@ -256,8 +276,9 @@ def collect_matched_states(trainer, observer_params, combo: Sequence[int], seeds
                     partner_params[j], partner_hidden[j],
                     (obs_stack[ident][None, None], zero_done, avail_stack[ident][None]),
                 )
-                key = G.stream_key(G.EVAL_ACTION_SEED, seed, step, jnp.int32(ident))
-                actions.append(G.categorical_sample(key, pi_partner.logits))
+                # Errata 2: the partners act by argmax, exactly as in training and in the gate
+                # battles (and as in the profile measurement).
+                actions.append(G.partner_action_argmax(pi_partner.logits)[0, 0])
                 new_partner_hidden.append(h_partner)
             env_act = {agent: actions[i] for i, agent in enumerate(agents)}
             new_obs, new_env_state, _, _, _ = env.step(
@@ -306,24 +327,68 @@ def _logits_for(trainer, params, hstate, obs, avail):
     return pi.logits[0]
 
 
+def default_matched_combo(combos: Sequence[Sequence[int]],
+                          swap_identity: int = G.PARTNER_IDENTITIES[0]) -> Sequence[int]:
+    """The combination the §5 swap uses by default: the inspected partner plays its **latest** stage.
+
+    The check is "the partner really plays its late parameters while the observer is told its early
+    profile", so the default must start from a combination in which that partner is at the latest
+    stage.  (The lexicographic first combination is all-`u50`: swapping there can only produce a
+    *future* profile - the erratum 1 mistake.)  Ties prefer the combination that is later overall.
+    """
+    j = list(G.PARTNER_IDENTITIES).index(int(swap_identity))
+    return max(combos, key=lambda c: (int(c[j]), sum(int(s) for s in c), tuple(int(s) for s in c)))
+
+
+def resolve_swap_target(combo: Sequence[int], swap_identity: int = G.PARTNER_IDENTITIES[0],
+                        stale_stage: int = 0) -> tuple[int, int, int]:
+    """`(identity, param_stage, profile_stage)` of a **stale** swap: `param_stage > profile_stage`.
+
+    `param_stage` is the stage the inspected partner really plays in this combination; the observer
+    is handed that same identity's `stale_stage` (early) profile instead.  The preferred identity is
+    `swap_identity`; when it does not play a stage later than `stale_stage` the automatic flip picks
+    an identity that does (it changes *which* partner is inspected, never the direction).  A
+    combination in which no identity plays a later stage cannot host a stale swap at all and is an
+    error instead of silently becoming a future-profile comparison.
+    """
+    identities = list(G.PARTNER_IDENTITIES)
+    stages = [int(s) for s in combo]
+    preferred = identities.index(int(swap_identity)) if int(swap_identity) in identities else 0
+    order = [preferred] + [j for j in range(len(identities)) if j != preferred]
+    for j in order:
+        if stages[j] > int(stale_stage):
+            return identities[j], stages[j], int(stale_stage)
+    latest = max(order, key=lambda k: stages[k])       # ties keep the preferred identity
+    earlier = [s for s in range(len(G.STAGE_UPDATES)) if s < stages[latest]]
+    if not earlier:
+        raise SystemExit(
+            f"combination {G.combo_label(combo)} cannot host a stale profile swap: no identity "
+            f"plays a stage later than {G.STAGE_LABELS[int(stale_stage)]}, and a swap in the other "
+            f"direction would compare the observer against a profile of the FUTURE (errata 1)."
+        )
+    return identities[latest], stages[latest], int(min(earlier))
+
+
 def swap_analysis(trainer, observer_params, matched: dict, combo: Sequence[int],
                   swap_identity: int = G.PARTNER_IDENTITIES[0],
                   stale_stage: int = 0) -> dict:
     """Compare the observer's action distribution under the correct vs a stale same-identity z.
 
-    The two forward passes receive **identical GRU hidden states** (injected explicitly and
-    compared leaf-by-leaf).  The observation part of the input is identical too; only the 3 z dims
-    of partner `swap_identity` differ.  A third pass with a perturbed hidden state is the negative
-    control that proves the hidden state is actually consumed by the forward pass.
+    The inspected partner (see `resolve_swap_target`) plays its late parameters while the observer's
+    z dims for that identity come either from the stage it really plays (`param_stage`) or from the
+    same identity's early `profile_stage` - a *stale* description.  The two forward passes receive
+    **identical GRU hidden states** (injected explicitly and compared leaf-by-leaf).  The
+    observation part of the input is identical too; only the 3 z dims of that partner differ.  A
+    third pass with a perturbed hidden state is the negative control that proves the hidden state is
+    actually consumed by the forward pass.
     """
     obs_dim = int(trainer.config["obs_dim"])
     table = np.asarray(trainer.z_table, dtype=np.float64)
     n = int(matched["obs"].shape[0])
-    j = G.PARTNER_IDENTITIES.index(int(swap_identity))
     combo = [int(s) for s in combo]
-    correct_stage = combo[j]
-    stale = int(stale_stage) if correct_stage != int(stale_stage) else (
-        2 if int(stale_stage) == 0 else 0)
+    identity, param_stage, profile_stage = resolve_swap_target(combo, swap_identity, stale_stage)
+    j = G.PARTNER_IDENTITIES.index(int(identity))
+    stale = int(profile_stage)
     stale_combo = list(combo)
     stale_combo[j] = stale
 
@@ -367,13 +432,22 @@ def swap_analysis(trainer, observer_params, matched: dict, combo: Sequence[int],
         "matched_seeds": matched["seeds"],
         "battle_steps_recorded": matched["steps"],
         "swap": {
-            "partner_identity": int(swap_identity),
-            "correct_stage": G.STAGE_LABELS[correct_stage],
+            "partner_identity": int(identity),
+            "requested_identity": int(swap_identity),
+            "identity_flipped": int(identity) != int(swap_identity),
+            "direction": "stale",
+            "param_stage": G.STAGE_LABELS[param_stage],
+            "param_stage_index": int(param_stage),
+            "profile_stage": G.STAGE_LABELS[stale],
+            "profile_stage_index": int(stale),
+            "param_stage_later_than_profile_stage": bool(int(param_stage) > int(stale)),
+            "correct_stage": G.STAGE_LABELS[param_stage],
             "stale_stage": G.STAGE_LABELS[stale],
             "z_dims_replaced": [3 * j, 3 * j + 3],
             "z_max_abs_change": float(np.max(np.abs(z_stale - z_correct))),
-            "note": ("same identity, same trajectory positions, same GRU hidden state; only those "
-                     "3 z dims differ"),
+            "note": ("the partner really plays its param_stage parameters and the observer is given "
+                     "the SAME identity's early profile_stage instead; same identity, same "
+                     "trajectory positions, same GRU hidden state, only those 3 z dims differ"),
         },
         "hstate_check": {
             "same_hstate_injected": bool(hstates_equal_before),
@@ -418,9 +492,13 @@ def parse_args(argv=None) -> argparse.Namespace:
                              "is all 81 x 4 = 324 battles per arm)")
     parser.add_argument("--bootstrap-samples", type=int, default=10000)
     parser.add_argument("--bootstrap-seed", type=int, default=0)
-    parser.add_argument("--swap-identity", type=int, default=G.PARTNER_IDENTITIES[0])
+    parser.add_argument("--swap-identity", type=int, default=G.PARTNER_IDENTITIES[0],
+                        help="preferred partner identity to inspect; the automatic flip moves to "
+                             "another identity when this one does not play a late stage (the "
+                             "direction - late parameters, early profile - never flips)")
     parser.add_argument("--swap-stale-stage", type=int, default=0,
-                        help="stage index used as the stale profile (0 = u50)")
+                        help="stage index substituted as the STALE (early) profile (0 = u50); the "
+                             "inspected partner's real, later stage stays the premise")
     parser.add_argument("--matched-seeds", default=None,
                         help="seed set for the matched-state rollouts (default: --seeds)")
     parser.add_argument("--matched-steps", type=int, default=8)
@@ -494,6 +572,11 @@ def main(argv=None) -> None:
     print(f"  z channel        : profile = the battle's z; placeholder = constant zeros "
           f"({G.PROFILE_DIM} dims in both arms)", flush=True)
     print(f"  z semantics      : {Z_SEMANTICS}", flush=True)
+    print(f"  battle termination: every battle runs to done['__all__'] (env max_steps="
+          f"{trainer.config['horizon']}, loop guard eval_step_limit={trainer.eval_step_limit}); a "
+          f"battle that never terminates is reported as a truncated FAILURE", flush=True)
+    print(f"  partner rule     : argmax (errata 2, the profile-measurement rule); the observer "
+          f"plays argmax in a battle", flush=True)
 
     results = {}
     for arm, params, z_mode in (("profile", profile_params, "table"),
@@ -501,10 +584,15 @@ def main(argv=None) -> None:
         t0 = time.perf_counter()
         out = trainer.eval_battles(params, combos, args.seeds, z_mode=z_mode)
         results[arm] = out
+        lengths, counts = np.unique(out["length"], return_counts=True)
+        histogram = ", ".join(f"{int(x)}x{int(c)}" for x, c in zip(lengths, counts))
         print(f"  [{arm:<11}] [PRIMARY] mean team return={out['return'].mean():.4f} | "
               f"[aux] wins={int(out['won'].sum())}/{battles_per_arm} "
               f"({out['won'].mean():.3f}) | mean length={out['length'].mean():.2f} "
               f"({time.perf_counter() - t0:.1f}s)", flush=True)
+        print(f"              terminated={int((~out['truncated']).sum())}/{battles_per_arm} "
+              f"(truncated={int(out['truncated'].sum())}); length histogram "
+              f"(length x battles): {histogram}", flush=True)
 
     paired = {}
     for key in ("return", "won", "length"):
@@ -539,7 +627,7 @@ def main(argv=None) -> None:
               f"{paired['return'][ci].mean():+8.3f}", flush=True)
 
     # --- §5 ------------------------------------------------------------------------------------
-    matched_combo = combos[0]
+    matched_combo = default_matched_combo(combos, args.swap_identity)
     matched = collect_matched_states(trainer, profile_params, matched_combo, args.matched_seeds,
                                      args.matched_steps)
     swap = swap_analysis(trainer, profile_params, matched, matched_combo, args.swap_identity,
@@ -548,10 +636,15 @@ def main(argv=None) -> None:
     print(f"  §5 profile swap on {swap['matched_states']} matched states "
           f"({len(args.matched_seeds)} seeds x {args.matched_steps} steps of "
           f"{G.combo_label(matched_combo)})", flush=True)
-    print(f"    swap: partner {swap['swap']['partner_identity']} "
-          f"{swap['swap']['correct_stage']} -> stale {swap['swap']['stale_stage']} "
-          f"(z dims {swap['swap']['z_dims_replaced']}, max |dz|="
-          f"{swap['swap']['z_max_abs_change']:.4f})", flush=True)
+    print(f"    swap: partner {swap['swap']['partner_identity']}"
+          f"{' (identity flipped from ' + str(swap['swap']['requested_identity']) + ')' if swap['swap']['identity_flipped'] else ''}"
+          f" really plays {swap['swap']['param_stage']} while the observer is given its "
+          f"{swap['swap']['profile_stage']} profile -> direction "
+          f"{swap['swap']['direction']} "
+          f"(param stage {swap['swap']['param_stage_index']} > profile stage "
+          f"{swap['swap']['profile_stage_index']}); z dims "
+          f"{swap['swap']['z_dims_replaced']}, max |dz|={swap['swap']['z_max_abs_change']:.4f}",
+          flush=True)
     print(f"    same hstate injected: {swap['hstate_check']['same_hstate_injected']}; "
           f"still equal after both forwards: "
           f"{swap['hstate_check']['same_hstate_after_both_forwards']}; inputs differ only in z: "
@@ -593,6 +686,25 @@ def main(argv=None) -> None:
         "profile_table": {"path": str(table_source), "sha256": G.sha256_file(table_source),
                           "is_fixture": is_fixture},
         "z_semantics": Z_SEMANTICS,
+        "battle_termination": {
+            "rule": ("every battle runs to its real termination (done['__all__']); max_steps is not "
+                     "the loop bound (errata 3 - the environment flags done one step late)"),
+            "env_max_steps": int(trainer.config["horizon"]),
+            "eval_step_limit": int(trainer.eval_step_limit),
+            "truncated_battles": {
+                arm: int(results[arm]["truncated"].sum()) for arm in ("profile", "placeholder")
+            },
+            "length_histogram": {
+                arm: {int(k): int(v) for k, v in zip(*np.unique(results[arm]["length"],
+                                                               return_counts=True))}
+                for arm in ("profile", "placeholder")
+            },
+            "note": ("a battle still running when the guard runs out raises instead of being "
+                     "reported as a normal result"),
+        },
+        "partner_action_rule": ("argmax in training, evaluation and matched-state rollouts (errata "
+                                "2, the profile-measurement rule); the observer samples in "
+                                "training and plays argmax in a battle"),
         "partner_run_dir": str(partner_dir),
         "partner_stages": list(stages),
         "results": {
@@ -606,6 +718,8 @@ def main(argv=None) -> None:
                 "per_battle_return": [float(x) for x in results[arm]["return"].ravel()],
                 "per_battle_won": [int(x) for x in results[arm]["won"].ravel()],
                 "per_battle_length": [float(x) for x in results[arm]["length"].ravel()],
+                "per_battle_terminated": [bool(x) for x in
+                                          (~results[arm]["truncated"]).ravel()],
             }
             for arm in ("profile", "placeholder")
         },
@@ -618,6 +732,7 @@ def main(argv=None) -> None:
             "per_pair_return_diff": [float(x) for x in paired["return"].ravel()],
         },
         "profile_swap": swap,
+        "profile_swap_combo": G.combo_label(matched_combo),
         "interpretation": list(DISCLAIMERS),
         "wall_seconds": round(time.perf_counter() - started, 3),
     }

@@ -16,10 +16,30 @@ Checks (contract `MainSearch/explore/ORACLE_GATE_CONTRACT.md` §7), each measure
                         12 candidates and reproducible, and both arms have identical input
                         dimension and parameter count;
   5. profile swap     - the swap forward passes inject leaf-wise equal GRU hidden states, and the
-                        swapped z does change the action distribution (TV > 0);
+                        swapped z does change the action distribution (TV > 0); the swapped
+                        dimension is the STALE one (late parameters, early profile);
   6. paired protocol  - the primary statistic is a per-`(combination, situation)` paired
                         difference over 81 x 4 = 324 pairs, with the bootstrap resampling those
                         pairs (wins stay auxiliary).
+
+Checks 7-10 cover the four errata of the review ticket (2026-09-27):
+
+  7. in-episode step index - `env_step_key` / `partner_action_key` are indexed by the persistent
+                        in-episode step, so two arms with different roll-out *and* episode lengths
+                        draw identical keys for the same `(slot, episode, in-episode step)` - even
+                        for positions that fall into a later roll-out - and the pre-errata
+                        roll-out-step indexing is shown to break (reverse control);
+  8. argmax partners  - the partners act by argmax on the training path (recomputed independently
+                        from the reset state) and on the evaluation path (replacing the argmax
+                        helper by the pre-errata sampling rule moves the battle);
+  9. stale swap       - the §5 swap is late-parameters + same-identity early profile; the default
+                        combination is no longer the all-u50 one, all 81 combinations resolve to a
+                        stale swap and the all-u50 request is refused instead of flipped to a
+                        FUTURE profile;
+ 10. real termination - a battle runs to `done["__all__"]` (the local environment flags `done` one
+                        step late, so the time limit needs `max_steps + 1` steps), and a battle cut
+                        short by the loop guard is reported as a truncated FAILURE (reverse
+                        control: the guard lowered to `max_steps`).
 
 Run:
   D:/omp/MainSearch/explore/benchmark_suitability_smax/.venv/Scripts/python.exe \
@@ -403,16 +423,21 @@ def check_4(rep: Reporter, ctx: dict) -> None:
 def check_5(rep: Reporter, ctx: dict) -> None:
     started = time.perf_counter()
     trainer, runner = ctx["trainer"], ctx["runner"]
-    combo = [0, 0, 0, 0]
+    # Errata 1: the swap needs a combination in which the inspected partner really plays a LATE
+    # stage, so its profile can then be replaced by that identity's EARLY one (stale, not future).
+    combo = list(E.default_matched_combo(G.enumerate_combos(None), G.PARTNER_IDENTITIES[0]))
     matched = E.collect_matched_states(trainer, runner.params[0], combo, G.TEST_SEEDS_C, steps=4)
     swap = E.swap_analysis(trainer, runner.params[0], matched, combo,
                            swap_identity=G.PARTNER_IDENTITIES[0], stale_stage=0)
+    swapped = swap["swap"]
     lines = [
         f"matched states: {swap['matched_states']} (seeds {swap['matched_seeds']} x "
         f"{swap['battle_steps_recorded']} steps of {G.combo_label(combo)})",
-        f"swap: partner {swap['swap']['partner_identity']} "
-        f"{swap['swap']['correct_stage']} -> stale {swap['swap']['stale_stage']}, z dims "
-        f"{swap['swap']['z_dims_replaced']} (max |dz| {swap['swap']['z_max_abs_change']:.4f})",
+        f"swap: partner {swapped['partner_identity']} really plays {swapped['param_stage']} while "
+        f"the observer is given its {swapped['profile_stage']} profile -> direction "
+        f"{swapped['direction']} (param stage {swapped['param_stage_index']} > profile stage "
+        f"{swapped['profile_stage_index']}: {swapped['param_stage_later_than_profile_stage']}), "
+        f"z dims {swapped['z_dims_replaced']} (max |dz| {swapped['z_max_abs_change']:.4f})",
         f"hstate injected equal = {swap['hstate_check']['same_hstate_injected']}; still leaf-wise "
         f"equal after both forward passes = "
         f"{swap['hstate_check']['same_hstate_after_both_forwards']}; inputs differ only in z = "
@@ -431,6 +456,7 @@ def check_5(rep: Reporter, ctx: dict) -> None:
           and swap["hstate_check"]["same_hstate_after_both_forwards"]
           and swap["inputs_differ_only_in_z"]
           and swap["recorded_z_matches_correct_z"]
+          and swapped["param_stage_later_than_profile_stage"]
           and swap["hstate_check"]["negative_control_max_logit_shift_from_perturbed_hstate"] > 0.0
           and swap["action_distribution"]["tv_max"] > 0.0)
     rep.check("5 profile swap / identical hstate", ok, lines, time.perf_counter() - started)
@@ -495,6 +521,340 @@ def check_6(rep: Reporter, ctx: dict) -> None:
 
 
 # --------------------------------------------------------------------------------------------
+# check 7 - errata 1: the in-episode step index aligns across roll-outs and across episode lengths
+# --------------------------------------------------------------------------------------------
+def key_records(diagnostics: dict) -> dict:
+    """`{(slot, ep, in-episode step): {stream key, partner keys/actions, roll-out step}}`.
+
+    One entry per recorded position, keyed by the *battle identity* of the position, so two arms
+    that reach it at different roll-out steps can be compared position by position.
+    """
+    ep = np.asarray(diagnostics["diag_ep_index"])                  # (T, E)
+    t = np.asarray(diagnostics["diag_t_in_episode"])               # (T, E)
+    env_key = np.asarray(diagnostics["diag_env_step_key"])         # (T, E, 2)
+    partner_key = np.asarray(diagnostics["diag_partner_action_key"])   # (T, 4, E, 2)
+    partner_action = np.asarray(diagnostics["diag_partner_action"])    # (T, 4, E)
+    rollout_step = np.asarray(diagnostics["diag_rollout_step"])    # (T, E)
+    records = {}
+    for s in range(ep.shape[0]):
+        for slot in range(ep.shape[1]):
+            key = (slot, int(ep[s, slot]), int(t[s, slot]))
+            records.setdefault(key, {
+                "env_key": env_key[s, slot].copy(),
+                "partner_key": partner_key[s, :, slot].copy(),
+                "partner_action": partner_action[s, :, slot].copy(),
+                "rollout_step": int(rollout_step[s, slot]),
+            })
+    return records
+
+
+def check_7(rep: Reporter, ctx: dict) -> None:
+    started = time.perf_counter()
+    lines, ok = [], True
+    config = ctx["config"]
+    stack, z_table = ctx["partner_stack"], ctx["z_table"]
+    # Two arms that differ in BOTH the roll-out length and the episode length: arm A plays a
+    # 6-step episode and is rolled out 4 steps at a time (so one episode spans two roll-outs),
+    # arm B plays the ordinary 100-step episode and is rolled out 24 steps at a time.
+    arm_a = G.ObserverGateTrainer({**config, "rollout_length": 4}, stack, z_table, arm="profile",
+                                  env_overrides={"max_steps": 5})
+    arm_b = G.ObserverGateTrainer({**config, "rollout_length": 3 * int(config["rollout_length"])},
+                                  stack, z_table, arm="profile")
+    arm_a.collect_diagnostics = arm_b.collect_diagnostics = True
+    runner_a = arm_a.init_runner(jax.random.PRNGKey(11))
+    runner_b = arm_b.init_runner(jax.random.PRNGKey(11))
+
+    records_a = {}
+    rollouts = []
+    for _ in range(3):
+        runner_a, transitions, _ = arm_a.rollout(runner_a)
+        rollouts.append(key_records({key: transitions[key] for key in G.DIAGNOSTIC_KEYS}))
+        records_a.update(rollouts[-1])
+    records_b = key_records({key: arm_b.rollout(runner_b)[1][key] for key in G.DIAGNOSTIC_KEYS})
+
+    lines.append(f"arm A: episode length {arm_a.config['horizon'] + 1}, roll-out length "
+                 f"{arm_a.config['rollout_length']} -> three roll-outs cover "
+                 f"{[f'{len(r)} positions' for r in rollouts]}; arm B: episode length "
+                 f"{arm_b.config['horizon'] + 1}, roll-out length "
+                 f"{arm_b.config['rollout_length']}")
+    lines.append(f"arm A positions: {sorted(records_a)}")
+    lines.append(f"arm B positions: {sorted(records_b)}")
+    common = sorted(set(records_a) & set(records_b))
+    lines.append(f"positions reached by both arms: {common}")
+    ok &= len(common) > 0
+
+    lines.append(f"positions of arm A reached in a LATER roll-out than the first (in-episode step "
+                 f">= roll-out length {arm_a.config['rollout_length']}): "
+                 f"{sorted(k for k in records_a if k[2] >= arm_a.config['rollout_length'])}")
+
+    env_ok, partner_ok, arm_ok = True, True, True
+    for key in common:
+        slot, ep, t = key
+        expected_env = G.env_step_key(jnp.int32(slot), jnp.int32(ep), jnp.int32(t))
+        env_ok &= bool(np.array_equal(records_a[key]["env_key"],
+                                      np.asarray(jax.device_get(expected_env))))
+        for j, ident in enumerate(G.PARTNER_IDENTITIES):
+            expected = G.partner_action_key(jnp.int32(slot), jnp.int32(ep), jnp.int32(ident),
+                                            jnp.int32(t))
+            partner_ok &= bool(np.array_equal(records_a[key]["partner_key"][j],
+                                              np.asarray(jax.device_get(expected))))
+            partner_ok &= bool(np.array_equal(records_b[key]["partner_key"][j],
+                                              np.asarray(jax.device_get(expected))))
+        arm_ok &= bool(np.array_equal(records_a[key]["env_key"], records_b[key]["env_key"]))
+    lines.append(f"env_step_key(slot, ep, in-episode step) reproduced independently by "
+                 f"arm A and arm B: {arm_ok}; equals env_step_key(slot, ep, t) exactly (A): "
+                 f"{env_ok}; partner_action_key(slot, ep, identity, t) exactly (A and B): "
+                 f"{partner_ok}")
+    ok &= env_ok and partner_ok and arm_ok
+
+    # reverse control: the pre-errata convention indexed the streams by the ROLL-OUT step.
+    stale_positions, example = [], None
+    for key, record in sorted(records_a.items()):
+        slot, ep, t = key
+        if record["rollout_step"] == t:
+            continue
+        old = np.asarray(jax.device_get(G.env_step_key(jnp.int32(slot), jnp.int32(ep),
+                                                       jnp.int32(record["rollout_step"]))))
+        if not np.array_equal(old, record["env_key"]):
+            stale_positions.append((key, record["rollout_step"]))
+            if example is None:
+                duplicate = records_a.get((slot, ep, record["rollout_step"]))
+                example = (key, record["rollout_step"],
+                           duplicate is not None and np.array_equal(duplicate["env_key"], old))
+    lines.append(f"reverse control (old convention, roll-out step {sorted(set(r['rollout_step'] for r in records_a.values()))} "
+                 f"instead of the in-episode step): {len(stale_positions)} of {len(records_a)} "
+                 f"positions get a different env_step_key, e.g. {example[0] if example else None} "
+                 f"would use the key of in-episode step {example[1] if example else None}"
+                 f"{' - the same key as an earlier position of the same episode' if example and example[2] else ''}")
+    ok &= len(stale_positions) > 0 and bool(example and example[2])
+
+    in_episode = sorted(k[2] for k in records_a)
+    lines.append(f"in-episode steps observed in arm A: {in_episode[0]}..{in_episode[-1]} "
+                 f"(the episode continues across the roll-out boundary at step "
+                 f"{arm_a.config['rollout_length']})")
+    rep.check("7 in-episode step index / cross-roll-out alignment", ok, lines,
+              time.perf_counter() - started)
+
+
+# --------------------------------------------------------------------------------------------
+# check 8 - errata 2: the partners act by argmax on both paths
+# --------------------------------------------------------------------------------------------
+def check_8(rep: Reporter, ctx: dict) -> None:
+    started = time.perf_counter()
+    lines, ok = [], True
+    trainer, runner = ctx["trainer"], ctx["runner"]
+
+    probe = np.array([[2.0, 1.0, 0.5], [0.25, 0.25, -1.0], [1.0, 3.0, 2.0]], dtype=np.float32)
+    action = np.asarray(G.partner_action_argmax(jnp.asarray(probe)))
+    lines.append(f"partner_action_argmax on 3x3 logits (row 1 is a tie) = {action.tolist()}, "
+                 f"argmax = {probe.argmax(-1).tolist()}, equal: "
+                 f"{np.array_equal(action, probe.argmax(-1))}")
+    ok &= np.array_equal(action, probe.argmax(-1))
+
+    # training path: recompute the partners' first action of episode (slot 0, ep 0) independently
+    # from the reset state and compare with the action the roll-out actually fed the environment.
+    diag = rollout_diagnostics(trainer, runner)
+    slot, ep = 0, 0
+    obs0, env_state0 = trainer.env.reset(G.env_reset_key(jnp.int32(slot), jnp.int32(ep)))
+    avail0 = trainer.base_env.get_avail_actions(env_state0.env_state)
+    agents = trainer.env.agents
+    obs_stack = jnp.stack([obs0[a] for a in agents]).astype(jnp.float32)
+    avail_stack = jnp.stack([avail0[a] for a in agents]).astype(jnp.float32)
+    zero_done = jnp.zeros((1, 1), dtype=bool)
+    h0 = G.base_train.ScannedRNN.initialize_carry(1, trainer.config["gru_hidden_dim"])
+    t0 = int(np.asarray(diag["diag_t_in_episode"])[0, slot])
+    expected, recorded, sampled = [], [], []
+    for j, ident in enumerate(G.PARTNER_IDENTITIES):
+        stage = int(np.asarray(diag["diag_stage"])[0, j, slot])
+        _, pi, _ = trainer.network.apply(
+            trainer.partner_stack[j][stage], h0,
+            (obs_stack[ident][None, None], zero_done, avail_stack[ident][None]),
+        )
+        expected.append(int(np.asarray(
+            jax.device_get(G.partner_action_argmax(pi.logits)))[0, 0]))
+        recorded.append(int(np.asarray(diag["diag_partner_action"])[0, j, slot]))
+        key = G.partner_action_key(jnp.int32(slot), jnp.int32(ep), jnp.int32(ident), jnp.int32(t0))
+        sampled.append(int(np.asarray(jax.device_get(
+            G.categorical_sample(key, pi.logits[0, 0])))))
+    lines.append(f"training roll-out, first step of (slot {slot}, episode {ep}, in-episode step "
+                 f"{t0}): independently recomputed argmax {expected} == recorded partner actions "
+                 f"{recorded}: {expected == recorded}; the pre-errata sampling rule would have "
+                 f"played {sampled} ({sum(a != b for a, b in zip(sampled, expected))}/"
+                 f"{len(expected)} identities differ)")
+    ok &= expected == recorded
+
+    # evaluation path: the battle result follows the argmax helper; replacing it by the pre-errata
+    # sampling rule changes the trajectory, so the battle really does use that helper.
+    short, short_runner = ctx["short"], ctx["short_runner"]
+    partner_params = tuple(trainer.partner_stack[j][0] for j in range(len(G.PARTNER_IDENTITIES)))
+    z = trainer.z_vector(jnp.asarray(np.zeros(len(G.PARTNER_IDENTITIES), np.int32)))
+    seed = jnp.int32(ctx["seeds"][0])
+    battle = np.asarray(jax.device_get(
+        short._battle_episode(short_runner.params[0], partner_params, z, seed)))
+
+    def sampled_rule(logits):
+        keys = jnp.broadcast_to(G.stream_key(G.EVAL_ACTION_SEED, 0, 0),
+                                tuple(logits.shape[:-1]) + (2,))
+        return G.categorical_sample(keys, logits)
+
+    original = G.partner_action_argmax
+    G.partner_action_argmax = sampled_rule
+    try:
+        sampled_battle = np.asarray(jax.device_get(
+            short._battle_episode(short_runner.params[0], partner_params, z, seed)))
+    finally:
+        G.partner_action_argmax = original
+    lines.append(f"gate battle (seed {int(ctx['seeds'][0])}, {G.combo_label([0,0,0,0])}): "
+                 f"length/return/won/terminated = {battle.tolist()}; with the pre-errata sampling "
+                 f"rule swapped back in it becomes {sampled_battle.tolist()} - changed: "
+                 f"{not np.array_equal(battle, sampled_battle)}")
+    ok &= not np.array_equal(battle, sampled_battle)
+
+    # the matched-state path of the §5 check uses the same argmax rule (the observer's recorded
+    # inputs do not depend on the partner stream any more).
+    matched_a = E.collect_matched_states(trainer, runner.params[0], [0, 0, 0, 0],
+                                         ctx["seeds"][:2], steps=3)
+    saved = G.EVAL_ACTION_SEED
+    G.EVAL_ACTION_SEED = saved + 4242
+    try:
+        matched_b = E.collect_matched_states(trainer, runner.params[0], [0, 0, 0, 0],
+                                             ctx["seeds"][:2], steps=3)
+    finally:
+        G.EVAL_ACTION_SEED = saved
+    same = (np.array_equal(matched_a["obs"], matched_b["obs"])
+            and np.array_equal(matched_a["hstate"], matched_b["hstate"]))
+    lines.append(f"matched-state rollouts are invariant to the partner-action seed ("
+                 f"EVAL_ACTION_SEED {saved} vs {saved + 4242}): {same} - the partner stream is not "
+                 f"sampled from any more")
+    ok &= same
+    rep.check("8 partners act by argmax (training and evaluation)", ok, lines,
+              time.perf_counter() - started)
+
+
+# --------------------------------------------------------------------------------------------
+# check 9 - errata 3: the profile swap is STALE (late parameters, early profile)
+# --------------------------------------------------------------------------------------------
+def check_9(rep: Reporter, ctx: dict) -> None:
+    started = time.perf_counter()
+    lines, ok = [], True
+    trainer, runner = ctx["trainer"], ctx["runner"]
+    combos = G.enumerate_combos(None)
+    identity = G.PARTNER_IDENTITIES[0]
+    combo = list(E.default_matched_combo(combos, identity))
+    lines.append(f"default matched-state combination: {G.combo_label(combo)}; the lexicographic "
+                 f"first combination ({G.combo_label(combos[0])}) is all-u50 and can only produce a "
+                 f"FUTURE profile swap, so it is no longer the default")
+
+    matched = E.collect_matched_states(trainer, runner.params[0], combo, G.TEST_SEEDS_C, steps=2)
+    swap = E.swap_analysis(trainer, runner.params[0], matched, combo, identity, 0)
+    swapped = swap["swap"]
+    j = G.PARTNER_IDENTITIES.index(swapped["partner_identity"])
+    lines.append(f"actual swap: identity {swapped['partner_identity']} "
+                 f"(requested {swapped['requested_identity']}, flipped "
+                 f"{swapped['identity_flipped']}) | param stage {swapped['param_stage']} "
+                 f"(index {swapped['param_stage_index']}) | profile stage "
+                 f"{swapped['profile_stage']} (index {swapped['profile_stage_index']}) | direction "
+                 f"{swapped['direction']} | param later than profile: "
+                 f"{swapped['param_stage_later_than_profile_stage']} | z dims "
+                 f"{swapped['z_dims_replaced']}")
+    lines.append(f"the inspected partner really plays that stage in the combination: "
+                 f"combo[{j}]={int(combo[j])} == param stage {swapped['param_stage_index']}")
+    ok &= (swapped["direction"] == "stale"
+           and swapped["param_stage_index"] > swapped["profile_stage_index"]
+           and swapped["param_stage_later_than_profile_stage"]
+           and int(combo[j]) == swapped["param_stage_index"])
+
+    # every combination: the resolved swap is stale, and the only combination that cannot host one
+    # is all-u50 (no identity plays a stage later than u50) - refused instead of silently flipped.
+    future, refused, flipped = [], [], 0
+    for combo_i in combos:
+        for ident in G.PARTNER_IDENTITIES:
+            try:
+                picked, param, profile = E.resolve_swap_target(combo_i, ident, 0)
+            except SystemExit:
+                refused.append((G.combo_label(combo_i), ident))
+                continue
+            k = G.PARTNER_IDENTITIES.index(picked)
+            if not param > profile or int(combo_i[k]) != param:
+                future.append((G.combo_label(combo_i), ident, picked, param, profile))
+            flipped += int(picked != ident)
+    all_u50 = [(label, ident) for label, ident in refused if label == G.combo_label([0, 0, 0, 0])]
+    lines.append(f"all {len(combos)} combinations x {len(G.PARTNER_IDENTITIES)} identities: future "
+                 f"swaps {len(future)}; refused as impossible-to-be-stale {sorted(set(refused))} "
+                 f"(only the all-u50 combination, {len(all_u50)} requests); automatic identity "
+                 f"flips {flipped}")
+    ok &= not future and sorted(set(refused)) == sorted(set(all_u50)) and flipped > 0
+
+    refused_message = None
+    try:
+        E.resolve_swap_target(combos[0], identity, 0)
+    except SystemExit as exc:
+        refused_message = str(exc)
+    lines.append(f"reverse control (the erratum's default, all-u50 parameters): "
+                 f"resolve_swap_target refuses it instead of returning u1250 as the 'stale' "
+                 f"profile: {refused_message is not None}")
+    if refused_message:
+        lines.append(f"  raised: {refused_message}")
+    ok &= refused_message is not None and "FUTURE" in (refused_message or "")
+    rep.check("9 swap direction is stale (late params, early profile)", ok, lines,
+              time.perf_counter() - started)
+
+
+# --------------------------------------------------------------------------------------------
+# check 10 - errata 4: battles run to real termination, truncation is a failure
+# --------------------------------------------------------------------------------------------
+def check_10(rep: Reporter, ctx: dict) -> None:
+    started = time.perf_counter()
+    lines, ok = [], True
+    short, short_runner = ctx["short"], ctx["short_runner"]
+    max_steps = int(short.config["horizon"])
+    combos = G.enumerate_combos(2)
+    seeds = list(G.TEST_SEEDS_C)
+    out = short.eval_battles(short_runner.params[0], combos, seeds, z_mode="table")
+    sizes, counts = np.unique(out["length"], return_counts=True)
+    histogram = {int(k): int(v) for k, v in zip(sizes, counts)}
+    lines.append(f"short env: max_steps={max_steps}, loop guard eval_step_limit="
+                 f"{short.eval_step_limit} (= max_steps+1); measured battle length distribution "
+                 f"(length: battles) {histogram} over {out['length'].size} battles")
+    lines.append(f"battles that reached done['__all__']: "
+                 f"{int((~out['truncated']).sum())}/{out['length'].size}; longest battle "
+                 f"{float(out['length'].max()):.0f} steps - the pre-errata bound (max_steps="
+                 f"{max_steps}) would have cut that last step off and returned it as a finished "
+                 f"battle")
+    ok &= bool((~out["truncated"]).all()) and float(out["length"].max()) == float(max_steps + 1)
+
+    full = ctx["trainer"]
+    real = ctx["trainer"].eval_battles(ctx["runner"].params[0], G.enumerate_combos(1),
+                                       [G.TEST_SEEDS_C[0]], z_mode="table")
+    lines.append(f"contract configuration: env max_steps={full.config['horizon']} -> "
+                 f"eval_step_limit={full.eval_step_limit} (= max_steps+1); a real battle of "
+                 f"{G.combo_label(G.enumerate_combos(1)[0])} on situation {G.TEST_SEEDS_C[0]} "
+                 f"ended after {real['length'].ravel().tolist()} steps, terminated "
+                 f"{bool((~real['truncated']).all())} (shorter than the time limit only if a team "
+                 f"was wiped out)")
+    ok &= full.eval_step_limit == int(full.config["horizon"]) + 1
+    ok &= bool((~real["truncated"]).all())
+
+    saved = short.eval_step_limit
+    short.eval_step_limit = max_steps
+    message = None
+    try:
+        short.eval_battles(short_runner.params[0], combos[:1], seeds[:1], z_mode="table")
+    except SystemExit as exc:
+        message = str(exc)
+    finally:
+        short.eval_step_limit = saved
+    lines.append(f"reverse control: with the guard lowered to max_steps={max_steps} the same "
+                 f"battle does not terminate inside the loop and is reported as a TRUNCATED "
+                 f"failure instead of a result: {message is not None}")
+    if message:
+        lines.append(f"  raised: {message}")
+    ok &= message is not None and "TRUNCATED" in (message or "")
+    rep.check("10 battles run to real termination / truncation detected", ok, lines,
+              time.perf_counter() - started)
+
+
+# --------------------------------------------------------------------------------------------
 def main() -> int:
     args = G.parse_args(["--tiny", "--arm", "profile"])
     config = G.base_train.build_config(args)
@@ -510,12 +870,20 @@ def main() -> int:
     placeholder = G.ObserverGateTrainer(config, partner_stack, z_table, arm="placeholder")
     placeholder.collect_diagnostics = True
     placeholder_runner = placeholder.init_runner(jax.random.PRNGKey(7))
+    # A short environment (max_steps=5 -> 6-step episodes) keeps the termination checks cheap; the
+    # local environment flags `done` before it increments its own step counter, so 5 is exactly the
+    # bound that used to cut the last step off.
+    short = G.ObserverGateTrainer(config, partner_stack, z_table, arm="profile",
+                                  env_overrides={"max_steps": 5})
+    short.collect_diagnostics = True
+    short_runner = short.init_runner(jax.random.PRNGKey(7))
 
     ctx = {
         "config": config, "trainer": trainer, "runner": runner, "placeholder": placeholder,
         "placeholder_runner": placeholder_runner, "partner_stack": partner_stack,
         "partner_dir": partner_dir, "stages": args.partner_stages, "table": table,
         "table_source": table_source, "is_fixture": is_fixture, "z_table": z_table,
+        "short": short, "short_runner": short_runner, "seeds": list(G.TEST_SEEDS_C),
     }
     rep = Reporter()
     print(f"tiny config: num_envs={config['num_envs']} rollout_length={config['rollout_length']} "
@@ -528,6 +896,10 @@ def main() -> int:
     check_4(rep, ctx)
     check_5(rep, ctx)
     check_6(rep, ctx)
+    check_7(rep, ctx)
+    check_8(rep, ctx)
+    check_9(rep, ctx)
+    check_10(rep, ctx)
     return rep.finish()
 
 

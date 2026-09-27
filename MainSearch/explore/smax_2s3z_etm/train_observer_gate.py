@@ -42,19 +42,49 @@ and a partner never switches stage inside an episode.
 
 Random streams (contract §2) - the two arms must see the same partner world
 --------------------------------------------------------------------------
-Every stream below is a pure function of `(slot, episode_index)` (plus the step / identity where
-relevant) and of nothing else - in particular **not** of the action-sampling rng:
+Every stream below is a pure function of `(slot, episode_index, in-episode step)` (plus the
+identity where relevant) and of nothing else - in particular **not** of the action-sampling rng
+and **not** of the roll-out index:
 
-* `partner_stage_index(slot, ep, identity)`  - which of `{u50,u600,u1250}` that partner plays;
-* `env_reset_key(slot, ep)`                  - the reset key of that episode;
-* `partner_action_key(slot, ep, id, step)`   - the partner's action-sampling key;
-* `env_step_key(slot, ep, step)`             - the environment's in-episode step key.
+* `partner_stage_index(slot, ep, identity)`       - which of `{u50,u600,u1250}` that partner plays;
+* `env_reset_key(slot, ep)`                       - the reset key of that episode;
+* `env_step_key(slot, ep, t)`                     - the environment's in-episode step key;
+* `partner_action_key(slot, ep, identity, t)`     - the partner-action stream key (§2; recorded in
+                                                    the diagnostics, see the errata below).
+
+`t` is the **persistent in-episode step** `ep_length`, kept per slot in `GateRunnerState` and
+*never* reset by a roll-out boundary - not the roll-out's own `step` counter, which restarts at 0
+in every roll-out (errata 1 below).
 
 The observer's own actions are sampled from a separate rng chain (`runner.rng`, split once per
-roll-out step), exactly like the frozen trainer.  Because the partner stage, the partner actions
-and the environment's step keys do not read that chain, and because the reset state of episode
-`(slot, ep)` is *injected* from `env_reset_key(slot, ep)` (see `_rollout`), two arms whose episode
-lengths differ still play exactly the same battle at the same `(slot, episode_index)`.
+roll-out step), exactly like the frozen trainer.  Because the partner stage and the environment's
+step keys do not read that chain, and because the reset state of episode `(slot, ep)` is *injected*
+from `env_reset_key(slot, ep)` (see `_rollout`), two arms whose episode lengths differ still play
+exactly the same battle at the same `(slot, episode_index)`, at every in-episode position.
+
+Errata applied on top of the contract text (review ticket 2026-09-27; the four items below override
+the earlier implementation, the contract's contract-level conventions are untouched)
+--------------------------------------------------------------------------------------------
+1. In-episode step index.  `env_step_key` / `partner_action_key` are indexed by the persistent
+   in-episode step (`ep_length`), not by the roll-out's `step`.  The roll-out counter restarts at 0
+   every roll-out, so with it two arms with different episode lengths would hand different keys to
+   the same in-episode position and would re-use keys across roll-outs.  With `ep_length`,
+   `(slot, episode_index, in-episode step)` always maps to the same key, independent of the
+   episode length and of where the roll-out boundaries fall.
+2. Partner actions are **argmax** (`partner_action_argmax`), in training *and* in evaluation - the
+   same rule `measure_partner_profiles.py` uses for the profile measurement; the observer still
+   samples.  The profiles are **not** re-measured.  The contract §2 partner-action *stream* is kept
+   (and recorded in the diagnostics as `diag_partner_action_key`) because it is still the stream
+   definition the two arms must share; it no longer feeds a sampling step.
+3. `--resume` never rewrites the run's `run.json`.  It writes `resumes/run_resume-NNN.json` next to
+   it, recording `resumed_from_run_json`, `resumed_from_checkpoint` and the update count it
+   continued from.  A crashed run's `run.json` and segment history are the record of the failure
+   being investigated - never overwrite or delete them.
+4. Recovery.  Resume an existing run with `--resume <checkpoint>` **and the original config**, not
+   with a fresh `--save-dir`.  KNOWN LOCAL RISK: on this Windows box JAX parameter initialisation
+   occasionally aborts the process during compilation - no Python traceback, exit code
+   `0xC0000001` / `0xC0000005`.  That is a recorded run risk of this machine, so the recipe is
+   "resume from the last good checkpoint and keep the failed run's logs", not "just start again".
 
 `--tiny` runs the same code end-to-end in seconds/minutes.
 """
@@ -111,7 +141,9 @@ PROFILES_PATH = HERE / "results" / "oracle_gate" / "profiles.json"
 PROFILES_FIXTURE_PATH = HERE / "results" / "oracle_gate" / "fixtures" / "profiles_fixture.json"
 DEFAULT_PARTNER_RUN_DIR = HERE / "results" / "smax_2s3z_indep_1250x64x64"
 
-DIAGNOSTIC_KEYS = ("diag_ep_index", "diag_t_in_episode", "diag_stage", "diag_obs_ally_0")
+DIAGNOSTIC_KEYS = ("diag_ep_index", "diag_t_in_episode", "diag_stage", "diag_obs_ally_0",
+                   "diag_rollout_step", "diag_env_step_key", "diag_partner_action_key",
+                   "diag_partner_action")
 
 _U32 = jnp.uint32
 _KNUTH = _U32(0x9E3779B1)
@@ -161,8 +193,23 @@ def env_step_key(slot, ep_index, step, seed: int = ENV_STEP_SEED) -> jnp.ndarray
 
 
 def partner_action_key(slot, ep_index, identity, step, seed: int = PARTNER_ACTION_SEED):
-    """Partner action-sampling key; independent of the observer's action rng."""
+    """Partner-action stream key `(slot, ep, identity, in-episode step)`; contract §2.
+
+    The partners act by `partner_action_argmax` (errata 2), so this key no longer seeds a sampling
+    step; it is still the contract's stream definition and is recorded in the diagnostics
+    (`diag_partner_action_key`) so the two arms can be checked to share it.
+    """
     return stream_key(seed, slot, ep_index, identity, step)
+
+
+def partner_action_argmax(logits) -> jnp.ndarray:
+    """The partners' action: the argmax of their policy logits (errata 2).
+
+    `measure_partner_profiles.py` measures the profile with argmax actors, so training and
+    evaluation must use the same rule; only the observer samples (from its own rng chain).  Used by
+    the training roll-out, by the gate battles and by the matched-state rollouts.
+    """
+    return jnp.argmax(logits, axis=-1)
 
 
 def categorical_sample(keys, logits) -> jnp.ndarray:
@@ -170,6 +217,10 @@ def categorical_sample(keys, logits) -> jnp.ndarray:
 
     `distrax`/`jax.random.categorical` accept a *single* key, so per-lane keys are vmapped; the
     lane axis is `keys.shape[:-1]` and `logits` must hold exactly that many rows.
+
+    Since the partner rule is argmax (errata 2) the trainers no longer sample partner actions; this
+    helper stays as the pre-errata rule that the preflight uses as its negative control
+    ("sampling would not be invariant to the partner-action stream").
     """
     flat_keys = jnp.reshape(keys, (-1, 2))
     flat_logits = jnp.reshape(logits, (flat_keys.shape[0], logits.shape[-1]))
@@ -401,6 +452,13 @@ class ObserverGateTrainer(base_train.Trainer):
         super().__init__(config)
         # `build_config` derived the horizon from a probe environment; honour the real one.
         self.config["horizon"] = int(self.base_env.max_steps)
+        # A battle runs to its real termination (`done["__all__"]`), never to a fixed step count:
+        # the local SMAX environment flags `done` *before* incrementing its own step counter
+        # (`smax_env.is_terminal` compares the pre-increment `state.step` with `max_steps`), so a
+        # battle that ends on the time limit needs `max_steps + 1` calls.  `eval_step_limit` is
+        # only a loop guard and must stay at least that high; a battle still alive when it runs out
+        # is TRUNCATED and `eval_battles` reports it as a failure instead of a result (errata 4).
+        self.eval_step_limit = self.config["horizon"] + 1
         self.config["observer_input_dim"] = self.config["obs_dim"] + PROFILE_DIM
         self.config["profile_dim"] = PROFILE_DIM
         self.config["partner_identities"] = list(PARTNER_IDENTITIES)
@@ -498,6 +556,16 @@ class ObserverGateTrainer(base_train.Trainer):
                  for j in range(len(PARTNER_IDENTITIES))], axis=-1
             )  # (num_envs, 12); all-zero in the placeholder arm
 
+            # In-episode step index (errata 1): `ep_length` counts the steps already played in the
+            # episode running in each slot, so it is the position inside the battle - it does not
+            # restart at a roll-out boundary and does not depend on the arm's episode length.
+            step_index = ep_length
+            env_keys = env_step_key(slots, ep_index, step_index)
+            partner_keys = (
+                jnp.stack([partner_action_key(slots, ep_index, jnp.int32(ident), step_index)
+                           for ident in PARTNER_IDENTITIES]) if collect else None
+            )
+
             # --- observer ---------------------------------------------------------------------
             x_observer = jnp.concatenate([obs_stack[0], z], axis=-1)
             h_observer, pi_observer, value = network.apply(
@@ -526,14 +594,14 @@ class ObserverGateTrainer(base_train.Trainer):
                     logits = jnp.where(mask[None, :, None], stage_logits[s], logits)
                     new_hidden = jnp.where(mask[:, None], stage_hidden[s], new_hidden)
                 pi_partner_logits = logits.squeeze(0)
-                key = partner_action_key(slots, ep_index, jnp.int32(ident), step)
-                partner_actions.append(categorical_sample(key, pi_partner_logits))
+                # Errata 2: the partners are argmax actors (the profile-measurement rule).
+                partner_actions.append(partner_action_argmax(pi_partner_logits))
                 new_partner_hidden.append(new_hidden)
 
             action_stack = jnp.stack([action_observer] + partner_actions)
             env_act = {agent: action_stack[i] for i, agent in enumerate(agents)}
             new_obs, new_env_state, reward, done_new, info = jax.vmap(env.step)(
-                env_step_key(slots, ep_index, step), env_state, env_act
+                env_keys, env_state, env_act
             )
             done_all = jnp.asarray(done_new["__all__"], dtype=bool)
 
@@ -576,6 +644,12 @@ class ObserverGateTrainer(base_train.Trainer):
                 transition["diag_t_in_episode"] = t_in_episode
                 transition["diag_stage"] = stage_idx
                 transition["diag_obs_ally_0"] = obs_stack[0]
+                # The streams the two arms must share, and the actions actually taken, so the
+                # preflight can check the alignment without re-deriving it from the environment.
+                transition["diag_rollout_step"] = jnp.broadcast_to(step, (num_envs,))
+                transition["diag_env_step_key"] = env_keys
+                transition["diag_partner_action_key"] = partner_keys
+                transition["diag_partner_action"] = jnp.stack(partner_actions)
             new_carry = (
                 new_env_state, new_obs, done_all, (h_observer,), tuple(new_partner_hidden),
                 next_ep_index, rng,
@@ -638,17 +712,21 @@ class ObserverGateTrainer(base_train.Trainer):
     # -- gate evaluation (§4 protocol; also used for the per-segment monitor) ----------------
     def eval_battles(self, params, combos: Sequence[Sequence[int]], seeds: Sequence[int],
                      z_mode: str = "table"):
-        """Per-(combination, seed) battles.
+        """Per-(combination, seed) battles, each run to its real termination.
 
-        Returns `won`, `return`, `length` arrays shaped `(len(combos), len(seeds))`.  Both arms are
-        evaluated on the *same* combos and the *same* seeds (contract §4); `z_mode="zero"` is the
-        placeholder arm's input (its channel is a constant zero, never the battle's z).
+        Returns `won`, `return`, `length` and `truncated` arrays shaped `(len(combos), len(seeds))`.
+        Both arms are evaluated on the *same* combos and the *same* seeds (contract §4);
+        `z_mode="zero"` is the placeholder arm's input (its channel is a constant zero, never the
+        battle's z).  `length` is the number of steps actually played and `truncated` marks battles
+        that were still running when the loop guard ran out (`max_steps` is **not** the loop bound -
+        errata 4); any truncated battle raises instead of being reported as a normal result.
         """
         if z_mode not in ("table", "zero"):
             raise SystemExit(f"unknown z_mode {z_mode!r}")
         seeds_arr = jnp.asarray(np.asarray(seeds, dtype=np.int32))
         shape = (len(combos), len(seeds))
         out = {k: np.zeros(shape, dtype=np.float64) for k in ("won", "return", "length")}
+        truncated = np.zeros(shape, dtype=bool)
         for ci, combo in enumerate(combos):
             partner_params = tuple(self.partner_stack[j][int(combo[j])]
                                    for j in range(len(PARTNER_IDENTITIES)))
@@ -660,17 +738,35 @@ class ObserverGateTrainer(base_train.Trainer):
             out["won"][ci] = team[:, 0]
             out["return"][ci] = team[:, 1]
             out["length"][ci] = team[:, 2]
+            truncated[ci] = team[:, 3] > 0.0
+        out["truncated"] = truncated
+        if truncated.any():
+            seeds_np = np.asarray(seeds)
+            where = [(combo_label(combos[ci]), int(seeds_np[si]))
+                     for ci, si in zip(*np.nonzero(truncated))]
+            raise SystemExit(
+                f"TRUNCATED evaluation: {int(truncated.sum())} battle(s) were still running when "
+                f"the loop guard (eval_step_limit={self.eval_step_limit}) ran out: {where}. The "
+                f"battle(s) never reached done['__all__'], so they are not results - keep "
+                f"eval_step_limit >= max_steps + 1 "
+                f"(max_steps={self.config['horizon']}, the environment flags done one step late)."
+            )
         return out
 
     def _battle_group(self, params, partner_params, z, seeds):
         return jax.vmap(lambda seed: self._battle_episode(params, partner_params, z, seed))(seeds)
 
     def _battle_episode(self, params, partner_params, z, seed):
-        """One deterministic battle: observer argmax, frozen partners, fixed streams (§4)."""
+        """One deterministic battle: observer argmax, frozen argmax partners, fixed streams (§4).
+
+        Runs from `env.reset(stream_key(EVAL_RESET_SEED, seed))` until `done["__all__"]`, up to the
+        `eval_step_limit` guard; the returned 4th entry flags a battle that was still alive when the
+        guard ran out (see `eval_battles`, errata 4).
+        """
         config, env, base_env, network = self.config, self.env, self.base_env, self.network
         agents = env.agents
         gru, action_dim = config["gru_hidden_dim"], config["action_dim"]
-        horizon = config["horizon"]
+        limit = int(self.eval_step_limit)
 
         obs, env_state = env.reset(stream_key(EVAL_RESET_SEED, seed))
         hidden = base_train.ScannedRNN.initialize_carry(1, gru)
@@ -678,8 +774,8 @@ class ObserverGateTrainer(base_train.Trainer):
                                for _ in PARTNER_IDENTITIES)
         zero_done = jnp.zeros((1, 1), dtype=bool)
 
-        def _step(carry, step):
-            obs, env_state, hidden, partner_hidden, live, ep_return, ep_length, won = carry
+        def _step(carry):
+            (step, obs, env_state, hidden, partner_hidden, live, ep_return, ep_length, won) = carry
             obs_stack = jnp.stack([obs[a] for a in agents]).astype(jnp.float32)
             avail = base_env.get_avail_actions(env_state.env_state)
             avail_stack = jnp.stack([avail[a] for a in agents]).astype(jnp.float32)
@@ -697,8 +793,8 @@ class ObserverGateTrainer(base_train.Trainer):
                     partner_params[j], partner_hidden[j],
                     (obs_stack[ident][None, None], zero_done, avail_stack[ident][None]),
                 )
-                key = stream_key(EVAL_ACTION_SEED, seed, step, jnp.int32(ident))
-                actions.append(categorical_sample(key, pi_partner.logits))
+                # Errata 2: argmax, the same rule the profile measurement used.
+                actions.append(partner_action_argmax(pi_partner.logits)[0, 0])
                 new_partner_hidden.append(h_partner)
 
             env_act = {agent: actions[i] for i, agent in enumerate(agents)}
@@ -713,15 +809,20 @@ class ObserverGateTrainer(base_train.Trainer):
                 jnp.asarray(info["returned_won_episode"][0], dtype=jnp.float32),
                 won,
             )
-            return (new_obs, new_env_state, h_observer, tuple(new_partner_hidden),
-                    live & ~done_all, ep_return, ep_length, won), None
+            return (step + 1, new_obs, new_env_state, h_observer, tuple(new_partner_hidden),
+                    live & ~done_all, ep_return, ep_length, won)
 
-        init = (obs, env_state, hidden, partner_hidden, jnp.asarray(True),
-                jnp.zeros((), jnp.float32), jnp.zeros((), jnp.int32),
+        def _running(carry) -> jnp.ndarray:
+            step, _, _, _, _, live, _, _, _ = carry
+            return live & (step < limit)
+
+        init = (jnp.zeros((), jnp.int32), obs, env_state, hidden, partner_hidden,
+                jnp.asarray(True), jnp.zeros((), jnp.float32), jnp.zeros((), jnp.int32),
                 jnp.zeros((), jnp.float32))
-        final = jax.lax.scan(_step, init, jnp.arange(horizon))[0]
-        (_, _, _, _, _, ep_return, ep_length, won) = final
-        return jnp.stack([won, ep_return, ep_length.astype(jnp.float32)])
+        final = jax.lax.while_loop(_running, _step, init)
+        (_, _, _, _, _, live, ep_return, ep_length, won) = final
+        # `live` is still True only for a battle the loop guard cut short: it never terminated.
+        return jnp.stack([won, ep_return, ep_length.astype(jnp.float32), live.astype(jnp.float32)])
 
 # --------------------------------------------------------------------------------------------
 # Checkpointing (same pattern as the frozen trainer; GateRunnerState has extra fields)
@@ -759,6 +860,22 @@ def run_dir_for(save_dir: str | None, run_name: str) -> Path:
     if "results" not in path.parts:
         raise SystemExit(f"--save-dir must live under a 'results/' directory (got {path})")
     return path
+
+
+def resume_metadata_path(out_dir: Path) -> Path:
+    """Where a resumed run records its own metadata: `resumes/run_resume-NNN.json`.
+
+    A resumed run MUST NOT rewrite the `run.json` of the run it continues: that file records how the
+    original run was launched and its segment history is the evidence of the failure under
+    investigation.  Each resume gets its own numbered file in `resumes/` instead, and records which
+    `run.json` and which checkpoint it continued from (errata 3).
+    """
+    folder = Path(out_dir) / "resumes"
+    folder.mkdir(parents=True, exist_ok=True)
+    index = 1
+    while (folder / f"run_resume-{index:03d}.json").exists():
+        index += 1
+    return folder / f"run_resume-{index:03d}.json"
 
 
 # --------------------------------------------------------------------------------------------
@@ -913,6 +1030,8 @@ def main(argv=None) -> None:
     config = trainer.config
     runner = trainer.init_runner(jax.random.PRNGKey(args.seed))
     resumed_from = None
+    resumed_from_run_json = None
+    resumed_from_update = None
     if args.resume:
         ckpt_path = Path(args.resume)
         ckpt_path = ckpt_path if ckpt_path.is_absolute() else (HERE / ckpt_path)
@@ -928,9 +1047,16 @@ def main(argv=None) -> None:
             raise SystemExit(f"--resume arm mismatch: checkpoint is {meta['arm']}, not {args.arm}")
         runner = load_checkpoint(ckpt_path, runner)
         resumed_from = str(ckpt_path)
-        print(f"[resume] loaded {ckpt_path} (update_count={int(runner.update_count)}, "
-              f"segment={meta.get('segment')})", flush=True)
+        resumed_from_update = int(runner.update_count)
+        run_json = out_dir / "run.json"
+        resumed_from_run_json = str(run_json) if run_json.is_file() else None
+        print(f"[resume] loaded {ckpt_path} (update_count={resumed_from_update}, "
+              f"segment={meta.get('segment')}); continuing the run documented by "
+              f"{resumed_from_run_json}", flush=True)
 
+    # A fresh run documents itself in `run.json`; a resumed run must not touch that file, so it
+    # writes its own metadata under `resumes/` and records what it continued from (errata 3).
+    metadata_path = resume_metadata_path(out_dir) if args.resume else (out_dir / "run.json")
     metadata = {
         "kind": "smax_2s3z_oracle_gate_observer",
         "contract": "MainSearch/explore/ORACLE_GATE_CONTRACT.md (v1)",
@@ -957,7 +1083,9 @@ def main(argv=None) -> None:
         "stream_seeds": {
             "partner_seed": PARTNER_SEED, "reset_seed": RESET_SEED,
             "env_step_seed": ENV_STEP_SEED, "partner_action_seed": PARTNER_ACTION_SEED,
-            "source": "contract §2: streams are functions of (slot, episode_index) only",
+            "source": ("contract §2 + errata 1: streams are functions of (slot, episode_index, "
+                       "in-episode step) only - the in-episode step is the persistent ep_length, "
+                       "never the roll-out step"),
         },
         "monitor": {
             "seeds": list(args.eval_seeds),
@@ -969,12 +1097,28 @@ def main(argv=None) -> None:
         "params": {"observer": int(sum(x.size for x in jax.tree.leaves(runner.params[0]))),
                    "partner_per_identity": int(sum(
                        x.size for x in jax.tree.leaves(partner_stack[0][0])))},
+        "partner_action_rule": (
+            "argmax (errata 2): the partners act by argmax in training AND in evaluation, the same "
+            "rule measure_partner_profiles.py used; only the observer samples.  The contract §2 "
+            "partner-action stream is still computed and recorded in the diagnostics."
+        ),
+        "in_episode_step_index": (
+            "errata 1: env_step_key / partner_action_key are indexed by the persistent in-episode "
+            "step ep_length, never by the roll-out step"
+        ),
         "resumed_from": resumed_from,
+        "resumed_from_run_json": resumed_from_run_json,
+        "resumed_from_update_count": resumed_from_update,
+        "resume_policy": (
+            "errata 3: a resumed run writes its own metadata file under resumes/ and never "
+            "rewrites run.json; failed runs keep their run.json and their logs"
+        ),
+        "write_metadata_path": str(metadata_path),
         "save_dir": str(out_dir),
         "segments": [],
         "wall_seconds_total": None,
     }
-    (out_dir / "run.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
 
     print(f"[oracle gate] arm={args.arm} observer=ally_0 partners={list(PARTNER_IDENTITIES)} "
           f"frozen; input_dim={config['observer_input_dim']} "
@@ -985,6 +1129,11 @@ def main(argv=None) -> None:
           "capability", flush=True)
     print(f"  z channel  : " + ("the episode combination's z (contract §1 table)" if args.arm ==
                                 "profile" else "constant zeros (contract §1)"), flush=True)
+    print("  partners   : argmax (errata 2) - the same rule as the profile measurement; only the "
+          "observer samples", flush=True)
+    print(f"  metadata   : {metadata_path}"
+          f"{'  (resume: run.json is left untouched)' if args.resume else '  (fresh run)'}",
+          flush=True)
     print(f"  partner stack: {partner_dir} stages {list(args.partner_stages)}", flush=True)
     print(f"  budget: updates={args.updates} segment_updates={args.segment_updates} "
           f"num_envs={config['num_envs']} rollout={config['rollout_length']} "
@@ -1006,7 +1155,7 @@ def main(argv=None) -> None:
              "kind": "initial_state", "arm": args.arm},
         )
         metadata["initial_checkpoint"] = initial.name
-        (out_dir / "run.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+        metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
         print(f"[initial state] saved {initial.name} (update_count=0, untrained observer; the "
               f"frozen partners come from {partner_dir.name})", flush=True)
     if updates_done % args.segment_updates:
@@ -1069,8 +1218,7 @@ def main(argv=None) -> None:
                  "profile_table": table_meta},
             )
             record["checkpoint"] = ckpt.name
-        (out_dir / "run.json").write_text(json.dumps(metadata, indent=2) + "\n",
-                                          encoding="utf-8")
+        metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
 
         finished = record["train_finished_episodes"]
         train_win = (record["train_won_sum"] / finished) if finished else float("nan")
@@ -1097,7 +1245,8 @@ def main(argv=None) -> None:
     print(
         f"[oracle gate {args.arm}] finished {int(runner.update_count)} updates "
         f"({int(runner.update_count) * config['num_envs'] * config['rollout_length']} env steps) "
-        f"in {metadata['wall_seconds_total']}s; wrote {out_dir / 'run.json'}", flush=True,
+        f"in {metadata['wall_seconds_total']}s; wrote {metadata_path}"
+        f"{' (run.json untouched)' if args.resume else ''}", flush=True,
     )
     print("  note: the per-segment monitor is not the §4 gate comparison; that is "
           "evaluate_observer_gate.py on a fixed test set, and even 'no gain' there is not "
