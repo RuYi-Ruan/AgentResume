@@ -570,7 +570,8 @@ def check_7(rep: Reporter, ctx: dict) -> None:
         runner_a, transitions, _ = arm_a.rollout(runner_a)
         rollouts.append(key_records({key: transitions[key] for key in G.DIAGNOSTIC_KEYS}))
         records_a.update(rollouts[-1])
-    records_b = key_records({key: arm_b.rollout(runner_b)[1][key] for key in G.DIAGNOSTIC_KEYS})
+    transitions_b = arm_b.rollout(runner_b)[1]  # call the roll-out once, then extract
+    records_b = key_records({key: transitions_b[key] for key in G.DIAGNOSTIC_KEYS})
 
     lines.append(f"arm A: episode length {arm_a.config['horizon'] + 1}, roll-out length "
                  f"{arm_a.config['rollout_length']} -> three roll-outs cover "
