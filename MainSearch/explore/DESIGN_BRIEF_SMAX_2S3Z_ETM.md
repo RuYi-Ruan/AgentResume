@@ -1,77 +1,84 @@
-# SMAX `2s3z` 作为 ETM 主实验环境：设计与代码位置（待审核）
+# SMAX `2s3z` 上的 ETM 前置 Gate：最小独立版方案（v2，待审核）
 
-> 前置判定已完成：**A ✗**（custom FF 在 `3m` 上 10.24M 步学不起来）/ **B ✓**（官方 `ippo_rnn_smax.py` 原生
-> `2s3z` 约 1.8M 步 win 0.69）⇒ 按矩阵**迁移官方 RNN PPO backbone**，不再调 custom FF，`3m` 使命结束。
-> 本文只描述 `2s3z` 上的 ETM 前置 Gate 怎么搭，**未开跑**，等审核。
-
----
-
-## 一、这一阶段的唯一目标
-
-不是"把 SMAX 训得更高分"，而是回答一个问题：
-
-> **同一个固定身份（例如 Stalker#0 vs Stalker#1）的伙伴，其随训练自然成长的能力变化，
-> 是否改变 ego 的最优协作决策（并提高团队收益）？**
-
-- 先证 **P2**：同一身份的 early→late 能力/行为确实在变（不能是单位类型差异——类型是可直读属性）。
-- 再做 **Oracle Gate**：`Oracle(z_true) > NoInfo`，且行为分布出现可解释变化（target 选择、后撤、站位）。
+> **本文是待审核方案，不是已执行实验。** 流程：本方案修订 + 最小独立版本实现 → 用户审查代码与短测结果 → 才启动
+> 单种子 5M 步的 P2 长跑。
+>
+> 前置：B 轮（官方原生 `2s3z`，GRU-128、LR 4e-3 + 退火）**✓**：约 1.7–1.8M 步 win 0.685、return 0.20 → 1.65、熵 1.31 → 1.12。
+> A 轮（custom FF `3m`）**判定无效**：退火步数口径写错（`transition_steps` 传 PPO 更新数，optax 实际按**优化器步数**计数；
+> 4 epochs × 4 minibatches = 16 ⇒ LR 在 update 156 ≈ 64 万环境步归零）。⇒ `3m` 不再调参，**方向由 B 轮单独支撑**。
 
 ---
+
+## 一、目标（只回答一个问题）
+
+> 同一**固定身份**的伙伴，其随训练自然成长的（能力画像）变化，是否改变 ego 的最优协作决策并提高团队收益？
+
+先证 **P2**（同身份跨阶段能力画像确有变化，且大于重复评测的波动），再建 **Oracle Gate**。P2 不成立 ⇒ 不建门槛，收束处理。
 
 ## 二、环境事实（已核验）
 
-- `2s3z` = `Scenario([2,2,3,3,3]*2, 5, 5)`（`jaxmarl/environments/smax/smax_env.py:57-65`）⇒ 5 个盟友：
-  **agent0–1 = Stalker、agent2–4 = Zealot**；敌人由 `HeuristicEnemySMAX` 脚本控制。
-- 观测：每个单位独立局部观测 + `avail_actions` 掩码；动作为 SMAX 离散 16 维（移动/攻击/停等组合）。
-- 胜利：必须用 `SMAXLogWrapper.returned_won_episode`（已在 `smax_3m_gate/train_smax_gate.py:356-360` 修正）。
-
-## 三、官方参考实现与需要改动之处
-
-官方 `jaxmarl_ref/baselines/IPPO/ippo_rnn_smax.py` 的结构：
-
-- `ScannedRNN`（L25）、`ActorCriticRNN`（L53）、`Transition`（L97）、`make_train`（L145）——**所有单位共用一套参数**
-  （一个 `TrainState`，actor 头 `actor_mean*` 与 critic 头按名字切分，隐藏层/GRU 共享）。
-
-要迁移成 ETM 要求的"固定身份 + 各自独立优化"：
-
-| # | 改动 | 理由 |
-| --- | --- | --- |
-| 1 | **每个盟友身份一套完整参数**（含自己的 GRU 与隐藏层 + actor 头） | "各自独立优化"要求不共享表征；"共享躯干 + 独立头"会让身份间隐状态耦合 ✗ |
-| 2 | **每个身份独立 optimizer**：scan 携带 `(params_i, opt_state_i)`，`upd, st = tx.update(...)` → `optax.apply_updates(params, upd)` | 复用 `overcooked_v2_3p_gate/train_ocv2_independent.py` 的修复模式；**绝不要** `TrainState.apply_gradients(grads=tx.update(...))`（双重优化器 ✗） |
-| 3 | **逐身份 GRU 隐状态**：`hstate` 形状从官方 `(1, num_actors, hidden)` 改为 `(num_allies, num_envs, hidden)` | 独立策略各自持有记忆 |
-| 4 | **CTDE critic 可共享**（输入全局状态，含敌方信息） | 与 Overcooked 侧一致：共享价值只做信用分配，不改变"各自独立优化" |
-| 5 | **必须保存 checkpoint**（官方脚本什么都不存 ✗） | P2 与 Oracle 门槛都要用 early/late 参数 |
-| 6 | **逐身份指标**：伤害造成/承受、存活步数、击杀数、到最近敌距离（kiting）、集火占比（同一敌人同窗口被 ≥2 盟友攻击） | P2 的判据来源 |
-| 7 | 敌人固定为脚本 `HeuristicEnemySMAX`，随机种子在"同一批 env seeds"下对齐 | 配对比较要同敌情 |
-
-## 四、交付物（三个脚本 + 复用既有工具）
-
-1. `MainSearch/explore/smax_2s3z_etm/train_smax_2s3z_independent.py`
-   —— 固定身份独立 actor（P2 载体）。默认：GRU-128、LR 4e-3 + 线性退火、clip 0.05、grad-norm 0.25、
-   64–128 envs × 128 步、分段 `--segment-updates` 记录逐身份指标并落盘 `npz`。
-2. `MainSearch/explore/smax_2s3z_etm/profile_capabilities_smax.py`
-   —— 按身份统计能力画像（early vs late）+ 同一类型两两策略 TV / 动作分布重叠率。
-3. `MainSearch/explore/smax_2s3z_etm/evaluate_oracle_gate_smax.py`
-   —— 冻结伙伴（early 或 late）与观察者配对评测：`no_oracle` vs `oracle`（共同随机数、matched-state TV/JS、
-   切换率），输出 Δ 与 bootstrap CI。
-4. 复用：`overcooked_v2_3p_gate/evaluate_oracle_gate.py` 的配对/匹配状态评测框架、
-   `overcooked_v2_3p_gate/measure_throughput.py` 的吞吐口径思路、`train_smax_gate.py` 的环境构造与胜率口径。
-
-## 五、算力预算（本机 CPU-only，实测）
-
-| 项 | 实测/估计 |
+| 项 | 事实 |
 | --- | --- |
-| 官方共享参数 GRU `2s3z` | **~1,140 步/秒**（10M 步 ≈ 2.4 h） |
-| 独立 5 套 actor（推定慢 1.5–2×） | ~600–750 步/秒 ⇒ 5M 步 ≈ **2–2.3 h/臂** |
-| 4 臂 × 2 seeds × 5M | **16–19 h**（可通宵，但不适合反复试错） |
+| 阵容 | `Scenario([2,2,3,3,3]*2, 5, 5)`（`jaxmarl/environments/smax/smax_env.py:57-65`）：**agent0–1 = Stalker，agent2–4 = Zealot**，敌人 5 个由 `HeuristicEnemySMAX` 脚本控制 |
+| 动作 | 每盟友 **10 个离散动作** = 5 个敌人目标 + 5 个移动动作（`num_ally_actions = num_enemies + num_movement_actions`，`smax_env.py:243`）|
+| 观测 | 每单位局部观测 + `avail_actions` 掩码 |
+| 胜利 | 必须用 `SMAXLogWrapper.returned_won_episode`（不是奖励阈值）|
 
-**建议的首轮**：先 `1 臂 × 5M 步`（约 2 h）只回答 P2 —— 同身份 early→late 的能力/行为是否真的变化、
-且幅度是否大于同一检查点内的身份间噪声。P2 不成立 ⇒ 不建 Oracle 门槛，直接收束（与 Overcooked 同样处理）。
+## 三、最小改造（首轮不做 CTDE）
 
-## 六、待审核确认
+官方 `jaxmarl_ref/baselines/IPPO/ippo_rnn_smax.py`：`ScannedRNN`(L25) + `ActorCriticRNN`(L53)，**所有单位共用一套参数**，
+actor 头 `actor_mean*`、critic 头 `value*`，隐藏层/GRU 共享；`hstate` 是逐单位的独立槽位（**共享参数 ≠ 共享隐状态**，
+这点此前写错，已纠正）。
 
-1. 形态：**每身份独立整套 GRU 参数 + 共享 CTDE critic**（上表 #1–#4）是否同意？
-2. 预算：首轮先 `1 臂 × 5M`（2 h，只看 P2）还是直接 `2–5 seeds × 5–10M`？
-3. 能力向量 `z` 的构造：`[伤害效率, 存活步数, 集火贡献]` 三维 + 训练内分位归一化 —— 维度/归一化方式是否合适？
-4. Oracle 门槛判据沿用 Overcooked 侧：配对 Δ > 0 且 bootstrap 95% CI 不含 0，**外加**行为分布变化（target/后撤/站位）
-   的可解释性检查 —— 是否照此执行？
+首轮只做"身份独立化"，**保留官方局部 critic**（不引入共享 CTDE critic），好处是失败时可归因：
+
+| # | 改动 | 说明 |
+| --- | --- | --- |
+| 1 | 每个盟友身份一套完整参数（GRU + 隐藏层 + actor 头 + **自己的局部 critic 头**） | 满足"各自独立优化" |
+| 2 | 每个身份独立 optimizer；scan 携带 `(params_i, opt_state_i)`，用 `tx.update(...)` → `optax.apply_updates` | 复用 `overcooked_v2_3p_gate/train_ocv2_independent.py` 的修复模式；**禁止** `TrainState.apply_gradients(grads=tx.update(...))`（双重优化器） |
+| 3 | 逐身份 GRU 隐状态（每 env 每身份一个槽） | 与官方的逐单位槽位语义一致 |
+| 4 | **学习率退火按优化器步数**：`transition_steps = num_updates × ppo_epochs × num_minibatches` | 明确不继承 A 轮的错误 |
+| 5 | 保存**完整训练状态**（params + opt_state + hstate + update 计数）与逐身份指标 | 官方脚本什么都不存；P2 与 Oracle 都要用 |
+| 6 | 逐身份指标 + **胜局/总局数**计数（不只写均值） | 便于判断统计充分性 |
+
+## 四、长跑前的短测（必须先通过，含实测输出）
+
+| # | 检查 | 通过标准 |
+| --- | --- | --- |
+| 1 | 只更新身份 i，其他身份参数不变 | 逐参数比对完全相等 |
+| 2 | 学习率时间轴 | 打印第 n 次优化器更新的 LR，与解析式 `lr0·(1 − n/N)` 一致（N = `updates×epochs×minibatches`） |
+| 3 | 存档→恢复一致 | 恢复后继续跑若干更新，与不中断运行的参数/指标序列一致（或差异为浮点噪声） |
+| 4 | 评测不更新参数 | 评测前后 params / opt_state 逐参数相等 |
+
+## 五、能力画像（不是"真实能力"）
+
+伙伴能力受其他伙伴与局面影响 ⇒ **在固定参考队伍与固定局面下测量**：
+
+- 参考队伍：其余 4 个盟友固定为**冻结参数**（同一阶段快照），敌人固定为脚本策略；
+- 固定局面：固定环境种子集合（对手与环境重置一致），每个身份逐局统计；
+- 指标（三维起点）：**伤害造成/步、存活步数、集火贡献**（同一敌人在同一窗口被 ≥2 盟友攻击的占比）；
+- 归一化：用**独立校准数据**确定尺度后**冻结**，不得按阶段重新排名，也不得使用测试局的未来数据；
+- **P2 判据**：同一身份"早期 vs 晚期"画像差异 **> 同阶段重复评测的波动（多种子/多局 bootstrap）**；
+  **不**用身份之间的差异当 P2 证据（那是单位类型的直接结果）。
+
+## 六、Oracle Gate（必须训练观察者）
+
+不能只在评测时给原策略塞 `z`。两臂设计：
+
+- **共同点**：同一批伙伴（冻结的早期或晚期伙伴）、相同环境种子、相同预算、相同网络与超参；
+- **唯一差别**：观察者输入是**能力画像**（`z`，经固定归一化）还是**固定占位输入**（同维度常量）；
+- **画像测量局与测试局严格分开**（测量用的局不得进入测试统计）；
+- 判据沿用 Overcooked 侧：配对 Δ > 0、bootstrap 95% CI 不含 0，**外加**行为分布变化的可解释性检查（target 选择、后撤、站位）；
+- **重要保留**：Oracle 没收益 **不等于**"能力信息无用"，也可能是画像/接口不合适 ⇒ 需记录画像本身的信息量（同一身份的早期/晚期画像是否可分），再做结论；
+- 历史 checkpoint 配对（早期 vs 晚期伙伴）**仅作诊断**，不冒充"持续成长"的主实验形态。
+
+## 七、预算与流程
+
+| 阶段 | 内容 | 成本 |
+| --- | --- | --- |
+| 0（本轮） | 修订方案 + 实现最小独立版 + 四项短测 | 分钟级 |
+| 1（待批准） | 单种子 5M 步，只验 P2 | 独立 5 套 actor 估计 600–750 步/秒 ⇒ **约 2–2.3 小时** |
+| 2（P2 通过后） | 能力画像 + Oracle 两臂训练 | 待估（按 1 的实测吞吐乘臂数） |
+
+- B 轮保持运行（已有明显可学习信号 ✓）；结束前不中止，以便补齐参考曲线。
+- **单次失败只表示门槛未过，不直接排除环境**；要先排除实现/画像/接口问题。
