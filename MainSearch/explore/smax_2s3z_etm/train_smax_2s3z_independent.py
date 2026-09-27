@@ -736,6 +736,12 @@ class Trainer:
         its teammates getting stronger.  This is therefore NOT yet the P2 measurement; the
         diagnostic version (frozen reference teammates, one identity's params swapped across
         checkpoints) is `evaluate_reference_team.py`.
+
+        NOTE (reporting conventions): the same 20 evaluation scenarios (5 fixed seeds x 4 episodes)
+        are replayed at every segment, so N segments = N x 20 episode *executions*, NOT N x 20
+        independent samples.  `identities_across_seed_std` is the spread between seed groups: it is
+        neither a confidence interval nor a P2 criterion.  P2 is decided by PAIRED same-scenario
+        stage differences (early vs late, matched by seed and episode index).
         """
         team_by_seed, per_agent_by_seed = self._evaluate_impl(runner.params, self.eval_keys)
         team = np.asarray(jax.device_get(team_by_seed), dtype=np.float64)          # (S, n, 3)
