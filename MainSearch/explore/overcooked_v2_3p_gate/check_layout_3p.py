@@ -455,6 +455,54 @@ WWWWWWWWWWWWWWWWWWW
 CANDIDATES["three_arm_b3"] = dict(ascii=THREE_ARM_B3, recipes=[[0, 0, 0]])
 
 
+# Candidate B' #4 (25x15): the first canvas where the geometry can satisfy all three conditions at
+# once. Ingredient arm (left, 3 wide), pot hub (middle, 5 wide), service arm (right, 5 wide), and a
+# THREE-row full-width junction. The service cycle (plates bottom-right -> pot hub -> goal top-right
+# -> back) is long and stays inside the service arm plus the hub approach; ingredient traffic never
+# enters the service arm. No one-cell chokepoints: every arm is >=3 cells wide and the junction is
+# 3 rows tall.
+THREE_ARM_B4 = """
+WWWWWWWWWWWWWWWWWWWWWWWWW
+W    WWWWW P P WWWWW  X W
+W    WWWWW     WWWWW    W
+W    WWWWW     WWWWW    W
+W    WWWWW     WWWWW    W
+W    WWWWW     WWWWW    W
+W    WWWWW     WWWWW    W
+W    WWWWW     WWWWW    W
+W    WWWWW     WWWWW    W
+W    WWWWW     WWWWW    W
+W0 0 WWWWW     WWWWW B BW
+W                       W
+W                       W
+W A         A         A W
+WWWWWWWWWWWWWWWWWWWWWWWWW
+"""
+CANDIDATES["three_arm_b4"] = dict(ascii=THREE_ARM_B4, recipes=[[0, 0, 0]])
+
+
+
+THREE_ARM_B5 = """
+WWWWWWWWWWWWWWWWWWWWWWWWW
+W        P P  WWWWW   X W
+W  W  WW      WWWWW     W
+W  W  WW      WWWWW     W
+W  W  WW      WWWWW     W
+W  W  WW      WWWWW     W
+W  W  WW      WWWWW     W
+W  W  WW      WWWWW     W
+W0 W0 WW      WWWWW     W
+W  W  WW      WWWWW     W
+W  W  WW      WWWWW  B BW
+W  W  WW      WWWWW     W
+W                       W
+W A         A         A W
+WWWWWWWWWWWWWWWWWWWWWWWWW
+"""
+
+CANDIDATES["three_arm_b5"] = dict(ascii=THREE_ARM_B5, recipes=[[0, 0, 0]])
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--layout", default="kitchen3_mid", choices=sorted(CANDIDATES))

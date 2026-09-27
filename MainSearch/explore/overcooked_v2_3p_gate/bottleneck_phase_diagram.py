@@ -71,9 +71,14 @@ def load_partner(path: Path, agent: int):
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--b-checkpoints", nargs="+", required=True,
-                        help="ingredient-capable partner checkpoints (agent slot of each 'path:idx')")
-    parser.add_argument("--c-checkpoints", nargs="+", required=True,
+    parser.add_argument("--scripted-partners", action="store_true",
+                        help="primary Gate 3: partners are the SAME scripted controllers, only B's "
+                             "throughput is throttled (no learned checkpoint involved)")
+    parser.add_argument("--partner-throttle-k", type=int, default=0)
+    parser.add_argument("--partner-throttle-phase", type=int, default=0)
+    parser.add_argument("--b-checkpoints", nargs="+", required=False, default=[],
+                        help="(secondary sanity check only) ingredient-capable partner checkpoints")
+    parser.add_argument("--c-checkpoints", nargs="+", required=False, default=[],
                         help="service-capable partner checkpoints")
     parser.add_argument("--layout-file", default="layouts/three_arm_v2.txt")
     parser.add_argument("--recipes", default="[[0,0,0]]")
@@ -107,8 +112,12 @@ def main() -> None:
             path = HERE / path
         return load_partner(path, int(idx_str))
 
-    b_variants = {spec: load_spec(spec) for spec in args.b_checkpoints}
-    c_variants = {spec: load_spec(spec) for spec in args.c_checkpoints}
+    if args.scripted_partners:
+        b_variants = {"scripted_fetcher": None}
+        c_variants = {"scripted_server": None}
+    else:
+        b_variants = {spec: load_spec(spec) for spec in args.b_checkpoints}
+        c_variants = {spec: load_spec(spec) for spec in args.c_checkpoints}
     partner_net = MLPActorOnly(action_dim=6)
 
     def scripted_action(state, agent, role, facing, blocked=frozenset()):
@@ -161,18 +170,39 @@ def main() -> None:
                                  and (ego_here[0] + dx, ego_here[1] + dy) not in ego_blocked]
                         if legal:
                             a_ego = legal[step % len(legal)]
-                    p1 = partner_net.apply(
-                        b_params, jnp.asarray(np.asarray(obs[env.agents[1]]).reshape(1, -1)))[0]
-                    a_partner = int(jax.random.categorical(
-                        jax.random.fold_in(key, step * 3 + 1), p1))
+                    if args.scripted_partners:
+                        occ = {tuple(int(v) for v in (state.agents.pos.x[i],
+                                                      state.agents.pos.y[i])): i for i in range(3)}
+                        b_here = (int(state.agents.pos.x[1]), int(state.agents.pos.y[1]))
+                        b_blocked = frozenset(c for c, o in occ.items() if o != 1)
+                        if args.partner_throttle_k > 0 and \
+                                (step + args.partner_throttle_phase) % args.partner_throttle_k == 0:
+                            a_partner = 4
+                        else:
+                            a_partner = scripted_action(state, 1, "fetcher", facing[1], b_blocked)
+                    else:
+                        p1 = partner_net.apply(
+                            b_params, jnp.asarray(np.asarray(obs[env.agents[1]]).reshape(1, -1)))[0]
+                        a_partner = int(jax.random.categorical(
+                            jax.random.fold_in(key, step * 3 + 1), p1))
                     if args.throttle_k > 0 and step % args.throttle_k == 0:
                         a_partner = 4  # STAY: pure throughput handicap, role behaviour unchanged
-                    p2 = partner_net.apply(
-                        c_params, jnp.asarray(np.asarray(obs[env.agents[2]]).reshape(1, -1)))[0]
-                    a_third = int(jax.random.categorical(
-                        jax.random.fold_in(key, step * 3 + 2), p2))
+                    if args.scripted_partners:
+                        c_blocked = frozenset(c for c, o in occ.items() if o != 2)
+                        a_third = scripted_action(state, 2, "server", facing[2], c_blocked)
+                    else:
+                        p2 = partner_net.apply(
+                            c_params, jnp.asarray(np.asarray(obs[env.agents[2]]).reshape(1, -1)))[0]
+                        a_third = int(jax.random.categorical(
+                            jax.random.fold_in(key, step * 3 + 2), p2))
                     if a_ego in MOVE_VECTORS:
                         facing[0] = a_ego
+                    # scripted partners track their own facing (learned partners do not need it)
+                    if args.scripted_partners:
+                        if a_partner in MOVE_VECTORS:
+                            facing[1] = a_partner
+                        if a_third in MOVE_VECTORS:
+                            facing[2] = a_third
                     obs, state, reward, done, info = env.step(
                         key, state, {env.agents[0]: jnp.int32(a_ego),
                                      env.agents[1]: jnp.int32(a_partner),

@@ -71,6 +71,14 @@ def main() -> None:
     parser.add_argument("--agent-view-size", type=int, default=3)
     parser.add_argument("--max-steps", type=int, default=320)
     parser.add_argument("--episodes", type=int, default=12)
+    parser.add_argument("--runners", type=int, default=2, choices=[1, 2],
+                        help="team mode: how many agents fetch (traffic/parallel-efficiency gate)")
+    parser.add_argument("--agent", type=int, default=0,
+                        help="solo mode: which slot does everything (P1 gate uses max over slots)")
+    parser.add_argument("--throttle-k", type=int, default=0,
+                        help="team mode: force STAY every k-th step for the throttled controller")
+    parser.add_argument("--throttle-phase", type=int, default=0,
+                        help="offset of the throttle phase: (step + phase) %% k == 0")
     parser.add_argument("--seed", type=int, default=50000,
                         help="reset seed; run the script several times with different seeds and "
                              "average the JSONs (a single service cycle is noisy)")
@@ -101,6 +109,8 @@ def main() -> None:
     def action_for(state, agent, role, facing, blocked):
         here = (int(state.agents.pos.x[agent]), int(state.agents.pos.y[agent]))
         inventory = int(state.agents.inventory[agent])
+        if role == "_idle":
+            return 4
         if role in ("runnerA", "runnerB"):
             pot = pots[0] if role == "runnerA" else pots[1 % len(pots)]
             target = (min(piles, key=lambda p: abs(p[0] - here[0]) + abs(p[1] - here[1]))
@@ -129,8 +139,9 @@ def main() -> None:
         deliveries = 0
         step = 0
         while step < args.max_steps:
-            here = (int(state.agents.pos.x[0]), int(state.agents.pos.y[0]))
-            inv = int(state.agents.inventory[0])
+            solo = args.agent
+            here = (int(state.agents.pos.x[solo]), int(state.agents.pos.y[solo]))
+            inv = int(state.agents.inventory[solo])
             wall_cells = [(x, y) for y in range(mask.shape[0]) for x in range(mask.shape[1])
                           if not mask[y, x]]
             if inv == 0:
@@ -153,13 +164,13 @@ def main() -> None:
                           else min(pots, key=lambda p: abs(p[0] - here[0]) + abs(p[1] - here[1]))))
             else:
                 target = min(pots, key=lambda p: abs(p[0] - here[0]) + abs(p[1] - here[1]))
-            a = approach_and_interact(mask, here, facing[0], target, frozenset())
+            a = approach_and_interact(mask, here, facing[solo], target, frozenset())
             if a in MOVE_VECTORS:
-                facing[0] = a
+                facing[solo] = a
+            solo_acts = {env.agents[i]: jnp.int32(4) for i in range(3)}
+            solo_acts[env.agents[solo]] = jnp.int32(a)
             obs, state, reward, done, info = env.step(
-                jax.random.PRNGKey(step + 1), state,
-                {env.agents[0]: jnp.int32(a), env.agents[1]: jnp.int32(4),
-                 env.agents[2]: jnp.int32(4)})
+                jax.random.PRNGKey(step + 1), state, solo_acts)
             if bool(np.asarray(state.new_correct_delivery)):
                 deliveries += 1
                 if first_soup is None:
@@ -170,6 +181,7 @@ def main() -> None:
                 break
         results.append(first_soup)
         report = {"layout": str(layout_path), "mode": "solo", "seed": args.seed,
+                  "agent": args.agent,
                   "first_soup_steps": results,
                   "first_soup_step_mean": float(np.mean([r for r in results if r])) if any(results)
                   else None,
@@ -209,8 +221,8 @@ def main() -> None:
             step += 1
         start_step = step
         deliveries = 0
-        first_delivery_step = None
-        returned_step = None
+        t0 = None
+        t1 = None
         while step < args.max_steps:
             occupied = {tuple(int(v) for v in (state.agents.pos.x[i], state.agents.pos.y[i])): i
                         for i in range(3)}
@@ -218,6 +230,7 @@ def main() -> None:
             # production or by the twenty-step cook timer
             here = (int(state.agents.pos.x[2]), int(state.agents.pos.y[2]))
             blocked = frozenset(c for c, o in occupied.items() if o != 2)
+            inv_before = int(state.agents.inventory[2])
             a_server = action_for(state, 2, "server", facing[2], blocked)
             if a_server == 4:
                 legal = [d for d, (dx, dy) in MOVE_VECTORS.items()
@@ -233,23 +246,25 @@ def main() -> None:
                  env.agents[2]: jnp.int32(a_server)})
             if bool(np.asarray(state.new_correct_delivery)):
                 deliveries += 1
-                if first_delivery_step is None:
-                    first_delivery_step = step + 1 - start_step
-                if returned_step is None and int(state.agents.inventory[2]) == 0:
-                    returned_step = step + 1 - start_step
+            inv_after = int(state.agents.inventory[2])
+            # steady-state cycle = time between two consecutive set-down of a plate into the hand:
+            # plate -> cooked pot -> goal -> back to the plate pile
+            if inv_before == 0 and inv_after == int(DynamicObject.PLATE):
+                if t0 is None:
+                    t0 = step + 1 - start_step
+                elif t1 is None:
+                    t1 = step + 1 - start_step
                     break
             step += 1
             if bool(np.asarray(done["__all__"])):
                 break
         span = max(step - start_step, 1)
-        report = {"layout": str(layout_path), "mode": "server_cycle",
+        report = {"layout": str(layout_path), "mode": "server_cycle", "seed": args.seed,
                   "pot_ready_step": start_step,
-                  "steps_until_first_delivery": first_delivery_step,
-                  "steps_until_delivery_and_return": returned_step,
+                  "t0_first_plate_step": t0, "t1_second_plate_step": t1,
                   "deliveries": deliveries,
-                  "T_S_steps_per_soup": first_delivery_step,
-                  "mu_S_cap_per_step": (1.0 / first_delivery_step
-                                        if first_delivery_step else 0.0)}
+                  "T_S_steps_per_soup": t1,
+                  "mu_S_cap_per_step": (1.0 / t1 if t1 else 0.0)}
         print(json.dumps(report, indent=2))
         out = Path(args.out) if args.out else (HERE / "results" /
                                                f"servercycle_{layout_path.stem}.json")
@@ -257,7 +272,7 @@ def main() -> None:
         print(f"[throughput] wrote {out}")
         return
 
-    roles = ("runnerA", "runnerB", "server")
+    roles = ("runnerA", "runnerB", "server") if args.runners == 2 else ("runnerA", "_idle", "server")
     eps_placements, eps_deliveries, eps_steps, eps_shaping = [], [], [], []
     for episode in range(args.episodes):
         obs, state = env.reset(jax.random.PRNGKey(args.seed + episode))
@@ -272,6 +287,10 @@ def main() -> None:
             for i in range(3):
                 here = (int(state.agents.pos.x[i]), int(state.agents.pos.y[i]))
                 blocked = frozenset(c for c, o in occupied_now.items() if o != i)
+                if args.throttle_k > 0 and i in (0, 1) \
+                        and (step + args.throttle_phase) % args.throttle_k == 0:
+                    actions.append(4)
+                    continue
                 a = action_for(state, i, roles[i], facing[i], blocked)
                 if a == 4:
                     legal = [d for d, (dx, dy) in MOVE_VECTORS.items()
@@ -306,7 +325,7 @@ def main() -> None:
     mu_s = float(np.mean(eps_deliveries))
     report = {
         "layout": str(layout_path), "episodes": args.episodes, "max_steps": args.max_steps,
-        "team": {"runners": 2, "servers": 1},
+        "team": {"runners": args.runners, "servers": 1},
         "mu_I_aggregate_placements_per_step": mu_i,
         "mu_I_per_runner": mu_i / 2,
         "mu_S_deliveries_per_step": mu_s,
