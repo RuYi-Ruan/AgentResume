@@ -1,0 +1,24 @@
+TeamBench Ablation Study
+Model: mock
+Tasks: ['DIST1_queue_race']
+Seeds: [0]
+Conditions: ['oracle']
+============================================================
+
+[1/1] oracle x DIST1_queue_race (seed=0)
+  [oracle] Turn 0: 1 tool calls, done=False
+  [oracle] Turn 1: 0 tool calls, done=True
+  FAIL (partial=0.00, 0.5s, 2 turns)
+
+============================================================
+ABLATION COMPLETE
+============================================================
+  Condition           Passes  Total  Rate
+  oracle                    0      1  0.0%
+
+  Metrics:
+  TNI:                0.0000  (Teamwork provides minimal improvement.)
+  Planning Value:     +0.0000
+  Verification Value: +0.0000
+
+  Report: D:/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/preflight/b1_mock_mock_smoke/ablation_results.json

@@ -1,0 +1,10 @@
+# Permission-test substitute for images/executor/Dockerfile.
+# Identical base image and identical non-root uid (10001). The apt layer
+# (bash/git/curl/coreutils) is omitted because this environment cannot reach
+# deb.debian.org (502 Bad Gateway). python:3.11-slim already provides bash and
+# coreutils, which is all the permission probes need.
+FROM python:3.11-slim
+
+WORKDIR /
+RUN useradd -m -u 10001 agent
+USER agent

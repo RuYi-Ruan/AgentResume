@@ -1,0 +1,11 @@
+# Permission-test substitute for images/planner/Dockerfile.
+# Identical base image and identical non-root uid (10002). Only the
+# network-dependent layers are omitted: `pip install bandit ruff pylint mypy semgrep`
+# and the apt layers in the executor/verifier variants, because this environment
+# cannot reach deb.debian.org (502) or the system pip index from the build.
+# The official docker-compose.yml (mounts, uids, network_mode) is used UNMODIFIED.
+FROM python:3.11-slim
+
+RUN useradd -m -u 10002 agent
+USER agent
+WORKDIR /

@@ -1,0 +1,35 @@
+$ git rev-parse HEAD
+d185aef1916fd86a9ba554d581fd256319a973af
+
+$ git log -1 --format='%H %ad %s'
+d185aef1916fd86a9ba554d581fd256319a973af Mon May 18 15:13:10 2026 +0000 chore: regenerate leaderboard data from submissions
+
+$ git remote -v
+origin	https://github.com/ybkim95/TeamBench.git (fetch)
+origin	https://github.com/ybkim95/TeamBench.git (push)
+
+$ git status --porcelain   (empty = no modifications)
+$ git status --porcelain --untracked-files=all   (empty = no new files inside the clone)
+$ git diff --stat
+$ git diff --cached --stat
+$ git rev-parse HEAD:tasks
+27bad8ecb45660fa14553d2f3090d4bd1abe6a29
+$ git diff --name-only HEAD -- tasks harness/grade_task.py harness/agent_interface.py harness/orchestrator.py harness/ablation.py docker-compose.yml images
+(the following must be empty)
+$ git ls-files --others --exclude-standard | wc -l
+0
+
+$ git status --porcelain --ignored=matching   (build artifacts only; no tracked file modified)
+!! generators/__pycache__/
+!! harness/__pycache__/
+!! harness/adapters/__pycache__/
+!! teambench.egg-info/
+$ git clean -nxd (would-be removals, dry run)
+Would remove generators/__pycache__/
+Would remove harness/__pycache__/
+Would remove harness/adapters/__pycache__/
+Would remove teambench.egg-info/
+$ git stash list
+(empty = no stash)
+$ git reflog -5
+d185aef HEAD@{0}: clone: from https://github.com/ybkim95/TeamBench.git

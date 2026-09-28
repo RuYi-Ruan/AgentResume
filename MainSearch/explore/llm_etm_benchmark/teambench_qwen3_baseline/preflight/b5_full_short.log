@@ -1,0 +1,49 @@
+  [openai] Using custom base_url: https://api.gpt.ge/v1
+TeamBench Ablation Study
+Model: qwen3-8b
+Tasks: ['GH12_click_envvar_flag']
+Seeds: [0]
+Conditions: ['full']
+============================================================
+
+[1/1] full x GH12_click_envvar_flag (seed=0)
+
+==================================================
+  PHASE 1: PLANNING
+==================================================
+  [planner] Turn 0: 1 tool calls, done=False
+  [planner] Turn 1: 1 tool calls, done=False
+  [planner] Turn 2: 1 tool calls, done=False
+  [planner] Turn 3: 1 tool calls, done=False
+
+==================================================
+  PHASE 2: EXECUTION
+==================================================
+  [executor] Turn 0: 1 tool calls, done=False
+  [executor] Turn 1: 1 tool calls, done=False
+  [executor] Turn 2: 1 tool calls, done=False
+  [executor] Turn 3: 1 tool calls, done=False
+
+==================================================
+  PHASE 3: VERIFICATION (attempt 1)
+==================================================
+  [verifier] Turn 0: 1 tool calls, done=False
+  [verifier] Turn 1: 1 tool calls, done=False
+  [verifier] Turn 2: 1 tool calls, done=False
+  [verifier] Turn 3: 1 tool calls, done=False
+
+  FINAL VERDICT: FAIL (exhausted 0 remediation attempts)
+  FAIL (partial=0.00, 47.8s, 12 turns)
+
+============================================================
+ABLATION COMPLETE
+============================================================
+  Condition           Passes  Total  Rate
+  full                      0      1  0.0%
+
+  Metrics:
+  TNI:                0.0000  (Teamwork provides minimal improvement.)
+  Planning Value:     +0.0000
+  Verification Value: +0.0000
+
+  Report: /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/preflight/b5_full_short/ablation_results.json

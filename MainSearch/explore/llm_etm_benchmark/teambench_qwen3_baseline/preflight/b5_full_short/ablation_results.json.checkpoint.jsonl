@@ -1,0 +1,1 @@
+{"condition": "full", "task_id": "GH12_click_envvar_flag", "seed": 0, "run_id": "20260928_021402_cd93bb63", "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/preflight/b5_full_short/ablation_runs/GH12_click_envvar_flag/20260928_021402_cd93bb63", "pass": false, "partial_score": 0.0, "elapsed_sec": 47.8, "failure_modes": [], "error": null}

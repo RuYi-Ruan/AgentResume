@@ -1,0 +1,22 @@
+{
+  "turn": 1,
+  "role": "oracle",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "write",
+      "args": {
+        "content": "def parse_bool_flag(flag_value, envvar_name: str, default: bool) -> bool:\n    \"\"\"Resolve a boolean flag from CLI arg, envvar, and default.\n\n    Priority: explicit CLI arg > environment variable > default.\n\n    BUG: the envvar branch uses bool(raw) which is True for ANY non-empty\n    string, including \"false\", \"0\", \"no\".  Setting DEPLOY_DRY_RUN=false still\n    activates --dry-run mode.\n    \"\"\"\n    if flag_value is not None:\n        # Explicit CLI flag always wins\n        return bool(flag_value)\n\n    raw = os.environ.get(envvar_name)\n    if raw is not None:\n        # Fix: explicitly check for known false values\n        return raw.lower() not in (\"0\", \"false\", \"no\", \"\")\n\n    return default",
+        "path": "cli.py"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "Written 695 bytes to cli.py",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

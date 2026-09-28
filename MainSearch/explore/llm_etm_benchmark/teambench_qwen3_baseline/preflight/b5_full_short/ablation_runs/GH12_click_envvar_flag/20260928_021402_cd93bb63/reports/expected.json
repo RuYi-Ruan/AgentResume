@@ -1,0 +1,11 @@
+{
+  "seed": 0,
+  "domain": "deployment",
+  "tool_name": "deploytool",
+  "flag_name": "dry_run",
+  "envvar": "DEPLOY_DRY_RUN",
+  "config_value": "production",
+  "default_dry": false,
+  "bug": "envvar_string_always_truthy",
+  "fix": "parse_bool_flag uses raw.lower() not in ('0','false','no','')"
+}

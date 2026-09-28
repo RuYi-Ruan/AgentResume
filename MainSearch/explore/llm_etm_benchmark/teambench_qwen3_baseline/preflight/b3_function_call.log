@@ -1,0 +1,32 @@
+  [openai] Using custom base_url: https://api.gpt.ge/v1
+request_config:
+{
+  "model": "qwen3-8b",
+  "temperature": 0.2,
+  "max_tokens": 8192,
+  "seed": 0,
+  "enable_thinking": false,
+  "base_host": "https://api.gpt.ge/v1",
+  "max_retries": 1,
+  "tool_declared": "run"
+}
+  [probe] Turn 0: 1 tool calls, done=False
+  [probe] Turn 1: 0 tool calls, done=True
+
+--- turn 0 ---
+text=''
+tool_calls=[{"name": "run", "args": {"cmd": "echo PROBE_TOKEN_7F3A"}}]
+tool_results=[{"stdout": "PROBE_TOKEN_7F3A\n", "stderr": "", "exit_code": 0}]
+done=False
+
+--- turn 1 ---
+text='The probe token received is: PROBE_TOKEN_7F3A\n\nDONE'
+tool_calls=[]
+tool_results=[]
+done=True
+
+elapsed_sec=2.88
+usage={"input_tokens": 535, "output_tokens": 42, "total_tokens": 577, "model": "qwen3-8b"}
+turns_json=C:\Users\86134\AppData\Local\Temp\teambench_probe_ev71qpri\turns.json
+round1_structured_tool_call=True
+round2_no_tool_call=True

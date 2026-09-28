@@ -1,0 +1,3 @@
+{"event": "adapter_init", "model": "qwen3-8b", "temperature": 0.2, "max_tokens": 8192, "seed": 0, "enable_thinking": false, "base_host": "https://api.gpt.ge/v1", "env_file": "D:\\omp\\MainSearch\\.env", "max_retries": 1, "lenient_mode": false}
+{"event": "request", "model": "qwen3-8b", "temperature": 0.2, "max_tokens": 8192, "extra_body": {"enable_thinking": false, "seed": 0}, "tool_choice": null, "n_tools": 0, "n_messages": 1}
+{"event": "response_text", "text": "API_OK"}

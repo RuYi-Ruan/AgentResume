@@ -1,0 +1,27 @@
+  [openai] Using custom base_url: https://api.gpt.ge/v1
+TeamBench Ablation Study
+Model: qwen3-8b
+Tasks: ['GH12_click_envvar_flag']
+Seeds: [0]
+Conditions: ['oracle']
+============================================================
+
+[1/1] oracle x GH12_click_envvar_flag (seed=0)
+  [oracle] Turn 0: 1 tool calls, done=False
+  [oracle] Turn 1: 1 tool calls, done=False
+  [oracle] Turn 2: 1 tool calls, done=False
+  [oracle] Turn 3: 1 tool calls, done=False
+  FAIL (partial=0.00, 28.1s, 4 turns)
+
+============================================================
+ABLATION COMPLETE
+============================================================
+  Condition           Passes  Total  Rate
+  oracle                    0      1  0.0%
+
+  Metrics:
+  TNI:                0.0000  (Teamwork provides minimal improvement.)
+  Planning Value:     +0.0000
+  Verification Value: +0.0000
+
+  Report: /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/preflight/b4b_oracle_short/ablation_results.json

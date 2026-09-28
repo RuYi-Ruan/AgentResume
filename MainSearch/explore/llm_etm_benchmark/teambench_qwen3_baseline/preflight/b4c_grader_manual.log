@@ -1,0 +1,12 @@
+GRADER_EXIT=0
+GRADER_WALL_SEC=4.079014179
+{
+  "pass": false,
+  "secondary": {
+    "partial_score": 0.0,
+    "checks_passed": 0,
+    "checks_total": 8
+  },
+  "failure_modes": [],
+  "checklist": [{"id":"C1","ok":false,"note":"cli.py valid Python syntax"},{"id":"C2","ok":false,"note":"envvar=false produces dry_run=False"},{"id":"C3","ok":false,"note":"envvar=0 produces dry_run=False"},{"id":"C4","ok":false,"note":"envvar=no produces dry_run=False"},{"id":"C5","ok":false,"note":"envvar=true produces dry_run=True"},{"id":"C6","ok":false,"note":"envvar=1 produces dry_run=True"},{"id":"C7","ok":false,"note":"explicit True overrides envvar=false"},{"id":"C8","ok":false,"note":"pytest test_cli.py passes"}]
+}

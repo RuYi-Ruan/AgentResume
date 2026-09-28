@@ -1,0 +1,13 @@
+# command: bash $T/grade.sh $R/workspace $R/reports $R/submission $T $R/reports/expected.json
+GRADER_EXIT=0
+# reports/score.json:
+{
+  "pass": false,
+  "secondary": {
+    "partial_score": 0.0833,
+    "checks_passed": 1,
+    "total_checks": 12
+  },
+  "failure_modes": [],
+  "checklist": [{"id":"C1","ok":true,"note":"Syntax valid: queue.py, priority.py, consumer.py parse cleanly"},{"id":"C2","ok":false,"note":"Single-thread tests broken (regression introduced)"},{"id":"C3","ok":false,"note":"Bug 1 not fixed: put() capacity check and append not atomic"},{"id":"C4","ok":false,"note":"test_capacity.py failed: capacity exceeded under concurrent load"},{"id":"C5","ok":false,"note":"Bug 2 not fixed: no acknowledgment pattern found in queue.py"},{"id":"C6","ok":false,"note":"get() does not return a receipt — ack pattern incomplete"},{"id":"C7","ok":false,"note":"test_crash_recovery.py failed: crash recovery not working"},{"id":"C8","ok":false,"note":"Bug 3 not fixed: priority comparator still type-unsafe"},{"id":"C9","ok":false,"note":"TypeError still raised when comparing equal-priority dict messages"},{"id":"C10","ok":false,"note":"test_ordering.py failed: priority ordering broken"},{"id":"C11","ok":false,"note":"test_message_loss.py failed: messages being lost"},{"id":"C12","ok":false,"note":"test_concurrent.py failed: concurrent correctness issues remain"}]
+}

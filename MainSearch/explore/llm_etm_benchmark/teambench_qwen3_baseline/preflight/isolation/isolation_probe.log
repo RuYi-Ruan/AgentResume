@@ -1,0 +1,149 @@
+################ PLANNER ################
+--- identity ---
+agent
+uid=10002(agent) gid=10002(agent) groups=10002(agent)
+--- mounts (compose-defined) ---
+D:\ on /workspace type 9p (ro,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /analysis type 9p (rw,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /task/spec.md type 9p (ro,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /task/brief.md type 9p (ro,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /task/corpus type 9p (ro,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /shared/messages type 9p (rw,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /shared/submission type 9p (ro,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+--- planner reads /task/spec.md (allowed) ---
+SPEC_FULL_CONTENT
+--- planner reads /task/brief.md (allowed) ---
+BRIEF_ONLY_CONTENT
+--- planner reads /task/corpus/policy.md (allowed) ---
+CORPUS_DOC
+--- planner reads /workspace/exec_only.txt (read-only mount) ---
+EXECUTOR_ONLY_FILE
+--- planner WRITES /workspace/hack.txt (expect FAIL) ---
+sh: 1: cannot create /workspace/hack.txt: Read-only file system
+exit=2
+--- planner reads /shared/workspace (expect FAIL: not mounted) ---
+ls: cannot access '/shared/workspace': No such file or directory
+exit=2
+--- planner reads /shared/reports/verifier_marker.txt (expect FAIL: not mounted) ---
+cat: /shared/reports/verifier_marker.txt: No such file or directory
+exit=1
+--- planner WRITES /shared/submission/x (expect FAIL: read-only) ---
+sh: 1: cannot create /shared/submission/x: Read-only file system
+exit=2
+--- planner WRITES /shared/messages/planner_note.txt (allowed) ---
+hello
+exit=0
+--- planner WRITES /analysis/planner_report.md (allowed) ---
+probe
+exit=0
+
+################ EXECUTOR ################
+--- identity ---
+agent
+uid=10001(agent) gid=10001(agent) groups=10001(agent)
+--- mounts ---
+D:\ on /analysis type 9p (ro,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /shared/reports type 9p (rw,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /shared/messages type 9p (rw,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /task/brief.md type 9p (ro,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /shared/workspace type 9p (rw,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+--- executor reads /task/brief.md (allowed) ---
+BRIEF_ONLY_CONTENT
+--- executor reads /task/spec.md (expect FAIL: only brief.md mounted) ---
+cat: /task/spec.md: No such file or directory
+exit=1
+--- executor lists /task (expect only brief.md) ---
+total 8
+drwxr-xr-x 2 root root 4096 Sep 28 02:16 .
+drwxr-xr-x 1 root root 4096 Sep 28 02:16 ..
+-rwxrwxrwx 1 root root   19 Sep 28 02:16 brief.md
+--- executor WRITES /shared/workspace/probe_exec.txt (allowed) ---
+exec
+exit=0
+--- executor WRITES /shared/reports/probe_exec.txt (allowed) ---
+ok
+exit=0
+--- executor reads /shared/submission (expect FAIL: not mounted) ---
+ls: cannot access '/shared/submission': No such file or directory
+exit=2
+
+################ VERIFIER ################
+--- identity ---
+agent
+uid=10003(agent) gid=10003(agent) groups=10003(agent)
+--- mounts ---
+D:\ on /shared/reports type 9p (ro,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /shared/workspace type 9p (ro,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /shared/messages type 9p (rw,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /shared/submission type 9p (rw,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\ on /task/spec.md type 9p (ro,noatime,aname=drvfs;path=D:\;uid=0;gid=0;metadata;symlinkroot=/mnt/host/,cache=0x5,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+--- verifier reads /task/spec.md (allowed) ---
+SPEC_FULL_CONTENT
+--- verifier reads /shared/reports/verifier_marker.txt (allowed, read-only) ---
+VERIFIER_REPORTS_WRITTEN
+--- verifier WRITES /shared/reports/tamper.txt (expect FAIL: read-only) ---
+sh: 1: cannot create /shared/reports/tamper.txt: Read-only file system
+exit=2
+--- verifier reads /shared/workspace/exec_only.txt (allowed, read-only) ---
+EXECUTOR_ONLY_FILE
+--- verifier WRITES /shared/workspace/tamper.txt (expect FAIL: read-only) ---
+sh: 1: cannot create /shared/workspace/tamper.txt: Read-only file system
+exit=2
+--- verifier WRITES /shared/submission/attestation_probe.json (allowed) ---
+{"verdict":"probe"}
+exit=0
+--- verifier lists /task (expect only spec.md, no brief) ---
+total 8
+drwxr-xr-x 2 root root 4096 Sep 28 02:16 .
+drwxr-xr-x 1 root root 4096 Sep 28 02:16 ..
+-rwxrwxrwx 1 root root   18 Sep 28 02:16 spec.md
+--- verifier has no /analysis mount (expect FAIL) ---
+ls: cannot access '/analysis': No such file or directory
+exit=2
+
+################ CROSS-ROLE SUMMARY ################
+container=teambench_planner
+10002
+d9dc7e92dc45
+container=teambench_executor
+10001
+9718bc15120e
+container=teambench_verifier
+10003
+516a1ac4a4db
+--- host-visible side effects ---
+D:/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/preflight/isolation/run/messages:
+total 4102
+drwxrwxrwx 1 somebody somegroup    0 Sep 28 10:16 .
+drwxrwxrwx 1 somebody somegroup 4096 Sep 28 10:16 ..
+-rwxrwxrwx 1 somebody somegroup    6 Sep 28 10:16 planner_note.txt
+
+D:/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/preflight/isolation/run/submission:
+total 4135
+drwxrwxrwx 1 somebody somegroup    0 Sep 28 10:17 .
+drwxrwxrwx 1 somebody somegroup 4096 Sep 28 10:16 ..
+-rwxrwxrwx 1 somebody somegroup   19 Sep 28 10:16 attestation.json
+-rwxrwxrwx 1 somebody somegroup   20 Sep 28 10:17 attestation_probe.json
+
+################ NETWORK ISOLATION (network_mode: none) ################
+--- teambench_planner attempts outbound TCP to api.gpt.ge:443 ---
+BLOCKED: gaierror [Errno -3] Temporary failure in name resolution
+--- teambench_executor attempts outbound TCP to api.gpt.ge:443 ---
+BLOCKED: gaierror [Errno -3] Temporary failure in name resolution
+--- teambench_verifier attempts outbound TCP to api.gpt.ge:443 ---
+BLOCKED: gaierror [Errno -3] Temporary failure in name resolution
+
+################ TEARDOWN ################
+time="2026-09-28T10:17:28+08:00" level=warning msg="D:\\omp\\MainSearch\\explore\\llm_etm_benchmark\\teambench_ref\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container teambench_verifier Stopping 
+ Container teambench_executor Stopping 
+ Container teambench_planner Stopping 
+ Container teambench_executor Stopped 
+ Container teambench_executor Removing 
+ Container teambench_planner Stopped 
+ Container teambench_planner Removing 
+ Container teambench_verifier Stopped 
+ Container teambench_verifier Removing 
+ Container teambench_planner Removed 
+ Container teambench_executor Removed 
+ Container teambench_verifier Removed 

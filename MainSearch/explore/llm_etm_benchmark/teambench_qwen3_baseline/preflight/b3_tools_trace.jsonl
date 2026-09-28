@@ -1,0 +1,5 @@
+{"event": "adapter_init", "model": "qwen3-8b", "temperature": 0.2, "max_tokens": 8192, "seed": 0, "enable_thinking": false, "base_host": "https://api.gpt.ge/v1", "env_file": "D:\\omp\\MainSearch\\.env", "max_retries": 1, "lenient_mode": false}
+{"event": "request", "model": "qwen3-8b", "temperature": 0.2, "max_tokens": 8192, "extra_body": {"enable_thinking": false, "seed": 0}, "tool_choice": "auto", "n_tools": 1, "n_messages": 2}
+{"event": "response", "text": "", "tool_calls": [{"name": "run", "args": {"cmd": "echo PROBE_TOKEN_7F3A"}}], "done": false}
+{"event": "request", "model": "qwen3-8b", "temperature": 0.2, "max_tokens": 8192, "extra_body": {"enable_thinking": false, "seed": 0}, "tool_choice": "auto", "n_tools": 1, "n_messages": 4}
+{"event": "response", "text": "The probe token received is: PROBE_TOKEN_7F3A\n\nDONE", "tool_calls": [], "done": true}

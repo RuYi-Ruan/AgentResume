@@ -1,0 +1,9 @@
+# Permission-test substitute for images/verifier/Dockerfile.
+# Identical base image and identical non-root uid (10003). The apt layer
+# (bash/coreutils/jq) and the pip layer (pytest/hypothesis/mutmut) are omitted
+# because this environment cannot reach deb.debian.org (502 Bad Gateway).
+FROM python:3.11-slim
+
+WORKDIR /
+RUN useradd -m -u 10003 agent
+USER agent

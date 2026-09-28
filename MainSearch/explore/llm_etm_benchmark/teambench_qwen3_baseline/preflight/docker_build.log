@@ -1,0 +1,189 @@
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"TASK_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"TASK_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"TASK_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"RUN_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="The \"TASK_DIR\" variable is not set. Defaulting to a blank string."
+time="2026-09-28T10:08:49+08:00" level=warning msg="D:\\omp\\MainSearch\\explore\\llm_etm_benchmark\\teambench_ref\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Image teambench_ref-verifier Building 
+ Image teambench_ref-planner Building 
+ Image teambench_ref-executor Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.72kB 0.1s done
+#1 DONE 0.1s
+
+#2 [executor internal] load build definition from Dockerfile
+#2 transferring dockerfile: 30B 0.0s
+#2 transferring dockerfile: 269B 0.0s done
+#2 DONE 0.2s
+
+#3 [verifier internal] load build definition from Dockerfile
+#3 transferring dockerfile: 305B 0.0s done
+#3 DONE 0.2s
+
+#4 [executor internal] load metadata for docker.io/library/python:3.11-slim
+#4 ...
+
+#5 [planner internal] load build definition from Dockerfile
+#5 transferring dockerfile: 177B 0.0s done
+#5 DONE 0.2s
+
+#4 [planner internal] load metadata for docker.io/library/python:3.11-slim
+#4 DONE 4.3s
+
+#6 [verifier internal] load .dockerignore
+#6 transferring context: 2B 0.0s done
+#6 DONE 0.1s
+
+#7 [executor internal] load .dockerignore
+#7 transferring context: 2B 0.0s done
+#7 DONE 0.1s
+
+#8 [planner internal] load .dockerignore
+#8 transferring context: 2B 0.0s done
+#8 DONE 0.2s
+
+#9 [verifier 1/4] FROM docker.io/library/python:3.11-slim@sha256:e41613d42d4891e4930f79523f93f81bbc7632584ec65e36ab055f41a800b41e
+#9 resolve docker.io/library/python:3.11-slim@sha256:e41613d42d4891e4930f79523f93f81bbc7632584ec65e36ab055f41a800b41e 0.1s done
+#9 resolve docker.io/library/python:3.11-slim@sha256:e41613d42d4891e4930f79523f93f81bbc7632584ec65e36ab055f41a800b41e 0.1s done
+#9 sha256:0526d5e29bf341cb1941d46a6d4ab64fcde4fca3dc3adccfb4dbf5728b88b61e 0B / 249B 0.2s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 0B / 14.45MB 0.2s
+#9 sha256:41e7217c2e506d048f89ca0c5cfef848c05ef990900627c19f99938c4aae57f8 0B / 1.29MB 0.2s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 0B / 29.83MB 0.2s
+#9 sha256:0526d5e29bf341cb1941d46a6d4ab64fcde4fca3dc3adccfb4dbf5728b88b61e 249B / 249B 0.8s done
+#9 sha256:41e7217c2e506d048f89ca0c5cfef848c05ef990900627c19f99938c4aae57f8 1.05MB / 1.29MB 2.0s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 1.05MB / 14.45MB 2.3s
+#9 sha256:41e7217c2e506d048f89ca0c5cfef848c05ef990900627c19f99938c4aae57f8 1.29MB / 1.29MB 2.1s done
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 2.10MB / 14.45MB 2.9s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 2.10MB / 29.83MB 2.9s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 3.15MB / 14.45MB 3.8s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 4.19MB / 14.45MB 4.5s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 4.19MB / 29.83MB 4.5s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 5.24MB / 14.45MB 5.1s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 6.29MB / 14.45MB 5.7s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 6.29MB / 29.83MB 5.6s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 7.34MB / 14.45MB 6.2s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 8.39MB / 14.45MB 6.6s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 8.39MB / 29.83MB 6.6s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 9.44MB / 14.45MB 7.2s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 10.49MB / 14.45MB 7.8s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 10.49MB / 29.83MB 7.8s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 11.53MB / 14.45MB 8.9s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 12.58MB / 14.45MB 9.5s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 12.58MB / 29.83MB 9.5s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 13.63MB / 14.45MB 10.4s
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 14.45MB / 14.45MB 11.1s done
+#9 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 14.45MB / 14.45MB 11.1s done
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 14.68MB / 29.83MB 11.1s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 16.78MB / 29.83MB 11.7s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 18.87MB / 29.83MB 12.3s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 20.97MB / 29.83MB 13.1s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 23.07MB / 29.83MB 13.7s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 25.17MB / 29.83MB 14.3s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 27.26MB / 29.83MB 16.1s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 29.36MB / 29.83MB 16.4s
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 29.83MB / 29.83MB 16.5s done
+#9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 29.83MB / 29.83MB 16.5s done
+#9 extracting sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8
+#9 extracting sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 2.6s done
+#9 extracting sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 2.6s done
+#9 extracting sha256:41e7217c2e506d048f89ca0c5cfef848c05ef990900627c19f99938c4aae57f8
+#9 extracting sha256:41e7217c2e506d048f89ca0c5cfef848c05ef990900627c19f99938c4aae57f8 0.4s done
+#9 extracting sha256:41e7217c2e506d048f89ca0c5cfef848c05ef990900627c19f99938c4aae57f8 0.4s done
+#9 extracting sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138
+#9 extracting sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 1.9s done
+#9 extracting sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 1.9s done
+#9 extracting sha256:0526d5e29bf341cb1941d46a6d4ab64fcde4fca3dc3adccfb4dbf5728b88b61e 0.1s done
+#9 DONE 21.9s
+
+#10 [verifier 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     bash coreutils jq  && rm -rf /var/lib/apt/lists/*
+#10 1.361 Err:1 http://deb.debian.org/debian trixie InRelease
+#10 1.361   502  Bad Gateway [IP: 199.232.114.132 80]
+#10 1.522 Err:2 http://deb.debian.org/debian trixie-updates InRelease
+#10 1.522   502  Bad Gateway [IP: 199.232.114.132 80]
+#10 1.665 Err:3 http://deb.debian.org/debian-security trixie-security InRelease
+#10 1.665   502  Bad Gateway [IP: 199.232.114.132 80]
+#10 1.679 Reading package lists...
+#10 1.725 E: The repository 'http://deb.debian.org/debian trixie InRelease' is no longer signed.
+#10 1.725 E: Failed to fetch http://deb.debian.org/debian/dists/trixie/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+#10 1.725 E: Failed to fetch http://deb.debian.org/debian/dists/trixie-updates/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+#10 1.725 E: The repository 'http://deb.debian.org/debian trixie-updates InRelease' is no longer signed.
+#10 1.725 E: Failed to fetch http://deb.debian.org/debian-security/dists/trixie-security/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+#10 1.725 E: The repository 'http://deb.debian.org/debian-security trixie-security InRelease' is no longer signed.
+#10 ...
+
+#11 [executor 2/4] RUN apt-get update && apt-get install -y --no-install-recommends     bash git curl ca-certificates coreutils findutils  && rm -rf /var/lib/apt/lists/*
+#11 1.360 Err:1 http://deb.debian.org/debian trixie InRelease
+#11 1.360   502  Bad Gateway [IP: 199.232.114.132 80]
+#11 1.521 Err:2 http://deb.debian.org/debian trixie-updates InRelease
+#11 1.521   502  Bad Gateway [IP: 199.232.114.132 80]
+#11 1.664 Err:3 http://deb.debian.org/debian-security trixie-security InRelease
+#11 1.664   502  Bad Gateway [IP: 199.232.114.132 80]
+#11 1.678 Reading package lists...
+#11 1.722 E: The repository 'http://deb.debian.org/debian trixie InRelease' is no longer signed.
+#11 1.722 E: Failed to fetch http://deb.debian.org/debian/dists/trixie/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+#11 1.722 E: Failed to fetch http://deb.debian.org/debian/dists/trixie-updates/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+#11 1.722 E: The repository 'http://deb.debian.org/debian trixie-updates InRelease' is no longer signed.
+#11 1.722 E: Failed to fetch http://deb.debian.org/debian-security/dists/trixie-security/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+#11 1.722 E: The repository 'http://deb.debian.org/debian-security trixie-security InRelease' is no longer signed.
+#11 ERROR: process "/bin/sh -c apt-get update && apt-get install -y --no-install-recommends     bash git curl ca-certificates coreutils findutils  && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+
+#10 [verifier 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     bash coreutils jq  && rm -rf /var/lib/apt/lists/*
+#10 ERROR: process "/bin/sh -c apt-get update && apt-get install -y --no-install-recommends     bash coreutils jq  && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+
+#12 [planner 2/4] RUN pip install --no-cache-dir bandit ruff pylint mypy semgrep
+#12 CANCELED
+------
+ > [verifier 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     bash coreutils jq  && rm -rf /var/lib/apt/lists/*:
+1.522   502  Bad Gateway [IP: 199.232.114.132 80]
+1.665 Err:3 http://deb.debian.org/debian-security trixie-security InRelease
+1.665   502  Bad Gateway [IP: 199.232.114.132 80]
+1.679 Reading package lists...
+1.725 E: The repository 'http://deb.debian.org/debian trixie InRelease' is no longer signed.
+1.725 E: Failed to fetch http://deb.debian.org/debian/dists/trixie/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+1.725 E: Failed to fetch http://deb.debian.org/debian/dists/trixie-updates/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+1.725 E: The repository 'http://deb.debian.org/debian trixie-updates InRelease' is no longer signed.
+1.725 E: Failed to fetch http://deb.debian.org/debian-security/dists/trixie-security/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+1.725 E: The repository 'http://deb.debian.org/debian-security trixie-security InRelease' is no longer signed.
+------
+------
+ > [executor 2/4] RUN apt-get update && apt-get install -y --no-install-recommends     bash git curl ca-certificates coreutils findutils  && rm -rf /var/lib/apt/lists/*:
+1.521   502  Bad Gateway [IP: 199.232.114.132 80]
+1.664 Err:3 http://deb.debian.org/debian-security trixie-security InRelease
+1.664   502  Bad Gateway [IP: 199.232.114.132 80]
+1.678 Reading package lists...
+1.722 E: The repository 'http://deb.debian.org/debian trixie InRelease' is no longer signed.
+1.722 E: Failed to fetch http://deb.debian.org/debian/dists/trixie/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+1.722 E: Failed to fetch http://deb.debian.org/debian/dists/trixie-updates/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+1.722 E: The repository 'http://deb.debian.org/debian trixie-updates InRelease' is no longer signed.
+1.722 E: Failed to fetch http://deb.debian.org/debian-security/dists/trixie-security/InRelease  502  Bad Gateway [IP: 199.232.114.132 80]
+1.722 E: The repository 'http://deb.debian.org/debian-security trixie-security InRelease' is no longer signed.
+------
+Dockerfile:3
+
+--------------------
+
+   2 |     
+
+   3 | >>> RUN apt-get update && apt-get install -y --no-install-recommends \
+
+   4 | >>>     bash git curl ca-certificates coreutils findutils \
+
+   5 | >>>  && rm -rf /var/lib/apt/lists/*
+
+   6 |     
+
+--------------------
+
+target executor: failed to solve: process "/bin/sh -c apt-get update && apt-get install -y --no-install-recommends     bash git curl ca-certificates coreutils findutils  && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+

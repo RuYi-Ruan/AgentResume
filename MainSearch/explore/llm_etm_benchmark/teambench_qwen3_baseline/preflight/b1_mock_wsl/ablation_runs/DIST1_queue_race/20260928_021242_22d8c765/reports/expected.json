@@ -1,0 +1,9 @@
+{
+  "bugs_fixed": [
+    "TOCTOU_capacity",
+    "missing_ack_pattern",
+    "type_unsafe_comparator"
+  ],
+  "seed": 0,
+  "domain": "task"
+}

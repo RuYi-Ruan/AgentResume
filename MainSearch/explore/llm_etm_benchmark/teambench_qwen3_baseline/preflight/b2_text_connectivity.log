@@ -1,0 +1,17 @@
+  [openai] Using custom base_url: https://api.gpt.ge/v1
+request_config:
+{
+  "model": "qwen3-8b",
+  "temperature": 0.2,
+  "max_tokens": 8192,
+  "seed": 0,
+  "enable_thinking": false,
+  "base_host": "https://api.gpt.ge/v1",
+  "env_file": "D:\\omp\\MainSearch\\.env",
+  "max_retries": 1
+}
+
+raw_response='API_OK'
+elapsed_sec=1.71
+usage={"input_tokens": 23, "output_tokens": 2, "total_tokens": 25, "model": "qwen3-8b"}
+exact_match_API_OK=True

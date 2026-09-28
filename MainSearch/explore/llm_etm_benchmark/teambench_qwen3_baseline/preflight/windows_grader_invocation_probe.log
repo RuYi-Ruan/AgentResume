@@ -1,0 +1,6 @@
+which(bash) = C:\Windows\system32\bash.EXE
+exact harness-style call -> rc=127
+stdout=''
+stderr='/bin/bash: D:ompMainSearchexplorellm_etm_benchmarkteambench_reftasksDIST1_queue_racegrade.sh: No such file or directory\n'
+score.json exists after call = False
+=> harness falls through to {"pass": false, "failure_modes": ["grader_no_score"]}

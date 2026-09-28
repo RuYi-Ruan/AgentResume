@@ -1,0 +1,21 @@
+{
+  "turn": 0,
+  "role": "oracle",
+  "text": "Reading expected...",
+  "tool_calls": [
+    {
+      "name": "read",
+      "args": {
+        "path": "/shared/reports/expected.json"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "{\n  \"bugs_fixed\": [\n    \"TOCTOU_capacity\",\n    \"missing_ack_pattern\",\n    \"type_unsafe_comparator\"\n  ],\n  \"seed\": 0,\n  \"domain\": \"task\"\n}",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

@@ -1,0 +1,13 @@
+time="2026-09-28T10:16:43+08:00" level=warning msg="D:\\omp\\MainSearch\\explore\\llm_etm_benchmark\\teambench_ref\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container teambench_verifier Creating 
+ Container teambench_planner Creating 
+ Container teambench_executor Creating 
+ Container teambench_planner Created 
+ Container teambench_verifier Created 
+ Container teambench_executor Created 
+ Container teambench_planner Starting 
+ Container teambench_verifier Starting 
+ Container teambench_executor Starting 
+ Container teambench_verifier Started 
+ Container teambench_executor Started 
+ Container teambench_planner Started 

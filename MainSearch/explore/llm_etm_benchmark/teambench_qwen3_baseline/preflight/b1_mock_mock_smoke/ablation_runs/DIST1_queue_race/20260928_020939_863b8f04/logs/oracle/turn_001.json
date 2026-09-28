@@ -1,0 +1,8 @@
+{
+  "turn": 1,
+  "role": "oracle",
+  "text": "DONE",
+  "tool_calls": [],
+  "tool_results": [],
+  "done": true
+}
