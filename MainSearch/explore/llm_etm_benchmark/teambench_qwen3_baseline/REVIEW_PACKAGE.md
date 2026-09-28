@@ -792,3 +792,5 @@ VERDICT: VIOLATIONS FOUND (2 failing finding(s), 2 total) -> exit 1
 四条冻结门槛与分流判定已写入 **`BASELINE_RESULTS.md`**（本轮为「停止推进」：不进入跨任务经验积累
 设计、不追加扩展任务、先诊断；结论措辞受 §11.1 限制，只述「官方 harness 下的三角色协作收益」，
 不称 OS 强隔离，`full − restricted` 只称「完整团队系统收益」，只报 tokens 与耗时）。
+
+> **审阅者裁定（2026-09-28）**：阶段 C 的第 5、8 次运行**有效**；3 条 `SPEC_CONTENT_LEAK` 为**审计器误报**（读取的是有权访问的 workspace 夹具，未读 `spec.md`、未越根、未越权写），**原始 `exit 1` 与审计产物保留不变**；定向风险类别 9 次全为 0；四条门槛输入不变、冻结分流不变。详见 `BASELINE_RESULTS.md` 末尾「审阅者裁定」。
