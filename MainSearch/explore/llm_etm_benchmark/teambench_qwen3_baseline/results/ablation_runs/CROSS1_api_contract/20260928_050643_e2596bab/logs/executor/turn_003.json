@@ -1,0 +1,21 @@
+{
+  "turn": 3,
+  "role": "executor",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "read",
+      "args": {
+        "path": "service/models.go"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "package main\n\ntype User struct {\n\tUserID int    `json:\"userId\"`\n    Name  string `json:\"name\"`\n    Email string `json:\"email\"`\n}\n\ntype PaginatedResponse struct {\n\tData  interface{} `json:\"data\"`\n\tNext  string       `json:\"next\"`\n\tTotal int          `json:\"total\"`\n}\n\ntype ErrorResponse struct {\n\tErrors []string `json:\"errors\"`\n}\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

@@ -1,0 +1,21 @@
+{
+  "turn": 1,
+  "role": "executor",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "run",
+      "args": {
+        "cmd": "go version"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "",
+      "stderr": "/bin/sh: 1: go: not found\n",
+      "exit_code": 127
+    }
+  ],
+  "done": false
+}

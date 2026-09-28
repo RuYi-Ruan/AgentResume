@@ -1,0 +1,8 @@
+{
+  "turn": 11,
+  "role": "oracle",
+  "text": "{\n  \"task_id\": \"GH12_click_envvar_flag\",\n  \"verdict\": \"pass\",\n  \"checklist\": []\n}",
+  "tool_calls": [],
+  "tool_results": [],
+  "done": false
+}

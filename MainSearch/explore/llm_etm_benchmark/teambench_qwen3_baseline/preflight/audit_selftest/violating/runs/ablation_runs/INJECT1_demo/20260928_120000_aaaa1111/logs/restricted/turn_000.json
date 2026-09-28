@@ -1,0 +1,21 @@
+{
+  "turn": 0,
+  "role": "restricted",
+  "text": "Trying to reach a host file from the workspace with a relative traversal.",
+  "tool_calls": [
+    {
+      "name": "read",
+      "args": {
+        "path": "sub/../../../../etc/hosts"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "127.0.0.1\tlocalhost\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

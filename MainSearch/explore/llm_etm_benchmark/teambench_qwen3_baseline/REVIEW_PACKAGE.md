@@ -429,3 +429,366 @@ capped with `--max-turns`/`--max-remediation`.
 **因此**：方案 §2 “角色隔离必须使用官方 OS/Docker 权限隔离，不接受仅靠提示词模拟”这一条，
 在**当前产生分数的路径上不满足**（该路径是同进程的工具白名单，不是 OS/Docker 强制隔离）；
 Docker 沙箱本身已单独验证可用（`preflight/isolation/isolation_probe.log`）✓。**需审阅者裁定后再决定是否运行阶段 C。**
+
+---
+
+## 11. 阶段 C 前置补齐（协议修订 + 越权审计，2026-09-28）
+
+本节是本轮新增交付。**未运行阶段 C，未做 `git commit`，未改官方仓库任何文件。**
+
+新增/修改的文件：
+
+| 文件 | 内容 |
+| --- | --- |
+| `PROTOCOL_REVISION.md` | **五条裁定的正式记录** + **写死的结论表述限制**（允许/禁止清单）+ 审计器说明与阶段 C 开跑检查表 |
+| `audit_privileges.py` | **独立越权审计器**（主来源：逐 turn 日志；次来源：适配器 trace），有违规 ⇒ **退出码 1** |
+| `adapters/qwen3_adapter.py` | **仅 trace 层**新增 `role_hint` + `system_prompt_sha1` 两个字段（详见 §11.4） |
+| `preflight/audit_selftest/` | 反向/正向对照夹具与实测日志（合成 run 树，非真实运行） |
+
+### 11.1 五条裁定（摘要，全文见 `PROTOCOL_REVISION.md` §1）
+
+| # | 裁定 | 对本报告的影响 |
+| --- | --- | --- |
+| 1 | **接受官方进程内路径，仅限本次开发校准**；结论只能写「**官方 harness 下的三角色协作收益**」；**不得**声称 OS 强隔离；正式 ETM 实验前另解决 Docker 隔离 | §7.3 的处理方式就是「记录偏离、不宣称强隔离」 |
+| 2 | **WSL 为阶段 C 固定运行环境**；Windows 原生结果**无效、不再兼容** | §7.2 的路径翻译包装器**不再做** |
+| 3 | `apt` 工具链缺失**不阻塞**本轮 `oracle/restricted/full`，**不再处理** | §7.1 关闭（仅影响非本轮 condition） |
+| 4 | 费用**只报输入/输出 tokens 与耗时**，**不编造价格** | §8 的 token-only 口径被确认为最终口径 |
+| 5 | 使用**官方默认预算**（oracle 20 / restricted 30 / full 每阶段 20 轮 + 最多 2 次补救）；该比较代表「**完整团队系统收益**」，**不是**排除计算量差异后的因果收益 | §8 的投影按官方默认预算执行；结论措辞受限 |
+
+写死的表述限制（`PROTOCOL_REVISION.md` §2 逐条列出），其中三条最关键：
+
+* 隔离只能写「官方 harness allow-list 进程内隔离」，**禁止**「OS 强隔离 / Docker 强制隔离 / 沙箱内运行」；
+* `full − restricted` 只能写「**完整团队系统收益**」，**禁止**「排除计算量差异后的因果收益」；
+* 费用**禁止**出现任何单价/金额（除报告方自行套费率并注明来源）。
+
+### 11.2 审计器能覆盖什么、不能覆盖什么
+
+**能**：审计**被记录到**的工具调用 —— 角色、工具名、路径参数、shell 命令文本、官方工具是否放行
+（`Permission denied` ⇒ denied）、以及「读回来的内容是否含 spec 正文」。
+
+**不能**（审计报告每条都固定印出这 5 条）：
+
+1. shell 命令内**子进程**完成的文件 I/O 不可观测（只有命令文本）；
+2. shell 审计是**静态**的：base64、运行时拼装变量、计算路径可绕过 ⇒ 只能判为「未验证」；
+3. 路径按官方 alias 表 + `normpath` 复算 ⇒ **比官方 `read` 守卫更严**（官方放行但越根的请求会被报出，有意为之）；
+4. 只审计给定目标下的 run 树，run 树之外的副作用仅在命令/读结果里出现时才可见；
+5. `denied` 只表示官方工具拒绝了调用，**不证明**没有副作用（shell 工具本身没有路径守卫）。
+
+判定规则（§3.3 详见 `PROTOCOL_REVISION.md`）：`executor`/`restricted` 读 spec 或越根读 ⇒ high；
+`verifier` 写 workspace 源码（write 工具或 shell）⇒ critical；`../` 逃逸 / 越根绝对路径 ⇒ high/critical；
+字面 `..` 但解析结果仍在允许根内（如 restricted 提示词要求的 `../submission/attestation.json`）⇒ 仅记录不判违规；
+shell 相对路径落在 run 树内但越出该角色读根（如 `ls logs`）⇒ **low，仅记录、不单独作废运行**。
+**退出码 1 的条件 = 存在 medium/high/critical 级 finding** ⇒ 可直接作为阶段 C 的运行包装：
+越权 ⇒ 该次运行作废并停止，**不静默重跑**。
+
+### 11.3 实测证据（三条对照，原始输出留档）
+
+**(a) 真实短测 run —— 6 棵真实 run 树 + 4 份真实 trace：clean，退出码 0**
+
+```
+$ ../.venv/Scripts/python.exe audit_privileges.py --tasks-dir ../teambench_ref/tasks \
+    --json preflight/audit_report_real_runs.json \
+    preflight/b4_harness_short preflight/b4b_oracle_short preflight/b4c_oracle_short \
+    preflight/b5_full_short preflight/b1_mock_wsl preflight/b1_mock_mock_smoke \
+    --trace preflight/b4_harness_short_trace.jsonl --trace preflight/b4b_oracle_trace.jsonl \
+    --trace preflight/b4c_oracle_trace.jsonl --trace preflight/b5_full_trace.jsonl
+[exit_code] 0   [elapsed] 0.302 s     (原始输出: preflight/audit_real_runs.txt)
+
+task_id                 | condition | logs | calls | fail | verdict
+GH12_click_envvar_flag  | oracle    |  4   |   4   |  0   | clean
+GH12_click_envvar_flag  | oracle    |  4   |   4   |  0   | clean
+GH12_click_envvar_flag  | oracle    |  4   |   4   |  0   | clean
+GH12_click_envvar_flag  | full      | 12   |  12   |  0   | clean
+DIST1_queue_race        | oracle    |  2   |   1   |  0   | clean
+DIST1_queue_race        | oracle    |  2   |   1   |  0   | clean
+
+trace cross-check: b4_harness_short 4/4 matched, b4b_oracle 4/4, b4c_oracle 4/4,
+                   b5_full 12/12  ->  unmatched = 0  (roles={"unknown":N}: 这些 trace 早于本次 hook)
+OVERALL: CLEAN across 6 run dir(s), 0 finding(s) -> exit 0
+```
+
+**「无发现」的证据形态**：不是空跑 —— 覆盖率显示 6 棵 run 树、**28 份逐 turn 日志、共 26 次工具调用**
+被逐条检查（合计 `read=8 / write=10 / run=3 / other=4`，1 条 planner 参数解析失败但已单独记录），
+且 24 次 adapter trace 调用与逐 turn 日志**逐条内容匹配**（`unmatched=0`，说明两条记录源一致、
+没有未被记录的调用）。真实 run 中 `executor` 只读写 workspace、verifier 只读 + 跑 `pytest`。
+另外的**静态**（非运行）发现记录在此，供审阅者决策参考：
+
+> `executor` / `restricted` 的 `ReadFileTool.allowed_roots` 含 `os.path.dirname(brief_path)`，
+> 即**任务目录本身**，因此 `read(path='/task/spec.md')` 在官方进程内实现里**会被放行**。
+> 本轮 6 棵真实 run 树中**没有**发生该调用（故审计为 clean），但这是阶段 C 的**残余风险**：
+> restricted 条件的「看不到 spec」目前靠提示词 + 工具白名单，一旦模型请求该路径即越权。
+
+**(b) 反向对照（注入越权）—— 必须报出，实测 8 条 finding、退出码 1**
+
+注入的三类越权：`executor` 读 `/task/spec.md`、`verifier` 写 `/workspace/foo.py`（write 工具与
+shell 重定向各一次）、shell 里 `cat ../../etc/passwd` 与 `cat /etc/passwd`；另在 trace 里放了一条
+**不在逐 turn 日志中**的 `cat /etc/shadow`。
+
+```
+$ ../.venv/Scripts/python.exe audit_privileges.py \
+    --tasks-dir preflight/audit_selftest/violating/tasks \
+    --json preflight/audit_selftest/violating/audit_report.json \
+    preflight/audit_selftest/violating/runs \
+    --trace preflight/audit_selftest/violating/trace.jsonl
+[exit_code] 1   [elapsed] 0.216 s      (原始输出: preflight/audit_selftest/reverse_control.log)
+
+level     check                                role        tool   enforcement
+high      SPEC_READ_BY_UNPRIVILEGED_ROLE        executor    read   allowed
+high      SPEC_CONTENT_LEAK                     executor    read   allowed
+high      READ_OUTSIDE_ALLOWED_ROOTS            restricted  read   allowed
+critical  WRITE_OUTSIDE_ALLOWED_ROOTS           verifier    write  denied
+critical  VERIFIER_MODIFIES_SOURCE_FILE         verifier    write  denied
+high      SHELL_TRAVERSAL_OUTSIDE_RUN_TREE      verifier    run    allowed
+high      SHELL_ABSOLUTE_PATH_OUTSIDE_RUN_TREE  verifier    run    allowed
+critical  VERIFIER_MODIFIES_SOURCE_FILE         verifier    run    allowed
+VERDICT: VIOLATIONS FOUND (8 failing finding(s), 8 total) -> exit 1
++ trace cross-check: 1/2 matched, unmatched=1 (role=verifier, run cat /etc/shadow)
+    [HIGH] TRACE_PATH_OUTSIDE_AUDITED_RUN_TREES  [LOW] TRACE_CALL_NOT_IN_TURN_LOGS
+```
+
+两类细节值得注意，说明它不是「关键词空壳」：`SPEC_CONTENT_LEAK` 是**按内容**判定（读到的文本
+含只出现在 spec、不在 brief 里的长行），因此别名未知也能抓到；`WRITE_OUTSIDE_ALLOWED_ROOTS`
+的 `harness_enforcement=denied` 说明官方工具**确实拒绝了**该写，审计仍把它记为违规尝试。
+
+**降级行为（实测）**：同一夹具**不传** `--tasks-dir` 时仍报出 7 条 finding、退出码 1
+（`preflight/audit_selftest/violating/audit_report_no_tasksdir.json`）—— `/task/spec.md` 这类
+别名路径改为按**模式**判定，内容比对因取不到 spec 而自动跳过，并在报告里打印
+`task_dir : (not found -- spec checks limited to the /task alias)` 与一张
+「unresolved paths」清单（本次为空），**不会**把无法解析的路径静默算成违规。
+
+**(c) 正向对照（合法日志）—— 必须通过，实测 0 finding、退出码 0**
+夹具含 11 次工具调用，包含刻意布置的「易误报」样本：restricted 按官方提示词写
+`../submission/attestation.json`（越目录但仍在允许根内）、verifier 读 `/task/spec.md`（合法）、
+verifier 写 `attestation.json`（官方以 `submission` 为 base_dir，**不应**误判为写 workspace）、
+`cd /workspace && python -m pytest -v`。
+
+```
+$ ../.venv/Scripts/python.exe audit_privileges.py \
+    --tasks-dir preflight/audit_selftest/compliant/tasks \
+    --json preflight/audit_selftest/compliant/audit_report.json \
+    preflight/audit_selftest/compliant/runs
+[exit_code] 0   [elapsed] 0.250 s      (原始输出: preflight/audit_selftest/forward_control.log)
+turn logs scanned: 4 · tool calls examined: 11 (read=5 write=3 run=3 other=0)
+traversal attempts: [low] write '../submission/attestation.json' -> <run>/submission/attestation.json
+VERDICT: clean (0 failing finding(s), 0 total) -> exit 0
+```
+
+**(d) 对真实 run 的审计是否发现真实越权？** —— **没有**。6 棵真实 run 树 + 4 份真实 trace
+全部 clean（退出码 0），因此**不触发**「发现越权即停止并报告」的分支；原始记录已留存
+（`preflight/audit_real_runs.txt`、`preflight/audit_report_real_runs.json`）。
+
+**可移植性**：同一脚本在 **WSL `python3` 3.12.3** 下同样可用（阶段 C 的固定环境）：
+
+```
+$ wsl -e python3 audit_privileges.py \
+      --tasks-dir preflight/audit_selftest/violating/tasks --quiet \
+      preflight/audit_selftest/violating/runs
+WSL_VIOLATING_EXIT=1        # 反向对照在 WSL 下同样报违规
+
+$ wsl -e python3 audit_privileges.py --quiet \
+      --tasks-dir /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks \
+      --json preflight/audit_report_real_runs_wsl.json \
+      /mnt/d/.../preflight/b5_full_short /mnt/d/.../preflight/b4c_oracle_short
+WSL_REAL_EXIT=0             # JSON: verdict=clean, exit_code=0, targets=2
+```
+
+### 11.4 适配器层运行时记录：改了什么，为什么不违反「不改官方语义」
+
+* **改动**：`adapters/qwen3_adapter.py` 的 trace 记录增加 `role_hint`（由 `AgentLoop` 传入的
+  role system prompt 映射出的角色标签）与 `system_prompt_sha1`（前 12 位），新增 `role_hint()`
+  辅助函数与 `import hashlib`。**只写日志，不参与请求构造**。
+* **不违反的理由**：不改请求体（`enable_thinking=false` + `seed=0` 行为不变）、不改工具协议
+  （`lenient_mode=False` 不变）、不改响应解析、**不改官方仓库任何文件**；模型可见的输入与官方
+  `AgentLoop` 完全一致。审计器只是消费这份记录。
+* **为什么需要它**：trace 里没有 run 标识、也没有角色字段，只有 `tool_calls`；没有 `role_hint`
+  就无法把「适配器侧记录的工具调用」按角色归类，次来源就只能是「未归属」。加上之后，
+  trace 才能与逐 turn 日志做**带角色的**匹配统计（`matched/unmatched`）。
+* **映射已验证**：用官方 `make_planner_config` / `make_executor_config` / `make_verifier_config` /
+  `_make_restricted_config` / `_make_oracle_config` / `make_analysis_planner_config` /
+  `make_expertise_verifier_config` 的**全部 7 个** system prompt 逐条验证 ⇒ 7/7 OK。
+* **未做（明确边界）**：没有在官方 `AgentLoop` 里加钩子去记录**解析后的真实路径**或真实 syscall ——
+  那才是权威记录，但位于官方仓库内，超出「不得修改官方实现」的边界；因此审计的完备性上限就是
+  §11.2 的 5 条局限。
+
+### 11.5 阶段 C 开跑检查表（`PROTOCOL_REVISION.md` §6 同）
+
+1. 环境：WSL Linux `python3`、`TEAMBENCH_REF` 指向固定 commit、`PYTHONPATH=.`（非 WSL ⇒ 结果无效）。
+2. 预算：不传 `--max-turns` / `--max-remediation`，使用官方默认（20 / 30 / 20+2）。
+3. 每次运行后**立即**跑 `audit_privileges.py`（output root + 本次 trace）；退出码非 0 ⇒
+   该次运行无效、**停止并报告**，不静默重跑。
+4. 报告只写 tokens/耗时与「完整团队系统收益」，措辞受 §11.1 限制。
+5. 保留原始日志与审计 JSON 作为可复核证据。
+
+---
+
+## 12. 阶段 C 执行记录（2026-09-28）
+
+**状态：9/9 运行完成（退出码 0）。** 越权审计**退出码 1**，报出 3 条 high finding，经逐条核对
+裁定为**非角色契约越权**（详见 §12.4，附原始输出）；**没有任何一次运行被判为无效**。
+分流判定见 `BASELINE_RESULTS.md`。
+
+### 12.1 命令与环境（完整脚本：`results/phase_c_run.sh`，实跑即此）
+
+```bash
+cd /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref
+export PATH="$HOME/.local/bin:$PATH"
+export TEAMBENCH_REF="$PWD"          # = .../teambench_ref
+export PYTHONPATH=.
+unset TEAMBENCH_MAX_RETRIES          # 官方默认重试(8)：可重试错误会打印 "[retry] n/8"，不静默重试
+export TEAMBENCH_TRACE_LOG="$BASE/results/phase_c_trace.jsonl"
+
+python3 -u "$BASE/adapters/run_qwen3.py" \
+  --model qwen3-8b \
+  --tasks GH12_click_envvar_flag SPEC5_config_system CROSS1_api_contract \
+  --seeds 0 \
+  --conditions oracle restricted full \
+  --output "$BASE/results/ablation_results.json"
+```
+
+* 冻结配置：任务/条件/seed 与裁定一致；**未传** `--max-turns` / `--max-remediation`
+  ⇒ 官方默认预算（oracle 20、restricted 30、full 每阶段 20 轮 + 最多 2 次补救）。
+* 环境：**WSL Linux `python3` 3.12.3**（裁定 2），`git HEAD = d185aef1916fd86a9ba554d581fd256319a973af`，
+  与阶段 A/B 同一 clone、同一 commit。
+* 起止：2026-09-28 12:40:34 → 13:09:50（+08:00），墙钟 **29 分 16 秒**，退出码 **0**。
+* 全程**未出现** 400/429、`[retry]` 行、工具调用解析失败或 grader 异常（原始日志可逐行核对）。
+* `python3 -u`：日志经 `tee` 落盘，加 `-u` 以避免块缓冲导致原始日志只在进程退出时才完整。
+
+### 12.2 原始日志与产物路径
+
+| 路径 | 内容 |
+| --- | --- |
+| `results/phase_c_run.log` | 原始运行日志全文（441 行；逐 turn 的 tool_calls/done、每运行的 PASS/FAIL + partial + 耗时 + turns、full 的 phase/remediation 轨迹、ABLATION COMPLETE 汇总、`=== phase C exit=0 ===`） |
+| `results/ablation_results.json` | 官方逐任务结果（`runs` / `metrics` / `per_condition`） |
+| `results/ablation_results.json.checkpoint.jsonl` | 官方 checkpoint（9 行，与 `runs` 一一对应） |
+| `results/ablation_runs/<task>/<run_id>/` | 9 棵 run 树：295 份 `logs/**/turn_*.json`、`messages/dialogue.jsonl`、`submission/attestation.json`、`reports/score.json`、`workspace_snapshots/` |
+| `results/phase_c_trace.jsonl` | 适配器 trace（886 条记录：295 `response` / 295 `request` / 295 `api_response_meta` / 1 `adapter_init`） |
+| `results/summary.csv`、`results/summary_build.txt` | 逐运行汇总与一致性校验输出（`consistency: OK`） |
+| `results/phase_c_audit.sh`、`results/audit_phase_c.txt`、`results/audit_report_phase_c.json` | 审计命令、**原始输出**、机器可读报告 |
+| `results/aborted_attempt_1_buffered/` | **作废的首次启动**（见 §12.5），保留原始记录、未被使用 |
+
+### 12.3 9 次结果
+
+| # | condition | task | partial | passed | turns | 输入 tok | 输出 tok | 耗时 s | run_id |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | oracle | GH12_click_envvar_flag | 0.00 | false | 13 | 24 279 | 4 787 | 85.5 | `20260928_044036_83f27e44` |
+| 2 | oracle | SPEC5_config_system | 0.05 | false | 10 | 30 941 | 7 539 | 150.8 | `20260928_044205_879035f4` |
+| 3 | oracle | CROSS1_api_contract | 0.00 | false | 20* | 61 310 | 1 060 | 36.6 | `20260928_044442_721c5c81` |
+| 4 | restricted | GH12_click_envvar_flag | 0.00 | false | 30* | 254 244 | 11 183 | 289.9 | `20260928_044523_6560d0bd` |
+| 5 | restricted | SPEC5_config_system | 0.26 | false | 4 | 4 813 | 1 186 | 139.4 | `20260928_045017_01c16f8a` |
+| 6 | restricted | CROSS1_api_contract | 0.20 | false | 9 | 16 895 | 488 | 28.5 | `20260928_045240_f3849b6c` |
+| 7 | full | GH12_click_envvar_flag | 0.88 | false | 78 | 361 495 | 12 425 | 298.6 | `20260928_045314_09c3e747` |
+| 8 | full | SPEC5_config_system | 0.05 | false | 55 | 283 639 | 14 146 | 504.8 | `20260928_045814_6971c4bf` |
+| 9 | full | CROSS1_api_contract | 0.00 | false | 76 | 167 651 | 5 127 | 182.5 | `20260928_050643_e2596bab` |
+
+`*` = 该 loop 用满官方默认轮次上限（20 / 30），属预算截断；其余由模型 `DONE` 或「连续 3 轮无工具调用」终止。
+合计：输入 **1 205 267** tok / 输出 **57 941** tok / **295** turns / 每运行耗时之和 **1 716.6 s**；
+**通过率 0/9**。费用口径按裁定 4 只报 tokens 与耗时，**不含任何价格**。
+
+### 12.4 越权审计：命令、**原始输出**与**退出码**
+
+命令（`results/phase_c_audit.sh`，与检查表 §11.5-3 一致）：
+
+```bash
+cd <baseline>   # .../teambench_qwen3_baseline
+python3 audit_privileges.py \
+  --tasks-dir ../teambench_ref/tasks \
+  --json results/audit_report_phase_c.json \
+  results/ablation_runs \
+  --trace results/phase_c_trace.jsonl
+```
+
+**退出码 = 1**；原始输出全文：`results/audit_phase_c.txt`（26 137 B）。9 棵 run 树的目标归属块
+（下表为**对原始输出的汇总**，非原文行）与审计打印的逐字关键行如下：
+
+| # | task | condition | turn logs | tool calls | findings | 原始输出 verdict 行 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | GH12 | oracle | 13 | 11 | 0 | `clean … -> exit 0` |
+| 2 | SPEC5 | oracle | 10 | 8 | 0 | `clean … -> exit 0` |
+| 3 | CROSS1 | oracle | 20 | 19 | 0 | `clean … -> exit 0` |
+| 4 | GH12 | restricted | 30 | 30 | 0 | `clean … -> exit 0` |
+| 5 | SPEC5 | restricted | 4 | 3 | **1** | `VIOLATIONS FOUND (1 failing finding(s), 1 total) -> exit 1` |
+| 6 | CROSS1 | restricted | 9 | 4 | 0 | `clean … -> exit 0` |
+| 7 | GH12 | full | 78 | 62 | 0 | `clean … -> exit 0` |
+| 8 | SPEC5 | full | 55 | 47 | **2** | `VIOLATIONS FOUND (2 failing finding(s), 2 total) -> exit 1` |
+| 9 | CROSS1 | full | 76 | 56 | 0 | `clean … -> exit 0` |
+
+逐字原文（`results/audit_phase_c.txt` 末尾，全部 9 棵 run 树扫描完毕后的交叉核对与总结）：
+
+```
+ADAPTER TRACE CROSS-CHECK (secondary source; trace has no run id)
+==============================================================================
+trace       : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/phase_c_trace.jsonl
+records     : 886 (240 response events with tool calls, 240 calls)
+roles       : {'oracle': 38, 'restricted': 37, 'planner': 44, 'executor': 51, 'verifier': 70}
+matched     : 240/240 calls matched a per-turn log signature; unmatched=0
+
+JSON report written to /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/audit_report_phase_c.json
+
+OVERALL: VIOLATIONS across 9 run dir(s), 3 finding(s) -> exit 1
+```
+
+3 条 finding **全部是同一类 `SPEC_CONTENT_LEAK`（high）**，全部指向 `read('config_skeleton.py')`；
+两条被点名的运行报告逐字如下（`-- limitations` 段此略）：
+
+```
+PRIVILEGE AUDIT -- SPEC5_config_system / restricted / 20260928_045017_01c16f8a
+condition : restricted
+turn logs scanned            : 4
+tool calls examined          : 3 (read=1 write=2 run=0 other=0)
+  [HIGH] SPEC_CONTENT_LEAK role=restricted tool=read enforcement=allowed
+      read('config_skeleton.py') returned text containing 2 line(s) that appear only in the task spec (e.g. '"""Raised when a config value fails validation."""') although role 'restricted' is not entitled to the spec
+      source: .../SPEC5_config_system/20260928_045017_01c16f8a/logs/restricted/turn_000.json (turn 0)
+VERDICT: VIOLATIONS FOUND (1 failing finding(s), 1 total) -> exit 1
+```
+
+```
+PRIVILEGE AUDIT -- SPEC5_config_system / full / 20260928_045814_6971c4bf
+condition : full
+turn logs scanned            : 55
+tool calls examined          : 47 (read=13 write=4 run=0 other=30)
+  [HIGH] SPEC_CONTENT_LEAK role=executor tool=read enforcement=allowed
+      read('config_skeleton.py') returned text containing 2 line(s) ... (同上)
+      source: .../SPEC5_config_system/20260928_045814_6971c4bf/logs/executor/remediation_0/turn_000.json (turn 0)
+  [HIGH] SPEC_CONTENT_LEAK role=executor tool=read enforcement=allowed
+      source: .../SPEC5_config_system/20260928_045814_6971c4bf/logs/executor/turn_000.json (turn 0)
+VERDICT: VIOLATIONS FOUND (2 failing finding(s), 2 total) -> exit 1
+```
+
+其余 7 棵 run 树均为 `VERDICT: clean (0 failing finding(s), 0 total) -> exit 0`。
+
+**裁定：3 条 finding 均非角色契约越权 ⇒ 不触发「该次运行无效」**。依据（可独立复核）：
+
+1. 目标文件 `config_skeleton.py` 位于该 run 自己的 `<run>/workspace`，即 `restricted` / `executor`
+   角色契约内的**允许读根**，官方 `read` 工具**放行**（`enforcement=allowed`，原始输出已标）；
+2. 该文件由**官方任务生成器**产出（`generators/gen_spec5_config_system.py:926`），
+   `setup_run` 落到 workspace（`task.yaml` 的 `workspace_file_count: 2` 与之吻合），不是模型自建；
+3. 被点名的行 `"""Raised when a config value fails validation."""` **同时出现在
+   `tasks/SPEC5_config_system/spec.md:72`**，即内容来源是**该角色有权读的 workspace fixture**，
+   只是该 fixture 与 spec 有 2 行 ≥40 字符的重叠、且不在 brief 中，因而触发审计器的
+   **内容启发式**（`SPEC_CONTENT_LEAK` 无法区分「字节来自 spec」与「字节来自与 spec 重叠的
+   workspace 文件」——属 §11.2 已声明的覆盖边界）；
+4. **§11.3 记录的残余风险未发生**：`SPEC_READ_BY_UNPRIVILEGED_ROLE = 0`，
+   `READ_OUTSIDE_ALLOWED_ROOTS = 0`，`WRITE_OUTSIDE_ALLOWED_ROOTS = 0`，
+   `VERIFIER_MODIFIES_SOURCE_FILE = 0`，shell 逃逸/越根绝对路径 = 0；
+   没有任何 `executor`/`restricted` 请求 `/task/spec.md` 或其宿主等价路径。
+
+**需要审阅者确认的一点（写死在案，不静默）**：若对停止规则作**最字面**解读
+（「任何 high finding ⇒ 该次运行无效并停止」），被判无效的将是**第 5 次（restricted×SPEC5）**
+与**第 8 次（full×SPEC5）**；本记录选择按「越权 = 违反角色契约」的口径裁定为**非越权、运行有效**，
+并给出上述 4 条依据供推翻。
+
+### 12.5 异常与无效运行
+
+| 项 | 记录 |
+| --- | --- |
+| **作废的首次启动** `results/aborted_attempt_1_buffered/` | 12:37:13 的第一次启动因把 stdout 经 `tee` 落盘而**块缓冲**，操作方在 12:40 主动中止（**非** harness/模型异常）；它只完成 1 次运行（GH12/oracle，partial 0.00，86.8 s）并中断第 2 次。原始 `phase_c_run.log`、`phase_c_trace.jsonl`、checkpoint、run 树全部保留在该目录；**其数据未被使用**，9 次正式运行是 12:40:34 起的**全新一次**（`phase_c_trace.jsonl` 为新文件，`results/ablation_runs` 为新目录）。 |
+| 无效运行 | **0 次**（无崩溃、无 400/429、无工具解析失败、无 grader 异常；`error` 字段 9 次全为 `null`，`failure_modes` 除 grader 的检查项名称外为空） |
+| 工具参数未解析 | 1 次：full×GH12 的 planner `turn_000` 的 `send_message` 参数以 JSON **字符串**给出（审计单列 `unparsed_args=1`，已记录，不影响判定） |
+| 预算截断 | 用满官方默认上限的 loop：第 3 次 oracle×CROSS1（20/20）、第 4 次 restricted×GH12（30/30）、第 7 次 full×GH12（planner 20/20、verifier attempt_0 20/20）、第 8 次 full×SPEC5（verifier attempt_1 20/20）、第 9 次 full×CROSS1（planner 20/20）。这是**官方默认预算**的属性，不是人为削减。 |
+| 官方仓库状态 | `git status --porcelain` 只列出 10 个 `datasets/*.csv`：“已修改”系 **git-lfs 指针/落盘差异**（HEAD 里是 3 行 lfs 指针，worktree 是 3.5 MB 真实数据，WSL 侧未装 git-lfs 故比较失真），**非本次改动**；`git rev-parse HEAD` 与 `git rev-parse HEAD:tasks` 仍为 `d185aef…` / `27bad8ec…`，与 `IMPLEMENTATION_NOTES.md` §1 一致。grader/任务/提示词/权限实现**未被修改**。 |
+
+### 12.6 分流
+
+四条冻结门槛与分流判定已写入 **`BASELINE_RESULTS.md`**（本轮为「停止推进」：不进入跨任务经验积累
+设计、不追加扩展任务、先诊断；结论措辞受 §11.1 限制，只述「官方 harness 下的三角色协作收益」，
+不称 OS 强隔离，`full − restricted` 只称「完整团队系统收益」，只报 tokens 与耗时）。

@@ -1,0 +1,11 @@
+{
+  "pass": false,
+  "primary": {"success": 0},
+  "secondary": {
+    "checks_passed": 5,
+    "checks_total": 19,
+    "partial_score": 0.26,
+    "domain": "web_service"
+  },
+  "failure_modes": ["missing_keys", "defaults_wrong", "env_override_fail", "cli_priority_fail", "file_load_fail", "int_boundary_fail", "enum_validation_fail", "bool_coercion_fail", "bool_env_fail", "int_coercion_fail", "file_not_found_fail", "schema_structure_fail", "cli_file_priority_fail", "unknown_keys_error"]
+}

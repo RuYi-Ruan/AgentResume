@@ -66,10 +66,14 @@ an install succeed (no `requires.txt`/`pyproject.toml` edits, no `uv.lock` edits
 | `adapters/probe_b3_tools.py` | Phase B step (c): two-round tool-call probe driven by the official `AgentLoop`. |
 | `preflight/rig/Dockerfile.{planner,executor,verifier}` | Substitute role images for the isolation test only (identical base image + identical non-root uids 10002/10001/10003; network-dependent `apt-get`/`pip` layers omitted). Used because the official build is blocked (§5). |
 | `preflight/rig/manual_grade.sh`, `manual_grade_gh12.sh` | Reproduce the harness's exact grader invocation by hand (DIST1 / GH12) for the grader-link and grading-time evidence. |
+| `PROTOCOL_REVISION.md` | Phase-C prerequisite: record of the five reviewer rulings + the wording limits on any conclusion, plus the audit's rules and limits. |
+| `audit_privileges.py` | Independent privilege audit (per-turn logs + adapter trace); exit code 1 on any medium/high/critical finding, so it can wrap Phase C runs. |
+| `preflight/audit_selftest/` | Reverse/forward control fixtures (synthetic run trees) and their raw audit output. |
 
-Rationale for each adapter decision is in the module docstring of `qwen3_adapter.py`. Nothing in
-`tasks/`, any `grade.sh`, `harness/agent_interface.py` role permissions or any official role prompt
-was modified — verified in REVIEW_PACKAGE.md §4.
+`adapters/qwen3_adapter.py` additionally labels each trace `response` record with `role_hint` and
+`system_prompt_sha1` (trace-only; the request body, tool protocol and parsing are unchanged — see
+`PROTOCOL_REVISION.md` §3.4). Nothing in `tasks/`, any `grade.sh`, `harness/agent_interface.py` role
+permissions or any official role prompt was modified — verified in REVIEW_PACKAGE.md §4.
 
 ## 4. The official harness only needs one thing from us: an adapter route
 

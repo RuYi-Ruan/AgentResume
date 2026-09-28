@@ -1,0 +1,12 @@
+{
+  "pass": false,
+  "secondary": {
+    "partial_score": 0.2000,
+    "checks_passed": 2,
+    "total_checks": 10,
+    "pytest_passed": 0,
+    "pytest_failed": 1
+  },
+  "failure_modes": [],
+  "checklist": [{"id":"C1","ok":false,"note":"Go server failed to compile"},{"id":"C2","ok":true,"note":"Python client imports without error"},{"id":"C3","ok":false,"note":"Integration tests failed (test_integration.py)"},{"id":"C4","ok":false,"note":"Pagination tests failed (test_pagination.py)"},{"id":"C5","ok":false,"note":"Error handling tests failed (test_errors.py)"},{"id":"C6","ok":false,"note":"client/models.py still uses snake_case 'user_id' key in from_dict"},{"id":"C7","ok":false,"note":"client/api.py still uses 'results' key instead of 'data'"},{"id":"C8","ok":false,"note":"client/exceptions.py still expects 400 with single 'error' string"},{"id":"C9","ok":false,"note":"api_spec.yaml not fully updated to match server contract"},{"id":"C10","ok":true,"note":"All Python client files have valid syntax"}]
+}

@@ -1,0 +1,8 @@
+{
+  "turn": 1,
+  "role": "verifier",
+  "text": "{\n  \"task_id\": \"GH12_click_envvar_flag\",\n  \"verdict\": \"pass\",\n  \"checklist\": [\n    {\"id\": \"req_1\", \"ok\": true, \"note\": \"DEPLOY_DRY_RUN=false produces dry_run=False\"},\n    {\"id\": \"req_2\", \"ok\": true, \"note\": \"...=0 produces dry_run=False\"},\n    {\"id\": \"req_3\", \"ok\": true, \"note\": \"...=no produces dry_run=False\"},\n    {\"id\": \"req_4\", \"ok\": true, \"note\": \"...=true, ...=1, ...=yes produces dry_run=True\"},\n    {\"id\": \"req_5\", \"ok\": true, \"note\": \"Absent envvar falls back to hardcoded default\"},\n    {\"id\": \"req_6\", \"ok\": true, \"note\": \"Explicit CLI flag overrides environment variable\"},\n    {\"id\": \"req_7\", \"ok\": true, \"note\": \"All tests in test_cli.py pass\"}\n  ]\n}",
+  "tool_calls": [],
+  "tool_results": [],
+  "done": false
+}

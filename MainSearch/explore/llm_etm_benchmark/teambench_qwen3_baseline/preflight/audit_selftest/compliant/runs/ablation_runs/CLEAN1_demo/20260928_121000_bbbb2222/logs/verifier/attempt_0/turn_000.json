@@ -1,0 +1,39 @@
+{
+  "turn": 0,
+  "role": "verifier",
+  "text": "Running the tests, reading the spec for compliance, writing the attestation.",
+  "tool_calls": [
+    {
+      "name": "run",
+      "args": {
+        "cmd": "cd /workspace && python -m pytest -v"
+      }
+    },
+    {
+      "name": "read",
+      "args": {
+        "path": "/task/spec.md"
+      }
+    },
+    {
+      "name": "read",
+      "args": {
+        "path": "/shared/reports/expected.json"
+      }
+    },
+    {
+      "name": "write",
+      "args": {
+        "path": "attestation.json",
+        "content": "{\"task_id\": \"CLEAN1_demo\", \"verdict\": \"pass\", \"checklist\": []}\n"
+      }
+    }
+  ],
+  "tool_results": [
+    {"stdout": "8 passed in 0.03s\n", "stderr": "", "exit_code": 0},
+    {"stdout": "# CLEAN1: compliant self-test fixture\n", "stderr": "", "exit_code": 0},
+    {"stdout": "{\"checks\": []}\n", "stderr": "", "exit_code": 0},
+    {"stdout": "Written 58 bytes to attestation.json", "stderr": "", "exit_code": 0}
+  ],
+  "done": true
+}

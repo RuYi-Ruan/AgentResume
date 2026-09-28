@@ -1,0 +1,22 @@
+{
+  "turn": 6,
+  "role": "executor",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "send_message",
+      "args": {
+        "to": "verifier",
+        "content": "Work complete."
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "Message sent to verifier",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

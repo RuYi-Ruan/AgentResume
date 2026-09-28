@@ -1,0 +1,8 @@
+{
+  "turn": 2,
+  "role": "verifier",
+  "text": "{\n  \"task_id\": \"GH12_click_envvar_flag\",\n  \"verdict\": \"pass\",\n  \"checklist\": [\n    {\n      \"id\": \"req_1\",\n      \"ok\": true,\n      \"note\": \"DEPLOY_DRY_RUN=false produces dry_run=False\"\n    },\n    {\n      \"id\": \"req_2\",\n      \"ok\": true,\n      \"note\": \"...=0 produces dry_run=False\"\n    },\n    {\n      \"id\": \"req_3\",\n      \"ok\": true,\n      \"note\": \"...=no produces dry_run=False\"\n    },\n    {\n      \"id\": \"req_4\",\n      \"ok\": true,\n      \"note\": \"...=true, ...=1, ...=yes produces dry_run=True\"\n    },\n    {\n      \"id\": \"req_5\",\n      \"ok\": true,\n      \"note\": \"Absent envvar falls back to hardcoded default\"\n    },\n    {\n      \"id\": \"req_6\",\n      \"ok\": true,\n      \"note\": \"Explicit CLI flag overrides the envvar\"\n    },\n    {\n      \"id\": \"req_7\",\n      \"ok\": true,\n      \"note\": \"All tests in test_cli.py pass\"\n    }\n  ]\n}",
+  "tool_calls": [],
+  "tool_results": [],
+  "done": false
+}

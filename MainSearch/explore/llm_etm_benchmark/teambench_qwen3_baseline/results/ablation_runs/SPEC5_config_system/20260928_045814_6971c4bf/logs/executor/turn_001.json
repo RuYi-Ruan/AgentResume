@@ -1,0 +1,21 @@
+{
+  "turn": 1,
+  "role": "executor",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "read",
+      "args": {
+        "path": "config_schema.json"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "{\n  \"_comment\": \"PARTIAL schema \\u2014 this file is incomplete. The full schema with validation rules is in spec.md. Domain: web_service. Env prefix: WEB.\",\n  \"schema\": {\n    \"host\": {\n      \"type\": \"string\",\n      \"default\": \"0.0.0.0\",\n      \"env_var\": \"WEB_HOST\",\n      \"description\": \"Hostname or IP address to bind\"\n    },\n    \"port\": {\n      \"type\": \"int\",\n      \"default\": 6155,\n      \"env_var\": \"WEB_PORT\",\n      \"description\": \"TCP port to listen on; must be 2048-49151\"\n    },\n    \"log_level\": {\n      \"type\": \"enum\",\n      \"default\": \"WARN\",\n      \"env_var\": \"WEB_LOG_LEVEL\",\n      \"description\": \"Logging verbosity; one of ['INFO', 'WARN', 'ERROR']\"\n    },\n    \"request_timeout\": {\n      \"type\": \"int\",\n      \"default\": 120,\n      \"env_var\": \"WEB_REQUEST_TIMEOUT\",\n      \"description\": \"Request timeout in seconds; must be 1-3600\"\n    },\n    \"max_connections\": {\n      \"type\": \"int\",\n      \"default\": 348,\n      \"env_var\": \"WEB_MAX_CONNECTIONS\",\n      \"description\": \"Maximum concurrent connections; must be 1-1000\"\n    }\n  }\n}",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

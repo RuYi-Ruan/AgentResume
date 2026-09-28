@@ -1,0 +1,22 @@
+{
+  "turn": 2,
+  "role": "restricted",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "write",
+      "args": {
+        "content": "def parse_bool_flag(flag_value, envvar_name: str, default: bool) -> bool:\n    \"\"\"Resolve a boolean flag from CLI arg, envvar, and default.\n\n    Priority: explicit CLI arg > environment variable > default.\n\n    BUG: the envvar branch uses bool(raw) which is True for ANY non-empty\n    string, including \"false\", \"0\", \"no\".  Setting DEPLOY_DRY_RUN=false still\n    activates --dry-run mode.\n    \"\"\"\n    if flag_value is not None:\n        # Explicit CLI flag always wins\n        return bool(flag_value)\n\n    raw = os.environ.get(envvar_name)\n    if raw is not None:\n        # Fix: use lower() to handle case-insensitive values and check for \"false\" or \"0\"\n        if raw.lower() in {\"false\", \"0\"}:\n            return False\n        elif raw.lower() in {\"true\", \"1\"}:\n            return True\n        # Default to False if the value is not recognized\n        return False\n\n    return default",
+        "path": "cli.py"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "Written 884 bytes to cli.py",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

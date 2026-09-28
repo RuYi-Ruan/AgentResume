@@ -1,0 +1,22 @@
+{
+  "turn": 2,
+  "role": "planner",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "send_message",
+      "args": {
+        "content": "Plan received. Starting with step 1: Analyze the Go server implementation to understand its actual behavior and identify discrepancies with the current Python client and API spec.",
+        "to": "executor"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "Message sent to executor",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

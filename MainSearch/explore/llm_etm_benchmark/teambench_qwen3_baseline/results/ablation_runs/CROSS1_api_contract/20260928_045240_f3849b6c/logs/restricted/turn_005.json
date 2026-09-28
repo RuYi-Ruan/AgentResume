@@ -1,0 +1,21 @@
+{
+  "turn": 5,
+  "role": "restricted",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "run",
+      "args": {
+        "cmd": "which go"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 1
+    }
+  ],
+  "done": false
+}

@@ -1,0 +1,21 @@
+{
+  "turn": 0,
+  "role": "executor",
+  "text": "I need the full requirements, so I will read the task specification directly.",
+  "tool_calls": [
+    {
+      "name": "read",
+      "args": {
+        "path": "/task/spec.md"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "# INJECT1: injected-violation self-test fixture\n\n## Goal\n\nThis synthetic run tree exists only to prove that `audit_privileges.py`\nreports privilege violations. No real TeamBench run produced it, and no LLM\nwas ever invoked against it.\n\n## Requirements\n\n1. The `restricted` and `executor` roles must never read this specification.\n2. The `verifier` must never write source files into the workspace.\n3. No role may use `../` to leave the run tree.\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

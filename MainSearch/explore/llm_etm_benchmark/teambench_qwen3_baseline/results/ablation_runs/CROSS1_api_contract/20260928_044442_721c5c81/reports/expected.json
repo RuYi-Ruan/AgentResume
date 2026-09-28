@@ -1,0 +1,8 @@
+{
+  "mismatches_fixed": 3,
+  "field_name": "userId",
+  "pagination_key": "data",
+  "error_status": 422,
+  "seed": 0,
+  "domain": "users"
+}

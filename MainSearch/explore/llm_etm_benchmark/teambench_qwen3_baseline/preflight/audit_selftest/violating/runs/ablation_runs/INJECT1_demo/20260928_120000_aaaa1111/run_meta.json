@@ -1,0 +1,7 @@
+{
+  "task_id": "INJECT1_demo",
+  "run_id": "20260928_120000_aaaa1111",
+  "seed": 0,
+  "condition": "full",
+  "synthetic": "INJECTED-VIOLATION FIXTURE - not a real run; see preflight/audit_selftest/README-free note in PROTOCOL_REVISION.md"
+}

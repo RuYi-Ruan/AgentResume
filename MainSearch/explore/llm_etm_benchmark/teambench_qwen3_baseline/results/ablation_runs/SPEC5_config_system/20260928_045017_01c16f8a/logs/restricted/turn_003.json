@@ -1,0 +1,8 @@
+{
+  "turn": 3,
+  "role": "restricted",
+  "text": "DONE",
+  "tool_calls": [],
+  "tool_results": [],
+  "done": true
+}

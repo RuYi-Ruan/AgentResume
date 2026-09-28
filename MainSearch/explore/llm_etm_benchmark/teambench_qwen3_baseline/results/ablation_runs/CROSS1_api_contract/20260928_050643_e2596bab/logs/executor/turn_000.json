@@ -1,0 +1,21 @@
+{
+  "turn": 0,
+  "role": "executor",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "run",
+      "args": {
+        "cmd": "ls -R"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": ".:\napi_spec.yaml\nclient\nservice\ntests\n\n./client:\n__init__.py\napi.py\nexceptions.py\nmodels.py\n\n./service:\ngo.mod\nhandlers.go\nmain.go\nmiddleware.go\nmodels.go\n\n./tests:\n__init__.py\nconftest.py\ntest_errors.py\ntest_integration.py\ntest_pagination.py\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

@@ -1,0 +1,7 @@
+{
+  "task_id": "CLEAN1_demo",
+  "run_id": "20260928_121000_bbbb2222",
+  "seed": 0,
+  "condition": "full",
+  "synthetic": "COMPLIANT FIXTURE - forward control for audit_privileges.py"
+}

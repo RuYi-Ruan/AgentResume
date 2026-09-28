@@ -25,6 +25,7 @@ Design constraints (from TEAMBench_QWEN3_8B_BASELINE_PLAN.md):
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import pathlib
@@ -104,6 +105,30 @@ def _max_retries() -> int:
         return max(1, int(os.environ.get("TEAMBENCH_MAX_RETRIES", "8")))
     except ValueError:
         return 8
+
+
+# Role labels as they appear in the official role system prompts
+# (harness/agent_interface.py, harness/ablation.py). Used only to *label* the
+# trace so audit_privileges.py can attribute adapter-side tool-call records to a
+# role; nothing about the request or the response is affected.
+_ROLE_PROMPT_MARKERS = (
+    ("You are the Planner. You are a static analysis expert", "planner"),
+    ("You are the Planner", "planner"),
+    ("You are the Executor", "executor"),
+    ("You are the Verifier. You verify correctness", "verifier"),
+    ("You are the Verifier", "verifier"),
+    ("You are a Restricted agent", "restricted"),
+    ("You are an Oracle agent", "oracle"),
+)
+
+
+def role_hint(system_prompt: str | None) -> str:
+    """Best-effort role label for the system prompt the AgentLoop handed over."""
+    prompt = system_prompt or ""
+    for marker, role in _ROLE_PROMPT_MARKERS:
+        if marker in prompt:
+            return role
+    return "unknown"
 
 
 class Qwen3Adapter(OpenAIAdapter):
@@ -204,6 +229,9 @@ class Qwen3Adapter(OpenAIAdapter):
         after = self.get_usage()
         self._trace({
             "event": "response",
+            "role_hint": role_hint(system_prompt),
+            "system_prompt_sha1": hashlib.sha1(
+                (system_prompt or "").encode("utf-8")).hexdigest()[:12],
             "text": resp.text[:2000],
             "tool_calls": resp.tool_calls,
             "done": resp.done,

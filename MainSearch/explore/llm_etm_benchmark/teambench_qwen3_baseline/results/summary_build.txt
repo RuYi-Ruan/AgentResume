@@ -1,0 +1,24 @@
+[1/9] oracle     GH12_click_envvar_flag partial=0.00 pass=0 turns=13 tok=24279/4787 85.5s roles={'oracle': 13}
+[2/9] oracle     SPEC5_config_system    partial=0.05 pass=0 turns=10 tok=30941/7539 150.8s roles={'oracle': 10}
+[3/9] oracle     CROSS1_api_contract    partial=0.00 pass=0 turns=20 tok=61310/1060 36.6s roles={'oracle': 20}
+[4/9] restricted GH12_click_envvar_flag partial=0.00 pass=0 turns=30 tok=254244/11183 289.9s roles={'restricted': 30}
+[5/9] restricted SPEC5_config_system    partial=0.26 pass=0 turns=4 tok=4813/1186 139.4s roles={'restricted': 4}
+[6/9] restricted CROSS1_api_contract    partial=0.20 pass=0 turns=9 tok=16895/488 28.5s roles={'restricted': 9}
+[7/9] full       GH12_click_envvar_flag partial=0.88 pass=0 turns=78 tok=361495/12425 298.6s roles={'planner': 20, 'executor': 31, 'verifier': 27}
+[8/9] full       SPEC5_config_system    partial=0.05 pass=0 turns=55 tok=283639/14146 504.8s roles={'planner': 5, 'executor': 19, 'verifier': 31}
+[9/9] full       CROSS1_api_contract    partial=0.00 pass=0 turns=76 tok=167651/5127 182.5s roles={'planner': 20, 'executor': 24, 'verifier': 32}
+
+wrote summary.csv (9 rows)
+
+consistency: OK (trace slices match every run's per-turn logs)
+
+per-task full - restricted:
+  CROSS1_api_contract      full=0.00 restricted=0.20 diff=-0.20
+  GH12_click_envvar_flag   full=0.88 restricted=0.00 diff=+0.88
+  SPEC5_config_system      full=0.05 restricted=0.26 diff=-0.21
+  mean diff = +0.157   positive = 1/3
+
+per-condition means:
+  oracle     partial=0.017 passes=0/3 tokens=116530/13386 turns=43 elapsed=272.9s
+  restricted partial=0.153 passes=0/3 tokens=275952/12857 turns=43 elapsed=457.8s
+  full       partial=0.310 passes=0/3 tokens=812785/31698 turns=209 elapsed=985.9s

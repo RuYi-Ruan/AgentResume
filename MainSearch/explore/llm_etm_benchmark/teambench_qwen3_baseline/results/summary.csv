@@ -1,0 +1,10 @@
+task,condition,seed,partial_score,passed,turns,input_tokens,output_tokens,total_tokens,elapsed_sec,run_id,failure_modes,error
+GH12_click_envvar_flag,oracle,0,0.0,0,13,24279,4787,29066,85.5,20260928_044036_83f27e44,,
+SPEC5_config_system,oracle,0,0.05,0,10,30941,7539,38480,150.8,20260928_044205_879035f4,import_error;missing_keys;defaults_wrong;env_override_fail;cli_priority_fail;file_load_fail;int_range_validation_fail;int_boundary_fail;enum_validation_fail;bool_coercion_fail;bool_env_fail;bool_invalid_fail;int_coercion_fail;file_not_found_fail;int_parse_error_fail;schema_structure_fail;cli_file_priority_fail;unknown_keys_error,
+CROSS1_api_contract,oracle,0,0.0,0,20,61310,1060,62370,36.6,20260928_044442_721c5c81,,
+GH12_click_envvar_flag,restricted,0,0.0,0,30,254244,11183,265427,289.9,20260928_044523_6560d0bd,,
+SPEC5_config_system,restricted,0,0.26,0,4,4813,1186,5999,139.4,20260928_045017_01c16f8a,missing_keys;defaults_wrong;env_override_fail;cli_priority_fail;file_load_fail;int_boundary_fail;enum_validation_fail;bool_coercion_fail;bool_env_fail;int_coercion_fail;file_not_found_fail;schema_structure_fail;cli_file_priority_fail;unknown_keys_error,
+CROSS1_api_contract,restricted,0,0.2,0,9,16895,488,17383,28.5,20260928_045240_f3849b6c,,
+GH12_click_envvar_flag,full,0,0.88,0,78,361495,12425,373920,298.6,20260928_045314_09c3e747,,
+SPEC5_config_system,full,0,0.05,0,55,283639,14146,297785,504.8,20260928_045814_6971c4bf,import_error;missing_keys;defaults_wrong;env_override_fail;cli_priority_fail;file_load_fail;int_range_validation_fail;int_boundary_fail;enum_validation_fail;bool_coercion_fail;bool_env_fail;bool_invalid_fail;int_coercion_fail;file_not_found_fail;int_parse_error_fail;schema_structure_fail;cli_file_priority_fail;unknown_keys_error,
+CROSS1_api_contract,full,0,0.0,0,76,167651,5127,172778,182.5,20260928_050643_e2596bab,,

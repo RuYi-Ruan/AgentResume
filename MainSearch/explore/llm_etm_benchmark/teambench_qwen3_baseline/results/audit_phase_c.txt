@@ -1,0 +1,288 @@
+==============================================================================
+PRIVILEGE AUDIT -- CROSS1_api_contract / oracle / 20260928_044442_721c5c81
+==============================================================================
+run_dir   : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/CROSS1_api_contract/20260928_044442_721c5c81
+task_dir  : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/CROSS1_api_contract
+condition : oracle
+
+-- coverage -----------------------------------------------------------------
+turn logs scanned            : 20
+tool calls examined          : 19 (read=9 write=3 run=7 other=0)
+unparseable tool args (log)  : 0
+
+-- traversal attempts (informational; only escapes are violations) --------------
+  (none observed)
+
+-- unresolved paths (no layout: alias root unknown) ---------------------------
+  (none)
+
+-- findings ------------------------------------------------------------------
+  NONE. No recorded tool call violated the role contract in READ_ROOTS/WRITE_ROOTS.
+
+-- limitations ---------------------------------------------------------------
+  L1. Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.
+  L2. Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.
+  L3. Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.
+  L4. Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.
+  L5. A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all).
+
+VERDICT: clean (0 failing finding(s), 0 total) -> exit 0
+==============================================================================
+PRIVILEGE AUDIT -- CROSS1_api_contract / restricted / 20260928_045240_f3849b6c
+==============================================================================
+run_dir   : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/CROSS1_api_contract/20260928_045240_f3849b6c
+task_dir  : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/CROSS1_api_contract
+condition : restricted
+
+-- coverage -----------------------------------------------------------------
+turn logs scanned            : 9
+tool calls examined          : 4 (read=0 write=0 run=4 other=0)
+unparseable tool args (log)  : 0
+
+-- traversal attempts (informational; only escapes are violations) --------------
+  (none observed)
+
+-- unresolved paths (no layout: alias root unknown) ---------------------------
+  (none)
+
+-- findings ------------------------------------------------------------------
+  NONE. No recorded tool call violated the role contract in READ_ROOTS/WRITE_ROOTS.
+
+-- limitations ---------------------------------------------------------------
+  L1. Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.
+  L2. Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.
+  L3. Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.
+  L4. Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.
+  L5. A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all).
+
+VERDICT: clean (0 failing finding(s), 0 total) -> exit 0
+==============================================================================
+PRIVILEGE AUDIT -- CROSS1_api_contract / full / 20260928_050643_e2596bab
+==============================================================================
+run_dir   : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/CROSS1_api_contract/20260928_050643_e2596bab
+task_dir  : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/CROSS1_api_contract
+condition : full
+
+-- coverage -----------------------------------------------------------------
+turn logs scanned            : 76
+tool calls examined          : 56 (read=9 write=1 run=14 other=32)
+unparseable tool args (log)  : 0
+
+-- traversal attempts (informational; only escapes are violations) --------------
+  (none observed)
+
+-- unresolved paths (no layout: alias root unknown) ---------------------------
+  (none)
+
+-- findings ------------------------------------------------------------------
+  NONE. No recorded tool call violated the role contract in READ_ROOTS/WRITE_ROOTS.
+
+-- limitations ---------------------------------------------------------------
+  L1. Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.
+  L2. Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.
+  L3. Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.
+  L4. Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.
+  L5. A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all).
+
+VERDICT: clean (0 failing finding(s), 0 total) -> exit 0
+==============================================================================
+PRIVILEGE AUDIT -- GH12_click_envvar_flag / oracle / 20260928_044036_83f27e44
+==============================================================================
+run_dir   : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044036_83f27e44
+task_dir  : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/GH12_click_envvar_flag
+condition : oracle
+
+-- coverage -----------------------------------------------------------------
+turn logs scanned            : 13
+tool calls examined          : 11 (read=1 write=10 run=0 other=0)
+unparseable tool args (log)  : 0
+
+-- traversal attempts (informational; only escapes are violations) --------------
+  (none observed)
+
+-- unresolved paths (no layout: alias root unknown) ---------------------------
+  (none)
+
+-- findings ------------------------------------------------------------------
+  NONE. No recorded tool call violated the role contract in READ_ROOTS/WRITE_ROOTS.
+
+-- limitations ---------------------------------------------------------------
+  L1. Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.
+  L2. Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.
+  L3. Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.
+  L4. Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.
+  L5. A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all).
+
+VERDICT: clean (0 failing finding(s), 0 total) -> exit 0
+==============================================================================
+PRIVILEGE AUDIT -- GH12_click_envvar_flag / restricted / 20260928_044523_6560d0bd
+==============================================================================
+run_dir   : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd
+task_dir  : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/GH12_click_envvar_flag
+condition : restricted
+
+-- coverage -----------------------------------------------------------------
+turn logs scanned            : 30
+tool calls examined          : 30 (read=1 write=17 run=12 other=0)
+unparseable tool args (log)  : 0
+
+-- traversal attempts (informational; only escapes are violations) --------------
+  [low] write arg: '../submission/cli.py' -> /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py
+  [low] write arg: '../submission/cli.py' -> /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py
+  [low] write arg: '../submission/cli.py' -> /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py
+  [low] write arg: '../submission/cli.py' -> /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py
+  [low] write arg: '../submission/cli.py' -> /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py
+  [low] write arg: '../submission/cli.py' -> /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py
+  [low] write arg: '../submission/cli.py' -> /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py
+  [low] write arg: '../submission/cli.py' -> /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py
+  [low] write arg: '../submission/cli.py' -> /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py
+
+-- unresolved paths (no layout: alias root unknown) ---------------------------
+  (none)
+
+-- findings ------------------------------------------------------------------
+  NONE. No recorded tool call violated the role contract in READ_ROOTS/WRITE_ROOTS.
+
+-- limitations ---------------------------------------------------------------
+  L1. Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.
+  L2. Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.
+  L3. Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.
+  L4. Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.
+  L5. A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all).
+
+VERDICT: clean (0 failing finding(s), 0 total) -> exit 0
+==============================================================================
+PRIVILEGE AUDIT -- GH12_click_envvar_flag / full / 20260928_045314_09c3e747
+==============================================================================
+run_dir   : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_045314_09c3e747
+task_dir  : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/GH12_click_envvar_flag
+condition : full
+
+-- coverage -----------------------------------------------------------------
+turn logs scanned            : 78
+tool calls examined          : 62 (read=7 write=6 run=9 other=39)
+unparseable tool args (log)  : 1
+
+-- traversal attempts (informational; only escapes are violations) --------------
+  (none observed)
+
+-- unresolved paths (no layout: alias root unknown) ---------------------------
+  (none)
+
+-- findings ------------------------------------------------------------------
+  NONE. No recorded tool call violated the role contract in READ_ROOTS/WRITE_ROOTS.
+
+-- limitations ---------------------------------------------------------------
+  L1. Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.
+  L2. Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.
+  L3. Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.
+  L4. Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.
+  L5. A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all).
+
+VERDICT: clean (0 failing finding(s), 0 total) -> exit 0
+==============================================================================
+PRIVILEGE AUDIT -- SPEC5_config_system / oracle / 20260928_044205_879035f4
+==============================================================================
+run_dir   : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_044205_879035f4
+task_dir  : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/SPEC5_config_system
+condition : oracle
+
+-- coverage -----------------------------------------------------------------
+turn logs scanned            : 10
+tool calls examined          : 8 (read=3 write=4 run=1 other=0)
+unparseable tool args (log)  : 0
+
+-- traversal attempts (informational; only escapes are violations) --------------
+  (none observed)
+
+-- unresolved paths (no layout: alias root unknown) ---------------------------
+  (none)
+
+-- findings ------------------------------------------------------------------
+  NONE. No recorded tool call violated the role contract in READ_ROOTS/WRITE_ROOTS.
+
+-- limitations ---------------------------------------------------------------
+  L1. Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.
+  L2. Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.
+  L3. Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.
+  L4. Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.
+  L5. A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all).
+
+VERDICT: clean (0 failing finding(s), 0 total) -> exit 0
+==============================================================================
+PRIVILEGE AUDIT -- SPEC5_config_system / restricted / 20260928_045017_01c16f8a
+==============================================================================
+run_dir   : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045017_01c16f8a
+task_dir  : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/SPEC5_config_system
+condition : restricted
+
+-- coverage -----------------------------------------------------------------
+turn logs scanned            : 4
+tool calls examined          : 3 (read=1 write=2 run=0 other=0)
+unparseable tool args (log)  : 0
+
+-- traversal attempts (informational; only escapes are violations) --------------
+  [low] write arg: '../submission/attestation.json' -> /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045017_01c16f8a/submission/attestation.json
+
+-- unresolved paths (no layout: alias root unknown) ---------------------------
+  (none)
+
+-- findings ------------------------------------------------------------------
+  [HIGH] SPEC_CONTENT_LEAK role=restricted tool=read enforcement=allowed
+      read('config_skeleton.py') returned text containing 2 line(s) that appear only in the task spec (e.g. '"""Raised when a config value fails validation."""') although role 'restricted' is not entitled to the spec
+      source: /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045017_01c16f8a/logs/restricted/turn_000.json (turn 0)
+
+-- limitations ---------------------------------------------------------------
+  L1. Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.
+  L2. Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.
+  L3. Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.
+  L4. Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.
+  L5. A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all).
+
+VERDICT: VIOLATIONS FOUND (1 failing finding(s), 1 total) -> exit 1
+==============================================================================
+PRIVILEGE AUDIT -- SPEC5_config_system / full / 20260928_045814_6971c4bf
+==============================================================================
+run_dir   : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045814_6971c4bf
+task_dir  : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/SPEC5_config_system
+condition : full
+
+-- coverage -----------------------------------------------------------------
+turn logs scanned            : 55
+tool calls examined          : 47 (read=13 write=4 run=0 other=30)
+unparseable tool args (log)  : 0
+
+-- traversal attempts (informational; only escapes are violations) --------------
+  (none observed)
+
+-- unresolved paths (no layout: alias root unknown) ---------------------------
+  (none)
+
+-- findings ------------------------------------------------------------------
+  [HIGH] SPEC_CONTENT_LEAK role=executor tool=read enforcement=allowed
+      read('config_skeleton.py') returned text containing 2 line(s) that appear only in the task spec (e.g. '"""Raised when a config value fails validation."""') although role 'executor' is not entitled to the spec
+      source: /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045814_6971c4bf/logs/executor/remediation_0/turn_000.json (turn 0)
+  [HIGH] SPEC_CONTENT_LEAK role=executor tool=read enforcement=allowed
+      read('config_skeleton.py') returned text containing 2 line(s) that appear only in the task spec (e.g. '"""Raised when a config value fails validation."""') although role 'executor' is not entitled to the spec
+      source: /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045814_6971c4bf/logs/executor/turn_000.json (turn 0)
+
+-- limitations ---------------------------------------------------------------
+  L1. Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.
+  L2. Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.
+  L3. Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.
+  L4. Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.
+  L5. A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all).
+
+VERDICT: VIOLATIONS FOUND (2 failing finding(s), 2 total) -> exit 1
+
+==============================================================================
+ADAPTER TRACE CROSS-CHECK (secondary source; trace has no run id)
+==============================================================================
+trace       : /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/phase_c_trace.jsonl
+records     : 886 (240 response events with tool calls, 240 calls)
+roles       : {'oracle': 38, 'restricted': 37, 'planner': 44, 'executor': 51, 'verifier': 70}
+matched     : 240/240 calls matched a per-turn log signature; unmatched=0
+
+JSON report written to /mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/audit_report_phase_c.json
+
+OVERALL: VIOLATIONS across 9 run dir(s), 3 finding(s) -> exit 1

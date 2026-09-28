@@ -1,0 +1,22 @@
+{
+  "turn": 8,
+  "role": "planner",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "send_message",
+      "args": {
+        "content": "I have completed my plan and will now output DONE.",
+        "to": "executor"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "Message sent to executor",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

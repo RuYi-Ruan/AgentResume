@@ -1,0 +1,101 @@
+{
+  "domain": "web_service",
+  "env_prefix": "WEB",
+  "schema": {
+    "host": {
+      "type": "string",
+      "default": "0.0.0.0",
+      "env_var": "WEB_HOST",
+      "description": "Hostname or IP address to bind",
+      "validation": "non-empty string"
+    },
+    "port": {
+      "type": "int",
+      "default": 6155,
+      "env_var": "WEB_PORT",
+      "description": "TCP port to listen on; must be 2048-49151",
+      "validation": "int in range [2048, 49151]",
+      "min": 2048,
+      "max": 49151
+    },
+    "log_level": {
+      "type": "enum",
+      "default": "WARN",
+      "env_var": "WEB_LOG_LEVEL",
+      "description": "Logging verbosity; one of ['INFO', 'WARN', 'ERROR']",
+      "validation": "one of ['INFO', 'WARN', 'ERROR']",
+      "allowed": [
+        "INFO",
+        "WARN",
+        "ERROR"
+      ]
+    },
+    "request_timeout": {
+      "type": "int",
+      "default": 120,
+      "env_var": "WEB_REQUEST_TIMEOUT",
+      "description": "Request timeout in seconds; must be 1-3600",
+      "validation": "int in range [1, 3600]",
+      "min": 1,
+      "max": 3600
+    },
+    "max_connections": {
+      "type": "int",
+      "default": 348,
+      "env_var": "WEB_MAX_CONNECTIONS",
+      "description": "Maximum concurrent connections; must be 1-1000",
+      "validation": "int in range [1, 1000]",
+      "min": 1,
+      "max": 1000
+    },
+    "debug_mode": {
+      "type": "bool",
+      "default": false,
+      "env_var": "WEB_DEBUG",
+      "description": "Enable debug mode",
+      "validation": "bool (true/false/1/0/yes/no)"
+    },
+    "static_dir": {
+      "type": "string",
+      "default": "./static",
+      "env_var": "WEB_STATIC_DIR",
+      "description": "Path to static files directory",
+      "validation": "non-empty string"
+    },
+    "cors_origins": {
+      "type": "string",
+      "default": "*",
+      "env_var": "WEB_CORS_ORIGINS",
+      "description": "Allowed CORS origins, comma-separated",
+      "validation": "string (any)"
+    },
+    "keep_alive_timeout": {
+      "type": "int",
+      "default": 10,
+      "env_var": "WEB_KEEP_ALIVE_TIMEOUT",
+      "description": "Keep-alive timeout seconds; must be 1-300",
+      "validation": "int in range [1, 300]",
+      "min": 1,
+      "max": 300
+    },
+    "ssl_enabled": {
+      "type": "bool",
+      "default": false,
+      "env_var": "WEB_SSL_ENABLED",
+      "description": "Enable SSL/TLS",
+      "validation": "bool"
+    }
+  },
+  "port_min": 2048,
+  "port_max": 49151,
+  "default_port": 6155,
+  "default_log_level": "WARN",
+  "allowed_log_levels": [
+    "INFO",
+    "WARN",
+    "ERROR"
+  ],
+  "default_timeout": 120,
+  "default_max_connections": 348,
+  "max_conn_max": 1000
+}

@@ -1,0 +1,22 @@
+{
+  "turn": 10,
+  "role": "oracle",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "write",
+      "args": {
+        "content": "{\"task_id\":\"GH12_click_envvar_flag\",\"verdict\":\"pass\",\"checklist\":[]}",
+        "path": "attestation.json"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "Written 68 bytes to attestation.json",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

@@ -1,0 +1,398 @@
+{
+  "tool": "audit_privileges.py",
+  "version": "1.0",
+  "generated_at": "2026-09-28T05:10:07.443634+00:00",
+  "policy": {
+    "read_roots": {
+      "oracle": [
+        "run",
+        "task"
+      ],
+      "planner": [
+        "task",
+        "workspace",
+        "reports",
+        "messages",
+        "analysis"
+      ],
+      "executor": [
+        "workspace",
+        "reports",
+        "messages"
+      ],
+      "restricted": [
+        "workspace",
+        "reports",
+        "messages"
+      ],
+      "verifier": [
+        "task",
+        "workspace",
+        "reports",
+        "messages",
+        "submission"
+      ],
+      "unknown": [
+        "run",
+        "task"
+      ]
+    },
+    "write_roots": {
+      "oracle": [
+        "workspace",
+        "reports",
+        "submission",
+        "messages"
+      ],
+      "planner": [
+        "messages",
+        "analysis"
+      ],
+      "executor": [
+        "workspace",
+        "reports",
+        "messages"
+      ],
+      "restricted": [
+        "workspace",
+        "reports",
+        "submission",
+        "messages"
+      ],
+      "verifier": [
+        "submission",
+        "messages"
+      ],
+      "unknown": [
+        "run",
+        "task"
+      ]
+    },
+    "spec_read_allowed_roles": [
+      "oracle",
+      "planner",
+      "unknown",
+      "verifier"
+    ]
+  },
+  "limitations": [
+    "Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.",
+    "Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.",
+    "Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.",
+    "Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.",
+    "A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all)."
+  ],
+  "targets": [
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/CROSS1_api_contract/20260928_044442_721c5c81",
+      "task_id": "CROSS1_api_contract",
+      "run_id": "20260928_044442_721c5c81",
+      "condition": "oracle",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/CROSS1_api_contract",
+      "coverage": {
+        "turn_logs": 20,
+        "tool_calls": 19,
+        "read_calls": 9,
+        "write_calls": 3,
+        "run_calls": 7,
+        "other_calls": 0,
+        "unparsed_args": 0
+      },
+      "traversal_attempts": [],
+      "unresolved_paths": [],
+      "findings": [],
+      "failing_findings": 0,
+      "verdict": "clean"
+    },
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/CROSS1_api_contract/20260928_045240_f3849b6c",
+      "task_id": "CROSS1_api_contract",
+      "run_id": "20260928_045240_f3849b6c",
+      "condition": "restricted",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/CROSS1_api_contract",
+      "coverage": {
+        "turn_logs": 9,
+        "tool_calls": 4,
+        "read_calls": 0,
+        "write_calls": 0,
+        "run_calls": 4,
+        "other_calls": 0,
+        "unparsed_args": 0
+      },
+      "traversal_attempts": [],
+      "unresolved_paths": [],
+      "findings": [],
+      "failing_findings": 0,
+      "verdict": "clean"
+    },
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/CROSS1_api_contract/20260928_050643_e2596bab",
+      "task_id": "CROSS1_api_contract",
+      "run_id": "20260928_050643_e2596bab",
+      "condition": "full",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/CROSS1_api_contract",
+      "coverage": {
+        "turn_logs": 76,
+        "tool_calls": 56,
+        "read_calls": 9,
+        "write_calls": 1,
+        "run_calls": 14,
+        "other_calls": 32,
+        "unparsed_args": 0
+      },
+      "traversal_attempts": [],
+      "unresolved_paths": [],
+      "findings": [],
+      "failing_findings": 0,
+      "verdict": "clean"
+    },
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044036_83f27e44",
+      "task_id": "GH12_click_envvar_flag",
+      "run_id": "20260928_044036_83f27e44",
+      "condition": "oracle",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/GH12_click_envvar_flag",
+      "coverage": {
+        "turn_logs": 13,
+        "tool_calls": 11,
+        "read_calls": 1,
+        "write_calls": 10,
+        "run_calls": 0,
+        "other_calls": 0,
+        "unparsed_args": 0
+      },
+      "traversal_attempts": [],
+      "unresolved_paths": [],
+      "findings": [],
+      "failing_findings": 0,
+      "verdict": "clean"
+    },
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd",
+      "task_id": "GH12_click_envvar_flag",
+      "run_id": "20260928_044523_6560d0bd",
+      "condition": "restricted",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/GH12_click_envvar_flag",
+      "coverage": {
+        "turn_logs": 30,
+        "tool_calls": 30,
+        "read_calls": 1,
+        "write_calls": 17,
+        "run_calls": 12,
+        "other_calls": 0,
+        "unparsed_args": 0
+      },
+      "traversal_attempts": [
+        {
+          "where": "write arg",
+          "raw": "../submission/cli.py",
+          "resolved": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py",
+          "level": "low"
+        },
+        {
+          "where": "write arg",
+          "raw": "../submission/cli.py",
+          "resolved": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py",
+          "level": "low"
+        },
+        {
+          "where": "write arg",
+          "raw": "../submission/cli.py",
+          "resolved": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py",
+          "level": "low"
+        },
+        {
+          "where": "write arg",
+          "raw": "../submission/cli.py",
+          "resolved": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py",
+          "level": "low"
+        },
+        {
+          "where": "write arg",
+          "raw": "../submission/cli.py",
+          "resolved": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py",
+          "level": "low"
+        },
+        {
+          "where": "write arg",
+          "raw": "../submission/cli.py",
+          "resolved": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py",
+          "level": "low"
+        },
+        {
+          "where": "write arg",
+          "raw": "../submission/cli.py",
+          "resolved": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py",
+          "level": "low"
+        },
+        {
+          "where": "write arg",
+          "raw": "../submission/cli.py",
+          "resolved": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py",
+          "level": "low"
+        },
+        {
+          "where": "write arg",
+          "raw": "../submission/cli.py",
+          "resolved": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_044523_6560d0bd/submission/cli.py",
+          "level": "low"
+        }
+      ],
+      "unresolved_paths": [],
+      "findings": [],
+      "failing_findings": 0,
+      "verdict": "clean"
+    },
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/GH12_click_envvar_flag/20260928_045314_09c3e747",
+      "task_id": "GH12_click_envvar_flag",
+      "run_id": "20260928_045314_09c3e747",
+      "condition": "full",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/GH12_click_envvar_flag",
+      "coverage": {
+        "turn_logs": 78,
+        "tool_calls": 62,
+        "read_calls": 7,
+        "write_calls": 6,
+        "run_calls": 9,
+        "other_calls": 39,
+        "unparsed_args": 1
+      },
+      "traversal_attempts": [],
+      "unresolved_paths": [],
+      "findings": [],
+      "failing_findings": 0,
+      "verdict": "clean"
+    },
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_044205_879035f4",
+      "task_id": "SPEC5_config_system",
+      "run_id": "20260928_044205_879035f4",
+      "condition": "oracle",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/SPEC5_config_system",
+      "coverage": {
+        "turn_logs": 10,
+        "tool_calls": 8,
+        "read_calls": 3,
+        "write_calls": 4,
+        "run_calls": 1,
+        "other_calls": 0,
+        "unparsed_args": 0
+      },
+      "traversal_attempts": [],
+      "unresolved_paths": [],
+      "findings": [],
+      "failing_findings": 0,
+      "verdict": "clean"
+    },
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045017_01c16f8a",
+      "task_id": "SPEC5_config_system",
+      "run_id": "20260928_045017_01c16f8a",
+      "condition": "restricted",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/SPEC5_config_system",
+      "coverage": {
+        "turn_logs": 4,
+        "tool_calls": 3,
+        "read_calls": 1,
+        "write_calls": 2,
+        "run_calls": 0,
+        "other_calls": 0,
+        "unparsed_args": 0
+      },
+      "traversal_attempts": [
+        {
+          "where": "write arg",
+          "raw": "../submission/attestation.json",
+          "resolved": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045017_01c16f8a/submission/attestation.json",
+          "level": "low"
+        }
+      ],
+      "unresolved_paths": [],
+      "findings": [
+        {
+          "check": "SPEC_CONTENT_LEAK",
+          "level": "high",
+          "role": "restricted",
+          "tool": "read",
+          "detail": "read('config_skeleton.py') returned text containing 2 line(s) that appear only in the task spec (e.g. '\"\"\"Raised when a config value fails validation.\"\"\"') although role 'restricted' is not entitled to the spec",
+          "source": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045017_01c16f8a/logs/restricted/turn_000.json",
+          "turn": 0,
+          "raw_arg": "config_skeleton.py",
+          "resolved_path": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045017_01c16f8a/workspace/config_skeleton.py",
+          "harness_enforcement": "allowed"
+        }
+      ],
+      "failing_findings": 1,
+      "verdict": "violations"
+    },
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045814_6971c4bf",
+      "task_id": "SPEC5_config_system",
+      "run_id": "20260928_045814_6971c4bf",
+      "condition": "full",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/SPEC5_config_system",
+      "coverage": {
+        "turn_logs": 55,
+        "tool_calls": 47,
+        "read_calls": 13,
+        "write_calls": 4,
+        "run_calls": 0,
+        "other_calls": 30,
+        "unparsed_args": 0
+      },
+      "traversal_attempts": [],
+      "unresolved_paths": [],
+      "findings": [
+        {
+          "check": "SPEC_CONTENT_LEAK",
+          "level": "high",
+          "role": "executor",
+          "tool": "read",
+          "detail": "read('config_skeleton.py') returned text containing 2 line(s) that appear only in the task spec (e.g. '\"\"\"Raised when a config value fails validation.\"\"\"') although role 'executor' is not entitled to the spec",
+          "source": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045814_6971c4bf/logs/executor/remediation_0/turn_000.json",
+          "turn": 0,
+          "raw_arg": "config_skeleton.py",
+          "resolved_path": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045814_6971c4bf/workspace/config_skeleton.py",
+          "harness_enforcement": "allowed"
+        },
+        {
+          "check": "SPEC_CONTENT_LEAK",
+          "level": "high",
+          "role": "executor",
+          "tool": "read",
+          "detail": "read('config_skeleton.py') returned text containing 2 line(s) that appear only in the task spec (e.g. '\"\"\"Raised when a config value fails validation.\"\"\"') although role 'executor' is not entitled to the spec",
+          "source": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045814_6971c4bf/logs/executor/turn_000.json",
+          "turn": 0,
+          "raw_arg": "config_skeleton.py",
+          "resolved_path": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/ablation_runs/SPEC5_config_system/20260928_045814_6971c4bf/workspace/config_skeleton.py",
+          "harness_enforcement": "allowed"
+        }
+      ],
+      "failing_findings": 2,
+      "verdict": "violations"
+    }
+  ],
+  "trace_cross_check": [
+    {
+      "trace": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/results/phase_c_trace.jsonl",
+      "records": 886,
+      "tool_call_events": 240,
+      "calls": 240,
+      "roles": {
+        "oracle": 38,
+        "restricted": 37,
+        "planner": 44,
+        "executor": 51,
+        "verifier": 70
+      },
+      "matched": 240,
+      "unmatched": 0,
+      "pre_hook": false,
+      "findings": [],
+      "unmatched_calls": []
+    }
+  ],
+  "verdict": "violations",
+  "exit_code": 1
+}

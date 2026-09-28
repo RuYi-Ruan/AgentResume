@@ -1,0 +1,35 @@
+{
+  "_comment": "PARTIAL schema \u2014 this file is incomplete. The full schema with validation rules is in spec.md. Domain: web_service. Env prefix: WEB.",
+  "schema": {
+    "host": {
+      "type": "string",
+      "default": "0.0.0.0",
+      "env_var": "WEB_HOST",
+      "description": "Hostname or IP address to bind"
+    },
+    "port": {
+      "type": "int",
+      "default": 6155,
+      "env_var": "WEB_PORT",
+      "description": "TCP port to listen on; must be 2048-49151"
+    },
+    "log_level": {
+      "type": "enum",
+      "default": "WARN",
+      "env_var": "WEB_LOG_LEVEL",
+      "description": "Logging verbosity; one of ['INFO', 'WARN', 'ERROR']"
+    },
+    "request_timeout": {
+      "type": "int",
+      "default": 120,
+      "env_var": "WEB_REQUEST_TIMEOUT",
+      "description": "Request timeout in seconds; must be 1-3600"
+    },
+    "max_connections": {
+      "type": "int",
+      "default": 348,
+      "env_var": "WEB_MAX_CONNECTIONS",
+      "description": "Maximum concurrent connections; must be 1-1000"
+    }
+  }
+}

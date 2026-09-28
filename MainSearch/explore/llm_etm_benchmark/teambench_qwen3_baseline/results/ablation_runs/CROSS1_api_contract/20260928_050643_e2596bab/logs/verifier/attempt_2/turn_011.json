@@ -1,0 +1,22 @@
+{
+  "turn": 11,
+  "role": "verifier",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "send_message",
+      "args": {
+        "content": "The Python client has the following issues:\n1. The User model uses snake_case for `user_id`, but the server sends camelCase (`userId`).\n2. The `list_users` method uses `results` and `cursor` for pagination, but the server sends `data` and `next`.\n3. The error handling expects an `errors[]` array, but the server returns a single `error` string.\n\nPlease fix these issues to ensure the client matches the server's behavior.",
+        "to": "executor"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "Message sent to executor",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

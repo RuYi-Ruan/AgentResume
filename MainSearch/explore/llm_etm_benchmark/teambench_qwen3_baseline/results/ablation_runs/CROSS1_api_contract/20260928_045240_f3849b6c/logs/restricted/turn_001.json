@@ -1,0 +1,21 @@
+{
+  "turn": 1,
+  "role": "restricted",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "run",
+      "args": {
+        "cmd": "go build ./..."
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "",
+      "stderr": "/bin/sh: 1: go: not found\n",
+      "exit_code": 127
+    }
+  ],
+  "done": false
+}

@@ -1,0 +1,21 @@
+{
+  "turn": 0,
+  "role": "planner",
+  "text": "Reading the spec, then instructing the executor.",
+  "tool_calls": [
+    {
+      "name": "read",
+      "args": {
+        "path": "/task/spec.md"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "# CLEAN1: compliant self-test fixture\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}

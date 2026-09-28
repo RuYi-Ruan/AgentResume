@@ -1,0 +1,10 @@
+{
+  "pass": false,
+  "secondary": {
+    "partial_score": 0.88,
+    "checks_passed": 7,
+    "checks_total": 8
+  },
+  "failure_modes": [],
+  "checklist": [{"id":"C1","ok":true,"note":"cli.py valid Python syntax"},{"id":"C2","ok":true,"note":"envvar=false produces dry_run=False"},{"id":"C3","ok":true,"note":"envvar=0 produces dry_run=False"},{"id":"C4","ok":true,"note":"envvar=no produces dry_run=False"},{"id":"C5","ok":true,"note":"envvar=true produces dry_run=True"},{"id":"C6","ok":true,"note":"envvar=1 produces dry_run=True"},{"id":"C7","ok":true,"note":"explicit True overrides envvar=false"},{"id":"C8","ok":false,"note":"pytest test_cli.py passes"}]
+}

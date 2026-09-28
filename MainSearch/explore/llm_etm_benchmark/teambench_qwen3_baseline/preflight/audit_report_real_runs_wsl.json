@@ -1,0 +1,132 @@
+{
+  "tool": "audit_privileges.py",
+  "version": "1.0",
+  "generated_at": "2026-09-28T04:34:39.196000+00:00",
+  "policy": {
+    "read_roots": {
+      "oracle": [
+        "run",
+        "task"
+      ],
+      "planner": [
+        "task",
+        "workspace",
+        "reports",
+        "messages",
+        "analysis"
+      ],
+      "executor": [
+        "workspace",
+        "reports",
+        "messages"
+      ],
+      "restricted": [
+        "workspace",
+        "reports",
+        "messages"
+      ],
+      "verifier": [
+        "task",
+        "workspace",
+        "reports",
+        "messages",
+        "submission"
+      ],
+      "unknown": [
+        "run",
+        "task"
+      ]
+    },
+    "write_roots": {
+      "oracle": [
+        "workspace",
+        "reports",
+        "submission",
+        "messages"
+      ],
+      "planner": [
+        "messages",
+        "analysis"
+      ],
+      "executor": [
+        "workspace",
+        "reports",
+        "messages"
+      ],
+      "restricted": [
+        "workspace",
+        "reports",
+        "submission",
+        "messages"
+      ],
+      "verifier": [
+        "submission",
+        "messages"
+      ],
+      "unknown": [
+        "run",
+        "task"
+      ]
+    },
+    "spec_read_allowed_roles": [
+      "oracle",
+      "planner",
+      "unknown",
+      "verifier"
+    ]
+  },
+  "limitations": [
+    "Auditable scope = recorded tool calls only (per-turn logs logs/<role>[/attempt_N]/turn_*.json, plus the adapter trace as a secondary record). File I/O performed by a subprocess launched from a shell command, and any I/O the harness performs internally, is NOT observable here.",
+    "Shell commands are audited statically (path tokens + write operators). Obfuscated access -- base64 payloads, variables assembled at runtime, `python -c` with a computed path -- defeats static matching and is reported as unverifiable, not clean.",
+    "Paths are re-derived with the official alias map (/shared/workspace -> run workspace, /task -> task dir, /workspace, /analysis) and then normalised. A requested path the harness's own `read` guard would have accepted but that resolves outside the allowed root is reported as an escape -- the audit is deliberately stricter than the guard.",
+    "Only run trees under the given targets are examined; anything the agents did outside the run tree (e.g. in /tmp) is visible only if it appears in a command or read result.",
+    "A 'denied' harness_enforcement value means the official tool refused the call; it does NOT prove the attempt had no side effect (the shell tool has no path guard at all)."
+  ],
+  "targets": [
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/preflight/b5_full_short/ablation_runs/GH12_click_envvar_flag/20260928_021402_cd93bb63",
+      "task_id": "GH12_click_envvar_flag",
+      "run_id": "20260928_021402_cd93bb63",
+      "condition": "full",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/GH12_click_envvar_flag",
+      "coverage": {
+        "turn_logs": 12,
+        "tool_calls": 12,
+        "read_calls": 3,
+        "write_calls": 1,
+        "run_calls": 3,
+        "other_calls": 4,
+        "unparsed_args": 1
+      },
+      "traversal_attempts": [],
+      "unresolved_paths": [],
+      "findings": [],
+      "failing_findings": 0,
+      "verdict": "clean"
+    },
+    {
+      "run_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_qwen3_baseline/preflight/b4c_oracle_short/ablation_runs/GH12_click_envvar_flag/20260928_021531_f7c67e83",
+      "task_id": "GH12_click_envvar_flag",
+      "run_id": "20260928_021531_f7c67e83",
+      "condition": "oracle",
+      "task_dir": "/mnt/d/omp/MainSearch/explore/llm_etm_benchmark/teambench_ref/tasks/GH12_click_envvar_flag",
+      "coverage": {
+        "turn_logs": 4,
+        "tool_calls": 4,
+        "read_calls": 1,
+        "write_calls": 3,
+        "run_calls": 0,
+        "other_calls": 0,
+        "unparsed_args": 0
+      },
+      "traversal_attempts": [],
+      "unresolved_paths": [],
+      "findings": [],
+      "failing_findings": 0,
+      "verdict": "clean"
+    }
+  ],
+  "trace_cross_check": [],
+  "verdict": "clean",
+  "exit_code": 0
+}

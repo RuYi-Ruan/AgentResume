@@ -1,0 +1,8 @@
+{
+  "turn": 5,
+  "role": "executor",
+  "text": "DONE",
+  "tool_calls": [],
+  "tool_results": [],
+  "done": true
+}

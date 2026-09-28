@@ -1,0 +1,22 @@
+{
+  "turn": 0,
+  "role": "executor",
+  "text": "",
+  "tool_calls": [
+    {
+      "name": "send_message",
+      "args": {
+        "to": "planner",
+        "content": "The Go compiler is not installed in the environment. Please install it so that the integration tests can be run."
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "stdout": "Message sent to planner",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "done": false
+}
